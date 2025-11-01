@@ -57,4 +57,9 @@ async def revoke_refresh_token(db: AsyncSession, token: str):
 
 async def get_valid_refresh_token(db: AsyncSession, token: str):
     """Select refresh token in database which is valid"""
-    
+    statement = select(RefreshToken).where(
+        RefreshToken.token == token,
+        RefreshToken.expires_at > datetime.now(timezone.utc)
+    )
+    result = await db.exec(statement)
+    return result.first()

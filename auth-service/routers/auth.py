@@ -172,3 +172,61 @@ async def logout(token_data: TokenRefresh, current_user: security.TokenData = De
     await user_crud.revoke_refresh_token(db, token=token_data.refresh_token)
     
     return
+
+# Endpoint /refresh
+@router.post("/refresh", response_model=Token)
+async def refresh_access_token(
+    token_data: TokenRefresh,
+    db: AsyncSession = Depends(get_session)
+):
+    
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Refresh token không hợp lệ hoặc đã hết hạn",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    
+    refresh_token_str = token_data.refresh_token
+    
+    db_refresh_token = await user_crud.get_valid_refresh_token(
+        db, token=refresh_token_str
+    )
+    
+    if not db_refresh_token:
+        raise credentials_exception
+
+    try:
+        token_payload_dict = security.jwt.decode(
+            refresh_token_str,
+            key=settings.JWT_SECRET_KEY,
+            algorithms=[settings.JWT_ALGORITHM]
+        )
+        
+        if token_payload_dict.get("token_type") != "refresh":
+             raise credentials_exception
+        
+        token_payload = security.TokenData(
+            email=token_payload_dict.get("sub"),
+            roles=token_payload_dict.get("roles", []),
+            token_type=token_payload_dict.get("token_type")
+        )
+    except security.JWTError:
+        raise credentials_exception
+
+    if not token_payload or not token_payload.email:
+         raise credentials_exception
+ 
+    new_access_token_expires = timedelta(
+        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+    )
+    
+    new_access_token = security.create_access_token(
+        data={"sub": token_payload.email, "roles": token_payload.roles},
+        expires_delta=new_access_token_expires
+    )
+    
+    return Token(
+        access_token=new_access_token,
+        refresh_token=refresh_token_str,
+        token_type="bearer"
+    )

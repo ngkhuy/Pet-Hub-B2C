@@ -1,3 +1,4 @@
+from typing import List
 from fastapi.security import OAuth2PasswordBearer
 from pwdlib import PasswordHash
 from jose import JWTError, jwt
@@ -26,7 +27,8 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
         
-    to_encode.update({"exp": expire})
+    to_encode.update({"exp": expire,
+                      "token_type": "access"})
     encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, settings.JWT_ALGORITHM)
     return encoded_jwt
 
@@ -35,7 +37,8 @@ def create_refresh_token(data: dict):
     expire_time = datetime.now(timezone.utc) + expires
     
     to_encode = data.copy()
-    to_encode.update({"exp": expire_time})
+    to_encode.update({"exp": expire_time,
+                      "token_type": "refresh"})
     
     encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, settings.JWT_ALGORITHM)
     return encoded_jwt
@@ -43,10 +46,16 @@ def create_refresh_token(data: dict):
 def decode_token(token: str):
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
-        email = payload.get("sub")
+        
+        if payload.get("token_type") != "access":
+            return None
+        
+        email: str | None = payload.get("sub")
+        roles: List[str] = payload.get("roles", [])
+        
         if email is None:
             return None
-        return TokenData(email=email)
+        return TokenData(email=email, roles=roles, token_type="access")
         
     except JWTError:
         return None
