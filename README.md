@@ -1,1 +1,1 @@
-README will show here
+Auth service README
