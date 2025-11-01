@@ -27,6 +27,7 @@
         "./src/*"
       ]
     }
+    
   },
   "include": [
     "next-env.d.ts",
