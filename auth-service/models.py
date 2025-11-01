@@ -76,6 +76,8 @@ class Token(SQLModel):
 class TokenData(SQLModel):
     """get payload"""
     email: str
+    roles: List[str] = []
+    token_type: str
     
 # define refresh function for token
 class TokenRefresh(SQLModel):
