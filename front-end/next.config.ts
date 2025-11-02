@@ -3,21 +3,31 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: false,
-  turbopack: {
-    rules: {
-      "*.svg": {
-        loaders: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              icon: true,
-            },
-          },
-        ],
-        as: "*.js",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**", // cho phép tất cả đường dẫn con
       },
-    },
+    ],
   },
+  // turbopack: {
+  //   rules: {
+  //     "*.svg": {
+  //       loaders: [
+  //         {
+  //           loader: "@svgr/webpack",
+  //           options: {
+  //             icon: true,
+  //           },
+  //         },
+  //       ],
+  //       as: "*.js",
+  //     },
+  //   },
+  // },
 };
 
 export default nextConfig;

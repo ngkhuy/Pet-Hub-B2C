@@ -79,8 +79,8 @@
   --sidebar-ring: oklch(0.708 0 0);
   --text-primary: #444444;
   --text-secondary: #777777;
-  --background-light: #f5f8f8;
-  --background-dark: #0f2023;
+  --background-primary: #f5f8f8;
+  --background-secondary: #0f2023;
 }
 
 .dark {

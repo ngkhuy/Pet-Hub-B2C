@@ -1,39 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import * as z from "zod";
+import { siteConfig } from "@/config/site";
 import { toast } from "sonner";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import Link from "next/link";
-import { useState } from "react";
 import {
   MdOutlinePets,
   MdOutlineVisibility,
   MdOutlineVisibilityOff,
 } from "react-icons/md";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z.object({
   email: z
     .string()
-    .min(5, "Email must be at least 5 characters.")
-    .max(32, "Email must be at most 32 characters.")
-    .email("Invalid email address"),
+    .min(5, "Email ít nhất 5 ký tự")
+    .max(100, "Email có tối đa 100 ký tự")
+    .email("Email không đúng định dạng"),
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters.")
-    .max(50, "Password must be at most 100 characters."),
+    .min(8, "Mật khẩu ít nhất 8 ký tự")
+    .max(50, "Mật khẩu có tối đa 50 ký tự"),
 });
 
 export default function Login() {
@@ -50,7 +51,9 @@ export default function Login() {
 
   const [showPass, setShowPass] = useState<boolean>(false);
 
-  const handleClickShowPass = () => setShowPass((value) => !value);
+  function handleClickShowPass() {
+    setShowPass((value) => !value);
+  }
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     toast("You submitted the following values:", {
@@ -70,7 +73,9 @@ export default function Login() {
   }
 
   return (
-    <main className="relative flex h-auto min-h-screen w-full flex-col bg-(--background-light) dark:bg-(--background-dark) group/design-root overflow-x-hidden">
+    <main
+      className={`relative flex h-auto min-h-screen w-full flex-col bg-(--background-primary)  overflow-x-hidden`}
+    >
       <div className="contain-layout flex h-full grow flex-col">
         <div className="flex flex-1 justify-center">
           <div className="layout-content-container flex flex-col w-full flex-1">
@@ -89,111 +94,119 @@ export default function Login() {
                 </div>
               </div>
               {/* <!-- Right Panel: Form --> */}
-              <div className="flex w-full flex-col items-center justify-center bg-background-light dark:bg-background-dark p-6 sm:p-12">
+              <div className="flex w-full flex-col items-center justify-center bg-(--background-primary) p-6 sm:p-12">
                 <div className="flex w-full max-w-md flex-col gap-8">
                   {/* <!-- Header --> */}
                   <div className="flex w-full flex-col items-center text-center">
                     <div className="flex items-center gap-3 pb-4">
                       <MdOutlinePets className="text-4xl text-primary" />
-                      <p className="text-2xl font-bold text-primary dark:text-white">
-                        PetCare
+                      <p className="text-2xl font-bold text-primary">
+                        {siteConfig.brandName}
                       </p>
                     </div>
-                    <p className="text-(--text-primary) dark:text-slate-200 text-4xl font-black leading-tight tracking-tight">
-                      Welcome Back
+                    <p className="text-(--text-primary) text-4xl font-black leading-tight tracking-tight">
+                      Chào mừng quay trở lại
                     </p>
-                    <p className="text-(--text-secondary) dark:text-slate-400 mt-2">
-                      Log in to continue to your account.
+                    <p className="text-(--text-secondary) mt-2">
+                      Đăng nhập để tiếp tục
                     </p>
                   </div>
                   {/* <!-- Form --> */}
                   <form
                     id="form-login"
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="flex w-full flex-col gap-2"
                     noValidate
                   >
-                    <FieldGroup>
+                    <FieldGroup className="gap-10">
                       {/* <!-- Email Field --> */}
                       <Controller
                         name="email"
                         control={form.control}
                         render={({ field, fieldState }) => (
-                          <Field data-invalid={fieldState.invalid}>
+                          <Field
+                            data-invalid={fieldState.invalid}
+                            className="relative gap-1"
+                          >
                             <FieldLabel
                               htmlFor="form-login-email"
-                              className="text-(--text-secondary) dark:text-slate-200 text-base font-medium leading-normal"
+                              className="text-(--text-secondary) text-base font-medium leading-normal"
                             >
-                              Email address
+                              Địa chỉ Email
                             </FieldLabel>
-                            <InputGroup className="text-(--text-primary) leading-normal ps-1 py-6  mb-2">
+                            <InputGroup className="text-(--text-primary) bg-white leading-normal ps-1 py-6  ">
                               <InputGroupInput
                                 {...field}
                                 placeholder="you@example.com"
                                 id="form-login-email"
                                 type="email"
-                                className="text-[48px]"
                                 aria-invalid={fieldState.invalid}
                               />
                             </InputGroup>
                             {fieldState.invalid && (
-                              <FieldError errors={[fieldState.error]} />
+                              <FieldError
+                                errors={[fieldState.error]}
+                                className="absolute -bottom-7"
+                              />
+                            )}
+                          </Field>
+                        )}
+                      />
+                      {/* <!-- Password Field --> */}
+                      <Controller
+                        name="password"
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                          <Field
+                            data-invalid={fieldState.invalid}
+                            className="relative gap-1"
+                          >
+                            <FieldLabel
+                              htmlFor="form-login-password"
+                              className="text-(--text-secondary) text-base font-medium leading-normal"
+                            >
+                              Mật khẩu
+                            </FieldLabel>
+                            <InputGroup className="text-(--text-primary) bg-white leading-normal ps-1 py-6">
+                              <InputGroupInput
+                                {...field}
+                                placeholder="Điền mật khẩu"
+                                id="form-login-password"
+                                type={showPass ? "text" : "password"}
+                                aria-invalid={fieldState.invalid}
+                              />
+                              <InputGroupAddon
+                                align={"inline-end"}
+                                className="text-2xl "
+                              >
+                                {showPass ? (
+                                  <MdOutlineVisibilityOff
+                                    className="cursor-pointer "
+                                    onClick={handleClickShowPass}
+                                  />
+                                ) : (
+                                  <MdOutlineVisibility
+                                    className="cursor-pointer "
+                                    onClick={handleClickShowPass}
+                                  />
+                                )}
+                              </InputGroupAddon>
+                            </InputGroup>
+                            {fieldState.invalid && (
+                              <FieldError
+                                errors={[fieldState.error]}
+                                className="absolute -bottom-7"
+                              />
                             )}
                           </Field>
                         )}
                       />
                     </FieldGroup>
-
-                    {/* <!-- Password Field --> */}
-                    <Controller
-                      name="password"
-                      control={form.control}
-                      render={({ field, fieldState }) => (
-                        <Field data-invalid={fieldState.invalid}>
-                          <FieldLabel
-                            htmlFor="form-login-password"
-                            className="text-(--text-secondary) dark:text-slate-200 text-base font-medium leading-normal"
-                          >
-                            Password
-                          </FieldLabel>
-                          <InputGroup className="text-(--text-primary) leading-normal ps-1 py-6  mb-2">
-                            <InputGroupInput
-                              {...field}
-                              placeholder="Enter your password"
-                              id="form-login-password"
-                              type={showPass ? "text" : "password"}
-                              className="text-[48px]"
-                              aria-invalid={fieldState.invalid}
-                            />
-                            <InputGroupAddon
-                              align={"inline-end"}
-                              className="text-2xl "
-                            >
-                              {showPass ? (
-                                <MdOutlineVisibilityOff
-                                  className="cursor-pointer "
-                                  onClick={handleClickShowPass}
-                                />
-                              ) : (
-                                <MdOutlineVisibility
-                                  className="cursor-pointer "
-                                  onClick={handleClickShowPass}
-                                />
-                              )}
-                            </InputGroupAddon>
-                          </InputGroup>
-                          {fieldState.invalid && (
-                            <FieldError errors={[fieldState.error]} />
-                          )}
-                        </Field>
-                      )}
-                    />
                     <div className="w-full flex justify-end pt-2">
                       <Link
-                        className="text-sm font-medium text-primary dark:text-secondary/90 hover:text-secondary dark:hover:text-secondary underline"
+                        className="text-sm font-medium text-primary hover:text-secondary underline"
                         href="#"
                       >
-                        Forgot Password?
+                        Quên mật khẩu?
                       </Link>
                     </div>
                   </form>
@@ -205,17 +218,17 @@ export default function Login() {
                       type="submit"
                       form="form-login"
                     >
-                      Login
+                      Đăng nhập
                     </Button>
                     <div className="flex items-center gap-4">
-                      <hr className="w-full border-gray-300 dark:border-slate-600" />
-                      <span className="text-(--text-secondary) dark:text-slate-400 text-sm">
-                        OR
+                      <hr className="w-full border-gray-300" />
+                      <span className="text-(--text-secondary) text-sm whitespace-nowrap">
+                        Sử dụng phương thức khác
                       </span>
-                      <hr className="w-full border-gray-300 dark:border-slate-600" />
+                      <hr className="w-full border-gray-300" />
                     </div>
                     <Button
-                      className="cursor-pointer flex items-center justify-center whitespace-nowrap transition-all duration-300 ease-in-out font-semibold text-base h-14 w-full rounded-lg bg-white dark:bg-slate-700 text-(--text-primary) dark:text-white border border-gray-300 dark:border-slate-600 hover:bg-gray-100 dark:hover:bg-slate-600"
+                      className="cursor-pointer flex items-center justify-center whitespace-nowrap transition-all duration-300 ease-in-out font-semibold text-base h-14 w-full rounded-lg bg-white text-(--text-primary) border-gray-300 hover:bg-gray-100"
                       type="button"
                     >
                       <svg
@@ -243,17 +256,17 @@ export default function Login() {
                           fill="#EA4335"
                         ></path>
                       </svg>
-                      Sign in with Google
+                      Đăng nhập với Google
                     </Button>
                   </div>
                   {/* <!-- Sign Up Link --> */}
-                  <p className="text-(--text-secondary) dark:text-slate-400 text-center text-sm">
-                    Don{"'"}t have an account?{" "}
+                  <p className="text-(--text-secondary) text-center text-sm">
+                    Không có tài khoản?
                     <Link
-                      className="font-bold text-primary dark:text-secondary/90 hover:text-secondary dark:hover:text-secondary hover:underline"
+                      className="font-bold text-primary hover:text-secondary hover:underline"
                       href="/auth/register"
                     >
-                      Sign Up
+                      Đăng ký
                     </Link>
                   </p>
                 </div>
