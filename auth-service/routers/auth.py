@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.security import HTTPAuthorizationCredentials, OAuth2PasswordRequestForm
 from fastapi.concurrency import run_in_threadpool
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -7,7 +7,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Annotated
 
 from database import get_session
-from models import ForgotPasswordRequest, UserChangePassword, UserCreate, UserRead, Token, User, TokenRefresh
+from models import ForgotPasswordRequest, ResetPassword, UserChangePassword, UserCreate, UserRead, Token, User, TokenRefresh, VerifyOTP
 from crud import user_crud
 from core import security
 from core.config import settings
@@ -145,7 +145,7 @@ async def change_password(password_data: UserChangePassword, curernt_user: Annot
     return 
 
 # Forgot password endpoint
-@router.post("/forgot-password", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("/forgot-password", status_code=status.HTTP_200_OK)
 async def forgot_password(request_data: ForgotPasswordRequest, db: Annotated[AsyncSession, Depends(get_session)]):
     """API tạo otp khi user quên mk"""
     
@@ -165,7 +165,58 @@ async def forgot_password(request_data: ForgotPasswordRequest, db: Annotated[Asy
     # gửi cho user qua sms
     await security.simulate_sms(request_data.phone_number, otp)
     
-    return
+    return {"message": f"OTP đã gửi tới số {request_data.phone_number}"}
+
+# Verify OTP endpoint
+@router.post("/verify-otp", status_code=status.HTTP_200_OK)
+async def verify_otp(otp_data: VerifyOTP, db: Annotated[AsyncSession, Depends(get_session)]):
+    """API xác minh OTP"""
+    phone_number = otp_data.phone_number
+    otp = otp_data.otp
+    
+    user = await user_crud.get_valid_otp(db, phone_number, "password_reset", otp)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="OTP không trùng khớp hoặc hết hạn")
+    
+    # tạo 1 token 5p để bảo vệ reset-password
+    token = security.create_access_token(data={
+        "sub": phone_number,
+        "token_type": "reset"
+    }, expires_delta=timedelta(minutes=5))
+    
+    return {"message": "Xác minh OTP thành công",
+            "reset_token": token}
+    
+# Reset Password endpoint after OTP
+@router.post("/reset-password", status_code=status.HTTP_200_OK)
+async def reset_password(password_data: ResetPassword,
+                         credentials: Annotated[HTTPAuthorizationCredentials, Depends(security.reset_oauth2_schema)]
+                         , db: Annotated[AsyncSession, Depends(get_session)]):
+    """API đặt lại mk"""
+    token = credentials.credentials
+    token_data = security.decode_token(token, expected_type="reset")
+    if not token_data:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Token không hợp lệ hoặc hết hạn")
+    
+    # tìm user:
+    user = await user_crud.get_user_by_phone(db, password_data.phone_number)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Không tìm thấy user")
+        
+    # hash password
+    hashed_password = security.get_password_hash(password_data.new_password)
+    
+    # cập nhật mk
+    await user_crud.update_user_password(db, user, hashed_password)
+    
+    # thu hồi toàn bộ refresh token
+    await user_crud.revoke_refresh_token(db, user.id)
+    
+    return {"message": "Đặt lại mật khẩu thành công"}
+    
 
 # Testing endpoint 
 @router.get("/me", response_model=UserRead)

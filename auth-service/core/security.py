@@ -1,6 +1,6 @@
 import asyncio
 import random
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, HTTPBearer
 from pwdlib import PasswordHash
 from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone
@@ -9,7 +9,14 @@ from models import TokenData
 from core.config import settings
 
 # Config 
-oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
+# Schema cho access token (login)
+oauth2_schema = OAuth2PasswordBearer(
+    tokenUrl="/api/v1/auth/login",
+    scheme_name="Access Token Auth"
+)
+
+# Schema cho reset token (verify OTP)
+reset_oauth2_schema = HTTPBearer(scheme_name="Reset Token Auth")
 pwd_context = PasswordHash.recommended()
 
 # Password methods
@@ -30,8 +37,8 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
         
-    to_encode.update({"exp": expire,
-                      "token_type": "access"})
+    to_encode.setdefault("token_type", "access")
+    to_encode["exp"] = expire
     
     encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, settings.JWT_ALGORITHM)
     return encoded_jwt

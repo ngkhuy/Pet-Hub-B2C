@@ -129,7 +129,13 @@ class OTP(SQLModel, table=True):
 class ForgotPasswordRequest(SQLModel):
     """Model tạo request quên mk"""
     phone_number: str
+    
+class VerifyOTP(SQLModel):
+    """Model xác minh OTP"""
+    otp: str
+    phone_number: str
 
 class ResetPassword(SQLModel):
     """Model đặt lại mk"""
     new_password: str
+    phone_number: str
