@@ -85,7 +85,7 @@ def decode_token(token: str, expected_type: str = "access"):
 # OTP methods
 def generate_otp(length: int = 6):
     """Hàm tạo OTP"""
-    return "".join([str(random.randint(0,9) for _ in range(length))])
+    return "".join([str(random.randint(0, 9)) for _ in range(length)])
 
 # Hàm giả lập sms gửi qua console thay vì sđt thật
 async def simulate_sms(phone_number: str, otp: str):

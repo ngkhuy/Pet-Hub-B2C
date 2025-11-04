@@ -7,7 +7,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Annotated
 
 from database import get_session
-from models import UserChangePassword, UserCreate, UserRead, Token, User, TokenRefresh
+from models import ForgotPasswordRequest, UserChangePassword, UserCreate, UserRead, Token, User, TokenRefresh
 from crud import user_crud
 from core import security
 from core.config import settings
@@ -144,23 +144,26 @@ async def change_password(password_data: UserChangePassword, curernt_user: Annot
         
     return 
 
-    """Đặt lại mật khẩu bằng sđt, otp và mật khẩu mới"""
-    user = await user_crud.get_valid_otp(
-        db=db,
-        phone_number=request_data.phone_number,
-        purpose=OTPPurpose.PASSWORD_RESET,
-        otp=request_data.otp
-    )
+# Forgot password endpoint
+@router.post("/forgot-password", status_code=status.HTTP_204_NO_CONTENT)
+async def forgot_password(request_data: ForgotPasswordRequest, db: Annotated[AsyncSession, Depends(get_session)]):
+    """API tạo otp khi user quên mk"""
     
+    # tìm user theo phone
+    user = await user_crud.get_user_by_phone(db, phone_number=request_data.phone_number)
     if not user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
-                            detail="OTP không hợp lệ")
-    new_hashed_password = await run_in_threadpool(security.get_password_hash, request_data.new_password)
-    await user_crud.update_user_password(db, user, new_hashed_password)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Không tìm thấy user")
+        
+    # nếu tìm ra user -> tạo otp gửi cho user và lưu vào db
+    otp = security.generate_otp()
+    hashed_otp = await run_in_threadpool(security.get_password_hash, otp)
     
-    # đăng xuất khỏi tất cả thiết bị
-    if user.id: 
-        await user_crud.revoke_refresh_token(db, user.id)
+    # lưu vào db đặt expired_at 5p
+    await user_crud.create_or_update_otp(db, user.id, "password_reset", otp_hash=hashed_otp, expired_at=datetime.now(timezone.utc) + timedelta(minutes=5))
+    
+    # gửi cho user qua sms
+    await security.simulate_sms(request_data.phone_number, otp)
     
     return
 

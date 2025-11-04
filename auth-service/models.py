@@ -5,6 +5,7 @@ from sqlmodel import Field, SQLModel, Relationship, Column, VARCHAR
 from datetime import datetime, timezone
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
+from sqlalchemy import Enum as SAEnum
 
 
 
@@ -100,4 +101,35 @@ class TokenRefresh(SQLModel):
 class UserChangePassword(SQLModel):
     """Model thay đổi mật khẩu"""
     old_password: str
+    new_password: str
+    
+# OTP models
+# định nghĩa enum cho otp
+class OTPPurpose(str, Enum):
+    """Tạo enum cho OTP"""
+    password_reset = "password_reset"
+    phone_verification = "phone_verification"
+
+sa_otp_purpose_enum = SAEnum(
+    OTPPurpose, 
+    name="otp_purpose", 
+    schema="public",   
+    create_type=False
+)
+    
+class OTP(SQLModel, table=True):
+    """Model lưu OTP"""
+    __tablename__ = "otp"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: UUID = Field(foreign_key="user.id")
+    otp_hash: str
+    purpose: OTPPurpose = Field(sa_column=Column(sa_otp_purpose_enum, nullable=False))
+    expired_at: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
+    
+class ForgotPasswordRequest(SQLModel):
+    """Model tạo request quên mk"""
+    phone_number: str
+
+class ResetPassword(SQLModel):
+    """Model đặt lại mk"""
     new_password: str

@@ -1,12 +1,11 @@
-from fastapi.concurrency import run_in_threadpool
 from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlmodel import select, delete
+from sqlmodel import Enum, select, delete
 from datetime import datetime, timezone
 from uuid import UUID
+from models import OTP, OTPPurpose, User, RefreshToken
 from sqlalchemy.dialects.postgresql import insert
-
-from models import User, RefreshToken
-from core.security import get_password_hash, verify_password
+from fastapi.concurrency import run_in_threadpool
+from core.security import verify_password
 
 async def get_user_by_phone(db: AsyncSession, phone_number: str):
     """
@@ -15,7 +14,6 @@ async def get_user_by_phone(db: AsyncSession, phone_number: str):
     statement = select(User).where(User.phone_number == phone_number)
     result = await db.exec(statement)
     return result.first()
-
 
 async def create_user(db: AsyncSession, user: User):
     """
@@ -72,7 +70,7 @@ async def revoke_refresh_token(db: AsyncSession, user_id: UUID):
     await db.commit()
     return True
 
-async def update_user_password(db: AsyncSession, user: User, new_password: str):
+async def update_user_password(db: AsyncSession, user: User, new_password: str): 
     """Cập nhật mật khẩu của user vào db"""
     user.hashed_password = new_password
     user.updated_at = datetime.now(timezone.utc)
@@ -80,5 +78,57 @@ async def update_user_password(db: AsyncSession, user: User, new_password: str):
     db.add(user)
     await db.commit()
     await db.refresh(user)
+    
+    return user
+
+# OTP methods
+async def create_or_update_otp(db: AsyncSession, user_id: UUID, purpose: OTPPurpose, otp_hash: str, expired_at: datetime):
+    """Hàm tạo hoặc cập nhật OTP vào DB"""
+    statement = (insert(OTP).values(
+        user_id = user_id,
+        otp_hash = otp_hash,
+        purpose = purpose, 
+        expired_at = expired_at
+        ).on_conflict_do_update(
+            index_elements=[OTP.user_id, OTP.purpose],
+            set_={
+                "otp_hash": otp_hash,
+                "expired_at": expired_at
+            }
+        ).returning(OTP)
+    )
+    
+    result = await db.exec(statement)
+    await db.commit()
+    return result.one()
+
+async def get_valid_otp(db: AsyncSession, phone_number: str, purpose: OTPPurpose, otp: str):
+    """Hàm lấy OTP từ DB và kiểm tra, xoá OTP nếu thành công"""
+    # tìm user
+    user = await get_user_by_phone(db, phone_number)
+    if not user:
+        return None
+    
+    # tìm otp khớp với user và purpose để có thể mở rộng ra verify phone number
+    statement = select(OTP).where(
+        OTP.user_id == user.id,
+        OTP.purpose == purpose,
+        OTP.expired_at > datetime.now(timezone.utc)
+    )
+    
+    result = await db.exec(statement=statement)
+    db_otp = result.first()
+    
+    if not db_otp:
+        return None
+    
+    # xác minh OTP
+    is_valid_otp = await run_in_threadpool(verify_password, otp, db_otp.otp_hash)
+    if not is_valid_otp:
+        return None
+    
+    # xác minh thành công xoá otp đó
+    await db.delete(db_otp)
+    await db.commit()
     
     return user
