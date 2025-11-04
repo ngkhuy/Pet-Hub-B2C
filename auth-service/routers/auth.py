@@ -1,232 +1,171 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.concurrency import run_in_threadpool
-from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
-from datetime import timedelta, datetime, timezone
+
+from datetime import datetime, timezone, timedelta
+from typing import Annotated
 
 from database import get_session
-from models import UserCreate, UserRead, Token, UserRole, User, Role, TokenRefresh
+from models import UserChangePassword, UserCreate, UserRead, Token, User, TokenRefresh
 from crud import user_crud
 from core import security
 from core.config import settings
+from dependency import dependency
 
+# Config
 router = APIRouter()
 
-# register endpoint
-@router.post("/register", response_model=UserRead, status_code=status.HTTP_201_CREATED)
-async def register_new_user(user_create: UserCreate, db: AsyncSession = Depends(get_session)):
-    """Register a new user"""
-    # check email
-    existing_user = await user_crud.get_user_by_email(db, user_create.email)
-    if existing_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email đã được đăng ký")
+# End-points API
+
+# sign-up endpoint
+@router.post("/signup", response_model=UserRead, status_code=status.HTTP_201_CREATED)
+async def signup(user_create: UserCreate, db: Annotated[AsyncSession, Depends(get_session)]):
+    """Đăng ký user mới"""
     
-    # create new user
-    hashed_password = security.get_password_hash(user_create.password)
+    # kiểm tra username đó tồn tại trong db chưa
+    exist_user = await user_crud.get_user_by_phone(db, phone_number=user_create.phone_number)
+    if exist_user:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="SĐT này đã được sử dụng")
+    
+    # băm mk
+    hashed_password = await run_in_threadpool(security.get_password_hash, user_create.password)
     user_data = user_create.model_dump(exclude={"password"})
     db_user = User(**user_data, hashed_password=hashed_password)
     
-    user_role = await user_crud.get_role_by_name(db, "user")
-    if not user_role:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Lỗi hệ thống, không tìm thấy role user")
-    
-    db.add(db_user)
-    await db.flush()
-    await db.refresh(db_user)
-    
-    # create link between UserRole
-    if db_user.id:
-        link = UserRole(user_id=db_user.id, role_id=user_role.id)
-        db.add(link)
-    else:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Không thể tạo ID người dùng")
-    
-    await db.commit()
-    await db.refresh(db_user)
-    
-    return db_user
-
-# register for business role
-@router.post("/register-business", response_model=UserRead, status_code=status.HTTP_201_CREATED)
-async def register_new_business(user_create: UserCreate, db: AsyncSession = Depends(get_session)):
-    """Register a new business user"""
-    
-    # check existing user role 'business'
-    existing_user = await user_crud.get_user_by_email(db, user_create.email)
-    if existing_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Email đã được sử dụng")
-    hashed_password = security.get_password_hash(user_create.password)
-    user_data = user_create.model_dump(exclude={"password"})
-    db_user = User(**user_data, hashed_password=hashed_password)
-    
-    business_role = await user_crud.get_role_by_name(db, "business")
-    if not business_role:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                            detail="Lỗi hệ thống, không tìm thấy role 'business'")
-    
-    db.add(db_user)
-    await db.flush()
-    await db.refresh(db_user)
-    
-    if db_user.id:
-        link = UserRole(user_id=db_user.id, role_id=business_role.id)
-        db.add(link)
-    else:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                            detail="Không thể tạo ID người dùng")
-        
-    await db.commit()
-    await db.refresh(db_user)
-    
-    return db_user
-
-# login endpoint
-@router.post("/login", response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_session)):
-    """Login for access token"""
-    user = await user_crud.get_user_by_email(db, form_data.username)
-    if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Email hoặc mật khẩu không đúng", headers={"WWW-Authenitcate": "Bearer"})
-    
-    # Confirm password
-    is_password_valid = await run_in_threadpool(security.verify_password, form_data.password, user.hashed_password)
-    if not is_password_valid:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Sai mật khẩu", headers={"WWW-Authenticate":
-            "Bearer"})
-        
-    if not user.is_active:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Tài khoản chưa kích hoạt")
-    
-    roles_statement = select(Role.name).join(UserRole).where(UserRole.user_id == user.id)
-    roles_result = await db.exec(roles_statement)
-    roles = roles_result.first()
-    
-    # Create access token
-    token_data = {"sub": user.email,
-                  "role": roles}
-    
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = security.create_access_token(data=token_data, expires_delta=access_token_expires)
-    
-    # create refresh token
-    refresh_token = security.create_refresh_token(data=token_data)
-    
-    # store refresh token
-    expires_at = datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
-    
-    if user.id is None:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
-    await user_crud.create_refresh_token(db, user.id, refresh_token, expires_at)
-    
-    return Token(access_token=access_token, refresh_token=refresh_token, token_type="bearer")
-
-
-# Dependency to get current user    
-async def get_current_user(token: str = Depends(security.oauth2_scheme), db: AsyncSession = Depends(get_session)):
-    """
-    Get current user
-    Decode token, get email, excute query to get user from database
-    -> this is protected dependency
-    """
-    credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Không thể xác thực thông tin", headers={"WWW-Authenticate": "Bearer"})
-    
-    # decode token
-    token_data = security.decode_token(token)
-    if token_data is None:
-        raise credentials_exception
-    
-    # get user from db
-    user = await user_crud.get_user_by_email(db, token_data.email)
-    if user is None:
-        raise credentials_exception
-    
+    user = await user_crud.create_user(db, db_user)
     return user
 
-# endpoint me
-@router.get("/me", response_model=UserRead)
-async def read_user_me(current_user: User = Depends(get_current_user)):
-    return current_user
+# Login endpoint
+@router.post("/login", response_model=Token)
+async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: Annotated[AsyncSession, Depends(get_session)]):
+    """Đăng nhập bằng sđt và password"""
+    user = await user_crud.get_user_by_phone(db, phone_number=form_data.username)
+    if user:
+        is_password_valid = await run_in_threadpool(security.verify_password, form_data.password, user.hashed_password)
 
-# Dependency for logout endpoint
-async def get_current_user_payload(token: str = Depends(security.oauth2_scheme)):
-    """Decode token without query db
-    Protect logout endpoint
-    """
-    credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                                          detail="Không thể xác thực thông tin",
-                                          headers={"WWW-Authenticate": "Bearer"})
     
-    token_data = security.decode_token(token)
-    if token_data is None or token_data.email is None:
-        raise credentials_exception
-    return token_data
+    if not user or not is_password_valid:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+                            detail="SĐT hoặc mật khẩu không đúng",
+                            headers={"WWW-Authenticate": "Bearer"})
+    
+    if not user.is_active:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Tài khoản đã bị vô hiệu hoá")
 
-# /logout endpoint
+    token_data = {
+        "sub": user.phone_number,
+        "is_admin": user.is_admin
+    }
+    
+    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = security.create_access_token(token_data, access_token_expires)
+    
+    refresh_token = security.create_refresh_token(token_data)
+    
+    # lưu refresh token cho user
+    refresh_token_expires = datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    
+    if user.id is None:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Lỗi server: không tìm thấy user")
+    
+    # tạo mới
+    await user_crud.create_refresh_token(db, user.id, refresh_token, refresh_token_expires)
+    
+    return Token(access_token=access_token, refresh_token=refresh_token)
+
+# Refresh token endpoint
+@router.post("/refresh", response_model=Token)
+async def refresh_access_token(token_data: TokenRefresh, db: Annotated[AsyncSession, Depends(get_session)]):
+    """Làm mới access token bằng refresh token"""
+    refresh_token_str = token_data.refresh_token
+    
+    # kiểm tra trong db
+    refresh_token = await user_crud.get_valid_refresh_token(db, refresh_token_str)
+    if not refresh_token:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Refresh token không hợp lệ hoặc hết hạn")
+    
+    # giải mã refresh token
+    try:
+        token_payload = security.jwt.decode(refresh_token_str, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
+        if token_payload.get("token_type") != "refresh":
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Refresh token không hợp lệ hoặc hết hạn")
+        
+        phone_number = token_payload.get("sub")
+        is_admin = token_payload.get("is_admin", False)
+        
+        if not phone_number:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                detail="Refresh token không hợp lệ hoặc hết hạn")
+        
+    except security.JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Refresh token không hợp lệ hoặc hết hạn")
+        
+    # tạo access token mới
+    new_access_token = security.create_access_token(data={
+        "sub": phone_number,
+        "is_admin": is_admin
+    })
+    
+    return Token(access_token=new_access_token, refresh_token=refresh_token_str, token_type="bearer")
+
+# Endpoint logout
 @router.post("/logout", status_code=status.HTTP_204_NO_CONTENT)
-async def logout(token_data: TokenRefresh, current_user: security.TokenData = Depends(get_current_user_payload),
-                 db: AsyncSession = Depends(get_session)):
-    """Logout, remove refresh token from DB"""
-    await user_crud.revoke_refresh_token(db, token=token_data.refresh_token)
+async def logout(current_user: Annotated[User, Depends(dependency.get_current_active_user)],
+                 db: Annotated[AsyncSession, Depends(get_session)]):
+    """Đăng xuất user hiện tại"""
+    if not current_user:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                            detail="Lỗi server: không tìm thấy user")
+    
+    # xoá access token của user
+    await user_crud.revoke_refresh_token(db, user_id=current_user.id)
+    
+# Change-password endpoint
+@router.post("/change-password", status_code=status.HTTP_204_NO_CONTENT)
+async def change_password(password_data: UserChangePassword, curernt_user: Annotated[User, Depends(dependency.get_current_active_user)], db: Annotated[AsyncSession, Depends(get_session)]):
+    """Đổi mật khẩu của user hiện tại"""
+    # xác minh mật khẩu cũ
+    is_valid = await run_in_threadpool(security.verify_password, password_data.old_password, curernt_user.hashed_password)
+    if not is_valid:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+                            detail="Mật khẩu hiện tại không chính xác")
+        
+    # cập nhật mk mới
+    new_password = await run_in_threadpool(security.get_password_hash, password_data.new_password)
+    await user_crud.update_user_password(db, curernt_user, new_password)
+    
+    # xoá TẤT CẢ refresh token
+    if curernt_user.id:
+        await user_crud.revoke_refresh_token(db, curernt_user.id)
+        
+    return 
+
+    """Đặt lại mật khẩu bằng sđt, otp và mật khẩu mới"""
+    user = await user_crud.get_valid_otp(
+        db=db,
+        phone_number=request_data.phone_number,
+        purpose=OTPPurpose.PASSWORD_RESET,
+        otp=request_data.otp
+    )
+    
+    if not user:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
+                            detail="OTP không hợp lệ")
+    new_hashed_password = await run_in_threadpool(security.get_password_hash, request_data.new_password)
+    await user_crud.update_user_password(db, user, new_hashed_password)
+    
+    # đăng xuất khỏi tất cả thiết bị
+    if user.id: 
+        await user_crud.revoke_refresh_token(db, user.id)
     
     return
 
-# Endpoint /refresh
-@router.post("/refresh", response_model=Token)
-async def refresh_access_token(
-    token_data: TokenRefresh,
-    db: AsyncSession = Depends(get_session)
-):
-    
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Refresh token không hợp lệ hoặc đã hết hạn",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    
-    refresh_token_str = token_data.refresh_token
-    
-    db_refresh_token = await user_crud.get_valid_refresh_token(
-        db, token=refresh_token_str
-    )
-    
-    if not db_refresh_token:
-        raise credentials_exception
-
-    try:
-        token_payload_dict = security.jwt.decode(
-            refresh_token_str,
-            key=settings.JWT_SECRET_KEY,
-            algorithms=[settings.JWT_ALGORITHM]
-        )
-        
-        if token_payload_dict.get("token_type") != "refresh":
-             raise credentials_exception
-        
-        token_payload = security.TokenData(
-            email=token_payload_dict.get("sub"),
-            roles=token_payload_dict.get("roles", []),
-            token_type=token_payload_dict.get("token_type")
-        )
-    except security.JWTError:
-        raise credentials_exception
-
-    if not token_payload or not token_payload.email:
-         raise credentials_exception
- 
-    new_access_token_expires = timedelta(
-        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
-    )
-    
-    new_access_token = security.create_access_token(
-        data={"sub": token_payload.email, "roles": token_payload.roles},
-        expires_delta=new_access_token_expires
-    )
-    
-    return Token(
-        access_token=new_access_token,
-        refresh_token=refresh_token_str,
-        token_type="bearer"
-    )
+# Testing endpoint 
+@router.get("/me", response_model=UserRead)
+async def read_me(current_user: Annotated[User, Depends(dependency.get_current_active_user)]):
+    """Lấy thông tin của người dùng đang login"""
+    return current_user
