@@ -1,50 +1,56 @@
-import time
+from enum import Enum
 from typing import Optional, List
-from sqlmodel import Field, SQLModel, Relationship, Column, VARCHAR, UniqueConstraint
-from pydantic import EmailStr
+from uuid import UUID
+from sqlmodel import Field, SQLModel, Relationship, Column, VARCHAR
 from datetime import datetime, timezone
 from sqlalchemy.sql.sqltypes import TIMESTAMP
+from sqlalchemy.sql.expression import text
+from sqlalchemy import Enum as SAEnum
 
 
-# --- Bảng trung gian User-Role ---
-class UserRole(SQLModel, table=True):
-    __tablename__ = "user_role"
-    user_id: int = Field(foreign_key="user.id", primary_key=True)
-    role_id: int = Field(foreign_key="role.id", primary_key=True)
 
-# --- Bảng Role ---
-class Role(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(sa_column=Column("name", VARCHAR, unique=True, index=True))
-    description: Optional[str] = None
-    users: List["User"] = Relationship(back_populates="roles", link_model=UserRole)
-
-# --- Bảng RefreshToken ---
+# Refresh Token Model
 class RefreshToken(SQLModel, table=True):
+    """Model lưu trữ refresh token"""
     __tablename__ = "refresh_token"
+    
     id: Optional[int] = Field(default=None, primary_key=True)
     token: str = Field(sa_column=Column("token", VARCHAR, unique=True, index=True))
-    expires_at: datetime = Field(
+    
+    expired_at: datetime = Field(
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
     )
-    is_revoked: bool = Field(default=False)
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
     )
-    user_id: int = Field(foreign_key="user.id")
+    
+    user_id: UUID = Field(foreign_key="user.id")
+    
+    # Định nghĩa mối quan hệ ngược lại với User
     user: "User" = Relationship(back_populates="refresh_tokens")
-
-
-# --- Bảng User ---
+    
+# User Models
 class UserBase(SQLModel):
-    email: EmailStr = Field(sa_column=Column("email", VARCHAR, unique=True, index=True))
-    is_active: bool = Field(default=True)
-    is_verified: bool = Field(default=False)
-
+    """Base model cho các model user"""
+    phone_number: str = Field(
+        sa_column=Column("phone_number", VARCHAR, unique=True, index=True)
+    )
+    
 class User(UserBase, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+    """Model CSDL cho user"""
+    __tablename__ = "user"
+    
+    id: Optional[UUID] = Field(
+        default=None, primary_key=True, sa_column_kwargs=({"default": text("gen_random_uuid()")})
+    )
     hashed_password: str
+    
+    # parameter nội bộ
+    is_active: bool = Field(default=True)
+    is_phone_verified: bool = Field(default=False, sa_column=Column("is_verified"))
+    is_admin: bool = Field(default=False, nullable=False)
+    
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
@@ -53,18 +59,27 @@ class User(UserBase, table=True):
         default_factory=lambda: datetime.now(timezone.utc),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
     )
-    roles: List[Role] = Relationship(back_populates="users", link_model=UserRole)
+    
     refresh_tokens: List[RefreshToken] = Relationship(back_populates="user")
 
-# --- Các model Pydantic cho API (Input/Output) ---
+
+# Pydantic Models
 class UserCreate(UserBase):
     """Model để tạo user mới (input)"""
     password: str
 
-class UserRead(UserBase):
+class UserRead(SQLModel):
     """Model để đọc/trả về user (output)"""
-    id: int
+    id: UUID
+    phone_number: str
+    is_active: bool
+    is_phone_verified: bool
+    is_admin: bool
     created_at: datetime
+    updated_at: datetime
+    
+    
+# Token models
 
 class Token(SQLModel):
     """Model để trả về JWT Token"""
@@ -72,14 +87,55 @@ class Token(SQLModel):
     refresh_token: str
     token_type: str = "bearer"
     
-# Define Model for TokenData
 class TokenData(SQLModel):
-    """get payload"""
-    email: str
-    roles: List[str] = []
+    """Payload (nội dung) bên trong JWT"""
+    phone_number: str
+    is_admin: bool
     token_type: str
-    
-# define refresh function for token
+
 class TokenRefresh(SQLModel):
-    """Model xoá token khỏi DB"""
+    """Model nhận refresh token từ body"""
     refresh_token: str
+    
+# Change password model
+class UserChangePassword(SQLModel):
+    """Model thay đổi mật khẩu"""
+    old_password: str
+    new_password: str
+    
+# OTP models
+# định nghĩa enum cho otp
+class OTPPurpose(str, Enum):
+    """Tạo enum cho OTP"""
+    password_reset = "password_reset"
+    phone_verification = "phone_verification"
+
+sa_otp_purpose_enum = SAEnum(
+    OTPPurpose, 
+    name="otp_purpose", 
+    schema="public",   
+    create_type=False
+)
+    
+class OTP(SQLModel, table=True):
+    """Model lưu OTP"""
+    __tablename__ = "otp"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: UUID = Field(foreign_key="user.id")
+    otp_hash: str
+    purpose: OTPPurpose = Field(sa_column=Column(sa_otp_purpose_enum, nullable=False))
+    expired_at: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
+    
+class ForgotPasswordRequest(SQLModel):
+    """Model tạo request quên mk"""
+    phone_number: str
+    
+class VerifyOTP(SQLModel):
+    """Model xác minh OTP"""
+    otp: str
+    phone_number: str
+
+class ResetPassword(SQLModel):
+    """Model đặt lại mk"""
+    new_password: str
+    phone_number: str
