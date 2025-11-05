@@ -32,7 +32,7 @@ async def refresh_token_to_db(
     Tạo refresh token mới, và xoá TẤT CẢ các token cũ
     của user này.
     """
-    db_refresh_token = RefreshToken(user_id=user_id, token=token, expired_at=expired_at)
+    db_refresh_token = RefreshToken(user_id=user_id, token=token)
     db.add(db_refresh_token)
     await db.commit()
     await db.refresh(db_refresh_token)
