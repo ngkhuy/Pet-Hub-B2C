@@ -17,6 +17,7 @@ oauth2_schema = OAuth2PasswordBearer(
 
 # Schema cho reset token (verify OTP)
 reset_oauth2_schema = HTTPBearer(scheme_name="Reset Token Auth")
+
 pwd_context = PasswordHash.recommended()
 
 # Password methods
@@ -29,62 +30,30 @@ def verify_password(plain_password: str, hashed_password: str):
     return pwd_context.verify(plain_password, hashed_password)
 
 # JWT methods
-def create_access_token(data: dict, expires_delta: timedelta | None = None):
-    """Tạo JWT access token"""
+def create_jwt_token(data: dict, expires_delta: timedelta | None = None):
+    """Tạo JWT Token"""
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-        
-    to_encode.setdefault("token_type", "access")
-    to_encode["exp"] = expire
+        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
     
+    to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, settings.JWT_ALGORITHM)
-    return encoded_jwt
-
-def create_refresh_token(data: dict):
-    """
-    Tạo Refresh Token (payload giờ sẽ chứa token_type='refresh')
-    """
-    expires = timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
-    expire_time = datetime.now(timezone.utc) + expires
     
-    to_encode = data.copy()
-    to_encode.update({
-        "exp": expire_time,
-        "token_type": "refresh"
-    })
-    
-    encoded_jwt = jwt.encode(
-        to_encode, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM
-    )
     return encoded_jwt
-
-def decode_token(token: str, expected_type: str = "access"):
+    
+def decode_token(token: str):
     """
-    Giải mã Token, kiểm tra type, và trả về payload (dưới dạng TokenData).
-    Mặc định, hàm này CHỈ chấp nhận "access" token.
+    Giải mã Token, kiểm tra type, và trả về payload
     """
     try:
-        payload = jwt.decode(
-            token, key=settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM]
-        )
-        
-        if payload.get("token_type") != expected_type:
+        payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
+        if payload is None:
             return None
-
-        phone_number: str | None = payload.get("sub")
-        is_admin: bool = payload.get("is_admin", False)
         
-        if phone_number is None:
-            return None
-            
-        return TokenData(
-            phone_number=phone_number,
-            is_admin=is_admin,
-            token_type=expected_type
-        )
+        return payload
+    
     except JWTError:
         # Token hết hạn, sai chữ ký, hoặc không hợp lệ
         return None
