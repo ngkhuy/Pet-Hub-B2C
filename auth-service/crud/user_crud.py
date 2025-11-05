@@ -26,8 +26,7 @@ async def create_user(db: AsyncSession, user: User):
 
 
 async def refresh_token_to_db(
-    db: AsyncSession, user_id: UUID, token: str, expired_at: datetime
-):
+    db: AsyncSession, user_id: UUID, token: str):
     """
     Tạo refresh token mới, và xoá TẤT CẢ các token cũ
     của user này.
