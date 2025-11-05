@@ -5,7 +5,6 @@ from pwdlib import PasswordHash
 from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone
 
-from models import TokenData
 from core.config import settings
 
 # Config 
