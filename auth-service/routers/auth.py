@@ -131,7 +131,7 @@ async def change_password(password_data: UserChangePassword, curernt_user: Annot
     # xác minh mật khẩu cũ
     is_valid = await run_in_threadpool(security.verify_password, password_data.old_password, curernt_user.hashed_password)
     if not is_valid:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
                             detail="Mật khẩu hiện tại không chính xác")
         
     # cập nhật mk mới
@@ -176,7 +176,7 @@ async def verify_otp(otp_data: VerifyOTP, db: Annotated[AsyncSession, Depends(ge
     
     user = await user_crud.get_valid_otp(db, phone_number, "password_reset", otp)
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="OTP không trùng khớp hoặc hết hạn")
     
     # tạo 1 token 5p để bảo vệ reset-password

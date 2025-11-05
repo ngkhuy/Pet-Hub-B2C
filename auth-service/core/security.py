@@ -11,7 +11,7 @@ from core.config import settings
 # Config 
 # Schema cho access token (login)
 oauth2_schema = OAuth2PasswordBearer(
-    tokenUrl="/api/v1/auth/login",
+    tokenUrl="/api/auth/login",
     scheme_name="Access Token Auth"
 )
 
