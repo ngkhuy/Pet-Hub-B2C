@@ -17,9 +17,6 @@ class RefreshToken(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     token: str = Field(sa_column=Column("token", VARCHAR, unique=True, index=True))
     
-    expired_at: datetime = Field(
-        sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
-    )
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
@@ -80,23 +77,12 @@ class UserRead(SQLModel):
     
     
 # Token models
-
 class Token(SQLModel):
     """Model để trả về JWT Token"""
     access_token: str
     refresh_token: str
     token_type: str = "bearer"
-    
-class TokenData(SQLModel):
-    """Payload (nội dung) bên trong JWT"""
-    phone_number: str
-    is_admin: bool
-    token_type: str
 
-class TokenRefresh(SQLModel):
-    """Model nhận refresh token từ body"""
-    refresh_token: str
-    
 # Change password model
 class UserChangePassword(SQLModel):
     """Model thay đổi mật khẩu"""
@@ -126,16 +112,17 @@ class OTP(SQLModel, table=True):
     purpose: OTPPurpose = Field(sa_column=Column(sa_otp_purpose_enum, nullable=False))
     expired_at: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
     
-class ForgotPasswordRequest(SQLModel):
-    """Model tạo request quên mk"""
+class RequestOTP(SQLModel):
+    """Model tạo OTP"""
     phone_number: str
+    purpose: OTPPurpose
     
 class VerifyOTP(SQLModel):
     """Model xác minh OTP"""
     otp: str
     phone_number: str
+    purpose: OTPPurpose
 
 class ResetPassword(SQLModel):
     """Model đặt lại mk"""
     new_password: str
-    phone_number: str
