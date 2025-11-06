@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 from uuid import UUID
 from models import OTP, OTPPurpose, User, RefreshToken
 
+
 async def get_user_by_phone(db: AsyncSession, phone_number: str):
     """
     Tìm kiếm user bằng số điện thoại
@@ -25,8 +26,7 @@ async def create_user(db: AsyncSession, user: User):
     return user
 
 
-async def refresh_token_to_db(
-    db: AsyncSession, user_id: UUID, token: str):
+async def refresh_token_to_db(db: AsyncSession, user_id: UUID, token: str):
     """
     Tạo refresh token mới, và xoá TẤT CẢ các token cũ
     của user này.
@@ -39,14 +39,13 @@ async def refresh_token_to_db(
     return db_refresh_token
 
 
-async def get_valid_refresh_token(db: AsyncSession, user_id: UUID):
+async def get_refresh_token(db: AsyncSession, user_id: UUID):
     """
     Kiểm tra xem refresh token có tồn tại trong CSDL và
     còn hợp lệ (chưa hết hạn) hay không.
     """
     statement = select(RefreshToken).where(
-        RefreshToken.token == user_id,
-        RefreshToken.expired_at > datetime.now(timezone.utc),
+        RefreshToken.user_id == user_id
     )
     result = await db.exec(statement)
     return result.first()
@@ -68,7 +67,7 @@ async def update_user_password(db: AsyncSession, user: User, new_password: str):
     user.hashed_password = new_password
     user.updated_at = datetime.now(timezone.utc)
 
-    await db.add(user)
+    db.add(user)
     await db.commit()
     await db.refresh(user)
 
