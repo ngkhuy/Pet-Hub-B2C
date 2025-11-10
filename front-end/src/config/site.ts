@@ -5,7 +5,7 @@ export const siteConfig = {
   url: "https://petcare.vn",
   ogImage: "/og-image.png",
 
-  links: {
+  socials: {
     facebook: "https://facebook.com/petcarevn",
     instagram: "https://instagram.com/petcarevn",
     github: "https://github.com/petcare",

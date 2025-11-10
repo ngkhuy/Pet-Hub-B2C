@@ -11,7 +11,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Login PetCare",
+  title: {
+    template: "%s | PetCare",
+    default: "PetCare",
+  },
   description: "Login page",
 };
 
