@@ -5,11 +5,11 @@ from uuid import UUID
 from models import OTP, OTPPurpose, User, RefreshToken
 
 
-async def get_user_by_phone(db: AsyncSession, phone_number: str):
+async def get_user_by_email(db: AsyncSession, email: str):
     """
     Tìm kiếm user bằng số điện thoại
     """
-    statement = select(User).where(User.phone_number == phone_number)
+    statement = select(User).where(User.email == email)
     result = await db.exec(statement)
     return result.first()
 
@@ -44,9 +44,7 @@ async def get_refresh_token(db: AsyncSession, user_id: UUID):
     Kiểm tra xem refresh token có tồn tại trong CSDL và
     còn hợp lệ (chưa hết hạn) hay không.
     """
-    statement = select(RefreshToken).where(
-        RefreshToken.user_id == user_id
-    )
+    statement = select(RefreshToken).where(RefreshToken.user_id == user_id)
     result = await db.exec(statement)
     return result.first()
 
@@ -132,3 +130,24 @@ async def get_active_otp(db: AsyncSession, user_id: UUID, purpose: OTPPurpose):
 
     result = await db.exec(statement)
     return result.first()
+
+
+# Hàm cập nhật trạng thái cấp quyền admin cho user
+async def update_user_admin_privilege(db: AsyncSession, user: User, is_admin: bool):
+    """Cập nhật quyền admin cho user vào db"""
+    user.is_admin = is_admin
+    user.updated_at = datetime.now(timezone.utc)
+
+    db.add(user)
+    await db.commit()
+    await db.refresh(user)
+
+
+async def update_user_active_status(db: AsyncSession, user: User, is_active: bool):
+    """Cập nhật quyền admin cho user vào db"""
+    user.is_active = is_active
+    user.updated_at = datetime.now(timezone.utc)
+
+    db.add(user)
+    await db.commit()
+    await db.refresh(user)

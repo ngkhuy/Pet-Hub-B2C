@@ -8,6 +8,8 @@ from typing import Annotated
 
 from database import get_session
 from models import (
+    AdminUpdatePrivilege,
+    AdminUpdateUserStatus,
     OTPPurpose,
     RequestOTP,
     ResetPassword,
@@ -37,12 +39,10 @@ async def signup(
     """Đăng ký user mới"""
 
     # kiểm tra username đó tồn tại trong db chưa
-    exist_user = await user_crud.get_user_by_phone(
-        db, phone_number=user_create.phone_number
-    )
+    exist_user = await user_crud.get_user_by_email(db, email=user_create.email)
     if exist_user:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="SĐT này đã được sử dụng"
+            status_code=status.HTTP_400_BAD_REQUEST, detail="email này đã được sử dụng"
         )
 
     # chưa tồn tại -> tạo user mới
@@ -66,7 +66,7 @@ async def login(
     """Đăng nhập bằng sđt và password"""
 
     # tìm user
-    user = await user_crud.get_user_by_phone(db, phone_number=form_data.username)
+    user = await user_crud.get_user_by_email(db, email=form_data.username)
     if user:
         is_password_valid = await run_in_threadpool(
             security.verify_password, form_data.password, user.hashed_password
@@ -88,8 +88,11 @@ async def login(
     # tìm được user -> tạo access token, refresh token cho user
     access_token = security.create_jwt_token(
         data={
-            "sub": user.phone_number,
+            "sub": user.email,
+            "is_active": user.is_active,
             "is_admin": user.is_admin,
+            "is_phone_verified": user.is_phone_verified,
+            "is_email_verified": user.is_email_verified,
             "token_type": "access",
         },
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
@@ -97,8 +100,7 @@ async def login(
 
     refresh_token = security.create_jwt_token(
         data={
-            "sub": user.phone_number,
-            "is_admin": user.is_admin,
+            "sub": user.email,
             "token_type": "refresh",
         },
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
@@ -129,7 +131,7 @@ async def recreate_access_token(
     # nếu còn refresh token, tạo access token mới
     access_token = security.create_jwt_token(
         data={
-            "sub": current_user.phone_number,
+            "sub": current_user.email,
             "is_admin": current_user.is_admin,
             "token_type": "access",
         },
@@ -185,7 +187,7 @@ async def change_password(
     # xoá TẤT CẢ refresh token
     if curernt_user.id:
         await user_crud.revoke_refresh_token(db, curernt_user.id)
-    
+
     return {"message": "Đổi mật khẩu thành công"}
 
 
@@ -196,9 +198,9 @@ async def forgot_password(
 ):
     """API tạo otp khi user quên mk"""
 
-    phone_number = request_data.phone_number
+    email = request_data.email
 
-    user = await user_crud.get_user_by_phone(db, phone_number)
+    user = await user_crud.get_user_by_email(db, email=email)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user"
@@ -210,20 +212,27 @@ async def forgot_password(
             detail="Số điện thoại đã được xác minh",
         )
 
+    # add: kiểm tra email đã được xác minh chưa
+    if request_data.purpose == OTPPurpose.email_verification and user.is_email_verified:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email đã được xác minh",
+        )
+
     otp = security.generate_otp()
     hashed_otp = await run_in_threadpool(security.get_password_hash, otp)
 
     await user_crud.create_or_update_otp(
         db,
         user_id=user.id,
-        purpose=request_data.purpose.value,  # lưu enum value dạng string
+        purpose=request_data.purpose,  # lưu enum value dạng string
         otp_hash=hashed_otp,
         expired_at=datetime.now(timezone.utc) + timedelta(minutes=5),
     )
 
-    await security.simulate_sms(phone_number, otp)
+    await security.simulate_sms(email, otp)
 
-    return {"message": f"Đã gửi OTP {request_data.purpose.value} đến số {phone_number}"}
+    return {"message": f"Đã gửi OTP {request_data.purpose.value} đến {email}"}
 
 
 # Verify OTP endpoint
@@ -232,13 +241,15 @@ async def verify_otp(
     otp_data: VerifyOTP, db: Annotated[AsyncSession, Depends(get_session)]
 ):
     """Xác minh OTP cho nhiều mục đích"""
-    phone_number = otp_data.phone_number
+    email = otp_data.email
 
     # tìm user = phone number
-    user = await user_crud.get_user_by_phone(db, phone_number=phone_number)
+    user = await user_crud.get_user_by_email(db, email=email)
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user"
+        )
+
     # tìm otp
     otp = await user_crud.get_active_otp(db, user.id, otp_data.purpose)
     if not otp:
@@ -250,7 +261,7 @@ async def verify_otp(
     # Nếu purpose là xác minh sđt -> sinh token verify
     if otp_data.purpose == OTPPurpose.phone_verification:
         token = security.create_jwt_token(
-            data={"sub": phone_number, "token_type": "phone-verify"},
+            data={"sub": email, "token_type": "phone-verify"},
             expires_delta=timedelta(minutes=5),
         )
         return {
@@ -262,7 +273,19 @@ async def verify_otp(
     # Nếu purpose là reset password -> sinh token reset
     elif otp_data.purpose == OTPPurpose.password_reset:
         token = security.create_jwt_token(
-            data={"sub": phone_number, "token_type": "reset-password"},
+            data={"sub": email, "token_type": "reset-password"},
+            expires_delta=timedelta(minutes=5),
+        )
+        return {
+            "message": "Xác minh OTP thành công",
+            "reset_token": token,
+            "purpose": otp_data.purpose,
+        }
+
+    # add: Nếu purpose là xác minh email -> sinh token verify email
+    elif otp_data.purpose == OTPPurpose.email_verification:
+        token = security.create_jwt_token(
+            data={"sub": email, "token_type": "email-verify"},
             expires_delta=timedelta(minutes=5),
         )
         return {
@@ -296,26 +319,32 @@ async def reset_password(
         )
 
     # tìm user:
-    phone_number = token_data.get("sub")
-    user = await user_crud.get_user_by_phone(db, phone_number)
-    
+    email = token_data.get("sub")
+    user = await user_crud.get_user_by_email(db, email)
+
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user")
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user"
+        )
+
     # kiểm tra type của token
     if token_data.get("token_type") != "reset-password":
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token không hợp lệ")
-    
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Token không hợp lệ"
+        )
+
     # kiểm tra expire time của token
     if token_data.get("exp") < datetime.now(timezone.utc).timestamp():
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token đã hết hạn")
-    
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Token đã hết hạn"
+        )
+
     # cập nhật mk mới cho user
     # hash pass
     new_hash_password = security.get_password_hash(password_data.new_password)
-    
+
     await user_crud.update_user_password(db, user, new_hash_password)
-    
+
     return {"message": "Đặt lại mật khẩu thành công"}
 
 
@@ -337,26 +366,119 @@ async def update_verified_status(
             detail="Token không hợp lệ hoặc đã hết hạn",
         )
 
-    user = await user_crud.get_user_by_phone(db, token_data.get("sub"))
+    user = await user_crud.get_user_by_email(db, token_data.get("sub"))
     # kiểm tra user
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy user"
         )
 
-    # kiểm tra type
-    if token_data.get("token_type") != "phone-verify":
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token không hợp lệ")
-    
-    # kiểm tra time expires
+    # kiểm tra time expire của token
     if token_data.get("exp") < datetime.now(timezone.utc).timestamp():
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token đã hết hạn")
-    
-    user.is_phone_verified = True
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Token đã hết hạn"
+        )
+
+    # kiểm tra type của token: nếu phone thì cập nhật cho sđt, nếu email thì cập nhật cho email
+    token_type = token_data.get("token_type")
+    if token_type == "phone-verify":
+        # kiểm tra trạng thái
+        if user.is_phone_verified:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Số điện thoại đã được xác minh",
+            )
+        user.is_phone_verified = True
+
+    elif token_type == "email-verify":
+        if user.is_email_verified:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Email đã được xác minh"
+            )
+        user.is_email_verified = True
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Token không hợp lệ"
+        )
+
+    # cập nhật user vào db
+    db.add(user)
     await db.commit()
     await db.refresh(user)
 
     return {"message": "Cập nhật trạng thái xác minh thành công", "verified": True}
+
+
+# Endpoint tạo quyền admin cho user
+@router.post("/admin/update-privilege", status_code=status.HTTP_200_OK)
+async def update_admin_privilege(
+    db: Annotated[AsyncSession, Depends(get_session)],
+    admin_user: Annotated[User, Depends(dependency.get_current_admin_user)],
+    request_data: AdminUpdatePrivilege,
+):
+    """Cấp quyền admin cho user hoặc thu hồi quyền admin của user đó"""
+    user_to_update = await user_crud.get_user_by_email(
+        db, email=request_data.target_email
+    )
+
+    if not user_to_update:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Không tìm thấy user cần cập nhật",
+        )
+
+    # ngăn admin tự huỷ quyền của mình
+    if user_to_update.id == admin_user.id and request_data.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Admin không tự huỷ quyền của bản thân",
+        )
+
+    # cập nhật
+    await user_crud.update_user_admin_privilege(
+        db, user_to_update, request_data.is_admin
+    )
+
+    return {
+        "message": "Cập nhật quyền admin cho user thành công",
+        "user": request_data.target_email,
+    }
+
+
+# Endpoint để set active hoặc unactive cho user
+@router.post("/admin/update-user-status", status_code=status.HTTP_200_OK)
+async def update_active_status(
+    db: Annotated[AsyncSession, Depends(get_session)],
+    request_data: AdminUpdateUserStatus,
+    admin_user: Annotated[User, Depends(dependency.get_current_admin_user)],
+):
+    """Điều chỉnh trạng thái active của user [Chỉ admin]"""
+    user_to_update = await user_crud.get_user_by_email(
+        db, email=request_data.target_email
+    )
+
+    if not user_to_update:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Không tìm thấy user cần cập nhật",
+        )
+
+    # ngăn admin tự huỷ quyền của mình
+    if user_to_update.id == admin_user.id and request_data.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Admin không tự huỷ quyền của bản thân",
+        )
+
+    # cập nhật
+    await user_crud.update_user_active_status(
+        db, user_to_update, request_data.is_active
+    )
+
+    return {
+        "message": "Cập nhật trạng thái cho user thành công",
+        "user": request_data.target_email,
+    }
 
 
 # Get Me endpoint
