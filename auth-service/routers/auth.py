@@ -132,7 +132,10 @@ async def recreate_access_token(
     access_token = security.create_jwt_token(
         data={
             "sub": current_user.email,
+            "is_active": current_user.is_active,
             "is_admin": current_user.is_admin,
+            "is_phone_verified": current_user.is_phone_verified,
+            "is_email_verified": current_user.is_email_verified,
             "token_type": "access",
         },
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
