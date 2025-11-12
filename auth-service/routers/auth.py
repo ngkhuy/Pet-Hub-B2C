@@ -225,7 +225,7 @@ async def forgot_password(
     await user_crud.create_or_update_otp(
         db,
         user_id=user.id,
-        purpose=request_data.purpose.value,  # lưu enum value dạng string
+        purpose=request_data.purpose,  # lưu enum value dạng string
         otp_hash=hashed_otp,
         expired_at=datetime.now(timezone.utc) + timedelta(minutes=5),
     )
@@ -410,8 +410,8 @@ async def update_verified_status(
 
 
 # Endpoint tạo quyền admin cho user
-@router.post("/admin/update_privilege", status_code=status.HTTP_200_OK)
-async def aprove_admin(
+@router.post("/admin/update-privilege", status_code=status.HTTP_200_OK)
+async def update_admin_privilege(
     db: Annotated[AsyncSession, Depends(get_session)],
     admin_user: Annotated[User, Depends(dependency.get_current_admin_user)],
     request_data: AdminUpdatePrivilege,
@@ -435,11 +435,14 @@ async def aprove_admin(
         )
 
     # cập nhật
-    updated_user = await user_crud.update_user_admin_privilege(
+    await user_crud.update_user_admin_privilege(
         db, user_to_update, request_data.is_admin
     )
 
-    return updated_user
+    return {
+        "message": "Cập nhật quyền admin cho user thành công",
+        "user": request_data.target_email,
+    }
 
 
 # Endpoint để set active hoặc unactive cho user
@@ -468,11 +471,14 @@ async def update_active_status(
         )
 
     # cập nhật
-    updated_user = await user_crud.update_user_admin_privilege(
+    await user_crud.update_user_active_status(
         db, user_to_update, request_data.is_active
     )
 
-    return updated_user
+    return {
+        "message": "Cập nhật trạng thái cho user thành công",
+        "user": request_data.target_email,
+    }
 
 
 # Get Me endpoint
