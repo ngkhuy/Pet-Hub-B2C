@@ -88,7 +88,8 @@ async def login(
     # tìm được user -> tạo access token, refresh token cho user
     access_token = security.create_jwt_token(
         data={
-            "sub": user.email,
+            "sub": user.id,
+            "email": user.email,
             "is_active": user.is_active,
             "is_admin": user.is_admin,
             "is_phone_verified": user.is_phone_verified,
@@ -100,7 +101,7 @@ async def login(
 
     refresh_token = security.create_jwt_token(
         data={
-            "sub": user.email,
+            "sub": user.id,
             "token_type": "refresh",
         },
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
@@ -131,7 +132,8 @@ async def recreate_access_token(
     # nếu còn refresh token, tạo access token mới
     access_token = security.create_jwt_token(
         data={
-            "sub": current_user.email,
+            "sub": current_user.id,
+            "email": current_user.email,
             "is_active": current_user.is_active,
             "is_admin": current_user.is_admin,
             "is_phone_verified": current_user.is_phone_verified,
