@@ -6,7 +6,7 @@ app = FastAPI(title="Auth service API",
               description="API cho dịch vụ xác thực người dùng",
               version="0.1.0")
 
-app.include_router(auth_router.router, prefix="/api/auth", tags=["auth"])
+app.include_router(auth_router.router, prefix="/api/auth", tags=["Auth endpoints"])
 
 @app.get("/")
 async def root():

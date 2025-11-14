@@ -13,9 +13,6 @@ oauth2_schema = OAuth2PasswordBearer(
     tokenUrl="/api/auth/login", scheme_name="Access Token Auth"
 )
 
-# Schema cho reset token (verify OTP)
-reset_oauth2_schema = HTTPBearer(scheme_name="Reset Token Auth")
-
 pwd_context = PasswordHash.recommended()
 
 
@@ -47,7 +44,7 @@ def create_jwt_token(data: dict, expires_delta: timedelta | None = None):
 
 def decode_token(token: str):
     """
-    Giải mã Token, kiểm tra type, và trả về payload
+    Giải mã Token và trả về payload
     """
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
@@ -60,17 +57,3 @@ def decode_token(token: str):
         # Token hết hạn, sai chữ ký, hoặc không hợp lệ
         return None
 
-
-# OTP methods
-def generate_otp(length: int = 6):
-    """Hàm tạo OTP"""
-    return "".join([str(random.randint(0, 9)) for _ in range(length)])
-
-
-# Hàm giả lập sms gửi qua console thay vì sđt thật
-async def simulate_sms(email: str, otp: str):
-    print("------------------------------------------------")
-    print(f"MOCK SMS: Gửi OTP {otp} đến {email}")
-    print("------------------------------------------------")
-
-    await asyncio.sleep(0)
