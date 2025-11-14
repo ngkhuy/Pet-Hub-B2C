@@ -1,31 +1,32 @@
-from sqlmodel import SQLModel, Field, text, Column
+import enum
+from typing import Optional, List
 from uuid import UUID
-from typing import Optional
-from datetime import datetime, timezone
+from datetime import datetime, date, timezone
+from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR
+from sqlalchemy import Enum as SAEnum, JSONB
 from sqlalchemy.sql.sqltypes import TIMESTAMP
+from sqlalchemy.sql.expression import text
+
+# Tạo Enum
+class UserRole(str, enum.Enum):
+    ADMIN = "admin"
+    USER = "user"
+    
+class OTPType(str, enum.Enum):
+    EMAIL_VERIFICATION = "email_verification"
+    RESET_PASSWORD = "reset_password"
+    PHONE_VERIFICATION = "phone_verification"
+    
+class PetType(str, enum.Enum):
+    DOG = "dog"
+    CAT = "cat"
+    
+
+# Định nghĩa các bảng trong DB
 
 class User(SQLModel, table=True):
-    """Model CSDL cho bảng public.user"""
     __tablename__ = "user"
     
-    id: Optional[UUID] = Field(default=None, primary_key=True, sa_column_kwargs=({"default": text("gen_random_uuid()")}))
-    
-    phone_number: str = Field(sa_column=Column("phone_number", nullable=False, unique=True, index=True))
-    
-    full_name: str = Field(sa_column=Column("full_name"), nullable=False)
-    
-    gender: str = Field(sa_column=Column("gender"), nullable=False)
-    
-    date_of_birth: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), sa_column=Column(TIMESTAMP(timezone=True), nullable=True))
-    
-    address: str = Field(sa_column=Column("address"), nullable=True)
-    
-    avatar_base64: str = Field(sa_column=Column("avatar_base64"), nullable=True)
-    
-    bio: str = Field(sa_column=Column("bio"), nullable=True)
-    
-    is_active: bool = Field(default=True, sa_column=Column("is_active"))
-    
-    
+    id: UUID = Field(sa_column=Column("id", VARCHAR, primary_key=True, default=text("gen_random_uuid()")))
     
     
