@@ -1,17 +1,20 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import HTTPAuthorizationCredentials, OAuth2PasswordRequestForm
+from fastapi import APIRouter, Depends, HTTPException, status, Response, Cookie
+from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.concurrency import run_in_threadpool
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from datetime import datetime, timezone, timedelta
+from datetime import timedelta
 from typing import Annotated
+import aio_pika 
+from aio_pika import DeliveryMode
+import json
 
 from database import get_session
 from models import (
     UserChangePassword,
     UserCreate,
     UserRead,
-    Token,
+    AccessTokenResponse,
     User,
 )
 from crud import user_crud
@@ -21,6 +24,7 @@ from dependency import dependency
 
 # Config
 router = APIRouter()
+
 
 # sign-up endpoint
 @router.post("/signup", response_model=UserRead, status_code=status.HTTP_201_CREATED)
@@ -45,16 +49,54 @@ async def signup(
     db_user = User(**user_data, hashed_password=hashed_password)
 
     user = await user_crud.create_user(db, db_user)
+
+    # gửi tin nhắn qua rabbitmq
+    try:
+        connection = await aio_pika.connect_robust(
+            f"amqp://guest:guest@{settings.RABBITMQ_HOST}/"
+        )
+        
+        async with connection:
+            channel = await connection.channel()
+            
+            exchange = await channel.get_exchange(
+                "user_events",
+                ensure=True, 
+                exchange_type="direct", 
+                durable=True 
+            )
+
+            # 4. Tạo message body và message object
+            message_body = {"user_id": str(user.id), "email": user.email}
+            message = aio_pika.Message(
+                body=json.dumps(message_body).encode(),
+                delivery_mode=DeliveryMode.PERSISTENT
+            )
+
+            # 5. Gửi tin nhắn (async)
+            await exchange.publish(message, routing_key="user.created")
+            
+        print(f"Đã gửi tin nhắn (async) vào RabbitMQ: {message_body}")
+    except Exception as e:
+        print(f"Lỗi khi gửi tin nhắn vào RabbitMQ: {e}")
+
     return user
 
 
 # Login endpoint
-@router.post("/login", response_model=Token, status_code=status.HTTP_200_OK)
+@router.post(
+    "/login", response_model=AccessTokenResponse, status_code=status.HTTP_200_OK
+)
 async def login(
+    response: Response,
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     db: Annotated[AsyncSession, Depends(get_session)],
 ):
-    """Đăng nhập bằng email và password"""
+    """
+    Đăng nhập bằng email/password.
+    Trả về Access Token trong JSON.
+    Set Refresh Token vào HttpOnly Cookie.
+    """
 
     # tìm user
     user = await user_crud.get_user_by_email(db, email=form_data.username)
@@ -72,89 +114,135 @@ async def login(
 
     if not user.active_status:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Không tìm thấy user",
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="User đã bị vô hiệu hoá",
         )
 
     # tìm được user -> tạo access token, refresh token cho user
     access_token = security.create_jwt_token(
         data={
-            "sub": user.id,
-            "email": user.email,
-            "is_active": user.active_status,
-            "role": user.role,
+            "sub": str(user.id),
+            "role": user.role.value,
             "token_type": "access",
         },
         expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
     )
 
+    # tạo refresh token
     refresh_token = security.create_jwt_token(
         data={
-            "sub": user.id,
+            "sub": str(user.id),
             "token_type": "refresh",
         },
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
     )
+    
     # thu hồi refresh token cũ của user
     await user_crud.revoke_refresh_token(db, user.id)
-    # lưu refresh token vào database
-    await user_crud.refresh_token_to_db(db, user.id, refresh_token)
+    
+    # lưu refresh token mới vào db
+    hashed_refresh_token = await run_in_threadpool(
+        security.get_password_hash, refresh_token
+    )
+    
+    await user_crud.refresh_token_to_db(db, user.id, hashed_refresh_token)
+    
+    # đưa RT vào HttpOnly cookie
+    is_production = settings.APP_ENV == "production"
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=is_production,
+        samesite="lax",
+        path="/api/auth",
+        max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60
+    )
 
-    return Token(access_token=access_token, refresh_token=refresh_token)
+    return AccessTokenResponse(access_token=access_token)
 
 
 # Refresh token endpoint
-@router.post("/refresh", status_code=status.HTTP_200_OK)
+@router.post("/refresh", status_code=status.HTTP_200_OK, response_model=AccessTokenResponse)
 async def recreate_access_token(
     db: Annotated[AsyncSession, Depends(get_session)],
-    user: Annotated[User, Depends(dependency.get_current_active_user)],
+    rt_cookie: Annotated[str | None, Cookie(alias="refresh_token")]
 ):
-    """Tìm RT của user hiện tại, tạo AT mới cho user đó"""
-    # tìm RT của user
-    refresh_token = await user_crud.get_refresh_token(db, user.id)
-
-    if not refresh_token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Refresh token không hợp lệ hoặc đã hết hạn",
-        )
-    # nếu còn refresh token, tạo access token mới
+    """
+    Đọc Refresh Token (RT) từ HttpOnly Cookie.
+    Xác thực nó và trả về Access Token (AT) mới.
+    """
+    if rt_cookie is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Không tìm thấy RT nào")
+    
+    # xác thực RT
+    token_data = security.decode_token(rt_cookie)
+    if not token_data or token_data.get("token_type") != "refresh":
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="RT không hợp lệ")
+    
+    user_id = token_data.get("sub")
+    if user_id is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="RT không hợp lệ")
+    
+    # tìm user và RT trong DB
+    user = await user_crud.get_user_by_id(db, user_id)
+    db_rt_token = await user_crud.get_refresh_token(db, user_id)
+    if not user or not db_rt_token:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="RT không hợp lệ hoặc hết hạn")
+    
+    if not user.active_status:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="User đã bị vô hiệu hoá")
+    
+    # so sánh RT từ cookie và DB
+    is_rt_valid = await run_in_threadpool(security.verify_password, rt_cookie, db_rt_token.hashed_token)
+    
+    if not is_rt_valid:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="RT không hợp lệ hoặc đã hết hạn")
+    
+    # hợp lệ tạo AT mới
     access_token = security.create_jwt_token(
         data={
-            "sub": user.id,
-            "email": user.email,
-            "is_active": user.active_status,
-            "role": user.role,
+            "sub": str(user.id),
+            "role": user.role.value,
             "token_type": "access",
         },
-        expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
+        expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     )
 
-    return {"access_token": access_token}
-
+    return AccessTokenResponse(access_token=access_token)
 
 # Endpoint logout
 @router.post("/logout", status_code=status.HTTP_204_NO_CONTENT)
 async def logout(
+    response: Response,
     current_user: Annotated[User, Depends(dependency.get_current_active_user)],
     db: Annotated[AsyncSession, Depends(get_session)],
 ):
-    """Đăng xuất user hiện tại"""
+    """Đăng xuất: Thu hồi RT trong DB và xoá cookie"""
     if not current_user:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Lỗi hệ thống, không đăng xuất được",
-        )
-
-    # xoá access token của user
-    await user_crud.revoke_refresh_token(db, user_id=current_user.id)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Lỗi hệ thống, không đăng xuất được")
+    
+    # thu hồi RT trong DB
+    await user_crud.revoke_refresh_token(db, current_user.id)
+    
+    # xoá cookie RT
+    is_production = settings.APP_ENV == "production"
+    response.delete_cookie(
+        key="refresh_token",
+        path="/api/auth",
+        secure=is_production,
+        httponly=True,
+        samesite="lax"
+    )
+    
+    return response
 
 
 # Change-password endpoint
 @router.post("/user/change-password", status_code=status.HTTP_200_OK)
 async def change_password(
     password_data: UserChangePassword,
-    curernt_user: Annotated[User, Depends(dependency.get_current_active_user)],
+    current_user: Annotated[User, Depends(dependency.get_current_active_user)],
     db: Annotated[AsyncSession, Depends(get_session)],
 ):
     """Đổi mật khẩu của user hiện tại"""
@@ -162,7 +250,7 @@ async def change_password(
     is_valid = await run_in_threadpool(
         security.verify_password,
         password_data.old_password,
-        curernt_user.hashed_password,
+        current_user.hashed_password,
     )
     if not is_valid:
         raise HTTPException(
@@ -174,13 +262,14 @@ async def change_password(
     new_password = await run_in_threadpool(
         security.get_password_hash, password_data.new_password
     )
-    await user_crud.update_user_password(db, curernt_user, new_password)
+    await user_crud.update_user_password(db, current_user, new_password)
 
     # xoá TẤT CẢ refresh token
-    if curernt_user.id:
-        await user_crud.revoke_refresh_token(db, curernt_user.id)
+    if current_user.id:
+        await user_crud.revoke_refresh_token(db, current_user.id)
 
     return {"message": "Đổi mật khẩu thành công"}
+
 
 # Get Me endpoint
 @router.get("/me", response_model=UserRead)

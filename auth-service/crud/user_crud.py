@@ -7,9 +7,19 @@ from models import User, RefreshToken
 
 async def get_user_by_email(db: AsyncSession, email: str):
     """
-    Tìm kiếm user bằng số điện thoại
+    Tìm kiếm user bằng email
     """
     statement = select(User).where(User.email == email)
+    result = await db.exec(statement)
+    return result.first()
+
+async def get_user_by_id(db: AsyncSession, user_id: str):
+    """
+    Tìm kiếm user bằng ID
+    """
+    # convert qua uuid
+    user_id = UUID(user_id)
+    statement = select(User).where(User.id == user_id)
     result = await db.exec(statement)
     return result.first()
 
@@ -31,7 +41,7 @@ async def refresh_token_to_db(db: AsyncSession, user_id: UUID, token: str):
     Tạo refresh token mới, và xoá TẤT CẢ các token cũ
     của user này.
     """
-    db_refresh_token = RefreshToken(user_id=user_id, token=token)
+    db_refresh_token = RefreshToken(user_id=user_id, hashed_token=token)
     db.add(db_refresh_token)
     await db.commit()
     await db.refresh(db_refresh_token)
@@ -39,11 +49,12 @@ async def refresh_token_to_db(db: AsyncSession, user_id: UUID, token: str):
     return db_refresh_token
 
 
-async def get_refresh_token(db: AsyncSession, user_id: UUID):
+async def get_refresh_token(db: AsyncSession, user_id: str):
     """
     Kiểm tra xem refresh token có tồn tại trong CSDL và
     còn hợp lệ (chưa hết hạn) hay không.
     """
+    user_id = UUID(user_id)
     statement = select(RefreshToken).where(RefreshToken.user_id == user_id)
     result = await db.exec(statement)
     return result.first()

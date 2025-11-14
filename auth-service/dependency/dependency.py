@@ -4,7 +4,6 @@ from typing import Annotated
 from database import get_session
 from crud import user_crud
 from core import security
-from models import User
 
 # Tạo exception
 credentials_exception = HTTPException(
@@ -28,30 +27,18 @@ async def get_current_active_user(
         raise credentials_exception
 
     # get username = email
-    email = token_data.get("sub")
-    if email is None:
+    user_id = token_data.get("sub")
+    if user_id is None:
         raise credentials_exception
 
-    user = await user_crud.get_user_by_email(db, email=email)
+    user = await user_crud.get_user_by_id(db, user_id=user_id)
     if user is None:
         raise credentials_exception
 
-    if not user.is_active:
+    if not user.active_status:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Người dùng đã bị vô hiệu hoá",
         )
 
     return user
-
-
-async def get_current_admin_user(
-    current_user: Annotated[User, Depends(get_current_active_user)],
-):
-    """Dependency để lấy user và kiểm tra quyền admin"""
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, detail="Quyền truy cập bị từ chối"
-        )
-
-    return current_user

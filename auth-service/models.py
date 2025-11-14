@@ -1,9 +1,16 @@
 from typing import Optional, List
 from uuid import UUID
+from enum import Enum
 from sqlmodel import Field, SQLModel, Relationship, Column, VARCHAR
 from datetime import datetime, timezone
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
+from sqlalchemy import Enum as SAEnum
+
+
+class UserRole(str, Enum):
+    ADMIN = "admin"
+    USER = "user"
 
 
 # Refresh Token Model
@@ -45,10 +52,18 @@ class User(UserBase, table=True):
         primary_key=True,
         sa_column_kwargs=({"default": text("gen_random_uuid()")}),
     )
-    hashed_password: str = Field(sa_column=Column("hashed_password", VARCHAR, nullable=False))
-    
-    active_status: bool = Field(sa_column=Column("active_status", nullable=False, default=True))
-    role: str = Field(sa_column=Column("role", VARCHAR, default="user", nullable=False))
+    hashed_password: str = Field(
+        sa_column=Column("hashed_password", VARCHAR, nullable=False)
+    )
+
+    active_status: bool = Field(
+        sa_column=Column("active_status", nullable=False, default=True)
+    )
+
+    role: UserRole = Field(
+        default=UserRole.USER,
+        sa_column=Column(SAEnum(UserRole), nullable=False, default=UserRole.USER.value),
+    )
 
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
@@ -71,6 +86,8 @@ class UserCreate(UserBase):
 
 class UserRead(SQLModel):
     """Model để đọc/trả về user (output)"""
+
+    id: UUID
     email: str
     active_status: bool
     role: str
@@ -79,11 +96,10 @@ class UserRead(SQLModel):
 
 
 # Token models
-class Token(SQLModel):
-    """Model để trả về JWT Token"""
+class AccessTokenResponse(SQLModel):
+    """Model để trả về JWT Access Token"""
 
     access_token: str
-    refresh_token: str
     token_type: str = "bearer"
 
 
