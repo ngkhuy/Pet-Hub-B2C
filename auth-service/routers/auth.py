@@ -234,9 +234,6 @@ async def logout(
         httponly=True,
         samesite="lax"
     )
-    
-    return response
-
 
 # Change-password endpoint
 @router.post("/user/change-password", status_code=status.HTTP_200_OK)

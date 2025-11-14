@@ -62,7 +62,7 @@ class User(UserBase, table=True):
 
     role: UserRole = Field(
         default=UserRole.USER,
-        sa_column=Column(SAEnum(UserRole), nullable=False, default=UserRole.USER.value),
+        sa_column=Column(SAEnum(UserRole, values_callable=lambda x: [e.value for e in x]), nullable=False, default=UserRole.USER.value),
     )
 
     created_at: datetime = Field(
