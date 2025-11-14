@@ -12,8 +12,12 @@ credentials_exception = HTTPException(
     headers={"WWW-Authenticate": "Bearer"},
 )
 
+
 # Dependency methods
-async def get_current_active_user(token: Annotated[str, Depends(security.oauth2_schema)], db: Annotated[AsyncSession, Depends(get_session)]):
+async def get_current_active_user(
+    token: Annotated[str, Depends(security.oauth2_schema)],
+    db: Annotated[AsyncSession, Depends(get_session)],
+):
     """
     Decode JWT to get current active user
     Function acts as a dependency for protected endpoints
@@ -21,17 +25,20 @@ async def get_current_active_user(token: Annotated[str, Depends(security.oauth2_
     token_data = security.decode_token(token)
     if token_data is None:
         raise credentials_exception
-    
-    # get phone_number
-    phone_number = token_data.get("sub")
-    if phone_number is None:
+
+    # get username = email
+    user_id = token_data.get("sub")
+    if user_id is None:
         raise credentials_exception
-    
-    user = await user_crud.get_user_by_phone(db, phone_number=phone_number)
+
+    user = await user_crud.get_user_by_id(db, user_id=user_id)
     if user is None:
         raise credentials_exception
-    
-    if not user.is_active:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Người dùng đã bị vô hiệu hoá")
-    
+
+    if not user.active_status:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Người dùng đã bị vô hiệu hoá",
+        )
+
     return user
