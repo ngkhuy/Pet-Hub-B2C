@@ -20,7 +20,7 @@ async def get_bookings(
     offset: int = Query(0, ge=0)
 ):
     user_id = current_user["sub"]
-    is_admin = current_user.get("is_admin", False)
+    is_admin = current_user.get("role") == "admin"
 
     if is_admin:
         bookings = await care_crud.get_all_bookings(db, limit=limit, offset=offset)
