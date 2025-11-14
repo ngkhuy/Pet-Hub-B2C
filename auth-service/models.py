@@ -71,8 +71,6 @@ class UserCreate(UserBase):
 
 class UserRead(SQLModel):
     """Model để đọc/trả về user (output)"""
-
-    id: UUID
     email: str
     active_status: bool
     role: str
