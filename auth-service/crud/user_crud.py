@@ -1,8 +1,8 @@
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select, delete
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from uuid import UUID
-from models import OTP, OTPPurpose, User, RefreshToken
+from models import User, RefreshToken
 
 
 async def get_user_by_email(db: AsyncSession, email: str):
@@ -70,84 +70,3 @@ async def update_user_password(db: AsyncSession, user: User, new_password: str):
     await db.refresh(user)
 
     return user
-
-
-# OTP methods
-async def create_or_update_otp(
-    db: AsyncSession,
-    user_id: UUID,
-    purpose: OTPPurpose,
-    otp_hash: str,
-    expired_at: datetime,
-):
-    """Hàm tạo hoặc cập nhật OTP vào DB"""
-    existing_otp = await db.scalar(
-        select(OTP)
-        .where(
-            OTP.user_id == user_id,
-            OTP.purpose == purpose,
-        )
-        .order_by(OTP.expired_at.desc())
-    )
-
-    if existing_otp:
-        now = datetime.now(timezone.utc)
-        # otp còn hiệu lực và gửi chưa được 60s
-        elapsed = (
-            now - (existing_otp.expired_at - timedelta(minutes=5))
-        ).total_seconds()
-        if elapsed < 60:
-            return False
-
-        # qua thời gian cooldown, cho phép cập nhật mới
-        existing_otp.otp_hash = otp_hash
-        existing_otp.expired_at = expired_at
-    else:
-        # chưa có otp -> tạo mới
-        db.add(
-            OTP(
-                user_id=user_id,
-                purpose=purpose,
-                otp_hash=otp_hash,
-                expired_at=expired_at,
-            )
-        )
-    await db.commit()
-    return True
-
-
-async def get_active_otp(db: AsyncSession, user_id: UUID, purpose: OTPPurpose):
-    """Lấy OTP còn hạn cho user theo purpose"""
-    statement = (
-        select(OTP)
-        .where(
-            OTP.user_id == user_id,
-            OTP.purpose == purpose,
-            OTP.expired_at > datetime.now(timezone.utc),
-        )
-        .order_by(OTP.expired_at.desc())
-    )
-
-    result = await db.exec(statement)
-    return result.first()
-
-
-# Hàm cập nhật trạng thái cấp quyền admin cho user
-async def update_user_admin_privilege(db: AsyncSession, user: User, is_admin: bool):
-    """Cập nhật quyền admin cho user vào db"""
-    user.is_admin = is_admin
-    user.updated_at = datetime.now(timezone.utc)
-
-    db.add(user)
-    await db.commit()
-    await db.refresh(user)
-
-
-async def update_user_active_status(db: AsyncSession, user: User, is_active: bool):
-    """Cập nhật quyền admin cho user vào db"""
-    user.is_active = is_active
-    user.updated_at = datetime.now(timezone.utc)
-
-    db.add(user)
-    await db.commit()
-    await db.refresh(user)
