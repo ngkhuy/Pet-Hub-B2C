@@ -5,9 +5,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from datetime import timedelta
 from typing import Annotated
-import aio_pika 
-from aio_pika import DeliveryMode
-import json
+from internal_client import notify_user_created
 
 from database import get_session
 from models import (
@@ -49,36 +47,12 @@ async def signup(
     db_user = User(**user_data, hashed_password=hashed_password)
 
     user = await user_crud.create_user(db, db_user)
-
-    # gửi tin nhắn qua rabbitmq
+    
+    # tạo message cho UMS
     try:
-        connection = await aio_pika.connect_robust(
-            f"amqp://guest:guest@{settings.RABBITMQ_HOST}/"
-        )
-        
-        async with connection:
-            channel = await connection.channel()
-            
-            exchange = await channel.get_exchange(
-                "user_events",
-                ensure=True, 
-                exchange_type="direct", 
-                durable=True 
-            )
-
-            # 4. Tạo message body và message object
-            message_body = {"user_id": str(user.id), "email": user.email}
-            message = aio_pika.Message(
-                body=json.dumps(message_body).encode(),
-                delivery_mode=DeliveryMode.PERSISTENT
-            )
-
-            # 5. Gửi tin nhắn (async)
-            await exchange.publish(message, routing_key="user.created")
-            
-        print(f"Đã gửi tin nhắn (async) vào RabbitMQ: {message_body}")
+        await notify_user_created(str(user.id), user.email)
     except Exception as e:
-        print(f"Lỗi khi gửi tin nhắn vào RabbitMQ: {e}")
+        print("Lỗi khi gửi S2S event:", e)
 
     return user
 
