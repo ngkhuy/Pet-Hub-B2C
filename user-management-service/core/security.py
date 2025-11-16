@@ -11,7 +11,7 @@ pwd_context = PasswordHash.recommended()
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/auth/login", scheme_name="Access Token Auth")
 
 # schema đọc token từ AS gửi
-internal_bearer = HTTPBearer(schema_name="Internal Token Auth")
+internal_bearer = HTTPBearer()
 
 # Hàm dùng để hash OTP
 

@@ -3,7 +3,8 @@ from typing import Optional, List
 from uuid import UUID
 from datetime import datetime, date, timezone
 from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR
-from sqlalchemy import Enum as SAEnum, JSONB
+from sqlalchemy import Enum as SAEnum, func
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
 
@@ -28,7 +29,7 @@ class User(SQLModel, table=True):
     """Model CSDL cho user profile"""
     __tablename__ = "user"
     
-    id: UUID = Field(sa_column=Column("id", VARCHAR, primary_key=True))
+    id: UUID = Field(primary_key=True)
     
     email: str = Field(sa_column=Column("email", VARCHAR, unique=True, nullable=False, index=True))
     
@@ -84,14 +85,18 @@ class OTP(SQLModel, table=True):
     
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), sa_column=Column("create_at", TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")))
     
-    expires_at: datetime = Field(sa_column=Column("expires_at", TIMESTAMP(timezone=True), nullable=False, server_default=text("now()"), onupdate=datetime.now(timezone.utc)))
+    expires_at: datetime = Field(sa_column=Column("expires_at", TIMESTAMP(timezone=True), nullable=False))
     
 
 class Pet(SQLModel, table=True):
     """Model CSDL cho thú cưng"""
     __tablename__ = "pet"
     
-    id: UUID = Field(sa_column=Column("id", VARCHAR, primary_key=True, default=text("gen_random_uuid()")))
+    id: UUID = Field(
+        default_factory=UUID, 
+        primary_key=True, 
+        sa_column_kwargs=({"server_default": text("gen_random_uuid()")})
+    )
     
     name: str = Field(sa_column=Column("name", VARCHAR, nullable=False))
     
@@ -124,7 +129,7 @@ class AuditLog(SQLModel, table=True):
     
     action: str = Field(sa_column=Column("action", VARCHAR, nullable=False, index=True))
     
-    target_id: Optional[UUID] = Field(sa_column=Column("target_id", nullable=False, index=True))
+    target_id: Optional[UUID] = Field(sa_column=Column("target_id", nullable=True, index=True))
     
     detail: Optional[dict] = Field(sa_column=Column("detail", JSONB, nullable=True))
     
@@ -175,7 +180,7 @@ class PetCreate(SQLModel):
     name: str
     species: PetType
     breed: Optional[str] = None
-    birthdate: Optional[date] = None
+    birth: Optional[date] = None
     note: Optional[str] = None
 
 class PetRead(SQLModel):

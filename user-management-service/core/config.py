@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     MAIL_STARTTLS: bool
     MAIL_SSL_TLS: bool
     
-    model_config = SettingsConfigDict(env_file='.env', ignored_types="extra")
+    AUTH_SERVICE_INTERNAL_BASE_URL: str
+    
+    APP_ENV: str = "development"
+    
+    model_config = SettingsConfigDict(env_file='.env', extra="ignore")
     
 settings = Settings()
