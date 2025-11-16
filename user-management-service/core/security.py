@@ -38,13 +38,14 @@ def create_jwt_token(data: dict, expires_delta: timedelta | None = None):
 
     return encoded_jwt
 
-def decode_token(token: str):
+def decode_token(token: str, audience: str | None = None):
     """Giải mã access token từ auth service gửi kèm theo request user"""
     try:
         payload = jwt.decode(
             token,
             settings.JWT_SECRET_KEY,
-            [settings.JWT_ALGORITHM]
+            [settings.JWT_ALGORITHM],
+            audience=audience
         )
         
         return payload

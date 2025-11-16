@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Import các router
-from route import user
+from route import user, internal
 from core.config import settings
 
 
@@ -23,6 +23,12 @@ app.add_middleware(
 )
 
 # --- GẮN CÁC ROUTER VỚI PREFIX ---
+
+app.include_router(
+    internal.router,
+    prefix="/api/internal", # <-- Phải khớp 'http://.../api/internal'
+    tags=["Internal S2S"]
+)
 
 app.include_router(
     user.router,

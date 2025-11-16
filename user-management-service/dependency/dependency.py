@@ -1,3 +1,4 @@
+from uuid import UUID
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials
 from sqlmodel.ext.asyncio.session import AsyncSession
@@ -38,7 +39,7 @@ async def get_current_user(
     user_role_from_token = token_data.get("role")
     
     # Truy vấn user trong DB của UMS
-    user = await user_crud.get_user_by_id(db, user_id=user_id)
+    user = await user_crud.get_user_by_id(db, user_id=UUID(user_id))
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -76,7 +77,7 @@ async def verify_internal_token(creds: Annotated[HTTPAuthorizationCredentials, D
     """Dependancy bảo vệy API nội bộ từ AS"""
     token = creds.credentials
     
-    token_data = security.decode_token(token)
+    token_data = security.decode_token(token, audience="user-service")
     
     if token_data is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")

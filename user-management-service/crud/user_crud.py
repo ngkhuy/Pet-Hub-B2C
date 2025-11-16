@@ -13,9 +13,8 @@ async def create_user_profile(db: AsyncSession, user: User):
     return user
     
 # Hàm lấy user từ API internal của AS
-async def get_user_by_id(db: AsyncSession, user_id: str):
+async def get_user_by_id(db: AsyncSession, user_id: UUID):
     """Tim user bằng id"""
-    user_id = UUID(user_id)
     statement = select(User).where(User.id == user_id)
     result = await db.exec(statement=statement)
     return result.first()

@@ -9,10 +9,7 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     APP_ENV: str
     
-    if APP_ENV == "production":
-        USER_SERVICE_INTERNAL_BASE_URL: str = "http://user-service:8001"
-    else: 
-        USER_SERVICE_INTERNAL_BASE_URL: str = "http://localhost:8001"
+    USER_SERVICE_INTERNAL_BASE_URL: str
     
     model_config = SettingsConfigDict(env_file='.env', extra="ignore")
     
