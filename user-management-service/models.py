@@ -204,3 +204,12 @@ class RequestOTP(SQLModel):
 class VerifyOTP(SQLModel):
     purpose: OTPType
     otp: str
+    
+class RequestPasswordOTP(SQLModel):
+    purpose: OTPType
+    email: str
+    
+class ResetPassword(SQLModel):
+    otp: str
+    email: str
+    new_password: str

@@ -86,7 +86,7 @@ async def verify_internal_token(creds: Annotated[HTTPAuthorizationCredentials, D
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid scope")
     
     # kiểm tra audience
-    if token_data.get("aud") != "user-management":
+    if token_data.get("aud") != "user-service":
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Audience")
     
     # kiểm tra issuer

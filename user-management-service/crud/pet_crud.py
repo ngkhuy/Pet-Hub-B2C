@@ -1,3 +1,4 @@
+from typing import Optional
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
 from uuid import UUID
@@ -24,15 +25,18 @@ async def get_pet_by_id(db: AsyncSession, pet_id: UUID):
     return pet
 
 async def get_pets_by_owner_id(
-    db: AsyncSession, owner_id: UUID, offset: int = 0, limit: int = 50
+    db: AsyncSession, owner_id: UUID, offset: int = 0, limit: int = 50, name: Optional[str] = None
 ):
     """Lấy danh sách thú cưng của một chủ sở hữu."""
     statement = (
-        select(Pet)
-        .where(Pet.owner_id == owner_id)
-        .offset(offset)
-        .limit(limit)
+       select(Pet).where(Pet.owner_id == owner_id)
     )
+    
+    if name:
+        statement = statement.where(Pet.name.ilike(f"%{name}%"))
+        
+    statement = statement.offset(offset).limit(limit)
+    
     result = await db.exec(statement)
     return result.all()
 
