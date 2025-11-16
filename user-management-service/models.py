@@ -161,7 +161,6 @@ class UserRead(SQLModel):
 
 class UserUpdate(SQLModel):
     """Schema cho phép user cập nhật profile của họ"""
-    email: Optional[str] = None
     full_name: Optional[str] = None
     phone_number: Optional[str] = None
     avatar_url: Optional[str] = None
@@ -196,3 +195,12 @@ class PetUpdate(SQLModel):
     breed: Optional[str] = None
     birthdate: Optional[date] = None
     note: Optional[str] = None
+    
+# OTP
+
+class RequestOTP(SQLModel):
+    purpose: OTPType
+
+class VerifyOTP(SQLModel):
+    purpose: OTPType
+    otp: str
