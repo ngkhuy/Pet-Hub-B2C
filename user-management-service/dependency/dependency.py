@@ -1,4 +1,5 @@
 from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials
 from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import Annotated
 
@@ -70,3 +71,26 @@ async def get_current_admin(
         raise admin_exception
     
     return current_user
+
+async def verify_internal_token(creds: Annotated[HTTPAuthorizationCredentials, Depends(security.internal_bearer)]):
+    """Dependancy bảo vệy API nội bộ từ AS"""
+    token = creds.credentials
+    
+    token_data = security.decode_token(token)
+    
+    if token_data is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+    
+    # check scope
+    if token_data.get("scope") != "user_created":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid scope")
+    
+    # kiểm tra audience
+    if token_data.get("aud") != "user-management":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Audience")
+    
+    # kiểm tra issuer
+    if token_data.get("iss") != "auth-service":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Issuer")
+    
+    return token_data

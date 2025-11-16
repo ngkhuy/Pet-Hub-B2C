@@ -1,4 +1,4 @@
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import HTTPBearer, OAuth2PasswordBearer
 from jose import JWSError, jwt
 from core.config import settings
 from pwdlib import PasswordHash
@@ -7,7 +7,11 @@ import random
 
 pwd_context = PasswordHash.recommended()
 
+# schema đọc request từ client
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/auth/login", scheme_name="Access Token Auth")
+
+# schema đọc token từ AS gửi
+internal_bearer = HTTPBearer(schema_name="Internal Token Auth")
 
 # Hàm dùng để hash OTP
 

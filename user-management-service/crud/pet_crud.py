@@ -1,9 +1,8 @@
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
 from uuid import UUID
-from typing import List
 
-from models import Pet, PetCreate, PetUpdate, PetType
+from models import Pet, PetCreate, PetUpdate
 
 async def create_pet(
     db: AsyncSession, pet_data: PetCreate, owner_id: UUID
