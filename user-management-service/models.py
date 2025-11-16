@@ -60,7 +60,15 @@ class User(SQLModel, table=True):
     
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), sa_column=Column("created_at", TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")))
     
-    updated_at: datetime = Field(sa_column=Column("updated_at", TIMESTAMP(timezone=True), nullable=False, server_default=text("now()"), onupdate=datetime.now(timezone.utc)))
+    updated_at: datetime = Field(
+        default=None, 
+        sa_column=Column(
+            TIMESTAMP(timezone=True), 
+            nullable=True, 
+            server_default=text("now()"), 
+            onupdate=func.now()
+        )
+    )
     
     # Relationships
     pets: List["Pet"] = Relationship(back_populates="owner")
@@ -109,7 +117,7 @@ class Pet(SQLModel, table=True):
     
     breed: Optional[str] = Field(sa_column=Column("breed", VARCHAR, nullable=True))
     
-    birth: Optional[date] = Field(sa_column=Column("birth", nullable=True))
+    birthday: Optional[date] = Field(sa_column=Column("birth", nullable=True))
     
     owner_id: UUID = Field(sa_column=Column("user_id", foreign_key="user.id", nullable=False))
     
@@ -189,7 +197,7 @@ class PetRead(SQLModel):
     name: str
     species: PetType
     breed: Optional[str]
-    birthdate: Optional[date]
+    birth: Optional[date]
     note: Optional[str]
     owner_id: UUID
 
@@ -198,7 +206,7 @@ class PetUpdate(SQLModel):
     name: Optional[str] = None
     species: Optional[PetType] = None
     breed: Optional[str] = None
-    birthdate: Optional[date] = None
+    birth: Optional[date] = None
     note: Optional[str] = None
     
 # OTP

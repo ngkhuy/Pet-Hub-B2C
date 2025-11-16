@@ -7,7 +7,8 @@ from core.config import settings
 SUPABASE_URL = settings.DATABASE_URL
 
 # create async engine
-async_engine = create_async_engine(url=SUPABASE_URL, echo=True)
+async_engine = create_async_engine(url=SUPABASE_URL, echo=True, pool_recycle=300,
+    pool_pre_ping=True)
         
 # get session 
 async def get_session():
