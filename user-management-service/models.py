@@ -2,7 +2,7 @@ import enum
 from typing import Optional, List
 from uuid import UUID
 from datetime import datetime, date, timezone
-from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR
+from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR, ForeignKey
 from sqlalchemy import Enum as SAEnum, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql.sqltypes import TIMESTAMP
@@ -52,7 +52,7 @@ class User(SQLModel, table=True):
     
     bio: Optional[str] = Field(sa_column=Column("bio", VARCHAR, nullable=True))
     
-    date_of_birth: Optional[date] = Field(sa_column=Column("date_of_birth", nullable=True))
+    day_of_birth: Optional[date] = Field(sa_column=Column("day_of_birth", nullable=True))
     
     is_email_verified: bool = Field(sa_column=Column("is_email_verified", nullable=False, default=False))
     
@@ -82,7 +82,7 @@ class OTP(SQLModel, table=True):
     
     hashed_otp: str = Field(sa_column=Column("hashed_otp", VARCHAR, nullable=False))
     
-    user_id: UUID = Field(sa_column=Column("user_id", foreign_key="user.id", nullable=False))
+    user_id: UUID = Field(sa_column=Column("user_id", ForeignKey("user.id"), nullable=False))
     
     purpose: OTPType = Field(
         sa_column=Column(
@@ -119,7 +119,7 @@ class Pet(SQLModel, table=True):
     
     birthday: Optional[date] = Field(sa_column=Column("birth", nullable=True))
     
-    owner_id: UUID = Field(sa_column=Column("user_id", foreign_key="user.id", nullable=False))
+    owner_id: UUID = Field(sa_column=Column("user_id", ForeignKey("user.id"), nullable=False))
     
     note: Optional[str] = Field(sa_column=Column("note", VARCHAR, nullable=True))
     
@@ -133,7 +133,7 @@ class AuditLog(SQLModel, table=True):
     
     id: int = Field(sa_column=Column("id", primary_key=True, autoincrement=True))
     
-    actor_id: UUID = Field(sa_column=Column("actor_id", foreign_key="user.id", nullable=False, index=True))
+    actor_id: UUID = Field(sa_column=Column("actor_id", ForeignKey("user.id"), nullable=False, index=True))
     
     action: str = Field(sa_column=Column("action", VARCHAR, nullable=False, index=True))
     
