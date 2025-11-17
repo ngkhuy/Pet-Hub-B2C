@@ -11,6 +11,7 @@ from models import (
     AuditLog
 )
 from crud import user_crud, pet_crud, log_crud
+from core.s2s_client import notify_role_update, notify_status_update
 
 router = APIRouter(dependencies=[Depends(dependency.get_current_admin)])
 
@@ -33,7 +34,7 @@ async def admin_get_user_by_id(user_id: UUID, db: Annotated[AsyncSession, Depend
     
     return user
 
-@router.path("/users/{user_id}", response_model=UserRead)
+@router.path("/users/{user_id}/status", response_model=UserRead)
 async def admin_update_user_active_status(user_id: UUID, active_status: bool,
                                           admin_user: Annotated[User, Depends(dependency.get_current_admin)],
                                           db: Annotated[AsyncSession, Depends(get_session)]):
@@ -47,6 +48,9 @@ async def admin_update_user_active_status(user_id: UUID, active_status: bool,
         raise HTTPException(status_code=400, detail="Admin không thể tự ban chính mình")
     
     updated_user = await user_crud.update_user_active_status(db, db_user, active_status)
+    
+    # gửi s2s cho AS
+    await notify_status_update(db_user.id, active_status)
     
     # ghi log
     await log_crud.create_audit_log(
@@ -81,6 +85,9 @@ async def admin_update_user_role(
     updated_user = await user_crud.update_user_role(
         db=db, db_user=db_user, role=role
     )
+    
+    # gửi s2s cho AS
+    await notify_role_update(db_user.id, role)
     
     # Ghi log
     await log_crud.create_audit_log(
