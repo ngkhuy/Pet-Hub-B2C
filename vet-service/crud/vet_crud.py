@@ -64,10 +64,9 @@ async def get_booking_by_id(db: AsyncSession, booking_id: UUID) -> Optional[Book
     )
 
 
-async def get_bookings(
+async def get_booking(
     db: AsyncSession,
     user_id: Optional[UUID] = None,
-    pet_id: Optional[UUID] = None,
     skip: int = 0,
     limit: int = 100
 ) -> List[BookingResponse]:
@@ -77,8 +76,6 @@ async def get_bookings(
 
     if user_id:
         stmt = stmt.where(VetBooking.user_id == user_id)
-    if pet_id:
-        stmt = stmt.where(VetBooking.pet_id == pet_id)
 
     stmt = stmt.offset(skip).limit(limit)
     result = await db.exec(stmt)
@@ -86,7 +83,29 @@ async def get_bookings(
 
     return [
         BookingResponse(
-            **b.dict(),
+            **b.model_dump(),
+            services=[ServiceResponse.from_orm(bs.service) for bs in b.booking_services]
+        )
+        for b in bookings
+    ]
+
+
+async def get_bookings(
+    db: AsyncSession,
+    skip: int = 0,
+    limit: int = 100
+) -> List[BookingResponse]:
+    stmt = select(VetBooking).options(
+        selectinload(VetBooking.booking_services).joinedload(VetBookingService.service)
+    )
+
+    stmt = stmt.offset(skip).limit(limit)
+    result = await db.exec(stmt)
+    bookings = result.all()
+
+    return [
+        BookingResponse(
+            **b.model_dump(),
             services=[ServiceResponse.from_orm(bs.service) for bs in b.booking_services]
         )
         for b in bookings

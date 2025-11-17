@@ -7,7 +7,7 @@ from uuid import UUID
 from database import get_session
 from models import (
     VetBookingCreate, VetBookingUpdate, AdminVetBookingUpdate,
-    VetServiceCreate, BookingResponse, ServiceResponse, VetService
+    VetServiceCreate, BookingResponse, VetService
 )
 from crud import vet_crud as crud
 from dependency.dependency import require_user, require_admin
@@ -31,13 +31,18 @@ async def create_booking(
 @router.get("/bookings", response_model=List[BookingResponse])
 async def read_bookings(
     user_id: UUID | None = None,
-    pet_id: UUID | None = None,
     skip: int = 0,
     limit: int = 100,
     db: AsyncSession = Depends(get_session),
-    creds: str = Depends(require_user)
+    creds: dict = Depends(require_user)
 ):
-    return await crud.get_bookings(db, user_id, pet_id, skip, limit)
+    if creds["role"] == "user":
+        return await crud.get_booking(db, creds["sub"], skip, limit)
+    elif creds["role"] == "admin":
+        if user_id:
+            return await crud.get_booking(db, user_id, skip, limit)
+        else:
+            return await crud.get_bookings(db, skip, limit)
 
 
 @router.get("/bookings/{booking_id}", response_model=BookingResponse)
