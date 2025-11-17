@@ -5,7 +5,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from datetime import timedelta
 from typing import Annotated
-from internal_client import notify_user_created
+from .internal_client import notify_user_created
 
 from database import get_session
 from models import (
