@@ -1,7 +1,7 @@
 import httpx
 from datetime import timedelta
-from core import security
-from core.config import settings
+from . import security
+from .config import settings
 
 async def notify_user_created(user_id: str, email: str):
     """Hàm tạo thông báo user đã được tạo"""
