@@ -1,108 +1,109 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
-from fastapi.security import HTTPAuthorizationCredentials
+# vet_router.py
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel.ext.asyncio.session import AsyncSession
-from typing import Annotated, List, Optional
-from database import get_session
-from datetime import datetime
+from typing import List
 from uuid import UUID
-from models import CareBookingResponse, CareBookingCreate, ServiceResponse, BookingUpdate, PetTypes
-from crud import care_crud
-from core import security
-from dependency.dependency import require_admin, require_user, authorization_credentials
 
-router = APIRouter(prefix="/care")
+from database import get_session
+from models import (
+    VetBookingCreate, VetBookingUpdate, AdminVetBookingUpdate,
+    VetServiceCreate, BookingResponse, ServiceResponse, VetService
+)
+from crud import vet_crud as crud
+from dependency.dependency import require_user, require_admin
 
-@router.get("/", response_model=List[CareBookingResponse])
-async def get_bookings(
-    db: Annotated[AsyncSession, Depends(get_session)],
-    current_user: Annotated[dict, Depends(require_user)],
-    limit: int = Query(100, ge=1, le=1000),
-    offset: int = Query(0, ge=0)
-):
-    user_id = current_user["sub"]
-    is_admin = current_user.get("role") == "admin"
+router = APIRouter()
 
-    if is_admin:
-        bookings = await care_crud.get_all_bookings(db, limit=limit, offset=offset)
-    else:
-        bookings = await care_crud.get_bookings_by_user(db, user_id=UUID(user_id), limit=limit, offset=offset)
 
-    return [
-        CareBookingResponse(
-            **b.model_dump(exclude={"services"}),
-            services=[ServiceResponse(**s.model_dump()) for s in b.services]
-        )
-        for b in bookings
-    ]
-
-@router.get("/services", response_model=List[ServiceResponse])
-async def get_services(
-    db: Annotated[AsyncSession, Depends(get_session)],
-    credentials: Annotated[HTTPAuthorizationCredentials, Depends(security.oauth2_schema)],
-    pet_type: Optional[PetTypes] = Query(None),
-    limit: int = Query(100, ge=1, le=1000),
-    offset: int = Query(0, ge=0)
-):
-    authorization_credentials(credentials)
-
-    services = await care_crud.get_services(db, pet_type=pet_type, limit=limit, offset=offset)
-    return [ServiceResponse(**service.model_dump()) for service in services]
-
-@router.get("/admin/filter", response_model=List[CareBookingResponse])
-async def admin_filter_bookings(
-    db: Annotated[AsyncSession, Depends(get_session)],
-    admin_data = Depends(require_admin),
-    start_time_from: Optional[datetime] = Query(None),
-    start_time_to: Optional[datetime] = Query(None),
-    limit: int = Query(100, ge=1, le=1000),
-    offset: int = Query(0, ge=0)
-):
-    bookings = await care_crud.get_bookings_by_time_range(db, start_time_from, start_time_to, limit, offset)
-    return [
-        CareBookingResponse(
-            **b.model_dump(exclude={"services"}),
-            services=[ServiceResponse(**s.model_dump()) for s in b.services]
-        )
-        for b in bookings
-    ]
-
-@router.get("/admin/filter/{user_id}", response_model=List[CareBookingResponse])
-async def admin_get_bookings_by_user_id(
-    user_id: UUID,
-    db: Annotated[AsyncSession, Depends(get_session)],
-    admin_data: Annotated[dict, Depends(require_admin)],
-    limit: int = Query(100, ge=1, le=1000),
-    offset: int = Query(0, ge=0)
-):
-    bookings = await care_crud.get_bookings_by_user(
-        db,
-        user_id=user_id,
-        limit=limit,
-        offset=offset
-    )
-
-    return [
-        CareBookingResponse(
-            **booking.model_dump(exclude={"services"}),
-            services=[ServiceResponse(**s.model_dump()) for s in booking.services]
-        )
-        for booking in bookings
-    ]
-
-@router.post("/create", response_model=CareBookingResponse)
+# ====================== BOOKING ======================
+@router.post("/bookings", response_model=BookingResponse, status_code=status.HTTP_201_CREATED)
 async def create_booking(
-    db: Annotated[AsyncSession, Depends(get_session)],
-    credentials: Annotated[HTTPAuthorizationCredentials, Depends(security.oauth2_schema)],
-    form_data: CareBookingCreate
+    booking_in: VetBookingCreate,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
 ):
-    authorization_credentials(credentials)
-
     try:
-        booking = await care_crud.add_care_booking(db, form_data)
+        return await crud.create_booking(db, booking_in)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-    return CareBookingResponse(
-        **booking.model_dump(exclude={"services"}),
-        services=[ServiceResponse(**s.model_dump()) for s in booking.services]
-    )
+
+@router.get("/bookings", response_model=List[BookingResponse])
+async def read_bookings(
+    user_id: UUID | None = None,
+    pet_id: UUID | None = None,
+    skip: int = 0,
+    limit: int = 100,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
+):
+    return await crud.get_bookings(db, user_id, pet_id, skip, limit)
+
+
+@router.get("/bookings/{booking_id}", response_model=BookingResponse)
+async def read_booking(
+    booking_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
+):
+    booking = await crud.get_booking_by_id(db, booking_id)
+    if not booking:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return booking
+
+
+@router.patch("/bookings/{booking_id}", response_model=BookingResponse)
+async def update_booking(
+    booking_id: UUID,
+    update_data: VetBookingUpdate,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
+):
+    updated = await crud.update_booking(db, booking_id, update_data)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return updated
+
+
+@router.delete("/bookings/{booking_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_booking(
+    booking_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
+):
+    deleted = await crud.delete_booking(db, booking_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return None
+
+
+# ====================== ADMIN ======================
+@router.patch("/admin/bookings/{booking_id}", response_model=BookingResponse)
+async def admin_update_booking(
+    booking_id: UUID,
+    update_data: AdminVetBookingUpdate,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_admin)
+):
+    updated = await crud.update_booking(db, booking_id, update_data)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return updated
+
+
+# ====================== SERVICE ======================
+@router.post("/services", response_model=VetService, status_code=status.HTTP_201_CREATED)
+async def create_service(
+    service_in: VetServiceCreate,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_admin)
+):
+    return await crud.create_service(db, service_in)
+
+
+@router.get("/services", response_model=List[VetService])
+async def read_services(
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_user)
+):
+    return await crud.get_services(db)
