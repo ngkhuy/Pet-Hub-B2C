@@ -68,6 +68,13 @@ class BookingUpdate(SQLModel):
 class AdminBookingUpdate(BookingUpdate):
     status: Optional[BookingStatus] = None
 
+class ServiceUpdate(SQLModel):
+    name: Optional[str] = None
+    pet_type: Optional[PetTypes] = None
+    service_type: Optional[ServiceTypes] = None
+    price_per_hour: Optional[float] = None
+    duration_hours: Optional[float] = None
+
 # === RESPONSE MODELS ===
 class ServiceResponse(SQLModel):
     id: UUID
@@ -105,6 +112,13 @@ class HotelBookingCreate(SQLModel):
     user_id: UUID
     pet_id: UUID
     start_time: datetime
-    hotel_hours: float  # Người dùng nhập số giờ
-    service_id: UUID    # Chỉ 1 service loại Hotel
+    hotel_hours: float
+    service_id: UUID
     notes: Optional[str] = None
+
+class ServiceCreate(SQLModel):
+    name: str
+    price_per_hour: float
+    duration_hours: Optional[float] = None
+    pet_type: PetTypes
+    service_type: ServiceTypes
