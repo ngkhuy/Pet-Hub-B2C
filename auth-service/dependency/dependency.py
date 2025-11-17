@@ -4,6 +4,7 @@ from typing import Annotated
 from database import get_session
 from crud import user_crud
 from core import security
+from fastapi.security import HTTPAuthorizationCredentials
 
 # Tạo exception
 credentials_exception = HTTPException(
@@ -42,3 +43,29 @@ async def get_current_active_user(
         )
 
     return user
+
+def s2s_token_verifier(expected_scope: str):
+    """
+    Factory: Tạo một dependency để check S2S token
+    với scope (mục đích) cụ thể.
+    """
+    async def verify_s2s_from_ums(
+        # Đọc token từ 'internal_bearer'
+        creds: Annotated[HTTPAuthorizationCredentials, Depends(security.internal_bearer)]
+    ):
+        token = creds.credentials
+        
+        token_data = security.decode_token(token, audience="auth-service")
+        
+        if token_data is None:
+            raise HTTPException(status_code=401, detail="S2S token không hợp lệ hoặc sai audience")
+        
+        if token_data.get("iss") != "user-service":
+            raise HTTPException(status_code=403, detail="S2S token không phải từ User Service")
+            
+        if token_data.get("scope") != expected_scope:
+            raise HTTPException(status_code=403, detail="S2S token có scope không hợp lệ")
+            
+        return token_data
+    
+    return verify_s2s_from_ums
