@@ -32,7 +32,7 @@ app.include_router(
 
 app.include_router(
     user.router,
-    prefix="/api/ums/users",
+    prefix="/api/ums",
     tags=["User Endpoints"]
 )
 
