@@ -45,7 +45,7 @@ async def notify_role_update(user_id: UUID, role: UserRole):
     (UMS -> AS) Thông báo user đã được đổi role.
     """
     
-    token = create_s2s_token(scope="user.role.update")
+    token = create_s2s_token(scope="user_role_update")
     url = f"/api/internal/users/{user_id}/role" 
     
     try:
