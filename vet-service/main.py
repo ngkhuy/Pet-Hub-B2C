@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routers import vet_router
 
-app = FastAPI(title="Booking Service API", 
+app = FastAPI(title="VET Booking Service API", 
               description="API cho đặt hẹn dịch vụ VET cho thú cưng",
               version="0.1.0")
 
