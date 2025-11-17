@@ -2,7 +2,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select, delete
 from datetime import datetime, timezone
 from uuid import UUID
-from models import User, RefreshToken
+from models import User, RefreshToken, UserRole
 
 
 async def get_user_by_email(db: AsyncSession, email: str):
@@ -81,3 +81,23 @@ async def update_user_password(db: AsyncSession, user: User, new_password: str):
     await db.refresh(user)
 
     return user
+
+async def update_user_active_status(
+    db: AsyncSession, db_user: User, active_status: bool
+):
+    """(AS) Cập nhật trạng thái active (do UMS ra lệnh)."""
+    db_user.active_status = active_status
+    db.add(db_user)
+    await db.commit()
+    await db.refresh(db_user)
+    return db_user
+
+async def update_user_role(
+    db: AsyncSession, db_user: User, role: UserRole
+):
+    """(AS) Cập nhật vai trò (do UMS ra lệnh)."""
+    db_user.role = role
+    db.add(db_user)
+    await db.commit()
+    await db.refresh(db_user)
+    return db_user

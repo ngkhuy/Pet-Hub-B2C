@@ -12,6 +12,8 @@ from core.config import settings
 oauth2_schema = OAuth2PasswordBearer(
     tokenUrl="/api/auth/login", scheme_name="Access Token Auth"
 )
+# Schema nội bộ với UMS
+internal_bearer = HTTPBearer()
 
 pwd_context = PasswordHash.recommended()
 
@@ -42,12 +44,12 @@ def create_jwt_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-def decode_token(token: str):
+def decode_token(token: str, audience: str | None = None):
     """
     Giải mã Token và trả về payload
     """
     try:
-        payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
+        payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM], audience=audience)
         if payload is None:
             return None
 
