@@ -34,7 +34,7 @@ async def admin_get_user_by_id(user_id: UUID, db: Annotated[AsyncSession, Depend
     
     return user
 
-@router.path("/users/{user_id}/status", response_model=UserRead)
+@router.patch("/users/{user_id}/status", response_model=UserRead)
 async def admin_update_user_active_status(user_id: UUID, active_status: bool,
                                           admin_user: Annotated[User, Depends(dependency.get_current_admin)],
                                           db: Annotated[AsyncSession, Depends(get_session)]):
