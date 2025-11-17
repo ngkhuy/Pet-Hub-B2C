@@ -1,3 +1,4 @@
 *.env
 .vscode
 __pycache__
+system_analyst/
