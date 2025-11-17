@@ -44,7 +44,7 @@ def create_jwt_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-def decode_token(token: str, audience: str = None | None):
+def decode_token(token: str, audience: str | None = None):
     """
     Giải mã Token và trả về payload
     """
