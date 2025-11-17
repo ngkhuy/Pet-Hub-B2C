@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Import các router
-from route import user, internal
+from route import user, internal, admin
 from core.config import settings
 
 
@@ -26,30 +26,21 @@ app.add_middleware(
 
 app.include_router(
     internal.router,
-    prefix="/api/internal", # <-- Phải khớp 'http://.../api/internal'
+    prefix="/api/internal",
     tags=["Internal S2S"]
 )
 
 app.include_router(
     user.router,
-    prefix="/api/ums/users",
-    tags=["User Endpoints"] # Nhóm các API này lại
+    prefix="/api/ums",
+    tags=["User Endpoints"]
 )
 
-# 2. Router cho Admin (Tạm thời comment lại)
-# app.include_router(
-#     admin_router.router,
-#     prefix="/api/ums/admin",
-#     tags=["Admin Endpoints"]
-# )
-
-# 3. Router Nội bộ (Tạm thời comment lại)
-# app.include_router(
-#     internal_router.router,
-#     prefix="/api/internal",
-#     tags=["Internal S2S"]
-# )
-
+app.include_router(
+    admin.router,
+    prefix="/api/ums/admin",
+    tags=["Admin Endpoints"]
+)
 
 @app.get("/health", tags=["Health"])
 async def health_check():

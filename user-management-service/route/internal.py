@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import Annotated
 
@@ -21,23 +21,32 @@ async def handle_user_created(
 ):
     """
     API nội bộ (S2S) để "hứng" sự kiện 'user.created' từ Auth Service.
-    API này sẽ tạo User Profile trong database của UMS.
     """
     print(f"[UMS] Nhận được S2S event: tạo user {s2s_data.user_id}")
-    
-    existing = await user_crud.get_user_by_id(db, s2s_data.user_id)
-    if existing:
-        print(f" [UMS] Profile cho user {s2s_data.user_id} đã tồn tại, bỏ qua.")
-        return existing
+        
+    # Kiểm tra ID
+    user_by_id = await user_crud.get_user_by_id(db, s2s_data.user_id)
+    if user_by_id:
+        print(f" [UMS] Profile (ID) {s2s_data.user_id} đã tồn tại, bỏ qua.")
+        return user_by_id
+
+    # Kiểm tra EMAIL
+    user_by_email = await user_crud.get_user_by_email(db, s2s_data.email)
+    if user_by_email:
+        print(f" [UMS] Lỗi: Email {s2s_data.email} đã tồn tại với một ID khác.")
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"Email {s2s_data.email} đã tồn tại với một ID khác."
+        )
+    # -----------------------
 
     new_profile = UserProfile(
-        id=s2s_data.user_id,  
-        email=s2s_data.email,  
-        role=UserRole.USER,  
-        active_status=True     
+        id=s2s_data.user_id,    
+        email=s2s_data.email,   
+        role=UserRole.USER,     
+        active_status=True      
     )
     
-    # 3. Lưu vào DB
     created_user = await user_crud.create_user_profile(db, new_profile)
     print(f" [UMS] Đã tạo profile thành công cho user {created_user.id}")
     
