@@ -2,7 +2,7 @@ import enum
 from typing import Optional, List
 from uuid import UUID
 from datetime import datetime, date, timezone
-from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR, ForeignKey
+from sqlmodel import SQLModel, Field, Relationship, Column, VARCHAR, ForeignKey, Integer
 from sqlalchemy import Enum as SAEnum, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql.sqltypes import TIMESTAMP
@@ -14,9 +14,9 @@ class UserRole(str, enum.Enum):
     USER = "user"
     
 class OTPType(str, enum.Enum):
-    EMAIL_VERIFICATION = "email_verification"
-    RESET_PASSWORD = "reset_password"
-    PHONE_VERIFICATION = "phone_verification"
+    EMAIL_VERIFICATION = "email-verification"
+    RESET_PASSWORD = "reset-password"
+    PHONE_VERIFICATION = "phone-verification"
     
 class PetType(str, enum.Enum):
     DOG = "dog"
@@ -78,7 +78,7 @@ class OTP(SQLModel, table=True):
     """Model CSDL cho OTP"""
     __tablename__ = "otp"
     
-    id: int = Field(sa_column=Column("id", primary_key=True, autoincrement=True))
+    id: int = Field(sa_column=Column("id", Integer, primary_key=True, autoincrement=True))
     
     hashed_otp: str = Field(sa_column=Column("hashed_otp", VARCHAR, nullable=False))
     
@@ -86,7 +86,7 @@ class OTP(SQLModel, table=True):
     
     purpose: OTPType = Field(
         sa_column=Column(
-            SAEnum(OTPType, values_callable=lambda x: [e.value for e in x]), 
+            SAEnum(OTPType, values_callable=lambda x: [e.value for e in x], name="purpose"),
             nullable=False
         )
     )
@@ -101,7 +101,7 @@ class Pet(SQLModel, table=True):
     __tablename__ = "pet"
     
     id: UUID = Field(
-        default_factory=UUID, 
+        default=None, 
         primary_key=True, 
         sa_column_kwargs=({"server_default": text("gen_random_uuid()")})
     )
@@ -110,14 +110,14 @@ class Pet(SQLModel, table=True):
     
     species: PetType = Field(
         sa_column=Column(
-            SAEnum(PetType, values_callable=lambda x: [e.value for e in x]), 
+            SAEnum(PetType, values_callable=lambda x: [e.value for e in x], name="pet_type"), 
             nullable=False
         )
     )
     
     breed: Optional[str] = Field(sa_column=Column("breed", VARCHAR, nullable=True))
     
-    birthday: Optional[date] = Field(sa_column=Column("birth", nullable=True))
+    birth: Optional[date] = Field(sa_column=Column("birth", nullable=True))
     
     owner_id: UUID = Field(sa_column=Column("user_id", ForeignKey("user.id"), nullable=False))
     
@@ -131,7 +131,7 @@ class AuditLog(SQLModel, table=True):
     """Model CSDL lưu trữ lịch sử hoạt động"""
     __tablename__ = "audit_log"
     
-    id: int = Field(sa_column=Column("id", primary_key=True, autoincrement=True))
+    id: int = Field(sa_column=Column("id", Integer, primary_key=True, autoincrement=True))
     
     actor_id: UUID = Field(sa_column=Column("actor_id", ForeignKey("user.id"), nullable=False, index=True))
     
@@ -165,8 +165,8 @@ class UserRead(SQLModel):
     role: UserRole
     full_name: Optional[str]
     phone_number: Optional[str]
-    avatar_url: Optional[str]
-    date_of_birth: Optional[date]
+    avt_url: Optional[str]
+    day_of_birth: Optional[date]
     bio: Optional[str]
     is_email_verified: bool
     is_phone_verified: bool
@@ -176,9 +176,9 @@ class UserUpdate(SQLModel):
     """Schema cho phép user cập nhật profile của họ"""
     full_name: Optional[str] = None
     phone_number: Optional[str] = None
-    avatar_url: Optional[str] = None
+    avt_url: Optional[str] = None
     bio: Optional[str] = None
-    date_of_birth: Optional[date] = None
+    day_of_birth: Optional[date] = None
 
 
 # --- Schemas cho Pet ---

@@ -16,7 +16,7 @@ async def get_active_otp(db: AsyncSession, user_id: UUID, purpose: OTPType):
     )
     
     result = await db.exec(statement=statement)
-    return result.select_one_or_none()
+    return result.one_or_none()
 
 async def delete_otp(db: AsyncSession, db_otp: OTP):
     """Hàm xoá otp sau khi dùng"""
@@ -46,7 +46,7 @@ async def create_otp(db: AsyncSession, user_id: UUID, purpose: OTPType, otp_hash
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=5)
     
     # tạo otp
-    db_otp = OTP(user_id=user_id, purpose=purpose, otp_hash=otp_hash, expires_at=expires_at)
+    db_otp = OTP(user_id=user_id, purpose=purpose, hashed_otp=otp_hash, expires_at=expires_at)
     
     db.add(db_otp)
     await db.commit()
