@@ -1,28 +1,34 @@
 # vet_crud.py
 from typing import List, Optional
 from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlmodel import select
+from sqlmodel import select, and_
 from sqlalchemy.orm import selectinload
 from uuid import UUID
 from pytz import timezone
 from datetime import datetime
 from models import (
-    VetBooking, VetBookingService, VetService, VetServiceCreate,
-    VetBookingCreate, VetBookingUpdate, ServiceResponse, BookingResponse
+    VetBooking,
+    VetBookingService,
+    VetService,
+    VetServiceCreate,
+    VetBookingCreate,
+    VetBookingUpdate,
+    ServiceResponse,
+    BookingResponse,
 )
 
 VN_TZ = timezone("Asia/Ho_Chi_Minh")
 
+
 async def create_booking(
-    db: AsyncSession,
-    booking_in: VetBookingCreate
+    db: AsyncSession, booking_in: VetBookingCreate
 ) -> BookingResponse:
     # Kiểm tra trùng lịch
     overlap = await db.exec(
         select(VetBooking).where(
             VetBooking.pet_id == booking_in.pet_id,
             VetBooking.start_time < booking_in.end_time,
-            VetBooking.end_time > booking_in.start_time
+            VetBooking.end_time > booking_in.start_time,
         )
     )
     if overlap.first():
@@ -44,31 +50,29 @@ async def create_booking(
     return await get_booking_by_id(db, booking.id)
 
 
-async def get_booking_by_id(db: AsyncSession, booking_id: UUID) -> Optional[BookingResponse]:
+async def get_booking_by_id(
+    db: AsyncSession, booking_id: UUID
+) -> Optional[BookingResponse]:
     result = await db.exec(
-        select(VetBooking).where(VetBooking.id == booking_id)
-        .options(selectinload(VetBooking.booking_services).joinedload(VetBookingService.service))
+        select(VetBooking)
+        .where(VetBooking.id == booking_id)
+        .options(
+            selectinload(VetBooking.booking_services).joinedload(
+                VetBookingService.service
+            )
+        )
     )
     booking = result.first()
     if not booking:
         return None
 
-    services = [
-        ServiceResponse.from_orm(bs.service)
-        for bs in booking.booking_services
-    ]
+    services = [ServiceResponse.from_orm(bs.service) for bs in booking.booking_services]
 
-    return BookingResponse(
-        **booking.dict(),
-        services=services
-    )
+    return BookingResponse(**booking.dict(), services=services)
 
 
 async def get_booking(
-    db: AsyncSession,
-    user_id: Optional[UUID] = None,
-    skip: int = 0,
-    limit: int = 100
+    db: AsyncSession, user_id: Optional[UUID] = None, skip: int = 0, limit: int = 100
 ) -> List[BookingResponse]:
     stmt = select(VetBooking).options(
         selectinload(VetBooking.booking_services).joinedload(VetBookingService.service)
@@ -92,14 +96,34 @@ async def get_booking(
 
 async def get_bookings(
     db: AsyncSession,
+    user_id: Optional[UUID] = None,
+    start_date: Optional[datetime] = None,
+    end_date: Optional[datetime] = None,
     skip: int = 0,
-    limit: int = 100
+    limit: int = 100,
 ) -> List[BookingResponse]:
     stmt = select(VetBooking).options(
         selectinload(VetBooking.booking_services).joinedload(VetBookingService.service)
     )
 
+    # Filter theo user nếu có
+    if user_id:
+        stmt = stmt.where(VetBooking.user_id == user_id)
+
+    # Filter theo khoảng thời gian
+    if start_date and end_date:
+        # Lịch hẹn có giao nhau với khoảng [start_date, end_date]
+        stmt = stmt.where(
+            VetBooking.start_time < end_date, VetBooking.end_time > start_date
+        )
+    elif start_date:
+        stmt = stmt.where(VetBooking.end_time > start_date)
+    elif end_date:
+        stmt = stmt.where(VetBooking.start_time < end_date)
+
+    stmt = stmt.order_by(VetBooking.start_time.asc())  # Sắp xếp theo thời gian
     stmt = stmt.offset(skip).limit(limit)
+
     result = await db.exec(stmt)
     bookings = result.all()
 
@@ -113,9 +137,7 @@ async def get_bookings(
 
 
 async def update_booking(
-    db: AsyncSession,
-    booking_id: UUID,
-    update_data: VetBookingUpdate
+    db: AsyncSession, booking_id: UUID, update_data: VetBookingUpdate
 ) -> Optional[BookingResponse]:
     result = await db.exec(select(VetBooking).where(VetBooking.id == booking_id))
     booking = result.first()
