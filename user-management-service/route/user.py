@@ -55,7 +55,7 @@ async def get_my_pets(current_user: Annotated[User, Depends(dependency=dependenc
                       limit: int = 50,
                       name: Optional[str] = None):
     """API lấy danh sách pet của user, có thể tìm theo tên"""
-    pets = await pet_crud.get_pets_by_owner_id(db, owner_id=current_user.id, skip=skip, limit=limit, name=name)
+    pets = await pet_crud.get_pets_by_owner_id(db, owner_id=current_user.id, offset=skip, limit=limit, name=name)
     return pets
 
 # API lấy thông tin của thú cưng cụ thể
@@ -122,9 +122,9 @@ async def delete_pet(pet_id: UUID,
 # API dành cho OTP
 @router.post("/verification/send-otp")
 async def send_verification_otp(otp_request: RequestOTP, 
+                                background_tasks: BackgroundTasks,
                                 current_user: Annotated[User, Depends(dependency.get_current_user)],
-                                db: Annotated[AsyncSession, Depends(get_session)],
-                                background_tasks: BackgroundTasks):
+                                db: Annotated[AsyncSession, Depends(get_session)]):
     """API gửi OTP kèm mục đích của OTP"""
     if otp_request.purpose == OTPType.EMAIL_VERIFICATION:
         if current_user.is_email_verified:
@@ -147,7 +147,7 @@ async def send_verification_otp(otp_request: RequestOTP,
         
         otp_code = security.generate_otp()
         otp_hash = security.get_password_hash(otp_code)
-        await otp_crud.create_otp(db, current_user.id, OTPType.PHONE_VERIFICATION, otp_hash)
+        await otp_crud.create_otp(db=db, user_id=current_user.id, purpose=OTPType.PHONE_VERIFICATION, hashed_otp=otp_hash)
         
         background_tasks.add_task(
             send_email_func,
@@ -260,6 +260,6 @@ async def reset_password(reset_data: ResetPassword,
         )
         
     # 4. Nếu S2S thành công, xóa OTP
-    await otp_crud.deactivate_otp(db, db_otp=db_otp)
+    await otp_crud.delete_otp(db, db_otp=db_otp)
     
     return {"message": "Đổi mật khẩu thành công."}

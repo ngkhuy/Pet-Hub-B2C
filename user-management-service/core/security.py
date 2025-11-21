@@ -8,7 +8,7 @@ import random
 pwd_context = PasswordHash.recommended()
 
 # schema đọc request từ client
-oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/auth/login", scheme_name="Access Token Auth")
+oauth2_schema = OAuth2PasswordBearer(tokenUrl=f"{settings.AUTH_SERVICE_INTERNAL_BASE_URL}/api/auth/login", scheme_name="Access Token Auth")
 
 # schema đọc token từ AS gửi
 internal_bearer = HTTPBearer()

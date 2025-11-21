@@ -9,11 +9,11 @@ async def create_pet(
     db: AsyncSession, pet_data: PetCreate, owner_id: UUID
 ):
     """Tạo thú cưng mới và gán chủ sở hữu."""
+    pet_data_dict = pet_data.model_dump(exclude_unset=True)
+    pet_data_dict["owner_id"] = owner_id
     
-    pet = Pet.model_validate(pet_data)
-    
-    pet.owner_id = owner_id
-    
+    pet = Pet.model_validate(pet_data_dict)
+        
     db.add(pet)
     await db.commit()
     await db.refresh(pet)

@@ -53,3 +53,34 @@ async def internal_update_role(
         
     await user_crud.update_user_role(db, db_user=db_user, role=role)
     return {"status": "ok", "message": "User role updated in AS"}
+
+@router.patch(
+    "/reset-password", # Khớp với URL mà UMS gọi [cite: user.py, line 269]
+    status_code=status.HTTP_200_OK,
+    # Bảo vệ: Yêu cầu S2S token có scope "reset_password" [cite: user.py, line 261]
+    dependencies=[Depends(s2s_token_verifier("reset_password"))]
+)
+async def internal_reset_password(
+    # Nhận body từ UMS [cite: user.py, line 273-276]
+    body: dict, 
+    db: Annotated[AsyncSession, Depends(get_session)]
+):
+    """(S2S) Nhận lệnh từ UMS để reset password."""
+    
+    user_id = body.get("user_id")
+    new_hash = body.get("hashed_password")
+
+    if not user_id or not new_hash:
+        raise HTTPException(status_code=400, detail="Thiếu user_id hoặc hashed_password")
+
+    db_user = await user_crud.get_user_by_id(db, user_id=user_id)
+    if not db_user:
+        raise HTTPException(status_code=44, detail="User không tìm thấy trong Auth DB")
+        
+    # 1. Cập nhật mật khẩu mới
+    await user_crud.update_user_password(db, db_user, new_hash)
+    
+    # 2. (Rất quan trọng) Thu hồi mọi Refresh Token cũ
+    await user_crud.revoke_refresh_token(db, db_user.id)
+    
+    return {"status": "ok", "message": "Password reset in AS"}
