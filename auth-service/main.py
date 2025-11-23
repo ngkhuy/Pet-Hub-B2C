@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth as auth_router
+from routers import auth as auth_router, internal
     
 app = FastAPI(title="Auth service API", 
               description="API cho dịch vụ xác thực người dùng",
@@ -8,7 +8,7 @@ app = FastAPI(title="Auth service API",
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], 
+    allow_origins=["http://localhost:3000"],
     
     allow_credentials=True, 
     
@@ -21,6 +21,12 @@ app.include_router(
     auth_router.router, 
     prefix="/api/auth",
     tags=["Auth endpoints"]
+)
+
+app.include_router(
+    internal.router, 
+    prefix="/api/internal", 
+    tags=["Internal S2S"]
 )
 
 @app.get("/")
