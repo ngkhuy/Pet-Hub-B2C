@@ -97,7 +97,7 @@ export function InputField<T extends FieldValues>({
           {fieldState.invalid && (
             <FieldError
               errors={[fieldState.error]}
-              className="absolute -bottom-7"
+              className="absolute -bottom-6 "
             />
           )}
         </Field>

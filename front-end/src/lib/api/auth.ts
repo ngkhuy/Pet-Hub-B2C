@@ -1,43 +1,65 @@
-import { UserType } from "@/lib/schemas/user";
-import { get, post } from "@/lib/http/fetcher";
+"use client";
+
+import z from "zod";
+
+import { messageResponseSchema } from "@/lib/schemas/common";
+import { apiFetch, sessionToken } from "@/lib/api/client";
 import {
-  ChangePasswordType,
-  LoginResponseType,
-  LoginType,
-  MessageResponseType,
-  OtpResponseType,
-  RegisterType,
-  ResetPassType,
-  SendOtpType,
-  VerifyOtpType,
-} from "../schemas/auth";
+  ChangePasswordBodyType,
+  LoginFormType,
+  RegisterBodyType,
+  RegisterResponse,
+  TokenResponse,
+} from "@/lib/schemas/auth";
+import envConfig from "@/config/config";
 
-const domainApi = "/api/v1/auth";
+const BASE_PATH = envConfig.AUTH_API;
 
-export const AuthApi = {
-  signup: (payload: RegisterType) =>
-    post<UserType>(`${domainApi}/signup`, payload),
+export const ENDPOINT = {
+  // public endpoints
+  SIGNUP: `${BASE_PATH}/signup`,
+  LOGIN: `${BASE_PATH}/login`,
+  // user endpoints
+  LOGOUT: `${BASE_PATH}/logout`,
+  CHANGE_PASSWORD: `${BASE_PATH}/user/change-password`,
+  REFRESH_TOKEN: `${BASE_PATH}/refresh`,
+};
 
-  login: (payload: LoginType) =>
-    post<LoginResponseType>(`${domainApi}/login`, payload),
+export const authApi = {
+  signup(body: RegisterBodyType) {
+    return apiFetch(
+      ENDPOINT.SIGNUP,
+      { method: "POST", body: JSON.stringify(body) },
+      RegisterResponse
+    );
+  },
 
-  refreshToken: () => post<LoginResponseType>(`${domainApi}/refresh`),
+  async login(body: LoginFormType) {
+    const data = await apiFetch(
+      ENDPOINT.LOGIN,
+      { method: "POST", body: JSON.stringify(body) },
+      TokenResponse
+    );
 
-  logout: () => post<void>(`${domainApi}/logout`),
+    sessionToken.value = data.access_token;
 
-  sendOtp: (payload: SendOtpType) =>
-    post<MessageResponseType>(`${domainApi}/otp/send-otp`, payload),
+    return data;
+  },
 
-  verifyOtp: (payload: VerifyOtpType) =>
-    post<OtpResponseType>(`${domainApi}/otp/verify`, payload),
+  changePassword(body: ChangePasswordBodyType) {
+    return apiFetch(
+      ENDPOINT.CHANGE_PASSWORD,
+      { method: "PATCH", body: JSON.stringify(body) },
+      messageResponseSchema
+    );
+  },
 
-  changePassword: (payload: ChangePasswordType) =>
-    post<MessageResponseType>(`${domainApi}/user/change-password`, payload),
-
-  resetPass: (payload: ResetPassType) =>
-    post<MessageResponseType>(`${domainApi}/user/reset-password`, payload),
-
-  verifyPhone: () => post<MessageResponseType>(`${domainApi}/user/verify`),
-
-  getUserInfo: () => get<UserType>(`${domainApi}/me`),
+  async logout() {
+    await apiFetch(ENDPOINT.LOGOUT, { method: "POST" }, z.undefined());
+    sessionToken.value = "";
+    if (typeof window !== "undefined") {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+  },
 };

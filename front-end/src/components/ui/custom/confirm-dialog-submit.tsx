@@ -11,7 +11,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { SubmittingOverlay } from "@/components/ui/custom/submitting-overlay";
 import { ReactNode, useCallback, useState } from "react";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 
@@ -24,7 +23,6 @@ type ConfirmDialogSubmitProps<T extends FieldValues> = {
   description?: ReactNode;
   confirmLabel?: string;
   cancelLabel?: string;
-  overlayText?: string;
 
   /** Nhận values đã validate để submit */
   onConfirm: (values: T) => Promise<void> | void;
@@ -46,7 +44,6 @@ export function ConfirmDialogSubmit<T extends FieldValues>({
   description,
   confirmLabel = "Xác nhận",
   cancelLabel = "Hủy",
-  overlayText = "Đang xử lý...",
   onConfirm,
   onBusyChange,
   renderTrigger,
@@ -72,6 +69,7 @@ export function ConfirmDialogSubmit<T extends FieldValues>({
     setOpen(false);
     setBusyBoth(true);
     try {
+      await new Promise((r) => setTimeout(r, 30000));
       const values = form.getValues();
       await onConfirm(values);
     } finally {
@@ -81,8 +79,6 @@ export function ConfirmDialogSubmit<T extends FieldValues>({
 
   return (
     <>
-      {busy && <SubmittingOverlay text={overlayText} />}
-
       {renderTrigger ? (
         renderTrigger({ onClick: handleValidateThenOpen, disabled: busy })
       ) : (

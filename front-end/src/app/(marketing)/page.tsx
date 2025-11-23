@@ -1,6 +1,6 @@
-import { CategoryGrid } from "@/components/home/category-grid";
-import { FeaturedCarousel } from "@/components/home/featured-carousel";
-import { HeroCarousel } from "@/components/home/hero-carousel";
+import { CategoryGrid } from "@/app/(marketing)/_components/category-grid";
+import { FeaturedCarousel } from "@/app/(marketing)/_components/featured-carousel";
+import { HeroCarousel } from "@/app/(marketing)/_components/hero-carousel";
 import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
