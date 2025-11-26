@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { User } from "@/lib/schemas/user";
+import { User } from "@/lib/schemas/user-management";
 import React from "react";
 
 export const UserStaticInfo = React.memo(function UserStaticInfo({

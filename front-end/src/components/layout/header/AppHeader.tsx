@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import { MdOutlinePets } from "react-icons/md";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
+import envConfig from "@/config/config";
 
 export default function AppHeader() {
   return (
@@ -14,7 +14,7 @@ export default function AppHeader() {
         <Link href="/" className="flex items-center gap-2 text-primary">
           <MdOutlinePets size={24} />
           <span className="text-lg font-bold tracking-[-0.02em]">
-            {siteConfig.brandName}
+            {envConfig.BRAND_NAME}
           </span>
         </Link>
 

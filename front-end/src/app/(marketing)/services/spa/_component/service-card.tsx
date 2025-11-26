@@ -1,5 +1,8 @@
-import { ServiceType, ServiceTypeLabels } from "@/lib/schemas/booking";
-import { petTypeLabels } from "@/lib/schemas/pet";
+import {
+  PetTypeLabels,
+  ServiceType,
+  ServiceTypeLabels,
+} from "@/lib/types/booking";
 
 export function SpaServiceCard({ service }: { service: ServiceType }) {
   return (
@@ -13,7 +16,7 @@ export function SpaServiceCard({ service }: { service: ServiceType }) {
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Dành cho:{" "}
           <span className="font-semibold text-gray-800 dark:text-gray-200">
-            {petTypeLabels[service.pet_type]}
+            {PetTypeLabels[service.pet_type]}
           </span>
         </p>
 
@@ -39,7 +42,7 @@ export function SpaServiceCard({ service }: { service: ServiceType }) {
             {ServiceTypeLabels[service.service_type]}
           </span>
           <span className="text-xs font-medium bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-300 px-2.5 py-1 rounded-full">
-            {petTypeLabels[service.pet_type]}
+            {PetTypeLabels[service.pet_type]}
           </span>
         </div>
 

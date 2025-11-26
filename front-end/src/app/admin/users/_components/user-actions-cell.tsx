@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Row } from "@tanstack/react-table";
-import { User } from "@/lib/schemas/user";
+import { UserType } from "@/lib/schemas/user-management";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,7 +19,7 @@ import { CheckCircle } from "lucide-react";
 import { EditUserDialog } from "@/app/admin/users/_components/edit-user-dialog";
 
 interface UserActionsCellProps {
-  row: Row<User>;
+  row: Row<UserType>;
   onUpdated?: () => void;
 }
 

@@ -1,31 +1,32 @@
 "use client";
 
 import { DataTableColumnHeader } from "@/components/ui/table/data-table-column-header";
-import { User, userLabels, UserRole } from "@/lib/schemas/user";
+
 import { ColumnDef } from "@tanstack/react-table";
 
 import { BooleanBadge } from "@/components/ui/custom/boolean-badge";
 import { UserActionsCell } from "@/app/admin/users/_components/user-actions-cell";
+import { UserLabels, UserRole, UserType } from "@/lib/types/user-management";
 
-export const userColumns: ColumnDef<User>[] = [
+export const userColumns: ColumnDef<UserType>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => {
-      return <DataTableColumnHeader column={column} title={userLabels.id} />;
+      return <DataTableColumnHeader column={column} title={UserLabels.id} />;
     },
   },
   {
     accessorKey: "full_name",
     header: ({ column }) => {
       return (
-        <DataTableColumnHeader column={column} title={userLabels.full_name} />
+        <DataTableColumnHeader column={column} title={UserLabels.full_name} />
       );
     },
   },
   {
     accessorKey: "email",
     header: ({ column }) => {
-      return <DataTableColumnHeader column={column} title={userLabels.email} />;
+      return <DataTableColumnHeader column={column} title={UserLabels.email} />;
     },
   },
   {
@@ -34,7 +35,7 @@ export const userColumns: ColumnDef<User>[] = [
       return (
         <DataTableColumnHeader
           column={column}
-          title={userLabels.phone_number}
+          title={UserLabels.phone_number}
         />
       );
     },
@@ -42,11 +43,11 @@ export const userColumns: ColumnDef<User>[] = [
   {
     accessorKey: "role",
     header: ({ column }) => {
-      return <DataTableColumnHeader column={column} title={userLabels.role} />;
+      return <DataTableColumnHeader column={column} title={UserLabels.role} />;
     },
     cell: ({ row }) => (
       <BooleanBadge
-        value={(row.getValue("role") as UserRole) === "Admin"}
+        value={(row.getValue("role") as UserRole) === "admin"}
         trueLabel="Quản trị viên"
         falseLabel="Người dùng"
         variant="info"
@@ -59,7 +60,7 @@ export const userColumns: ColumnDef<User>[] = [
       return (
         <DataTableColumnHeader
           column={column}
-          title={userLabels.is_email_verified}
+          title={UserLabels.is_email_verified}
         />
       );
     },
@@ -78,7 +79,7 @@ export const userColumns: ColumnDef<User>[] = [
       return (
         <DataTableColumnHeader
           column={column}
-          title={userLabels.is_phone_verified}
+          title={UserLabels.is_phone_verified}
         />
       );
     },
@@ -105,7 +106,7 @@ export const userColumns: ColumnDef<User>[] = [
       return (
         <DataTableColumnHeader
           column={column}
-          title={userLabels.active_status}
+          title={UserLabels.active_status}
         />
       );
     },

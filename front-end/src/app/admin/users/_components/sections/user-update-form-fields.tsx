@@ -3,7 +3,7 @@ import { Control, useController } from "react-hook-form";
 import { Field, FieldError } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { EditUser } from "@/lib/schemas/user";
+import { EditUser } from "@/lib/schemas/user-management";
 import { formatVNPhone } from "@/lib/utils/format";
 
 type Props = {

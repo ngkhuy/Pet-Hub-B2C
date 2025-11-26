@@ -1,17 +1,16 @@
 import mockData from "@/MOCK_DATA/SERVICE_MOCK_DATA.json";
-import {
-  Service,
-  serviceLabelsWithActions,
-  serviceSchema,
-} from "@/lib/schemas/service";
+
 import { DataTable } from "@/components/ui/table/data-table";
 import { serviceColumns } from "@/app/admin/services/_components/service-columns";
+import {
+  Service,
+  ServiceLabelsWithActions,
+  ServiceType,
+} from "@/lib/schemas/booking";
 
-async function getData(): Promise<Service[]> {
+async function getData(): Promise<ServiceType[]> {
   // Fetch data from your API here.
-  const data = await Promise.all(
-    mockData.map((v) => serviceSchema.parseAsync(v))
-  );
+  const data = await Promise.all(mockData.map((v) => Service.parseAsync(v)));
 
   return data;
 }
@@ -22,7 +21,7 @@ export default async function UserManagementPage() {
   return (
     <div className="container mx-auto py-10">
       <DataTable
-        headerLabels={serviceLabelsWithActions}
+        headerLabels={ServiceLabelsWithActions}
         columns={serviceColumns}
         data={data}
       />

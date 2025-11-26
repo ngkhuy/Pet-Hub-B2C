@@ -1,12 +1,16 @@
-import { User, userLabelsWithActions, userSchema } from "@/lib/schemas/user";
+import {
+  User,
+  UserLabelsWithActions,
+  UserType,
+} from "@/lib/schemas/user-management";
 
 import { DataTable } from "@/components/ui/table/data-table";
 import userData from "@/MOCK_DATA/USER_MOCK_DATA.json";
 import { userColumns } from "@/app/admin/users/_components/user-columns";
 
-async function getData(): Promise<User[]> {
+async function getData(): Promise<UserType[]> {
   // Fetch data from your API here.
-  const data = await Promise.all(userData.map((v) => userSchema.parseAsync(v)));
+  const data = await Promise.all(userData.map((v) => User.parseAsync(v)));
 
   return data;
 }
@@ -17,7 +21,7 @@ export default async function UserManagementPage() {
   return (
     <div className="container mx-auto py-10">
       <DataTable
-        headerLabels={userLabelsWithActions}
+        headerLabels={UserLabelsWithActions}
         columns={userColumns}
         data={data}
       />

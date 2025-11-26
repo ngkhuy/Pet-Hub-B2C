@@ -31,7 +31,7 @@ export function DesktopNav() {
               isActive("/") && "bg-muted"
             )}
           >
-            <Link href={NAV.home.link}>{NAV.home.title}</Link>
+            <Link href={NAV.home.path}>{NAV.home.title}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
@@ -39,11 +39,11 @@ export function DesktopNav() {
           <NavigationMenuTrigger>{NAV.service.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[520px] gap-3 p-4 sm:grid-cols-2">
-              {NAV.service.items.map(({ link, title, description }) => (
-                <li key={link}>
+              {NAV.service.items.map(({ path, title, description }) => (
+                <li key={path}>
                   <NavigationMenuLink asChild>
                     <Link
-                      href={link}
+                      href={path}
                       className="block rounded-md border border-transparent px-3 py-2 transition-colors hover:border-border hover:bg-muted/50"
                     >
                       <div className="text-sm font-medium">{title}</div>
@@ -65,10 +65,10 @@ export function DesktopNav() {
             asChild
             className={cn(
               navigationMenuTriggerStyle(),
-              isActive(NAV.about.link) && "bg-muted"
+              isActive(NAV.about.path) && "bg-muted"
             )}
           >
-            <Link href={NAV.about.link}>{NAV.about.title}</Link>
+            <Link href={NAV.about.path}>{NAV.about.title}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
@@ -77,10 +77,10 @@ export function DesktopNav() {
             asChild
             className={cn(
               navigationMenuTriggerStyle(),
-              isActive(NAV.contact.link) && "bg-muted"
+              isActive(NAV.contact.path) && "bg-muted"
             )}
           >
-            <Link href={NAV.contact.link}>{NAV.contact.title}</Link>
+            <Link href={NAV.contact.path}>{NAV.contact.title}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 

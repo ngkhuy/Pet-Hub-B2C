@@ -3,10 +3,17 @@
 import { z } from "zod";
 
 const configSchema = z.object({
+  // Local storage keys
+  USER_STORAGE_KEY: z.string(),
+  // Application info
+  APP_URL: z.string(),
+  BRAND_NAME: z.string(),
+  APP_DESCRIPTION: z.string(),
+  // API endpoints
   AUTH_API: z.string(),
   BOOKING_API: z.string(),
   USER_MANGEMENT_API: z.string(),
-  APP_URL: z.string(),
+  // Social links and contact
   NEXT_PUBLIC_FACEBOOK_URL: z.string(),
   NEXT_PUBLIC_INSTAGRAM_URL: z.string(),
   NEXT_PUBLIC_GITHUB_URL: z.string(),
@@ -16,10 +23,17 @@ const configSchema = z.object({
 type Config = z.infer<typeof configSchema>;
 
 const loadConfig: Partial<Config> = {
+  // Local storage keys
+  USER_STORAGE_KEY: process.env.NEXT_PUBLIC_USER_STORAGE_KEY,
+  // Application info
+  APP_URL: process.env.NEXT_PUBLIC_URL,
+  BRAND_NAME: process.env.NEXT_PUBLIC_BRAND_NAME,
+  APP_DESCRIPTION: process.env.NEXT_PUBLIC_DESCRIPTION,
+  // API endpoints
   AUTH_API: process.env.NEXT_PUBLIC_AUTH_API,
   BOOKING_API: process.env.NEXT_PUBLIC_BOOKING_API,
   USER_MANGEMENT_API: process.env.NEXT_PUBLIC_USER_MANAGEMENT_API,
-  APP_URL: process.env.NEXT_PUBLIC_URL,
+  // Social links and contact
   NEXT_PUBLIC_FACEBOOK_URL: process.env.NEXT_PUBLIC_FACEBOOK_URL,
   NEXT_PUBLIC_INSTAGRAM_URL: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
   NEXT_PUBLIC_GITHUB_URL: process.env.NEXT_PUBLIC_GITHUB_URL,
@@ -34,4 +48,5 @@ if (!configProject.success) {
 }
 
 const envConfig = configProject.data;
+// console.log("Loaded config:", envConfig);
 export default envConfig;

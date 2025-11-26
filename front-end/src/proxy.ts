@@ -7,21 +7,21 @@ const authRegex =
 const privateRegex = /^\/(account|admin)(\/.*)?$/;
 
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const sessionToken = request.cookies.get("session_token");
+  // const { pathname } = request.nextUrl;
+  // const accessToken = request.cookies.get("access_token");
 
-  const hasSessionToken = Boolean(sessionToken?.value);
+  // const hasAccessToken = Boolean(accessToken?.value);
 
-  if (hasSessionToken && authRegex.test(pathname)) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // if (hasAccessToken && authRegex.test(pathname)) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
 
-  if (!hasSessionToken && privateRegex.test(pathname)) {
-    const callback = pathname + request.nextUrl.search;
-    const login = new URL("/login", request.url);
-    login.searchParams.set("redirect", callback);
-    return NextResponse.redirect(login);
-  }
+  // if (!hasAccessToken && privateRegex.test(pathname)) {
+  //   const callback = pathname + request.nextUrl.search;
+  //   const login = new URL("/login", request.url);
+  //   login.searchParams.set("redirect", callback);
+  //   return NextResponse.redirect(login);
+  // }
 
   return NextResponse.next();
 }

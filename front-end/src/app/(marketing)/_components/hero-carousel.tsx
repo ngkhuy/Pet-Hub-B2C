@@ -11,22 +11,25 @@ import {
 } from "@/components/ui/carousel";
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
+import heroImg1 from "@/assets/images/hero-1.jpg";
+import heroImg2 from "@/assets/images/hero-2.webp";
+import heroImg3 from "@/assets/images/hero-3.webp";
 
 const slides = [
   {
     title: "Tìm dịch vụ chăm sóc tốt nhất",
     desc: "Khách sạn, spa, phòng khám thú y gần bạn.",
-    img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1600",
+    img: heroImg1.src,
   },
   {
     title: "Đặt lịch thú y trong 1 phút",
     desc: "Chọn giờ phù hợp, bác sĩ uy tín.",
-    img: "https://images.unsplash.com/photo-1558944351-c7e60f0e8f54?q=80&w=1600",
+    img: heroImg2.src,
   },
   {
     title: "Khách sạn thú cưng an toàn",
     desc: "Theo dõi tình trạng, camera 24/7.",
-    img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1600",
+    img: heroImg3.src,
   },
 ];
 

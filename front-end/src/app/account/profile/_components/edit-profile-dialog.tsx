@@ -1,8 +1,4 @@
-import {
-  EditAccountInfoForm,
-  EditAccountInfoFormType,
-  UserType,
-} from "@/lib/schemas/user";
+import { EditAccountInfoFormSchema } from "@/lib/schemas/user-management";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,22 +20,24 @@ import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getNameAbbreviation } from "@/lib/schemas/common";
 import { useRouter } from "next/navigation";
-import { HttpError, userInfo } from "@/lib/api/client";
+import { HttpError } from "@/lib/api/client";
 import { userManagementApi } from "@/lib/api/user-management";
+import { useAppContext } from "@/components/global/app-provider";
+import { EditAccountInfoFormType } from "@/lib/types/user-management";
 
-export function EditProfileDialog({ user }: { user: UserType }) {
+export function EditProfileDialog() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-
+  const { user } = useAppContext();
   const form = useForm<EditAccountInfoFormType>({
-    resolver: zodResolver(EditAccountInfoForm),
+    resolver: zodResolver(EditAccountInfoFormSchema),
     defaultValues: {
-      full_name: user.full_name ?? "",
-      phone_number: user.phone_number ?? "",
-      avatar_url: user.avt_url ?? "",
-      bio: user.bio ?? "",
+      full_name: user?.full_name ?? "",
+      phone_number: user?.phone_number ?? "",
+      avatar_url: user?.avt_url ?? "",
+      bio: user?.bio ?? "",
       // giả định birthDateField() nhận "YYYY-MM-DD"
-      date_of_birth: user.date_of_birth
+      date_of_birth: user?.date_of_birth
         ? user.date_of_birth.toISOString().split("T")[0]
         : new Date(
             new Date().getTime() - 13 * 365 * 24 * 60 * 60 * 1000 // 13 age
@@ -68,7 +66,7 @@ export function EditProfileDialog({ user }: { user: UserType }) {
       toastSuccess("Cập nhật thông tin thành công!");
       setOpen(false);
       const result = await userManagementApi.updateAccountInfo(values);
-      userInfo.value = result;
+      console.log("Update result:", result);
       router.refresh();
     } catch (error) {
       if (error instanceof HttpError) {
@@ -86,12 +84,12 @@ export function EditProfileDialog({ user }: { user: UserType }) {
 
   function hasChanges(values: EditAccountInfoFormType) {
     return (
-      values.full_name !== (user.full_name ?? "") ||
-      values.phone_number !== (user.phone_number ?? "") ||
-      values.avatar_url !== (user.avt_url ?? "") ||
-      values.bio !== (user.bio ?? "") ||
+      values.full_name !== (user?.full_name ?? "") ||
+      values.phone_number !== (user?.phone_number ?? "") ||
+      values.avatar_url !== (user?.avt_url ?? "") ||
+      values.bio !== (user?.bio ?? "") ||
       values.date_of_birth !==
-        (user.date_of_birth
+        (user?.date_of_birth
           ? user.date_of_birth.toISOString().split("T")[0]
           : "")
     );
@@ -159,7 +157,7 @@ export function EditProfileDialog({ user }: { user: UserType }) {
               <Avatar className="flex-1 h-fit">
                 <AvatarImage src={avatarPreview ?? ""} alt="Avatar Preview" />
                 <AvatarFallback className="aspect-square">
-                  {getNameAbbreviation(user.full_name)}
+                  {getNameAbbreviation(user?.full_name)}
                 </AvatarFallback>
               </Avatar>
             </div>

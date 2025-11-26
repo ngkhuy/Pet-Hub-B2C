@@ -13,19 +13,19 @@ import { NAV, AVATAR } from "./constants";
 import { usePathname, useRouter } from "next/navigation";
 import { IconType } from "react-icons/lib";
 import { cn } from "@/lib/utils";
-import { logoutServerAction } from "@/lib/actions";
-import { RoutePath } from "@/lib/utils/route-path";
-import { sessionToken } from "@/lib/api/client";
+import { clearAuthCookies } from "@/lib/actions/auth";
+import { clientUrl } from "@/lib/data/web-url";
 
-const profile = NAV.user.actions[0];
-const admin = NAV.user.actions[2];
-const logout = NAV.user.actions[1];
+const profile = NAV.user[0];
+const admin = NAV.user[1];
+const logout = NAV.user[2];
 
 type IconProps = React.ComponentProps<"span"> & {
-  IconName: IconType;
+  IconName: IconType | null;
 };
 
 function Icon({ IconName, className, ...props }: IconProps) {
+  if (!IconName) return null;
   return (
     <span {...props}>
       <IconName className={cn("h-4 w-4", className)} />
@@ -39,9 +39,8 @@ export function UserMenu() {
 
   async function handleLogout() {
     // Xóa token khỏi localStorage hoặc cookie
-    sessionToken.value = "";
-    await logoutServerAction();
-    route.push(`${RoutePath.login}?redirect=${pathName}`);
+    await clearAuthCookies();
+    route.push(`${clientUrl.login.path}?redirect=${pathName}`);
   }
 
   return (
@@ -61,7 +60,7 @@ export function UserMenu() {
       >
         <DropdownMenuItem asChild>{}</DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href={profile.link} className="flex items-center gap-2">
+          <Link href={profile.path} className="flex items-center gap-2">
             {<Icon IconName={profile.IconName} />} {profile.title}
           </Link>
         </DropdownMenuItem>
@@ -69,7 +68,7 @@ export function UserMenu() {
 
         <DropdownMenuItem asChild>{}</DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href={admin.link} className="flex items-center gap-2">
+          <Link href={admin.path} className="flex items-center gap-2">
             {<Icon IconName={admin.IconName} />} {admin.title}
           </Link>
         </DropdownMenuItem>

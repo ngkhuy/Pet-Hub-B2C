@@ -16,6 +16,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NAV, AVATAR } from "./constants";
 import { cn } from "@/lib/utils";
 
+const profile = NAV.user[0];
+
 export function MobileNav() {
   const pathname = usePathname();
   const isActive = (href: string) =>
@@ -23,7 +25,7 @@ export function MobileNav() {
 
   return (
     <div className="flex items-center gap-2 md:hidden">
-      <Link href={NAV.user.profile} aria-label="Trang cá nhân">
+      <Link href={profile.path} aria-label="Trang cá nhân">
         <Avatar className="rounded-lg h-8 w-8">
           <AvatarImage src={AVATAR} alt="@User" />
           <AvatarFallback>ER</AvatarFallback>
@@ -58,13 +60,13 @@ export function MobileNav() {
               {NAV.service.title}
             </div>
             <ul className="mb-2">
-              {NAV.service.items.map(({ link, title }) => (
-                <li key={link}>
+              {NAV.service.items.map(({ path, title }) => (
+                <li key={path}>
                   <Link
-                    href={link}
+                    href={path}
                     className={cn(
                       "block rounded-md px-6 py-2 text-sm hover:bg-muted",
-                      isActive(link) && "bg-muted"
+                      isActive(path) && "bg-muted"
                     )}
                   >
                     {title}
@@ -74,19 +76,19 @@ export function MobileNav() {
             </ul>
 
             <Link
-              href={NAV.about.link}
+              href={NAV.about.path}
               className={cn(
                 "rounded-md px-3 py-2 text-sm hover:bg-muted",
-                isActive(NAV.about.link) && "bg-muted"
+                isActive(NAV.about.path) && "bg-muted"
               )}
             >
               {NAV.about.title}
             </Link>
             <Link
-              href={NAV.contact.link}
+              href={NAV.contact.path}
               className={cn(
                 "rounded-md px-3 py-2 text-sm hover:bg-muted",
-                isActive(NAV.contact.link) && "bg-muted"
+                isActive(NAV.contact.path) && "bg-muted"
               )}
             >
               {NAV.contact.title}
@@ -96,15 +98,13 @@ export function MobileNav() {
             <div className="px-3 py-2 text-xs font-medium text-muted-foreground">
               Tài khoản
             </div>
-            {[
-              ...NAV.user.actions, // map lại chung 2 item
-            ].map(({ link, title, IconName }) => (
+            {NAV.user.map(({ IconName, path, title }) => (
               <Link
-                key={link}
-                href={link}
+                key={path}
+                href={path}
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted"
               >
-                <IconName className="h-4 w-4" /> {title}
+                {IconName && <IconName className="h-4 w-4" />} {title}
               </Link>
             ))}
           </nav>

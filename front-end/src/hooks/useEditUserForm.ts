@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EditUser, editUserSchema, User } from "@/lib/schemas/user";
 import { useAvatarPreview } from "./useAvatarPreview";
 import { toastError, toastSuccess } from "@/lib/utils/toast";
+import { AdminEditUserFormType } from "@/lib/types/user-management";
 
 type UseEditUserFormOptions = {
   onClose: () => void;
@@ -11,7 +11,7 @@ type UseEditUserFormOptions = {
 };
 
 export function useEditUserForm(
-  user: User,
+  user: AdminEditUserFormType,
   { onClose, onUpdated }: UseEditUserFormOptions
 ) {
   const [isSubmitting, setIsSubmitting] = useState(false);

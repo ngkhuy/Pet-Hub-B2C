@@ -19,10 +19,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { logoutServerAction } from "@/lib/actions";
 import { usePathname, useRouter } from "next/navigation";
-import { RoutePath } from "@/lib/utils/route-path";
-import { sessionToken } from "@/lib/api/client";
+import { clearAuthCookies } from "@/lib/actions/auth";
+import { clientUrl } from "@/lib/data/web-url";
 
 const navLinks = [
   {
@@ -48,9 +47,8 @@ export function NavUser({
 
   async function handleLogout() {
     // Xóa token khỏi localStorage hoặc cookie
-    sessionToken.value = "";
-    await logoutServerAction();
-    router.push(`${RoutePath.login}?redirect=${pathName}`);
+    await clearAuthCookies();
+    router.push(`${clientUrl.login.path}?redirect=${pathName}`);
   }
 
   return (

@@ -1,5 +1,3 @@
-import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
-
 function toQueryString(
   obj: Record<string, string | number | boolean | Date | undefined | null>
 ): string {
@@ -22,7 +20,7 @@ function toQueryString(
   return params.toString();
 }
 
-export const buildURL = (
+export const buildQueryURL = (
   path: string,
   query?: Record<string, string | number | boolean | Date | undefined | null>
 ) => {

@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
 import { AppProvider } from "@/components/global/app-provider";
-import { cookies } from "next/headers";
+import envConfig from "@/config/config";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -11,27 +11,24 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700", "900"],
   display: "swap",
 });
-
+const brandName = process.env.NEXT_PUBLIC_BRAND_NAME ?? "";
 export const metadata: Metadata = {
   title: {
-    default: "PetCare",
-    template: "%s",
+    default: brandName,
+    template: `%s | ${brandName}`,
   },
-  description: "PetCare - Your Trusted Pet Care Partner",
+  description: envConfig.APP_DESCRIPTION,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("session_token")?.value || "";
-
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
-        <AppProvider initSessionToken={sessionToken}>{children}</AppProvider>
+        <AppProvider>{children}</AppProvider>
         <Toaster />
       </body>
     </html>

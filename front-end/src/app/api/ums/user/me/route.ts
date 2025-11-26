@@ -1,4 +1,7 @@
-import { EditAccountInfoFormType, UserType } from "@/lib/schemas/user";
+import {
+  EditAccountInfoFormType,
+  UserType,
+} from "@/lib/schemas/user-management";
 
 export async function GET(req: Request) {
   const token = req.headers.get("Authorization")?.replace("Bearer ", "");

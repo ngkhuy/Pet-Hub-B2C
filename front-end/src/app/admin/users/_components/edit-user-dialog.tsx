@@ -12,7 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
-import { User } from "@/lib/schemas/user";
+import { User } from "@/lib/schemas/user-management";
 import { useEditUserForm } from "@/hooks/useEditUserForm";
 import { UserStaticInfo } from "@/app/admin/users/_components/sections/user-static-info";
 import { UserUpdateFormFields } from "@/app/admin/users/_components/sections/user-update-form-fields";

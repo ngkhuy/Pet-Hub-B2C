@@ -18,10 +18,9 @@ import NavLinkItem, {
   SIDEBAR_LINK_INACTIVE,
 } from "./NavLinkItem";
 import { usePathname, useRouter } from "next/navigation";
-import { RoutePath } from "@/lib/utils/route-path";
-import { logoutServerAction } from "@/lib/actions";
 import clsx from "clsx";
-import { sessionToken } from "@/lib/api/client";
+import { clearAuthCookies } from "@/lib/actions/auth";
+import { clientUrl } from "@/lib/data/web-url";
 
 type Props = {
   avatarString: string;
@@ -76,9 +75,8 @@ export default function Sidebar({ avatarString }: Props) {
   const LogoutIcon = navSidebarLinks.logout.IconName;
 
   async function handleLogout() {
-    sessionToken.value = "";
-    await logoutServerAction();
-    const url = `${RoutePath.login}?redirect=${pathName}`;
+    await clearAuthCookies();
+    const url = `${clientUrl.login.path}?redirect=${pathName}`;
     route.push(url);
   }
 

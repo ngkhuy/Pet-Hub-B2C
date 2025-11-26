@@ -9,16 +9,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
-import { toast } from "sonner";
+
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
-import { ChangePasswordForm, ChangePasswordFormType } from "@/lib/schemas/auth";
+import { toastSuccess } from "@/lib/utils/toast";
+import { authApi } from "@/lib/api/auth";
+import { ChangePasswordFormType } from "@/lib/types/auth";
+import { ChangePasswordFormSchema } from "@/lib/schemas/auth";
 
 export default function ChangePasswordPage() {
   const [showNewPass, setShowNewPass] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ChangePasswordFormType>({
-    resolver: zodResolver(ChangePasswordForm),
+    resolver: zodResolver(ChangePasswordFormSchema),
     defaultValues: {
       old_password: "",
       new_password: "",
@@ -34,6 +37,18 @@ export default function ChangePasswordPage() {
 
   function handleShowNewPass() {
     setShowNewPass((v) => !v);
+  }
+
+  async function handleConfirm(values: ChangePasswordFormType) {
+    const result = await authApi.changePassword({
+      old_password: values.old_password,
+      new_password: values.new_password,
+    });
+    console.log("Change password result:", result);
+    handleClearFormContent();
+    toastSuccess(result.message, {
+      description: "sdfs",
+    });
   }
 
   return (
@@ -135,19 +150,7 @@ export default function ChangePasswordPage() {
               title="Xác nhận đổi mật khẩu"
               description="Bạn có chắc chắn muốn lưu thay đổi này không?"
               onBusyChange={setIsSubmitting}
-              onConfirm={async (values) => {
-                await new Promise((r) => setTimeout(r, 1000));
-                handleClearFormContent();
-                toast("You submitted the following values:", {
-                  description: (
-                    <pre className="bg-code text-black mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-                      <code>{JSON.stringify(values, null, 2)}</code>
-                    </pre>
-                  ),
-                  position: "top-center",
-                  duration: 1000,
-                });
-              }}
+              onConfirm={handleConfirm}
               renderTrigger={({ onClick, disabled }) => (
                 <Button
                   type="button"

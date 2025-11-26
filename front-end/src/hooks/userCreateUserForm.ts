@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userCreateSchema, UserCreate } from "@/lib/schemas/user";
+import { userCreateSchema, UserCreate } from "@/lib/schemas/user-management";
 import { useAvatarPreview } from "@/hooks/useAvatarPreview";
 import { toastSuccess, toastError } from "@/lib/utils/toast";
 

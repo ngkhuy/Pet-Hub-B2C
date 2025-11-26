@@ -1,6 +1,7 @@
 import envConfig from "@/config/config";
 import { apiFetch } from "@/lib/api/client";
-import { EditAccountInfoFormType, User } from "@/lib/schemas/user";
+import { UserSchema } from "@/lib/schemas/user-management";
+import { EditAccountInfoFormType } from "@/lib/types/user-management";
 
 const BASE_PATH = envConfig.USER_MANGEMENT_API;
 
@@ -15,7 +16,7 @@ export const userManagementApi = {
       {
         method: "GET",
       },
-      User
+      UserSchema
     );
   },
   updateAccountInfo(data: EditAccountInfoFormType) {
@@ -25,7 +26,7 @@ export const userManagementApi = {
         method: "PATCH",
         body: JSON.stringify(data),
       },
-      User
+      UserSchema
     );
   },
 };
