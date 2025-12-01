@@ -1,11 +1,22 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routers import vet_router
 
-app = FastAPI(title="Booking Service API", 
+app = FastAPI(title="VET Booking Service API", 
               description="API cho đặt hẹn dịch vụ VET cho thú cưng",
               version="0.1.0")
 
 app.include_router(vet_router.router, prefix="/api/vet", tags=["VET Booking"])
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    
+    allow_credentials=True, 
+    
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
