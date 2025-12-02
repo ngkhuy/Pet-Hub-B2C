@@ -78,7 +78,7 @@ async def cancel_booking_by_id(
         raise HTTPException(status_code=404, detail="Booking không tồn tại")
     return None
 
-@router.post("/admin/service/create", response_model=ServiceResponse)
+@router.post("/admin/service", response_model=ServiceResponse)
 async def admin_create_service(
     create_data: ServiceCreate,
     db: Annotated[AsyncSession, Depends(get_session)],

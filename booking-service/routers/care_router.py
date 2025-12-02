@@ -12,7 +12,7 @@ from dependency.dependency import require_admin, require_user, authorization_cre
 
 router = APIRouter(prefix="/care", tags=["Care Booking"])
 
-@router.get("/", response_model=List[CareBookingResponse])
+@router.get("/bookings", response_model=List[CareBookingResponse])
 async def get_bookings(
     db: Annotated[AsyncSession, Depends(get_session)],
     current_user: Annotated[dict, Depends(require_user)],
@@ -34,6 +34,24 @@ async def get_bookings(
         )
         for b in bookings
     ]
+
+@router.post("/booking", response_model=CareBookingResponse)
+async def create_booking(
+    db: Annotated[AsyncSession, Depends(get_session)],
+    credentials: Annotated[HTTPAuthorizationCredentials, Depends(security.oauth2_schema)],
+    form_data: CareBookingCreate
+):
+    authorization_credentials(credentials)
+
+    try:
+        booking = await care_crud.add_care_booking(db, form_data)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    return CareBookingResponse(
+        **booking.model_dump(exclude={"services"}),
+        services=[ServiceResponse(**s.model_dump()) for s in booking.services]
+    )
 
 @router.get("/services", response_model=List[ServiceResponse])
 async def get_services(
@@ -88,21 +106,3 @@ async def admin_get_bookings_by_user_id(
         )
         for booking in bookings
     ]
-
-@router.post("/create", response_model=CareBookingResponse)
-async def create_booking(
-    db: Annotated[AsyncSession, Depends(get_session)],
-    credentials: Annotated[HTTPAuthorizationCredentials, Depends(security.oauth2_schema)],
-    form_data: CareBookingCreate
-):
-    authorization_credentials(credentials)
-
-    try:
-        booking = await care_crud.add_care_booking(db, form_data)
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-    return CareBookingResponse(
-        **booking.model_dump(exclude={"services"}),
-        services=[ServiceResponse(**s.model_dump()) for s in booking.services]
-    )
