@@ -146,7 +146,7 @@ async def get_services(
 ):
     return await crud.get_services(db)
 
-@router.post("/services", response_model=VetService, status_code=status.HTTP_201_CREATED)
+@router.post("/services/admin", response_model=VetService, status_code=status.HTTP_201_CREATED)
 async def create_service(
     service_in: VetServiceCreate,
     db: AsyncSession = Depends(get_session),
