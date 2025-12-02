@@ -13,6 +13,7 @@ from models import (
     VetServiceCreate,
     BookingResponse,
     VetService,
+    VetServiceUpdate
 )
 from crud import vet_crud as crud
 from dependency.dependency import require_user, require_admin
@@ -22,7 +23,7 @@ router = APIRouter()
 
 # ====================== BOOKING ======================
 @router.post(
-    "/bookings", response_model=BookingResponse, status_code=status.HTTP_201_CREATED
+    "/booking", response_model=BookingResponse, status_code=status.HTTP_201_CREATED
 )
 async def create_booking(
     booking_in: VetBookingCreate,
@@ -36,7 +37,7 @@ async def create_booking(
 
 
 @router.get("/bookings", response_model=List[BookingResponse])
-async def read_bookings(
+async def get_bookings(
     user_id: UUID | None = None,
     start_date: Optional[datetime] = None,
     end_date: Optional[datetime] = None,
@@ -68,8 +69,8 @@ async def read_bookings(
         return await crud.get_bookings(db, skip, limit)
 
 
-@router.get("/bookings/{booking_id}", response_model=BookingResponse)
-async def read_booking(
+@router.get("/booking/{booking_id}", response_model=BookingResponse)
+async def get_booking(
     booking_id: UUID,
     db: AsyncSession = Depends(get_session),
     creds: str = Depends(require_user),
@@ -80,7 +81,7 @@ async def read_booking(
     return booking
 
 
-@router.patch("/bookings/{booking_id}", response_model=BookingResponse)
+@router.patch("/booking/{booking_id}", response_model=BookingResponse)
 async def update_booking(
     booking_id: UUID,
     update_data: VetBookingUpdate,
@@ -93,7 +94,7 @@ async def update_booking(
     return updated
 
 
-@router.delete("/bookings/{booking_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/booking/{booking_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_booking(
     booking_id: UUID,
     db: AsyncSession = Depends(get_session),
@@ -106,7 +107,7 @@ async def delete_booking(
 
 
 # ====================== ADMIN ======================
-@router.patch("/admin/bookings/{booking_id}", response_model=BookingResponse)
+@router.patch("/booking/admin/{booking_id}", response_model=BookingResponse)
 async def admin_update_booking(
     booking_id: UUID,
     update_data: AdminVetBookingUpdate,
@@ -120,9 +121,13 @@ async def admin_update_booking(
 
 
 # ====================== SERVICE ======================
-@router.post(
-    "/services", response_model=VetService, status_code=status.HTTP_201_CREATED
-)
+@router.get("/services", response_model=List[VetService])
+async def get_services(
+    db: AsyncSession = Depends(get_session), creds: str = Depends(require_user)
+):
+    return await crud.get_services(db)
+
+@router.post("/service", response_model=VetService, status_code=status.HTTP_201_CREATED)
 async def create_service(
     service_in: VetServiceCreate,
     db: AsyncSession = Depends(get_session),
@@ -130,9 +135,29 @@ async def create_service(
 ):
     return await crud.create_service(db, service_in)
 
-
-@router.get("/services", response_model=List[VetService])
-async def read_services(
-    db: AsyncSession = Depends(get_session), creds: str = Depends(require_user)
+@router.patch("/service/admin/{service_id}", response_model=VetService)
+async def admin_update_service(
+    service_id: UUID,
+    service_update: VetServiceUpdate,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_admin),  # Chỉ admin được sửa
 ):
-    return await crud.get_services(db)
+    updated_service = await crud.update_service(db, service_id, service_update)
+    if not updated_service:
+        raise HTTPException(status_code=404, detail="Service not found")
+    return updated_service
+
+
+@router.delete("/service/admin/{service_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def admin_delete_service(
+    service_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    creds: str = Depends(require_admin),  # Chỉ admin được xóa
+):
+    try:
+        deleted = await crud.delete_service(db, service_id)
+        if not deleted:
+            raise HTTPException(status_code=404, detail="Service not found")
+        return None
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))

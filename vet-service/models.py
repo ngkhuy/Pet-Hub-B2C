@@ -111,7 +111,15 @@ class VetBookingUpdate(SQLModel):
 
 class AdminVetBookingUpdate(VetBookingUpdate):
     status: Optional[BookingStatus] = None
-
+    
+class VetServiceUpdate(SQLModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    base_price: Optional[float] = None
+    duration_minutes: Optional[int] = None
+    follow_up_interval_days: Optional[int] = None
+    doses_required: Optional[int] = None
+    dose_interval_days: Optional[int] = None
 
 # === RESPONSE MODELS ===
 class ServiceResponse(SQLModel):

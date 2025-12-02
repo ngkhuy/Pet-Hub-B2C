@@ -15,6 +15,7 @@ from models import (
     VetBookingUpdate,
     ServiceResponse,
     BookingResponse,
+    VetServiceUpdate
 )
 
 VN_TZ = timezone("Asia/Ho_Chi_Minh")
@@ -181,3 +182,38 @@ async def create_service(db: AsyncSession, service_in: VetServiceCreate) -> VetS
 async def get_services(db: AsyncSession) -> List[VetService]:
     result = await db.exec(select(VetService))
     return result.all()
+
+# === SERVICE CRUD - UPDATE & DELETE ===
+async def update_service(
+    db: AsyncSession, service_id: UUID, service_update: VetServiceUpdate
+) -> Optional[VetService]:
+    result = await db.exec(select(VetService).where(VetService.id == service_id))
+    service = result.first()
+    if not service:
+        return None
+
+    update_data = service_update.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(service, key, value)
+
+    await db.commit()
+    await db.refresh(service)
+    return service
+
+
+async def delete_service(db: AsyncSession, service_id: UUID) -> bool:
+    result = await db.exec(select(VetService).where(VetService.id == service_id))
+    service = result.first()
+    if not service:
+        return False
+
+    # Kiểm tra xem service có đang được dùng trong booking nào không
+    in_use = await db.exec(
+        select(VetBookingService).where(VetBookingService.service_id == service_id).limit(1)
+    )
+    if in_use.first():
+        raise ValueError("Không thể xóa dịch vụ đang được sử dụng trong lịch hẹn")
+
+    await db.delete(service)
+    await db.commit()
+    return True
