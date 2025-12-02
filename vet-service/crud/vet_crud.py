@@ -1,8 +1,9 @@
-# vet_crud.py
+from fastapi import HTTPException
 from typing import List, Optional
 from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlmodel import select, and_
+from sqlmodel import select
 from sqlalchemy.orm import selectinload
+from sqlalchemy import delete
 from uuid import UUID
 from pytz import timezone
 from datetime import datetime
@@ -15,7 +16,8 @@ from models import (
     VetBookingUpdate,
     ServiceResponse,
     BookingResponse,
-    VetServiceUpdate
+    VetServiceUpdate,
+    BookingStatus
 )
 
 VN_TZ = timezone("Asia/Ho_Chi_Minh")
@@ -67,32 +69,32 @@ async def get_booking_by_id(
     if not booking:
         return None
 
-    services = [ServiceResponse.from_orm(bs.service) for bs in booking.booking_services]
+    services = [ServiceResponse.model_validate(bs.service) for bs in booking.booking_services]
 
-    return BookingResponse(**booking.dict(), services=services)
+    return BookingResponse(**booking.model_dump(), services=services)
 
 
-async def get_booking(
-    db: AsyncSession, user_id: Optional[UUID] = None, skip: int = 0, limit: int = 100
-) -> List[BookingResponse]:
-    stmt = select(VetBooking).options(
-        selectinload(VetBooking.booking_services).joinedload(VetBookingService.service)
-    )
+# async def get_booking(
+#     db: AsyncSession, user_id: Optional[UUID] = None, skip: int = 0, limit: int = 100
+# ) -> List[BookingResponse]:
+#     stmt = select(VetBooking).options(
+#         selectinload(VetBooking.booking_services).joinedload(VetBookingService.service)
+#     )
 
-    if user_id:
-        stmt = stmt.where(VetBooking.user_id == user_id)
+#     if user_id:
+#         stmt = stmt.where(VetBooking.user_id == user_id)
 
-    stmt = stmt.offset(skip).limit(limit)
-    result = await db.exec(stmt)
-    bookings = result.all()
+#     stmt = stmt.offset(skip).limit(limit)
+#     result = await db.exec(stmt)
+#     bookings = result.all()
 
-    return [
-        BookingResponse(
-            **b.model_dump(),
-            services=[ServiceResponse.from_orm(bs.service) for bs in b.booking_services]
-        )
-        for b in bookings
-    ]
+#     return [
+#         BookingResponse(
+#             **b.model_dump(),
+#             services=[ServiceResponse.from_orm(bs.service) for bs in b.booking_services]
+#         )
+#         for b in bookings
+#     ]
 
 
 async def get_bookings(
@@ -100,6 +102,7 @@ async def get_bookings(
     user_id: Optional[UUID] = None,
     start_date: Optional[datetime] = None,
     end_date: Optional[datetime] = None,
+    status: Optional[BookingStatus] = None,
     skip: int = 0,
     limit: int = 100,
 ) -> List[BookingResponse]:
@@ -122,6 +125,9 @@ async def get_bookings(
     elif end_date:
         stmt = stmt.where(VetBooking.start_time < end_date)
 
+    if status:
+        stmt = stmt.where(VetBooking.status == status)
+
     stmt = stmt.order_by(VetBooking.start_time.asc())  # Sắp xếp theo thời gian
     stmt = stmt.offset(skip).limit(limit)
 
@@ -131,7 +137,7 @@ async def get_bookings(
     return [
         BookingResponse(
             **b.model_dump(),
-            services=[ServiceResponse.from_orm(bs.service) for bs in b.booking_services]
+            services=[ServiceResponse.model_validate(bs.service) for bs in b.booking_services]
         )
         for b in bookings
     ]
@@ -145,7 +151,7 @@ async def update_booking(
     if not booking:
         return None
 
-    update_dict = update_data.dict(exclude_unset=True)
+    update_dict = update_data.model_dump(exclude_unset=True)
     for key, val in update_dict.items():
         setattr(booking, key, val)
     booking.updated_at = datetime.now(VN_TZ)
@@ -155,17 +161,49 @@ async def update_booking(
     return await get_booking_by_id(db, booking_id)
 
 
-async def delete_booking(db: AsyncSession, booking_id: UUID) -> bool:
-    result = await db.exec(select(VetBooking).where(VetBooking.id == booking_id))
-    booking = result.first()
-    if not booking:
-        return False
-
-    # Xóa quan hệ
-    await db.exec(
-        VetBookingService.delete().where(VetBookingService.booking_id == booking_id)
+async def cancel_booking(
+    db: AsyncSession, 
+    booking_id: UUID,
+    user_id: Optional[UUID] = None
+) -> Optional[BookingResponse]:
+    result = await db.exec(
+        select(VetBooking).where(VetBooking.id == booking_id)
     )
-    await db.delete(booking)
+    booking = result.first()
+    
+    if not booking:
+        return None
+
+    # Chỉ cho phép người dùng hủy lịch của chính mình
+    if user_id:
+        if str(booking.user_id) != str(user_id):
+            raise HTTPException(status_code=403, detail=f"You can only cancel your own bookings")
+
+    # Chỉ hủy được nếu đang Pending hoặc Confirmed
+    if booking.status not in [BookingStatus.PENDING, BookingStatus.CONFIRMED]:
+        raise HTTPException(status_code=400, detail=f"Booking is {booking.status.value} and cannot be cancelled")
+
+    # Cập nhật trạng thái
+    booking.status = BookingStatus.CANCELLED
+    booking.updated_at = datetime.now(VN_TZ)
+
+    await db.commit()
+    await db.refresh(booking)
+
+    return await get_booking_by_id(db, booking_id)
+
+
+async def delete_booking(db: AsyncSession, booking_id: UUID) -> bool:
+    await db.exec(
+        delete(VetBookingService).where(VetBookingService.booking_id == booking_id)
+    )
+
+    result = await db.exec(
+        delete(VetBooking).where(VetBooking.id == booking_id)
+    )
+
+    if result.rowcount == 0:
+        return False
     await db.commit()
     return True
 

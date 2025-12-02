@@ -1,4 +1,3 @@
-# models.py
 from enum import Enum
 from typing import Optional, List
 from uuid import UUID
@@ -53,10 +52,18 @@ class VetBooking(SQLModel, table=True):
     )
     user_id: UUID = Field(index=True)
     pet_id: UUID = Field(index=True)
+
     start_time: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
     end_time: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
+
     symptoms: Optional[str] = Field(default=None, sa_column=Column(TEXT, nullable=True))
     notes: Optional[str] = Field(default=None, sa_column=Column(TEXT, nullable=True))
+
+    status: BookingStatus = Field(
+        default=BookingStatus.PENDING,
+        sa_column=Column(SAEnum(BookingStatus, name="booking_status"), nullable=False, server_default=BookingStatus.PENDING.value)
+    )
+
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(VN_TZ),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
@@ -132,7 +139,6 @@ class ServiceResponse(SQLModel):
     doses_required: Optional[int]
     dose_interval_days: Optional[int]
 
-
 class BookingResponse(SQLModel):
     id: UUID
     user_id: UUID
@@ -141,6 +147,7 @@ class BookingResponse(SQLModel):
     end_time: datetime
     symptoms: Optional[str]
     notes: Optional[str]
+    status: BookingStatus
     created_at: datetime
     updated_at: datetime
     services: List[ServiceResponse] = []
