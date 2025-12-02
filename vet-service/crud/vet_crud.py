@@ -38,7 +38,7 @@ async def create_booking(
         raise ValueError("Pet đã có lịch hẹn trùng thời gian")
 
     # Tạo booking
-    booking = VetBooking(**booking_in.dict(exclude={"service_ids"}))
+    booking = VetBooking(**booking_in.model_dump(exclude={"service_ids"}))
     db.add(booking)
     await db.flush()
 
@@ -210,7 +210,7 @@ async def delete_booking(db: AsyncSession, booking_id: UUID) -> bool:
 
 # === SERVICE CRUD ===
 async def create_service(db: AsyncSession, service_in: VetServiceCreate) -> VetService:
-    service = VetService(**service_in.dict())
+    service = VetService(**service_in.model_dump())
     db.add(service)
     await db.commit()
     await db.refresh(service)
