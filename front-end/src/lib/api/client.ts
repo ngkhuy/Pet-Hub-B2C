@@ -1,8 +1,10 @@
 import z from "zod";
 
-import { errorResponseSchema } from "@/lib/schemas/common";
-import { authApiUrl } from "@/lib/data/api-url";
-import { TokenResponseSchema } from "@/lib/schemas/auth";
+import {
+  errorResponseSchema,
+  MessageResponseSchema,
+} from "@/lib/schemas/common";
+import { getAccessToken } from "@/lib/stores/auth-store";
 
 export class HttpError extends Error {
   status: number;
@@ -14,52 +16,62 @@ export class HttpError extends Error {
   }
 }
 
+const isClient = typeof window !== "undefined";
+
 export async function apiFetch<TSchema extends z.ZodTypeAny>(
   url: string,
   init: RequestInit,
   schema: TSchema,
-  retry = true
+  needsAuth: boolean = true
 ): Promise<z.infer<TSchema>> {
-  "use client";
-  const headers: HeadersInit = {
+  let headers: HeadersInit = {
     ...(init.headers || {}),
   };
-  // set access token header if available
-  // const accessToken = await getAccessTokenFromCookie(); // call server function
-  // if (accessToken) {
-  //   headers = { ...headers, Authorization: `Bearer ${accessToken}` };
-  // }
+
+  if (isClient && needsAuth) {
+    const accessToken = getAccessToken();
+    if (accessToken) {
+      headers = {
+        ...headers,
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
+    } else {
+      throw new HttpError(401, "Không có token xác thực");
+    }
+  }
+
   // make the request
   const res = await fetch(url, {
     ...init,
     headers,
     credentials: "include",
   });
-  console.log("refresh token: ", res.headers.getSetCookie());
-  // handle 401 Unauthorized by trying to refresh token once
-  if (res.status === 401 && retry) {
-    const ok = await tryRefreshToken();
-    if (ok) {
-      return apiFetch(url, init, schema, false);
-    }
-  }
+
   // handle non-2xx responses
   if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    const json = safeJson(text);
+    // const text = await res.text().catch(() => "");
+    const response = await res.json().catch(() => "");
+    const err = response === "" ? res.text().catch(() => "") : response;
+    const parsedErrorResponse = errorResponseSchema.safeParse(err);
 
-    const parsedError = errorResponseSchema.safeParse(json);
-
-    if (parsedError.success) {
-      throw new HttpError(res.status, parsedError.data.detail);
+    if (parsedErrorResponse.success) {
+      throw new HttpError(res.status, parsedErrorResponse.data.detail);
     }
 
-    throw new HttpError(res.status, text || res.statusText);
+    const parsedMessageResponse = MessageResponseSchema.safeParse(err);
+    if (parsedMessageResponse.success) {
+      throw new HttpError(res.status, parsedMessageResponse.data.message);
+    }
+
+    throw new HttpError(res.status, err || "Unknown error");
   }
+
   // handle 204 No Content
   if (res.status === 204) {
     return undefined as z.infer<TSchema>;
   }
+
   // parse and validate response body
   const jsonResponse = await res.json().catch(() => null);
   const result = schema.safeParse(jsonResponse);
@@ -72,28 +84,10 @@ export async function apiFetch<TSchema extends z.ZodTypeAny>(
   return result.data;
 }
 
-function safeJson(text: string) {
-  try {
-    return JSON.parse(text);
-  } catch {
-    return null;
-  }
-}
-
-async function tryRefreshToken() {
-  try {
-    const res = await fetch(authApiUrl.REFRESH_TOKEN, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-    if (!res.ok) return false;
-    const json = await res.json();
-    const parsed = TokenResponseSchema.safeParse(json);
-    if (!parsed.success) return false;
-    return true;
-  } catch (err) {
-    console.error("Error refreshing token:", err);
-    return false;
-  }
-}
+// function safeJson(text: string) {
+//   try {
+//     return JSON.parse(text);
+//   } catch {
+//     return null;
+//   }
+// }

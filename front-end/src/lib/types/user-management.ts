@@ -1,8 +1,13 @@
 import {
+  AdminCreateUserFormSchema,
   AdminEditUserFormSchema,
   DisplayUserSchema,
   EditAccountInfoFormSchema,
   OtpPurposeSchema,
+  PetAddFormSchema,
+  PetEditFormSchema,
+  PetSchema,
+  PetSpeciesSchema,
   ResetPasswordBodySchema,
   UserRoleSchema,
   UserSchema,
@@ -14,10 +19,19 @@ export type UserRole = z.infer<typeof UserRoleSchema>;
 
 export type OTPPurpose = z.infer<typeof OtpPurposeSchema>;
 
+export type PetSpecies = z.infer<typeof PetSpeciesSchema>;
+
 // object types*****************************
 export type UserType = z.infer<typeof UserSchema>;
 
+export type PetType = z.infer<typeof PetSchema>;
+
 // labels************************************
+export const PetSpeciesLabels: Record<PetSpecies, string> = {
+  dog: "Chó",
+  cat: "Mèo",
+};
+
 export const UserLabels: Record<keyof z.infer<typeof UserSchema>, string> = {
   id: "ID",
   email: "Email",
@@ -45,7 +59,13 @@ export const UserLabelsWithActions: Record<
 // form types********************************
 export type AdminEditUserFormType = z.infer<typeof AdminEditUserFormSchema>;
 
+export type AdminCreateUserFormType = z.infer<typeof AdminCreateUserFormSchema>;
+
 export type EditAccountInfoFormType = z.infer<typeof EditAccountInfoFormSchema>;
+
+export type PetAddFormType = z.infer<typeof PetAddFormSchema>;
+
+export type PetEditFormType = z.infer<typeof PetEditFormSchema>;
 
 // body types********************************
 export type ResetPasswordBodyType = z.infer<typeof ResetPasswordBodySchema>;

@@ -1,6 +1,8 @@
+"use client";
+
 import { EditAccountInfoFormSchema } from "@/lib/schemas/user-management";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -19,35 +21,31 @@ import { InputField } from "@/components/ui/custom/input-field";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getNameAbbreviation } from "@/lib/schemas/common";
-import { useRouter } from "next/navigation";
 import { HttpError } from "@/lib/api/client";
 import { userManagementApi } from "@/lib/api/user-management";
-import { useAppContext } from "@/components/global/app-provider";
 import { EditAccountInfoFormType } from "@/lib/types/user-management";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 export function EditProfileDialog() {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-  const { user } = useAppContext();
+  const user = useAuthStore.use.user();
+  const { setUser } = useAuthStore.use.actions();
   const form = useForm<EditAccountInfoFormType>({
     resolver: zodResolver(EditAccountInfoFormSchema),
     defaultValues: {
       full_name: user?.full_name ?? "",
       phone_number: user?.phone_number ?? "",
-      avatar_url: user?.avt_url ?? "",
+      avt_url: user?.avt_url ?? "",
       bio: user?.bio ?? "",
-      // giả định birthDateField() nhận "YYYY-MM-DD"
-      date_of_birth: user?.date_of_birth
-        ? user.date_of_birth.toISOString().split("T")[0]
-        : new Date(
-            new Date().getTime() - 13 * 365 * 24 * 60 * 60 * 1000 // 13 age
-          )
-            .toISOString()
-            .split("T")[0],
+      //  birthDateField() nhận "YYYY-MM-DD"
+      date_of_birth:
+        user?.date_of_birth instanceof Date
+          ? user.date_of_birth.toISOString().split("T")[0]
+          : "",
     },
   });
 
-  const avatarPreview = form.watch("avatar_url");
+  const avatarPreview = form.watch("avt_url");
 
   const {
     control,
@@ -62,12 +60,22 @@ export function EditProfileDialog() {
     }
 
     try {
-      await new Promise((r) => setTimeout(r, 2000));
+      const response = await userManagementApi.updateAccountInfo(values);
+      setUser({
+        active_status: response.active_status,
+        avt_url: response.avt_url,
+        bio: response.bio,
+        email: response.email,
+        full_name: response.full_name,
+        id: response.id,
+        is_email_verified: response.is_email_verified,
+        is_phone_verified: response.is_phone_verified,
+        phone_number: response.phone_number,
+        role: response.role,
+        date_of_birth: response.day_of_birth,
+      });
       toastSuccess("Cập nhật thông tin thành công!");
       setOpen(false);
-      const result = await userManagementApi.updateAccountInfo(values);
-      console.log("Update result:", result);
-      router.refresh();
     } catch (error) {
       if (error instanceof HttpError) {
         toastError(`Cập nhật thất bại: ${error.detail}`, {
@@ -77,6 +85,7 @@ export function EditProfileDialog() {
         console.error("Unexpected error:", error);
         toastError("Đã có lỗi xảy ra. Vui lòng thử lại sau.", {
           position: "top-center",
+          description: error instanceof Error ? error.message : undefined,
         });
       }
     }
@@ -86,7 +95,7 @@ export function EditProfileDialog() {
     return (
       values.full_name !== (user?.full_name ?? "") ||
       values.phone_number !== (user?.phone_number ?? "") ||
-      values.avatar_url !== (user?.avt_url ?? "") ||
+      values.avt_url !== (user?.avt_url ?? "") ||
       values.bio !== (user?.bio ?? "") ||
       values.date_of_birth !==
         (user?.date_of_birth
@@ -94,6 +103,19 @@ export function EditProfileDialog() {
           : "")
     );
   }
+
+  useEffect(() => {
+    form.setValue("full_name", user?.full_name ?? "");
+    form.setValue("phone_number", user?.phone_number ?? "");
+    form.setValue("avt_url", user?.avt_url ?? "");
+    form.setValue("bio", user?.bio ?? "");
+    form.setValue(
+      "date_of_birth",
+      user?.date_of_birth instanceof Date
+        ? user.date_of_birth.toISOString().split("T")[0]
+        : ""
+    );
+  }, [user, form]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -146,7 +168,7 @@ export function EditProfileDialog() {
               <div className="flex-4 ">
                 <InputField<EditAccountInfoFormType>
                   control={control}
-                  name="avatar_url"
+                  name="avt_url"
                   label="Ảnh đại diện (URL)"
                   id="edit-avatar"
                   inputProps={{ placeholder: "https://example.com/avatar.png" }}

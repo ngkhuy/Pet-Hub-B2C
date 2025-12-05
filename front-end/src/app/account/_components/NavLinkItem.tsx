@@ -5,7 +5,7 @@ import { IconType } from "react-icons/lib";
 type NavLinkProps = {
   title: string;
   link?: string | null;
-  IconName: IconType;
+  IconName: IconType | null;
   action?: () => Promise<void>;
 };
 
@@ -40,11 +40,13 @@ export default function NavLinkItem({
           isActive ? SIDEBAR_LINK_ACTIVE : SIDEBAR_LINK_INACTIVE
         }`}
       >
-        <IconName
-          className={`size-6 ${
-            isActive ? SIDEBAR_CONTENT_ACTIVE : SIDEBAR_CONTENT_INACTIVE
-          }`}
-        />
+        {IconName && (
+          <IconName
+            className={`size-6 ${
+              isActive ? SIDEBAR_CONTENT_ACTIVE : SIDEBAR_CONTENT_INACTIVE
+            }`}
+          />
+        )}
         <span
           className={`font-medium leading-normal ${
             isActive ? SIDEBAR_CONTENT_ACTIVE : SIDEBAR_CONTENT_INACTIVE

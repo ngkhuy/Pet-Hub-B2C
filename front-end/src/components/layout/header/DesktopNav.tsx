@@ -14,15 +14,19 @@ import {
 import { cn } from "@/lib/utils";
 import { NAV } from "./constants";
 import { UserMenu } from "./UserMenu";
+import UnauthenticatedButton from "@/components/layout/header/unauthenticated-button";
+import { CartButton } from "@/components/layout/header/cart-button";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 export function DesktopNav() {
+  const isAuthenticated = useAuthStore.use.isAuthenticated();
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <NavigationMenu>
-      <NavigationMenuList>
+      <NavigationMenuList className="gap-3">
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
@@ -85,8 +89,12 @@ export function DesktopNav() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
+          {isAuthenticated && <CartButton />}
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
           {/* Avatar menu */}
-          <UserMenu />
+          {isAuthenticated ? <UserMenu /> : <UnauthenticatedButton />}
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

@@ -5,12 +5,12 @@ import { InputField } from "@/components/ui/custom/input-field";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { FieldGroup } from "@/components/ui/field";
 import { clientUrl } from "@/lib/data/web-url";
-import { VerifyResetPassBodySchema } from "@/lib/schemas/user-management";
-import { VerifyResetPassBodyType } from "@/lib/types/user-management";
+import { ResetPasswordBodySchema } from "@/lib/schemas/user-management";
+import { ResetPasswordBodyType } from "@/lib/types/user-management";
 import { toastSuccess } from "@/lib/utils/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 
@@ -22,8 +22,8 @@ export default function ResetPasswordForm({ email }: Props) {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
 
-  const form = useForm<VerifyResetPassBodyType>({
-    resolver: zodResolver(VerifyResetPassBodySchema),
+  const form = useForm<ResetPasswordBodyType>({
+    resolver: zodResolver(ResetPasswordBodySchema),
     defaultValues: {
       otp: "",
       email,
@@ -31,8 +31,7 @@ export default function ResetPasswordForm({ email }: Props) {
     },
   });
 
-  async function onSubmit(data: VerifyResetPassBodyType) {
-    console.log(data);
+  async function onSubmit(data: ResetPasswordBodyType) {
     await new Promise((r) => setTimeout(r, 1500)); // giả lập
     toastSuccess("Đổi mật khẩu thành công!");
     router.replace(clientUrl.login.path);
@@ -48,7 +47,7 @@ export default function ResetPasswordForm({ email }: Props) {
       >
         <FieldGroup className="gap-9">
           {/* OTP */}
-          <InputField<VerifyResetPassBodyType>
+          <InputField<ResetPasswordBodyType>
             id="orm-verify-reset-pass-otp"
             control={form.control}
             name="otp"
@@ -60,7 +59,7 @@ export default function ResetPasswordForm({ email }: Props) {
           />
 
           {/* NEW PASSWORD */}
-          <InputField<VerifyResetPassBodyType>
+          <InputField<ResetPasswordBodyType>
             id="orm-verify-reset-pass-new-pass"
             control={form.control}
             name="new_password"

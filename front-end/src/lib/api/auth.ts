@@ -1,13 +1,12 @@
 import z from "zod";
 
-import { messageResponseSchema } from "@/lib/schemas/common";
+import { MessageResponseSchema } from "@/lib/schemas/common";
 import { apiFetch } from "@/lib/api/client";
 import {
   RegisterResponseSchema,
+  SlideSessionResponseSchema,
   TokenResponseSchema,
 } from "@/lib/schemas/auth";
-import envConfig from "@/config/config";
-
 import { authApiUrl } from "@/lib/data/api-url";
 import {
   ChangePasswordBodyType,
@@ -21,10 +20,11 @@ export const authApi = {
       authApiUrl.SIGNUP,
       {
         method: "POST",
-        body: JSON.stringify(body),
+        body: JSON.stringify({ password: body.password, email: body.username }),
         headers: { "Content-Type": "application/json" },
       },
-      RegisterResponseSchema
+      RegisterResponseSchema,
+      false
     );
   },
 
@@ -35,7 +35,13 @@ export const authApi = {
 
     const data = await apiFetch(
       authApiUrl.LOGIN,
-      { method: "POST", body: formData },
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          credentials: "include",
+        },
+      },
       TokenResponseSchema,
       false
     );
@@ -43,63 +49,50 @@ export const authApi = {
     return data;
   },
 
-  changePassword(body: ChangePasswordBodyType) {
-    return apiFetch(
+  async slideSession(access_token: string) {
+    return await apiFetch(
+      "/api/auth/session",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          access_token: access_token,
+        }),
+        credentials: "include",
+      },
+      SlideSessionResponseSchema,
+      false
+    );
+  },
+
+  async changePassword(body: ChangePasswordBodyType) {
+    return await apiFetch(
       authApiUrl.CHANGE_PASSWORD,
       {
         method: "POST",
         body: JSON.stringify(body),
-        headers: { "Content-Type": "application/json" },
       },
-      messageResponseSchema
+      MessageResponseSchema,
+      true
     );
   },
 
   async logout() {
-    await Promise.all([
-      apiFetch(authApiUrl.LOGOUT, { method: "POST" }, z.undefined()),
-    ]);
-    localStorage.removeItem(envConfig.USER_STORAGE_KEY);
+    "use client";
+    await apiFetch(
+      "/api/auth/logout",
+      { method: "POST" },
+      MessageResponseSchema,
+      false
+    );
+    await apiFetch(authApiUrl.LOGOUT, { method: "POST" }, z.undefined());
   },
 
-  logoutFromNextServerToServer: (sessionToken: string) =>
-    apiFetch(
-      authApiUrl.LOGOUT,
-      {
-        headers: {
-          Authorization: `Bearer ${sessionToken}`,
-        },
-      },
-      z.undefined()
-    ),
-  logoutFromNextClientToNextServer: (
-    force?: boolean | undefined,
-    signal?: AbortSignal | undefined
-  ) =>
-    apiFetch(
-      "/api/auth/logout",
-      {
-        force,
-      },
-      {
-        baseUrl: "",
-        signal,
-      }
-    ),
-  slideSessionFromNextServerToServer: (sessionToken: string) =>
-    http.post<SlideSessionResType>(
-      "/auth/slide-session",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${sessionToken}`,
-        },
-      }
-    ),
-  slideSessionFromNextClientToNextServer: () =>
-    http.post<SlideSessionResType>(
-      "/api/auth/slide-session",
-      {},
-      { baseUrl: "" }
-    ),
+  async refreshToken() {
+    return await apiFetch(
+      authApiUrl.REFRESH_TOKEN,
+      { method: "POST", credentials: "include" },
+      TokenResponseSchema,
+      false
+    );
+  },
 };

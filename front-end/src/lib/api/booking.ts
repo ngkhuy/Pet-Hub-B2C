@@ -1,86 +1,182 @@
 import { z } from "zod";
 import { apiFetch } from "./client";
 
-import { buildURL } from "@/lib/utils/query";
 import { bookingApiUrl } from "@/lib/data/api-url";
+import { BookingSchema, ServiceSchema } from "@/lib/schemas/booking";
+import {
+  ServiceCreateFormType,
+  ServiceEditFormType,
+  SingleHotelBookingFormType,
+  SingleSpaBookingFormType,
+} from "@/lib/types/booking";
+import { ServicePaginationQueryType } from "@/lib/schemas/common";
+import { get } from "http";
+import { ca } from "date-fns/locale";
 
 export const bookingApi = {
-  listSpa(query: BookingListRequest) {
-    const url = buildURL(bookingApiUrl.CARE_SERVICES, query);
-    return apiFetch(url, { method: "GET" }, z.array(bookingSchema));
-  },
-
-  listHotel(query: BookingListRequest) {
-    const url = buildURL(ENDPOINT.HOTEL_BOOKINGS, query);
-    return apiFetch(url, { method: "GET" }, z.array(bookingSchema));
-  },
-
-  listServices(query: BookingServiceListQuery, serviceType: "care" | "hotel") {
-    const url = buildURL(
-      serviceType === "care" ? ENDPOINT.CARE_SERVICES : ENDPOINT.HOTEL_SERVICES,
-      query
-    );
-    return apiFetch(url, { method: "GET" }, z.array(bookingSchema));
-  },
-
-  getById(bookingId: string) {
+  createService(data: ServiceCreateFormType) {
     return apiFetch(
-      `${ENDPOINT.COMMON}/${bookingId}`,
-      { method: "GET" },
-      bookingSchema
+      bookingApiUrl.COMMON_ADMIN_SERVICE,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      },
+      ServiceSchema
     );
   },
 
-  cancel(bookingId: string) {
+  editService(id: string, data: ServiceEditFormType) {
     return apiFetch(
-      `${ENDPOINT.COMMON}/${bookingId}`,
-      { method: "DELETE" },
-      bookingSchema
-    );
-  },
-
-  // update notes and/or status
-  adminUpdate(bookingId: string, body: AdminUpdateBookingRequest) {
-    return apiFetch(
-      `${ENDPOINT.COMMON_ADMIN}/${bookingId}`,
+      bookingApiUrl.COMMON_ADMIN_BY_SERVICE_ID(id),
       {
         method: "PATCH",
-        body: JSON.stringify(body),
+        body: JSON.stringify(data),
       },
-      adminUpdateBookingResponseSchema
+      ServiceSchema
     );
   },
 
-  userUpdateNotes(bookingId: string, body: UserUpdateBookingNotesRequest) {
+  getSpaServices(search?: ServicePaginationQueryType) {
+    const params = search || { limit: 50, offset: 0 };
+
     return apiFetch(
-      `${ENDPOINT.COMMON_USER}/${bookingId}`,
+      bookingApiUrl.CARE_SERVICES(params),
+      {
+        method: "GET",
+      },
+      ServiceSchema.array()
+    );
+  },
+
+  getHotelServices() {
+    return apiFetch(
+      bookingApiUrl.HOTEL_SERVICES(),
+      {
+        method: "GET",
+      },
+      ServiceSchema.array()
+    );
+  },
+
+  deleteService(serviceId: string) {
+    return apiFetch(
+      bookingApiUrl.COMMON_ADMIN_BY_SERVICE_ID(serviceId),
+      {
+        method: "DELETE",
+      },
+      z.undefined()
+    );
+  },
+
+  createSpaSingleBooking(
+    userId: string,
+    serviceId: string,
+    data: SingleSpaBookingFormType
+  ) {
+    return apiFetch(
+      bookingApiUrl.CARE_SINGLE_BOOKING,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          ...data,
+          user_id: userId,
+          service_ids: [serviceId],
+        }),
+      },
+      BookingSchema
+    );
+  },
+
+  createHotelSingleBooking(
+    userId: string,
+    serviceId: string,
+    data: SingleHotelBookingFormType
+  ) {
+    return apiFetch(
+      bookingApiUrl.HOTEL_SINGLE_BOOKING,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          ...data,
+          user_id: userId,
+          service_id: serviceId,
+        }),
+      },
+      BookingSchema
+    );
+  },
+
+  getSpaBookingHistory() {
+    return apiFetch(
+      bookingApiUrl.CARE_BOOKINGS(),
+      {
+        method: "GET",
+      },
+      BookingSchema.array()
+    );
+  },
+
+  getHotelBookingHistory() {
+    return apiFetch(
+      bookingApiUrl.HOTEL_BOOKINGS(),
+      {
+        method: "GET",
+      },
+      BookingSchema.array()
+    );
+  },
+
+  cancelBooking(bookingId: string) {
+    return apiFetch(
+      bookingApiUrl.COMMON_BY_BOOKING_ID(bookingId),
+      {
+        method: "DELETE",
+      },
+      z.undefined()
+    );
+  },
+  updateBooking(bookingId: string, data: Partial<{ notes: string }>) {
+    return apiFetch(
+      bookingApiUrl.COMMON_USER_BY_BOOKING_ID(bookingId),
       {
         method: "PATCH",
-        body: JSON.stringify(body),
+        body: JSON.stringify(data),
       },
-      userUpdateBookingNotesResponseSchema
+      BookingSchema
     );
   },
 
-  adminFilter(query: BookingAdminFilterQuery, serviceType: "care" | "hotel") {
-    const url = buildURL(
-      serviceType === "care"
-        ? ENDPOINT.CARE_ADMIN_FILTER
-        : ENDPOINT.HOTEL_ADMIN_FILTER,
-      query
-    );
-    return apiFetch(url, { method: "GET" }, z.array(bookingSchema));
-  },
-
-  create(body: CreateBookingRequest, serviceType: "care" | "hotel") {
-    const url =
-      serviceType === "care"
-        ? ENDPOINT.CARE_ADMIN_FILTER
-        : ENDPOINT.HOTEL_ADMIN_FILTER;
+  adminGetSpaBookings() {
     return apiFetch(
-      url,
-      { method: "POST", body: JSON.stringify(body) },
-      createBookingResponseSchema
+      bookingApiUrl.CARE_ADMIN_FILTER(),
+      {
+        method: "GET",
+      },
+      BookingSchema.array()
+    );
+  },
+
+  adminGetHotelBookings() {
+    return apiFetch(
+      bookingApiUrl.HOTEL_ADMIN_FILTER(),
+      {
+        method: "GET",
+      },
+      BookingSchema.array()
+    );
+  },
+
+  adminEditBooking(
+    bookingId: string = "",
+    data: Partial<{ notes: string; status: string }>
+  ) {
+    return apiFetch(
+      bookingApiUrl.COMMON_ADMIN_BY_BOOKING_ID(bookingId),
+      {
+        method: "PATCH",
+        body: JSON.stringify(data),
+      },
+      BookingSchema
     );
   },
 };

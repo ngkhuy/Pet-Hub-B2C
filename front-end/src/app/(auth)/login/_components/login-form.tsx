@@ -5,8 +5,10 @@ import { InputField } from "@/components/ui/custom/input-field";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { FieldGroup } from "@/components/ui/field";
 import { authApi } from "@/lib/api/auth";
-import { clientUrl } from "@/lib/data/web-url";
+import { HttpError } from "@/lib/api/client";
+import { adminUrl, clientUrl } from "@/lib/data/web-url";
 import { LoginFormSchema } from "@/lib/schemas/auth";
+import { useAuthStore } from "@/lib/stores/auth-store";
 import { LoginFormType } from "@/lib/types/auth";
 import { toastError, toastSuccess } from "@/lib/utils/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,8 +23,8 @@ type Props = {
 };
 
 export default function LoginForm({ redirectPath }: Props) {
+  const { setAuthenticated } = useAuthStore.use.actions();
   const router = useRouter();
-
   const form = useForm<LoginFormType>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -39,15 +41,28 @@ export default function LoginForm({ redirectPath }: Props) {
 
   async function onSubmit(data: LoginFormType) {
     try {
-      const form = new FormData();
-      form.append("email", data.username);
-      form.append("password", data.password);
-      await authApi.login(data);
-      toastSuccess("Đăng nhập thành công!");
-      const callbackUrl = redirectPath || "/";
+      const response = await authApi.login(data);
+      // Set access token into cookie from Next Server
+      const nextServerResponse = await authApi.slideSession(
+        response.access_token
+      );
+      localStorage.clear();
+      setAuthenticated(response.access_token, {
+        role: nextServerResponse.access_token_payload.role,
+        exp: nextServerResponse.access_token_payload.exp,
+      });
+      const callbackUrl =
+        nextServerResponse.access_token_payload.role === "admin"
+          ? adminUrl.dashboard.path
+          : redirectPath || clientUrl.home.path;
       router.replace(callbackUrl);
+      toastSuccess("Đăng nhập thành công!", { position: "top-center" });
     } catch (err) {
-      toastError("Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+      if (err instanceof HttpError) {
+        toastError("Đăng nhập thất bại", { description: err.detail });
+      } else {
+        toastError("Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+      }
       console.error(err);
     }
   }
@@ -60,8 +75,6 @@ export default function LoginForm({ redirectPath }: Props) {
         noValidate
         className="relative"
       >
-        {/* Overlay loading */}
-
         <FieldGroup className="gap-9">
           {/* <!-- Phone Number Field --> */}
           <InputField<LoginFormType>

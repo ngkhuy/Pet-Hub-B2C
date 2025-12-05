@@ -1,10 +1,6 @@
-"use client";
-
 import { z } from "zod";
 
 const configSchema = z.object({
-  // Local storage keys
-  USER_STORAGE_KEY: z.string(),
   // Application info
   APP_URL: z.string(),
   BRAND_NAME: z.string(),
@@ -23,8 +19,6 @@ const configSchema = z.object({
 type Config = z.infer<typeof configSchema>;
 
 const loadConfig: Partial<Config> = {
-  // Local storage keys
-  USER_STORAGE_KEY: process.env.NEXT_PUBLIC_USER_STORAGE_KEY,
   // Application info
   APP_URL: process.env.NEXT_PUBLIC_URL,
   BRAND_NAME: process.env.NEXT_PUBLIC_BRAND_NAME,
@@ -48,5 +42,4 @@ if (!configProject.success) {
 }
 
 const envConfig = configProject.data;
-// console.log("Loaded config:", envConfig);
 export default envConfig;

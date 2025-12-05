@@ -10,10 +10,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NAV, AVATAR } from "./constants";
-import { usePathname, useRouter } from "next/navigation";
 import { IconType } from "react-icons/lib";
 import { cn } from "@/lib/utils";
-import { clearAuthCookies } from "@/lib/actions/auth";
+import { authApi } from "@/lib/api/auth";
+import { toastPromise } from "@/lib/utils/toast";
+import { useAuthStore } from "@/lib/stores/auth-store";
+import { globalLogout } from "@/lib/utils/session";
 import { clientUrl } from "@/lib/data/web-url";
 
 const profile = NAV.user[0];
@@ -34,13 +36,15 @@ function Icon({ IconName, className, ...props }: IconProps) {
 }
 
 export function UserMenu() {
-  const route = useRouter();
-  const pathName = usePathname();
+  const { role } = useAuthStore.use.tokenPayload();
+  const user = useAuthStore.use.user();
 
-  async function handleLogout() {
-    // Xóa token khỏi localStorage hoặc cookie
-    await clearAuthCookies();
-    route.push(`${clientUrl.login.path}?redirect=${pathName}`);
+  function handleLogout() {
+    toastPromise(globalLogout(clientUrl.home.path), {
+      loading: "Đang đăng xuất...",
+      success: "Đăng xuất thành công",
+      error: "Đăng xuất thất bại, vui lòng thử lại",
+    });
   }
 
   return (
@@ -48,7 +52,7 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <button className="rounded-lg outline-none">
           <Avatar className="h-8 w-8 rounded-lg">
-            <AvatarImage src={AVATAR} alt="@User" />
+            <AvatarImage src={user?.avt_url || AVATAR} alt="@User" />
             <AvatarFallback>ER</AvatarFallback>
           </Avatar>
         </button>
@@ -58,7 +62,6 @@ export function UserMenu() {
         sideOffset={8}
         className="w-56 font-medium"
       >
-        <DropdownMenuItem asChild>{}</DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={profile.path} className="flex items-center gap-2">
             {<Icon IconName={profile.IconName} />} {profile.title}
@@ -66,13 +69,16 @@ export function UserMenu() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem asChild>{}</DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href={admin.path} className="flex items-center gap-2">
-            {<Icon IconName={admin.IconName} />} {admin.title}
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
+        {role === "admin" && (
+          <>
+            <DropdownMenuItem asChild>
+              <Link href={admin.path} className="flex items-center gap-2">
+                {<Icon IconName={admin.IconName} />} {admin.title}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
+        )}
 
         <DropdownMenuItem asChild>
           <button

@@ -1,41 +1,24 @@
-"use client";
+import { OwnPetDeleteDialog } from "@/app/account/pets/_components/own-pet-delete-dialog";
+import { OwnPetEditDialog } from "@/app/account/pets/_components/own-pet-edit-dialog";
+import { PetAddDialog } from "@/app/account/pets/_components/pet-add-dialog";
+import PetGrip from "@/app/account/pets/_components/pet-grid";
+import { decrypt } from "@/lib/actions/session";
+import { clientUrl } from "@/lib/data/web-url";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { PetCard } from "@/app/account/pets/_components/pet-card";
+export default async function PetListPage() {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("access_token")?.value;
+  if (!accessToken) {
+    redirect(`${clientUrl.login.path}?redirect=${clientUrl.account_pets.path}`);
+  }
 
-type Pet = {
-  id: string;
-  name: string;
-  species: "dog" | "cat" | "other";
-  breed: string;
-  birth: string;
-  note?: string;
-  owner_id: string;
-};
+  const tokenPayload = await decrypt(accessToken || "");
+  if (!tokenPayload) {
+    redirect(`${clientUrl.home.path}`);
+  }
 
-// MOCK DATA – replace API later
-const mockPets: Pet[] = [
-  {
-    id: "1",
-    name: "Lucky",
-    species: "dog",
-    breed: "Corgi",
-    birth: "2023-01-05",
-    note: "Thân thiện, thích chạy nhảy",
-    owner_id: "user-1",
-  },
-  {
-    id: "2",
-    name: "Milo",
-    species: "cat",
-    breed: "British Shorthair",
-    birth: "2022-06-10",
-    note: "Ít nói nhưng rất hiền",
-    owner_id: "user-1",
-  },
-];
-
-export default function PetListPage() {
   return (
     <main className="flex-1 bg-white dark:bg-[#1a202c] p-6 lg:p-8 rounded-xl shadow-sm">
       {/* Header */}
@@ -48,26 +31,12 @@ export default function PetListPage() {
         </p>
       </div>
 
-      {/* Pet Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mockPets.map((pet, index) => (
-          <PetCard
-            key={pet.id}
-            pet={pet}
-            index={index}
-            onDetail={(id) => console.log("View", id)}
-            onEdit={(id) => console.log("Edit", id)}
-          />
-        ))}
+      <div>
+        <PetGrip />
       </div>
-
-      {/* Empty State */}
-      {mockPets.length === 0 && (
-        <div className="text-center mt-16">
-          <p className="text-gray-500 text-lg">Bạn chưa thêm thú cưng nào.</p>
-          <Button className="mt-4 bg-primary text-white">Thêm thú cưng</Button>
-        </div>
-      )}
+      <PetAddDialog />
+      <OwnPetEditDialog />
+      <OwnPetDeleteDialog />
     </main>
   );
 }

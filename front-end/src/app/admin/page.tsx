@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MdCalendarToday } from "react-icons/md";
 
-export default function Page() {
+export default function DashboardPage() {
   return (
     <main className="flex-1 p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">

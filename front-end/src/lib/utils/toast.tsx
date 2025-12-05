@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { ToastMessage } from "@/components/ui/custom/toast-message";
+import { HttpError } from "@/lib/api/client";
 
 type ToastPosition =
   | "top-left"
@@ -12,7 +13,7 @@ type ToastPosition =
   | "bottom-center";
 
 type ToastOptions = {
-  description?: string;
+  description?: string | (() => React.ReactNode);
   position?: ToastPosition;
 };
 
@@ -80,8 +81,12 @@ export async function toastPromise<T>(
     toastSuccess(messages.success, { position: options?.position });
     return result;
   } catch (e) {
+    const err = e as HttpError;
     toast.dismiss(loadingId);
-    toastError(messages.error, { position: options?.position });
+    toastError(messages.error, {
+      position: options?.position,
+      description: err.detail,
+    });
     throw e;
   }
 }

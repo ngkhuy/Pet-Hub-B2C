@@ -10,7 +10,7 @@ export function ToastMessage({
   id,
 }: {
   title: string;
-  description?: string;
+  description?: string | (() => React.ReactNode);
   type?: "success" | "error" | "loading";
   id?: string | number;
 }) {
@@ -43,7 +43,7 @@ export function ToastMessage({
 
         {description && (
           <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-snug">
-            {description}
+            {typeof description === "function" ? description() : description}
           </p>
         )}
       </div>

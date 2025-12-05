@@ -1,5 +1,11 @@
 import envConfig from "@/config/config";
-import { BookingPaginationQueryType, ServicePaginationQueryType } from "@/lib/schemas/common";
+import {
+  AdminFilterBookingQueryType,
+  BookingPaginationQueryType,
+  PetUsmPaginationQueryType,
+  ServicePaginationQueryType,
+  UsmPaginationQueryType,
+} from "@/lib/schemas/common";
 import { buildQueryURL } from "@/lib/utils/query";
 
 // auth endpoints
@@ -30,27 +36,35 @@ export const bookingApiUrl = {
   COMMON_ADMIN_BY_SERVICE_ID(serviceId: string) {
     return `${commonBookingBasePath}/admin/service/${serviceId}`;
   },
-  COMMON_ADMIN_SERVICE_CREATE: `${commonBookingBasePath}/admin/service/create`,
+  COMMON_ADMIN_SERVICE: `${commonBookingBasePath}/admin/service`,
   // care endpoints
-  CARE_BOOKINGS(searchQuery: BookingPaginationQueryType) {
-    return buildQueryURL(`${careBookingBasePath}`, searchQuery);
+  CARE_BOOKINGS(searchQuery?: BookingPaginationQueryType) {
+    return buildQueryURL(`${careBookingBasePath}/bookings`, searchQuery);
   },
-  CARE_SERVICES(searchQuery: ServicePaginationQueryType) {
+  CARE_SINGLE_BOOKING: `${careBookingBasePath}/booking`,
+  CARE_SERVICES(searchQuery?: ServicePaginationQueryType) {
     return buildQueryURL(`${careBookingBasePath}/services`, searchQuery);
   },
-  CARE_ADMIN_FILTER: `${careBookingBasePath}/admin/filter`,
+  CARE_ADMIN_FILTER(query?: AdminFilterBookingQueryType) {
+    return buildQueryURL(`${careBookingBasePath}/admin/filter`, query);
+  },
   CARE_ADMIN_FILTER_BY_USER_ID(userId: string) {
     return `${careBookingBasePath}/admin/filter/${userId}`;
   },
-  CARE_BOOKING_CREATE: `${careBookingBasePath}/create`,
   // hotel endpoints
-  HOTEL_BOOKINGS: `${hotelBookingBasePath}`,
-  HOTEL_SERVICES: `${hotelBookingBasePath}/services`,
-  HOTEL_ADMIN_FILTER: `${hotelBookingBasePath}/admin/filter`,
+  HOTEL_BOOKINGS(searchQuery?: BookingPaginationQueryType) {
+    return buildQueryURL(`${hotelBookingBasePath}/bookings`, searchQuery);
+  },
+  HOTEL_SERVICES(searchQuery?: ServicePaginationQueryType) {
+    return buildQueryURL(`${hotelBookingBasePath}/services`, searchQuery);
+  },
+  HOTEL_ADMIN_FILTER(query?: AdminFilterBookingQueryType) {
+    return buildQueryURL(`${hotelBookingBasePath}/admin/filter`, query);
+  },
   HOTEL_ADMIN_FILTER_BY_USER_ID(userId: string) {
     return `${hotelBookingBasePath}/admin/filter/${userId}`;
   },
-  HOTEL_BOOKING_CREATE: `${hotelBookingBasePath}/create`,
+  HOTEL_SINGLE_BOOKING: `${hotelBookingBasePath}/booking`,
 };
 
 // user management endpoints
@@ -60,4 +74,27 @@ export const userManagementApiUrl = {
   // client endpoints
   ME: `${userManagementBasePath}/me`,
   ADD_PET: `${userManagementBasePath}/add-pets`,
+  PETS(searchQuery?: PetUsmPaginationQueryType) {
+    return buildQueryURL(`${userManagementBasePath}/pets`, searchQuery);
+  },
+  PET_BY_PET_ID(petId: string) {
+    return `${userManagementBasePath}/pets/${petId}`;
+  },
+  SEND_OTP: `${userManagementBasePath}/send-otp`,
+  VERIFY_OTP: `${userManagementBasePath}/verify-otp`,
+  SEND_OTP_RESET_PASSWORD: `${userManagementBasePath}/password/request-otp`,
+  VERIFY_OTP_RESET_PASSWORD: `${userManagementBasePath}/password/verify-otp`,
+  // admin endpoints
+  USERS(searchQuery?: UsmPaginationQueryType) {
+    return buildQueryURL(`${adminUserManagementBasePath}/users`, searchQuery);
+  },
+  USER_BY_USER_ID(userId: string) {
+    return `${adminUserManagementBasePath}/users/${userId}`;
+  },
+  USER_EDIT_ROLE(userId: string) {
+    return `${adminUserManagementBasePath}/users/${userId}/role`;
+  },
+  USER_EDIT_STATUS(userId: string) {
+    return `${adminUserManagementBasePath}/users/${userId}/status`;
+  },
 };

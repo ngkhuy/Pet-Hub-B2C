@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import { Montserrat } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
-import { AppProvider } from "@/components/global/app-provider";
+
 import envConfig from "@/config/config";
+import SlideSession from "@/components/global/slide-session";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -28,7 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
-        <AppProvider>{children}</AppProvider>
+        <SlideSession />
+        {children}
         <Toaster />
       </body>
     </html>

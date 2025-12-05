@@ -34,13 +34,10 @@ export default function RegisterForm() {
 
   async function onSubmit(data: RegisterFormType) {
     try {
-      const body = await RegisterBodySchema.safeParseAsync(data);
-      if (!body.success) {
-        toastError("Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.");
-        return;
-      }
-      const registerResult = await authApi.register(body.data);
-      console.log("Register result:", registerResult);
+      await authApi.register({
+        username: data.email,
+        password: data.password,
+      });
       toastSuccess("Đăng ký thành công! Vui lòng kiểm tra email để xác thực.");
       router.push("/login");
     } catch (err) {

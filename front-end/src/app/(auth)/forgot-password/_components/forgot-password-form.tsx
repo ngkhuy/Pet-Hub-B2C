@@ -1,9 +1,8 @@
 "use client";
 
+import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ResetPasswordBodySchema } from "@/lib/schemas/user-management";
-import { ResetPasswordBodyType } from "@/lib/types/user-management";
 import { toastSuccess } from "@/lib/utils/toast";
 import { useRouter } from "next/navigation";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
@@ -11,16 +10,22 @@ import { FieldGroup } from "@/components/ui/field";
 import { InputField } from "@/components/ui/custom/input-field";
 import { Button } from "@/components/ui/button";
 import { clientUrl } from "@/lib/data/web-url";
+import { emailField } from "@/lib/schemas/common";
+
+const ForgotPasswordFormSchema = z.object({
+  email: emailField(),
+});
+type ForgotPasswordFormType = z.infer<typeof ForgotPasswordFormSchema>;
 
 export default function ForgotPasswordForm() {
   const router = useRouter();
 
-  const form = useForm<ResetPasswordBodyType>({
-    resolver: zodResolver(ResetPasswordBodySchema),
-    defaultValues: { email: "", purpose: "reset_password" },
+  const form = useForm<ForgotPasswordFormType>({
+    resolver: zodResolver(ForgotPasswordFormSchema),
+    defaultValues: { email: "" },
   });
 
-  async function onSubmit(data: ResetPasswordBodyType) {
+  async function onSubmit(data: ForgotPasswordFormType) {
     await new Promise((r) => setTimeout(r, 2000));
     toastSuccess("OTP đã được gửi tới email!");
     router.push(`${clientUrl.reset_password.path}?email=${data.email}`);
@@ -35,7 +40,7 @@ export default function ForgotPasswordForm() {
         id="form-forgot-password"
       >
         <FieldGroup className="gap-10">
-          <InputField<ResetPasswordBodyType>
+          <InputField<ForgotPasswordFormType>
             id="form-forgot-password-email"
             control={form.control}
             name="email"

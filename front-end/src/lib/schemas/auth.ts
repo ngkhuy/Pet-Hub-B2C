@@ -1,6 +1,36 @@
 import z from "zod";
-import { emailField, passwordField, stringField } from "@/lib/schemas/common";
+import {
+  emailField,
+  MessageResponseSchema,
+  passwordField,
+} from "@/lib/schemas/common";
 import { UserRoleSchema } from "@/lib/schemas/user-management";
+
+// ******************************API Schemas****************************************
+
+// Body schemas****************************************
+export const LoginFormSchema = z.object({
+  username: emailField(),
+  password: passwordField({ label: "Mật khẩu" }),
+});
+
+export const RegisterBodySchema = z.object({
+  username: z.string(),
+  password: z.string(),
+});
+
+export const ChangePasswordBodySchema = z.object({
+  old_password: z.string(),
+  new_password: z.string(),
+});
+
+// response schemas****************************************
+export const TokenResponseSchema = z.object({
+  access_token: z.string(),
+  token_type: z.string().default("bearer"),
+});
+
+// ******************************Client Schemas****************************************
 
 // form schemas****************************************
 export const RegisterFormSchema = z
@@ -14,36 +44,16 @@ export const RegisterFormSchema = z
     path: ["confirm_password"],
   });
 
-export const LoginFormSchema = z.object({
-  username: emailField(),
-  password: stringField({ label: "Mật khẩu", min: 8, max: 100 }),
-});
-
 export const ChangePasswordFormSchema = z
   .object({
-    old_password: stringField({ label: "Mật khẩu cũ", min: 8, max: 100 }),
-    new_password: stringField({ label: "Mật khẩu mới", min: 8, max: 100 }),
-    confirm_new_password: stringField({
-      label: "Xác nhận mật khẩu mới",
-      min: 8,
-      max: 100,
-    }),
+    old_password: passwordField({ label: "Mật khẩu cũ" }),
+    new_password: passwordField({ label: "Mật khẩu mới" }),
+    confirm_new_password: passwordField({ label: "Xác nhận mật khẩu mới" }),
   })
   .refine((data) => data.new_password === data.confirm_new_password, {
     message: "Mật khẩu xác nhận không khớp",
     path: ["confirm_new_password"],
   });
-
-// body schemas****************************************
-export const RegisterBodySchema = z.object({
-  email: z.string(),
-  password: z.string(),
-});
-
-export const ChangePasswordBodySchema = z.object({
-  old_password: z.string(),
-  new_password: z.string(),
-});
 
 // response schemas****************************************
 export const RegisterResponseSchema = z.object({
@@ -57,7 +67,10 @@ export const RegisterResponseSchema = z.object({
   updated_at: z.coerce.date(),
 });
 
-export const TokenResponseSchema = z.object({
-  access_token: z.string(),
-  token_type: z.literal("bearer"),
+export const SlideSessionResponseSchema = MessageResponseSchema.extend({
+  access_token_payload: z.object({
+    sub: z.string(),
+    exp: z.number(),
+    role: UserRoleSchema,
+  }),
 });

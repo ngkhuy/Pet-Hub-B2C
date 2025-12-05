@@ -8,7 +8,7 @@ export const NAV = {
   home: clientUrl.home,
   service: {
     title: "Các dịch vụ cho thú cưng",
-    items: [clientUrl.health_service, clientUrl.hotel_service],
+    items: [clientUrl.spa_service, clientUrl.hotel_service],
   },
   about: clientUrl.about,
   contact: clientUrl.contact,

@@ -20,12 +20,21 @@ export const stringField = ({
     .max(max, { error: () => `${label} tối đa ${max} ký tự` });
 
 export const passwordField = ({ label }: { label: string }) =>
-  stringField({ label, min: 8, max: 100 });
+  stringField({ label, min: 3, max: 100 });
 
 export const emailField = () => z.email("Địa chỉ email không hợp lệ").trim();
 
-export const birthDateField = (options?: { optional?: boolean }) => {
+export const birthDateField = (options?: {
+  optional?: boolean;
+  minimumAge?: number;
+  message?: string;
+}) => {
   const { optional = false } = options || { optional: false };
+
+  const minAge = options?.minimumAge ?? 13;
+  const errorMessage = options?.message
+    ? options.message
+    : `Ngày sinh không hợp lệ, phải từ ${minAge} tuổi trở lên`;
 
   const schema = z.iso.date("Ngày sinh không hợp lệ").refine(
     (date) => {
@@ -39,19 +48,19 @@ export const birthDateField = (options?: { optional?: boolean }) => {
         monthDiff < 0 ||
         (monthDiff === 0 && today.getDate() < birthDate.getDate())
       ) {
-        return age - 1 >= 13;
+        return age - 1 >= minAge;
       }
-      return age >= 13;
+      return age >= minAge;
     },
     {
-      message: "Người dùng phải từ 13 tuổi trở lên",
+      message: errorMessage,
     }
   );
 
   return schema;
 };
 
-export function getNameAbbreviation(name?: string) {
+export function getNameAbbreviation(name: string | null | undefined) {
   if (!name) return "U";
   return name
     .split(" ")
@@ -91,11 +100,13 @@ export const AdminFilterBookingQueryByUserId = BookingPaginationQuery.extend({
 export type AdminFilterBookingQueryByUserIdType = z.infer<
   typeof AdminFilterBookingQueryByUserId
 >;
+
 // user management query schema
 export const UsmPaginationQuery = z.object({
   limit: z.coerce.number().int().min(1).max(50).default(20),
   skip: z.coerce.number().int().min(0).default(0),
 });
+export type UsmPaginationQueryType = z.infer<typeof UsmPaginationQuery>;
 
 export const PetUsmPaginationQuery = UsmPaginationQuery.extend({
   name: z.string().optional(),
@@ -108,7 +119,6 @@ export const errorResponseSchema = z.object({
 });
 export type ErrorResponse = z.infer<typeof errorResponseSchema>;
 
-export const messageResponseSchema = z.object({
+export const MessageResponseSchema = z.object({
   message: z.string(),
 });
-export type MessageResponse = z.infer<typeof messageResponseSchema>;
