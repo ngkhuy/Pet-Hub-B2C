@@ -4,7 +4,14 @@ import { DataTableColumnHeader } from "@/components/ui/table/data-table-column-h
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { UserLabels, UserRole, UserType } from "@/lib/types/user-management";
+import {
+  BooleanType,
+  UserActiveStatusLabels,
+  UserLabels,
+  UserRole,
+  UserRolesLabels,
+  UserType,
+} from "@/lib/types/user-management";
 import { BooleanBadge } from "@/components/ui/custom/boolean-badge";
 import { UserActionsCell } from "@/app/admin/user-management/_component/user-action-cell";
 
@@ -45,14 +52,17 @@ export const userColumns: ColumnDef<UserType>[] = [
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title={UserLabels.role} />;
     },
-    cell: ({ row }) => (
-      <BooleanBadge
-        value={(row.getValue("role") as UserRole) === "admin"}
-        trueLabel="Quản trị viên"
-        falseLabel="Người dùng"
-        variant="info"
-      />
-    ),
+    cell: ({ row }) => {
+      const role = row.getValue("role") as UserRole;
+      return (
+        <BooleanBadge
+          value={role === "admin"}
+          trueLabel={UserRolesLabels["admin"]}
+          falseLabel={UserRolesLabels["user"]}
+          variant="info"
+        />
+      );
+    },
   },
   {
     accessorKey: "is_email_verified",
@@ -94,14 +104,17 @@ export const userColumns: ColumnDef<UserType>[] = [
   },
   {
     accessorKey: "active_status",
-    cell: ({ row }) => (
-      <BooleanBadge
-        value={row.getValue("active_status") as boolean}
-        trueLabel="Hoat động"
-        falseLabel="Vô hiệu"
-        variant="success"
-      />
-    ),
+    cell: ({ row }) => {
+      const status = row.getValue("active_status") as BooleanType;
+      return (
+        <BooleanBadge
+          value={row.getValue("active_status") as boolean}
+          trueLabel={UserActiveStatusLabels["true"]}
+          falseLabel={UserActiveStatusLabels["false"]}
+          variant="success"
+        />
+      );
+    },
     header: ({ column }) => {
       return (
         <DataTableColumnHeader

@@ -102,7 +102,7 @@ export const userManagementApi = {
 
   adminEditUserStatus(userId: string, activeStatus: boolean) {
     return apiFetch(
-      userManagementApiUrl.USER_EDIT_STATUS(userId),
+      userManagementApiUrl.USER_EDIT_STATUS(userId, activeStatus),
       {
         method: "PATCH",
         body: JSON.stringify({ active_status: activeStatus }),
@@ -112,7 +112,7 @@ export const userManagementApi = {
   },
   adminEditUserRole(userId: string, role: UserRole) {
     return apiFetch(
-      userManagementApiUrl.USER_EDIT_ROLE(userId),
+      userManagementApiUrl.USER_EDIT_ROLE(userId, role),
       {
         method: "PATCH",
         body: JSON.stringify({ role }),

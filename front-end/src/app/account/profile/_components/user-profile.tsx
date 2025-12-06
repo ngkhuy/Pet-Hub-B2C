@@ -6,81 +6,118 @@ import UserAvatarProfile from "@/app/account/profile/_components/user-avatar-pro
 import { HttpError } from "@/lib/api/client";
 import { userManagementApi } from "@/lib/api/user-management";
 import { useAuthStore } from "@/lib/stores/auth-store";
-
 import { formatDate } from "@/lib/utils/format";
 import { toastError } from "@/lib/utils/toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function UserProfile() {
   const user = useAuthStore.use.user();
   const { setUser } = useAuthStore.use.actions();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
   useEffect(() => {
+    let cancelled = false;
+
     userManagementApi
       .getMe()
       .then((userData) => {
+        if (cancelled) return;
         setUser(userData);
+        setIsError(false);
       })
       .catch((error) => {
+        if (cancelled) return;
+        setIsError(true);
+
         const err = error as HttpError;
         toastError(
-          err.message || "Đã có lỗi xảy ra khi tải thông tin người dùng!"
+          err.detail || "Đã có lỗi xảy ra khi tải thông tin người dùng!"
         );
+      })
+      .finally(() => {
+        if (cancelled) return;
+        setIsLoading(false);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, [setUser]);
 
-  return user ? (
+  if (isLoading) {
+    return <ProfileSkeleton />;
+  }
+
+  if (isError || !user) {
+    return (
+      <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-6 text-center space-y-2">
+        <p className="text-base font-semibold text-destructive">
+          Không thể tải thông tin người dùng
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Vui lòng tải lại trang hoặc thử lại sau.
+        </p>
+      </div>
+    );
+  }
+
+  return (
     <div className="grid gap-6 lg:grid-cols-[280px,1fr]">
       {/* LEFT: AVATAR + STATUS + EDIT BUTTON */}
       <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-xl p-5 flex flex-col items-center gap-4">
         <UserAvatarProfile
-          imageUrl={user?.avt_url}
-          userFullName={user?.full_name}
+          imageUrl={user.avt_url}
+          userFullName={user.full_name}
         />
         <div className="text-center space-y-1">
           <p className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-            {user?.full_name || "Chưa cập nhật tên"}
+            {user.full_name || "Chưa cập nhật tên"}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {user?.email}
+            {user.email}
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 text-xs">
           <span
             className={`px-2.5 py-1 rounded-full border ${
-              user?.is_email_verified
+              user.is_email_verified
                 ? "border-emerald-500 text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30"
                 : "border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400"
             }`}
           >
-            {user?.is_email_verified
+            {user.is_email_verified
               ? "Email đã xác minh"
               : "Email chưa xác minh"}
           </span>
           <span
             className={`px-2.5 py-1 rounded-full border ${
-              user?.is_phone_verified
+              user.is_phone_verified
                 ? "border-emerald-500 text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30"
                 : "border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400"
             }`}
           >
-            {user?.is_phone_verified ? "SĐT đã xác minh" : "SĐT chưa xác minh"}
+            {user.is_phone_verified ? "SĐT đã xác minh" : "SĐT chưa xác minh"}
           </span>
           <span
             className={`px-2.5 py-1 rounded-full border ${
-              user?.active_status
+              user.active_status
                 ? "border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/30"
                 : "border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400"
             }`}
           >
-            {user?.active_status ? "Đang hoạt động" : "Đã khóa"}
+            {user.active_status ? "Đang hoạt động" : "Đã khóa"}
           </span>
         </div>
 
         <p className="text-xs text-gray-500 dark:text-gray-400 pt-2">
           Tham gia từ:{" "}
-          {formatDate({ date: user?.created_at?.toString(), type: "date" })}
+          {formatDate({
+            date: user.created_at?.toString(),
+            type: "date",
+          })}
         </p>
 
         <EditProfileDialog />
@@ -96,19 +133,19 @@ export function UserProfile() {
           <div>
             <dt className="text-gray-500 dark:text-gray-400">Họ và tên</dt>
             <dd className="text-gray-900 dark:text-gray-100">
-              {user?.full_name || "Chưa cập nhật"}
+              {user.full_name || "Chưa cập nhật"}
             </dd>
           </div>
 
           <div>
             <dt className="text-gray-500 dark:text-gray-400">Email</dt>
-            <dd className="text-gray-900 dark:text-gray-100">{user?.email}</dd>
+            <dd className="text-gray-900 dark:text-gray-100">{user.email}</dd>
           </div>
 
           <div>
             <dt className="text-gray-500 dark:text-gray-400">Số điện thoại</dt>
             <dd className="text-gray-900 dark:text-gray-100">
-              {user?.phone_number || "Chưa cập nhật"}
+              {user.phone_number || "Chưa cập nhật"}
             </dd>
           </div>
 
@@ -116,7 +153,7 @@ export function UserProfile() {
             <dt className="text-gray-500 dark:text-gray-400">Ngày sinh</dt>
             <dd className="text-gray-900 dark:text-gray-100">
               {formatDate({
-                date: user?.date_of_birth ? user?.date_of_birth : undefined,
+                date: user.date_of_birth ?? undefined,
                 type: "date",
               })}
             </dd>
@@ -125,13 +162,11 @@ export function UserProfile() {
           <div className="md:col-span-2">
             <dt className="text-gray-500 dark:text-gray-400">Giới thiệu</dt>
             <dd className="text-gray-900 dark:text-gray-100 whitespace-pre-line">
-              {user?.bio || "Chưa có giới thiệu."}
+              {user.bio || "Chưa có giới thiệu."}
             </dd>
           </div>
         </dl>
       </div>
     </div>
-  ) : (
-    <ProfileSkeleton />
   );
 }
