@@ -146,10 +146,3 @@ curl http://localhost:8002/health
 - Repository owner: `ngkhuy` (branch `user-management-service` currently checked out).
 
 ---
-
-If you'd like, I can:
-
-- generate example `.env.sample` files for each service,
-- add a `docker-compose.yml` for local development, or
-- scaffold basic `requirements.txt` files for the Python services.
-  Tell me which you'd prefer and I'll add them.

@@ -9,25 +9,16 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
         port: "",
-        pathname: "/**", // cho phép tất cả đường dẫn con
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
-  // turbopack: {
-  //   rules: {
-  //     "*.svg": {
-  //       loaders: [
-  //         {
-  //           loader: "@svgr/webpack",
-  //           options: {
-  //             icon: true,
-  //           },
-  //         },
-  //       ],
-  //       as: "*.js",
-  //     },
-  //   },
-  // },
 };
 
 export default nextConfig;

@@ -1,31 +1,19 @@
-import "@/styles/globals.css";
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
+import { decrypt } from "@/lib/actions/session";
+import { clientUrl } from "@/lib/data/web-url";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  display: "swap",
-});
-
-export const metadata: Metadata = {
-  title: "Login PetCare",
-  description: "Login page",
-};
-
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${montserrat.className} antialiased`}>
-        {children}
-        <Toaster />
-      </body>
-    </html>
-  );
+  const cookieStore = await cookies();
+  const refreshToken = cookieStore.get("access_token")?.value;
+  const tokenPayload = await decrypt(refreshToken || "");
+  if (tokenPayload) {
+    redirect(clientUrl.home.path);
+  }
+
+  return <>{children}</>;
 }
