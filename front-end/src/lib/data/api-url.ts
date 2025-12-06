@@ -6,6 +6,7 @@ import {
   ServicePaginationQueryType,
   UsmPaginationQueryType,
 } from "@/lib/schemas/common";
+import { UserRole } from "@/lib/types/user-management";
 import { buildQueryURL } from "@/lib/utils/query";
 
 // auth endpoints
@@ -91,10 +92,20 @@ export const userManagementApiUrl = {
   USER_BY_USER_ID(userId: string) {
     return `${adminUserManagementBasePath}/users/${userId}`;
   },
-  USER_EDIT_ROLE(userId: string) {
-    return `${adminUserManagementBasePath}/users/${userId}/role`;
+  USER_EDIT_ROLE(userId: string, role: UserRole) {
+    return buildQueryURL(
+      `${adminUserManagementBasePath}/users/${userId}/role`,
+      {
+        role: role,
+      }
+    );
   },
-  USER_EDIT_STATUS(userId: string) {
-    return `${adminUserManagementBasePath}/users/${userId}/status`;
+  USER_EDIT_STATUS(userId: string, activeStatus: boolean) {
+    return buildQueryURL(
+      `${adminUserManagementBasePath}/users/${userId}/status`,
+      {
+        active_status: activeStatus,
+      }
+    );
   },
 };

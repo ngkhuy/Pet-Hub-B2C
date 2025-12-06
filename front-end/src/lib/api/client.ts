@@ -1,5 +1,4 @@
 import z from "zod";
-
 import {
   errorResponseSchema,
   MessageResponseSchema,
@@ -22,72 +21,157 @@ export async function apiFetch<TSchema extends z.ZodTypeAny>(
   url: string,
   init: RequestInit,
   schema: TSchema,
-  needsAuth: boolean = true
+  needsAuth: boolean = true,
+  timeoutMs: number | undefined = 30000, // default 30s
+  retryCount: number = 3, // số lần retry
+  backoffBase: number = 500 // delay base = 0.5s
 ): Promise<z.infer<TSchema>> {
-  let headers: HeadersInit = {
-    ...(init.headers || {}),
+  // -----------------------------
+  // Function thực hiện 1 request
+  // -----------------------------
+  const makeRequest = async (attempt: number): Promise<Response> => {
+    let headers: HeadersInit = {
+      ...(init.headers || {}),
+    };
+
+    // Attach token
+    if (isClient && needsAuth) {
+      const accessToken = getAccessToken();
+      if (accessToken) {
+        headers = {
+          ...headers,
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        };
+      } else {
+        throw new HttpError(401, "Không có token xác thực");
+      }
+    }
+
+    // Timeout controller
+    const controller = new AbortController();
+    const timeoutId =
+      timeoutMs != null
+        ? setTimeout(() => controller.abort(), timeoutMs)
+        : null;
+
+    try {
+      const res = await fetch(url, {
+        ...init,
+        headers,
+        credentials: "include",
+        signal: controller.signal,
+      });
+      return res;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      if (err.name === "AbortError") {
+        throw new HttpError(408, "Request timeout");
+      }
+      throw err;
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
+    }
   };
 
-  if (isClient && needsAuth) {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      headers = {
-        ...headers,
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      };
-    } else {
-      throw new HttpError(401, "Không có token xác thực");
+  // -----------------------------
+  // Retry + Exponential Backoff
+  // -----------------------------
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let lastError: any = null;
+
+  for (let attempt = 0; attempt <= retryCount; attempt++) {
+    try {
+      const res = await makeRequest(attempt);
+
+      // Nếu response OK → return luôn
+      if (res.ok) return handleResponse(res, schema);
+
+      // Lỗi 4xx không retry
+      if (res.status >= 400 && res.status < 500) {
+        throw await handleHTTPError(res);
+      }
+
+      // Lỗi 5xx → retry
+      lastError = await handleHTTPErrorAsObject(res);
+    } catch (err) {
+      lastError = err;
+
+      // AbortError hoặc lỗi mạng → retry
+      if (err instanceof HttpError && err.status === 408) {
+        // timeout → retry
+      } else if (err instanceof TypeError) {
+        // network error → retry
+      } else {
+        break; // lỗi khác → không retry
+      }
+    }
+
+    // Nếu còn retry → chờ backoff
+    if (attempt < retryCount) {
+      const delay = exponentialBackoff(attempt, backoffBase);
+      await sleep(delay);
     }
   }
 
-  // make the request
-  const res = await fetch(url, {
-    ...init,
-    headers,
-    credentials: "include",
-  });
-
-  // handle non-2xx responses
-  if (!res.ok) {
-    // const text = await res.text().catch(() => "");
-    const response = await res.json().catch(() => "");
-    const err = response === "" ? res.text().catch(() => "") : response;
-    const parsedErrorResponse = errorResponseSchema.safeParse(err);
-
-    if (parsedErrorResponse.success) {
-      throw new HttpError(res.status, parsedErrorResponse.data.detail);
-    }
-
-    const parsedMessageResponse = MessageResponseSchema.safeParse(err);
-    if (parsedMessageResponse.success) {
-      throw new HttpError(res.status, parsedMessageResponse.data.message);
-    }
-
-    throw new HttpError(res.status, err || "Unknown error");
-  }
-
-  // handle 204 No Content
-  if (res.status === 204) {
-    return undefined as z.infer<TSchema>;
-  }
-
-  // parse and validate response body
-  const jsonResponse = await res.json().catch(() => null);
-  const result = schema.safeParse(jsonResponse);
-  if (!result.success) {
-    console.error("❌ Error while parsing RESPONSE:", result.error);
-    // return raw json if validation fails
-    return jsonResponse as z.infer<TSchema>;
-  }
-  // return validated data
-  return result.data;
+  // Hết retry → throw lỗi cuối cùng
+  throw lastError instanceof HttpError
+    ? lastError
+    : new HttpError(500, lastError?.message || "Network error");
 }
 
-// function safeJson(text: string) {
-//   try {
-//     return JSON.parse(text);
-//   } catch {
-//     return null;
-//   }
-// }
+// -------------------------------------------------
+// Utils
+// -------------------------------------------------
+
+function exponentialBackoff(attempt: number, base: number) {
+  const expo = base * Math.pow(2, attempt);
+  const jitter = expo * (0.5 + Math.random()); // tránh spike đồng loạt
+  return jitter;
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function handleHTTPError(res: Response): Promise<never> {
+  const response = await res.json().catch(() => "");
+  const err = response === "" ? await res.text().catch(() => "") : response;
+
+  const parsedErr = errorResponseSchema.safeParse(err);
+  if (parsedErr.success) {
+    throw new HttpError(res.status, parsedErr.data.detail);
+  }
+  const parsedMsg = MessageResponseSchema.safeParse(err);
+  if (parsedMsg.success) {
+    throw new HttpError(res.status, parsedMsg.data.message);
+  }
+  throw new HttpError(res.status, err || "Unknown error");
+}
+
+// Dùng cho retry — return object thay vì throw để retry dễ kiểm soát
+async function handleHTTPErrorAsObject(res: Response) {
+  const response = await res.json().catch(() => "");
+  const err = response === "" ? await res.text().catch(() => "") : response;
+  return new HttpError(
+    res.status,
+    err?.detail || err?.message || "Server error"
+  );
+}
+
+async function handleResponse<TSchema extends z.ZodTypeAny>(
+  res: Response,
+  schema: TSchema
+) {
+  if (res.status === 204) return undefined as z.infer<TSchema>;
+
+  const jsonResponse = await res.json().catch(() => null);
+  const parsed = schema.safeParse(jsonResponse);
+
+  if (!parsed.success) {
+    console.error("❌ Error parsing RESPONSE:", parsed.error);
+    return jsonResponse as z.infer<TSchema>;
+  }
+
+  return parsed.data;
+}

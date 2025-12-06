@@ -72,14 +72,6 @@ export function UserActionsCell({ row }: UserActionsCellProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      {/* Dialog update user */}
-      {/* <EditUserDialog
-        onUpdated={onUpdated}
-        user={user}
-        open={openEdit}
-        onOpenChange={setOpenEdit}
-      /> */}
     </>
   );
 }

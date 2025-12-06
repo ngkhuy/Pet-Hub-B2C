@@ -48,6 +48,21 @@ export const UserLabels: Record<keyof z.infer<typeof UserSchema>, string> = {
   date_of_birth: "Ngày sinh",
 };
 
+export const UserRolesLabels: Record<UserRole, string> = {
+  admin: "Quản trị viên",
+  user: "Người dùng",
+};
+
+export type BooleanType = {
+  true: string;
+  false: string;
+};
+
+export const UserActiveStatusLabels: Record<keyof BooleanType, string> = {
+  true: "Hoạt động",
+  false: "Không hoạt động",
+};
+
 export const UserLabelsWithActions: Record<
   keyof z.infer<typeof DisplayUserSchema> | "actions",
   string
