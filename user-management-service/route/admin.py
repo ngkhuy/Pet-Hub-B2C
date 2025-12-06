@@ -83,7 +83,7 @@ async def admin_update_user_role(
         raise HTTPException(status_code=400, detail="Admin không thể tự thay đổi vai trò của mình")
         
     updated_user = await user_crud.update_user_role(
-        db=db, db_user=db_user, role=role
+        db=db, db_user=db_user, new_role=role
     )
     
     # gửi s2s cho AS
