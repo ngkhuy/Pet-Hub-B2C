@@ -1,3 +1,19 @@
+# VET Service Dependencies
+# Core framework
 fastapi
-uvicorn
+uvicorn[standard]
+
+# Database
+sqlmodel
+sqlalchemy
+asyncpg
+
+# Security & Authentication
+python-jose[cryptography]
+
+# Timezone handling
+pytz
+
+# Configuration
+pydantic-settings
 python-dotenv
