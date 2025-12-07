@@ -22,7 +22,7 @@ export const PriceRangeValues: Record<PriceRangeType, [number, number]> = {
   "over-500": [500000, Infinity],
 };
 
-export type FilterBookingServiceType = {
+export type FilterServiceType = {
   keyword: string;
   petType: PetTypeWithNoneType;
   priceRange: PriceRangeType;

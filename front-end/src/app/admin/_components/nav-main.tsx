@@ -7,6 +7,13 @@ const navMain: WebUrlType[] = [
   adminUrl.userManagement,
   adminUrl.serviceManagement,
   adminUrl.bookingManagement,
+  {
+    IconName: null,
+    title: "Thú y",
+    description: "Quản lý dịch vụ thú y",
+    path: "/admin/vet",
+    subItems: [adminUrl.vetServiceManagement, adminUrl.vetBookingManagement],
+  },
   adminUrl.shopInfoManagement,
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { userManagementApi } from "@/lib/api/user-management";
 import { toastPromise } from "@/lib/utils/toast";
 import clsx from "clsx";
 import { useState } from "react";
@@ -12,19 +13,12 @@ export default function ResendOtpButton({ email }: Props) {
   const [isResending, setIsResending] = useState(false);
   async function handleResendOtp() {
     setIsResending(true);
-    await toastPromise(
-      new Promise((r) =>
-        setTimeout(() => {
-          r(true);
-          setIsResending(false);
-        }, 2500)
-      ),
-      {
-        error: "Gửi lại OTP thất bại. Vui lòng thử lại.",
-        loading: "Đang gửi lại OTP...",
-        success: "Gửi lại OTP thành công!",
-      }
-    );
+    await toastPromise(userManagementApi.sendOtpToResetPassword(email), {
+      error: "Gửi lại OTP thất bại. Vui lòng thử lại.",
+      loading: "Đang gửi lại OTP...",
+      success: "Gửi lại OTP thành công!",
+    });
+    setIsResending(false);
   }
 
   return (

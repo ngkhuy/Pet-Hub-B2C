@@ -63,16 +63,6 @@ export function ServiceCard({
           >
             Đặt dịch vụ
           </Button>
-          {/* <button
-            onClick={handleAddToCart}
-            className="w-full flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors"
-          >
-            Thêm vào danh sách
-          </button> */}
-
-          <Button variant={"link"} className="text-md  mt-3 w-full ">
-            Xem chi tiết
-          </Button>
         </div>
       </div>
     </article>

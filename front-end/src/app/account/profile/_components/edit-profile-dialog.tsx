@@ -20,11 +20,11 @@ import { FieldGroup } from "@/components/ui/field";
 import { InputField } from "@/components/ui/custom/input-field";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getNameAbbreviation } from "@/lib/schemas/common";
 import { HttpError } from "@/lib/api/client";
 import { userManagementApi } from "@/lib/api/user-management";
 import { EditAccountInfoFormType } from "@/lib/types/user-management";
 import { useAuthStore } from "@/lib/stores/auth-store";
+import { getNameAbbreviation } from "@/lib/utils/format";
 
 export function EditProfileDialog() {
   const [open, setOpen] = useState(false);

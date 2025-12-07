@@ -29,61 +29,60 @@ type OwnPetStoreStates = {
 };
 
 const store = create<OwnPetStoreStates>()(
-  devtools(
-    persist(
-      (set, get) => ({
-        ownPets: [],
-        isOpenAddDialog: false,
-        isOpenEditDialog: false,
-        isOpenDeleteDialog: false,
-        editPet: null,
-        removePet: null,
-        actions: {
-          removePet: (petId) =>
-            set((state) => ({
-              ownPets: state.ownPets.filter((pet) => pet.id !== petId),
-            })),
-          editPet: (pet) =>
-            set((state) => ({
-              ownPets: state.ownPets.map((p) => {
-                if (p.id === pet.id) {
-                  return pet;
-                }
-                return p;
-              }),
-            })),
-          setEditPet: (petId) =>
-            set((state) => ({
-              editPet: !petId
-                ? null
-                : state.ownPets.find((pet) => pet.id === petId),
-            })),
-          setRemovePet: (petId) =>
-            set((state) => ({
-              removePet: !petId
-                ? null
-                : state.ownPets.find((pet) => pet.id === petId),
-            })),
-          clearPets: () => set(() => ({ ownPets: [] })),
-          addPet: (pet) =>
-            set((state) => ({ ownPets: [...state.ownPets, pet] })),
-          setOwnPets: (pets) => set(() => ({ ownPets: pets })),
-          setIsOpenAddDialog: (isOpen) =>
-            set(() => ({ isOpenAddDialog: isOpen })),
-          setIsOpenEditDialog: (isOpen) =>
-            set(() => ({ isOpenEditDialog: isOpen })),
-          setIsOpenDeleteDialog: (isOpen) =>
-            set(() => ({ isOpenDeleteDialog: isOpen })),
-        },
+  // devtools(
+  persist(
+    (set, get) => ({
+      ownPets: [],
+      isOpenAddDialog: false,
+      isOpenEditDialog: false,
+      isOpenDeleteDialog: false,
+      editPet: null,
+      removePet: null,
+      actions: {
+        removePet: (petId) =>
+          set((state) => ({
+            ownPets: state.ownPets.filter((pet) => pet.id !== petId),
+          })),
+        editPet: (pet) =>
+          set((state) => ({
+            ownPets: state.ownPets.map((p) => {
+              if (p.id === pet.id) {
+                return pet;
+              }
+              return p;
+            }),
+          })),
+        setEditPet: (petId) =>
+          set((state) => ({
+            editPet: !petId
+              ? null
+              : state.ownPets.find((pet) => pet.id === petId),
+          })),
+        setRemovePet: (petId) =>
+          set((state) => ({
+            removePet: !petId
+              ? null
+              : state.ownPets.find((pet) => pet.id === petId),
+          })),
+        clearPets: () => set(() => ({ ownPets: [] })),
+        addPet: (pet) => set((state) => ({ ownPets: [...state.ownPets, pet] })),
+        setOwnPets: (pets) => set(() => ({ ownPets: pets })),
+        setIsOpenAddDialog: (isOpen) =>
+          set(() => ({ isOpenAddDialog: isOpen })),
+        setIsOpenEditDialog: (isOpen) =>
+          set(() => ({ isOpenEditDialog: isOpen })),
+        setIsOpenDeleteDialog: (isOpen) =>
+          set(() => ({ isOpenDeleteDialog: isOpen })),
+      },
+    }),
+    {
+      name: "own-pet-storage",
+      partialize: (state) => ({
+        ownPets: state.ownPets,
       }),
-      {
-        name: "own-pet-storage",
-        partialize: (state) => ({
-          ownPets: state.ownPets,
-        }),
-      }
-    )
+    }
   )
+  // )
 );
 
 export const useOwnPetStore = createSelectors(store);

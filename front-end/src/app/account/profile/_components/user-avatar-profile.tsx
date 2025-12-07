@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getNameAbbreviation } from "@/lib/schemas/common";
+import { getNameAbbreviation } from "@/lib/utils/format";
 
 type Props = {
   imageUrl?: string | null;

@@ -25,47 +25,47 @@ type AuthStoreStates = {
 };
 
 const store = create<AuthStoreStates>()(
-  devtools(
-    persist(
-      (set) => ({
-        isAuthenticated: false,
-        accessToken: null,
-        user: null,
+  // devtools(
+  persist(
+    (set) => ({
+      isAuthenticated: false,
+      accessToken: null,
+      user: null,
+      role: null,
+      tokenPayload: {
         role: null,
-        tokenPayload: {
-          role: null,
-          exp: null,
-        },
-        actions: {
-          setIsAuthenticated: (value: boolean) =>
-            set(() => ({ isAuthenticated: value })),
-          setUser: (user: UserType | null) => set(() => ({ user })),
-          setAuthenticated: (token: string, payload: TokenPayloadType) =>
-            set(() => ({
-              accessToken: token,
-              tokenPayload: payload,
-              isAuthenticated: true,
-            })),
-          setUnauthenticated: () =>
-            set(() => ({
-              accessToken: null,
-              tokenPayload: { role: null, exp: null },
-              isAuthenticated: false,
-              user: null,
-            })),
-        },
+        exp: null,
+      },
+      actions: {
+        setIsAuthenticated: (value: boolean) =>
+          set(() => ({ isAuthenticated: value })),
+        setUser: (user: UserType | null) => set(() => ({ user })),
+        setAuthenticated: (token: string, payload: TokenPayloadType) =>
+          set(() => ({
+            accessToken: token,
+            tokenPayload: payload,
+            isAuthenticated: true,
+          })),
+        setUnauthenticated: () =>
+          set(() => ({
+            accessToken: null,
+            tokenPayload: { role: null, exp: null },
+            isAuthenticated: false,
+            user: null,
+          })),
+      },
+    }),
+    {
+      name: "auth-storage",
+      partialize: (state) => ({
+        isAuthenticated: state.isAuthenticated,
+        tokenPayload: state.tokenPayload,
+        user: state.user,
+        accessToken: state.accessToken,
       }),
-      {
-        name: "auth-storage",
-        partialize: (state) => ({
-          isAuthenticated: state.isAuthenticated,
-          tokenPayload: state.tokenPayload,
-          user: state.user,
-          accessToken: state.accessToken,
-        }),
-      }
-    )
+    }
   )
+  // )
 );
 
 export const useAuthStore = createSelectors(store);
