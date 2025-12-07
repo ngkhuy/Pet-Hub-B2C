@@ -42,14 +42,14 @@
          ▼                                         ▼
 ┌─────────────────┐                      ┌─────────────────┐
 │  Auth Service   │◄────────────────────►│  User Mgmt      │
-│  Port: 8001     │   Internal S2S       │  Service        │
-└────────┬────────┘                      │  Port: 8002     │
+│  Port: 8000     │   Internal S2S       │  Service        │
+└────────┬────────┘                      │  Port: 8001     │
          │                               └────────┬────────┘
          │                                        │
          ▼                                        ▼
 ┌─────────────────┐                      ┌─────────────────┐
 │ Booking Service │                      │  VET Service    │
-│  Port: 8003     │                      │  Port: 8004     │
+│  Port: 8002     │                      │  Port: 8003     │
 └─────────────────┘                      └─────────────────┘
 ```
 
@@ -57,10 +57,10 @@
 
 | Service | Port | Mô tả | Database |
 |---------|------|-------|----------|
-| **Auth Service** | 8001 | Xác thực, JWT, quản lý token | PostgreSQL |
-| **User Management** | 8002 | Profile, pets, email OTP | PostgreSQL |
-| **Booking Service** | 8003 | Đặt lịch spa, hotel | PostgreSQL |
-| **VET Service** | 8004 | Đặt hẹn bác sĩ thú y | PostgreSQL |
+| **Auth Service** | 8000 | Xác thực, JWT, quản lý token | PostgreSQL |
+| **User Management** | 8001 | Profile, pets, email OTP | PostgreSQL |
+| **Booking Service** | 8002 | Đặt lịch spa, hotel | PostgreSQL |
+| **VET Service** | 8003 | Đặt hẹn bác sĩ thú y | PostgreSQL |
 | **Front-end** | 3000 | Web UI (Next.js) | - |
 
 ## 🛠️ Công nghệ sử dụng
