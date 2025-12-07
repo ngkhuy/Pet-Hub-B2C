@@ -1,4 +1,3 @@
-# models.py
 from enum import Enum
 from typing import Optional, List
 from uuid import UUID
@@ -53,10 +52,18 @@ class VetBooking(SQLModel, table=True):
     )
     user_id: UUID = Field(index=True)
     pet_id: UUID = Field(index=True)
+
     start_time: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
     end_time: datetime = Field(sa_column=Column(TIMESTAMP(timezone=True), nullable=False))
+
     symptoms: Optional[str] = Field(default=None, sa_column=Column(TEXT, nullable=True))
     notes: Optional[str] = Field(default=None, sa_column=Column(TEXT, nullable=True))
+
+    status: BookingStatus = Field(
+        default=BookingStatus.PENDING,
+        sa_column=Column(SAEnum(BookingStatus, name="booking_status"), nullable=False, server_default=BookingStatus.PENDING.value)
+    )
+
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(VN_TZ),
         sa_column=Column(TIMESTAMP(timezone=True), nullable=False)
@@ -111,7 +118,15 @@ class VetBookingUpdate(SQLModel):
 
 class AdminVetBookingUpdate(VetBookingUpdate):
     status: Optional[BookingStatus] = None
-
+    
+class VetServiceUpdate(SQLModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    base_price: Optional[float] = None
+    duration_minutes: Optional[int] = None
+    follow_up_interval_days: Optional[int] = None
+    doses_required: Optional[int] = None
+    dose_interval_days: Optional[int] = None
 
 # === RESPONSE MODELS ===
 class ServiceResponse(SQLModel):
@@ -124,7 +139,6 @@ class ServiceResponse(SQLModel):
     doses_required: Optional[int]
     dose_interval_days: Optional[int]
 
-
 class BookingResponse(SQLModel):
     id: UUID
     user_id: UUID
@@ -133,6 +147,7 @@ class BookingResponse(SQLModel):
     end_time: datetime
     symptoms: Optional[str]
     notes: Optional[str]
+    status: BookingStatus
     created_at: datetime
     updated_at: datetime
     services: List[ServiceResponse] = []

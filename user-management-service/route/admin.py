@@ -83,7 +83,7 @@ async def admin_update_user_role(
         raise HTTPException(status_code=400, detail="Admin không thể tự thay đổi vai trò của mình")
         
     updated_user = await user_crud.update_user_role(
-        db=db, db_user=db_user, role=role
+        db=db, db_user=db_user, new_role=role
     )
     
     # gửi s2s cho AS
@@ -127,5 +127,5 @@ async def admin_get_audit_logs(
     """
     [Admin] Lấy danh sách lịch sử hành động (audit log).
     """
-    logs = await log_crud.get_audit_logs(db=db, skip=skip, limit=limit)
+    logs = await log_crud.get_audit_logs(db=db, offset=skip, limit=limit)
     return logs

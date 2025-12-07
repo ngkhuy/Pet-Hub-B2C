@@ -31,7 +31,7 @@ async def notify_status_update(user_id: UUID, is_active: bool):
     try:
         response = await s2s_client.patch(
             url,
-            json={"active_status": is_active}, 
+            params={"active_status": is_active}, 
             headers={"Authorization": f"Bearer {token}"}
         )
         response.raise_for_status()
@@ -51,7 +51,7 @@ async def notify_role_update(user_id: UUID, role: UserRole):
     try:
         response = await s2s_client.patch(
             url,
-            json={"role": role.value},
+            params={"role": role.value},
             headers={"Authorization": f"Bearer {token}"}
         )
         response.raise_for_status()

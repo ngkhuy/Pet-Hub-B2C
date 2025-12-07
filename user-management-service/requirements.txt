@@ -1,0 +1,23 @@
+# User Management Service Dependencies
+# Core framework
+fastapi
+uvicorn[standard]
+
+# Database
+sqlmodel
+sqlalchemy
+asyncpg
+
+# Security & Authentication
+python-jose[cryptography]
+
+# HTTP Client (for internal service communication)
+httpx
+
+# Email
+fastapi-mail
+email-validator
+
+# Configuration
+pydantic-settings
+python-dotenv

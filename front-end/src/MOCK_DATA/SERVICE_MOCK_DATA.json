@@ -1,0 +1,8002 @@
+[
+  {
+    "id": "5b04a358-3e79-463a-b04d-b42e9442d368",
+    "name": "Twitternation",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "9f824ff1-4f01-49d2-914b-82e0ac46ca08",
+    "name": "Skibox",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.69,
+    "duration_hours": 2
+  },
+  {
+    "id": "4aa16295-61fe-4b3d-8645-62a7f3218ecc",
+    "name": "Oba",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "609b2392-a222-4cf8-8989-c0644af6cb4d",
+    "name": "Tazzy",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "bc7690f1-5f65-4cd3-b398-21521e6bd4f0",
+    "name": "Twitterbeat",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 60
+  },
+  {
+    "id": "8069b0a9-05da-4ab5-8297-88488d464834",
+    "name": "Kimia",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "e6869749-675c-44eb-a94a-63524ad459f7",
+    "name": "Mudo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 69.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "1960814b-2667-43c5-8742-99f48912f88e",
+    "name": "Twitterbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "dddf6a3c-0d67-45b2-86cc-30176f6fafe6",
+    "name": "Twitterbridge",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "42629583-4815-489d-be80-18ac76ede593",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "0f13a70d-ea63-462f-bcbf-418c83d3f93b",
+    "name": "Plajo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "c717d7d1-ca0a-44ee-8dd6-5af205c75892",
+    "name": "Shuffledrive",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 9
+  },
+  {
+    "id": "902bf1eb-9db5-43b6-ba58-1c75a0409247",
+    "name": "Thoughtworks",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.79,
+    "duration_hours": 75
+  },
+  {
+    "id": "7dad4e3b-9cf3-4f78-b365-44a54197f282",
+    "name": "Yozio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 17
+  },
+  {
+    "id": "8a391fb5-bc9e-455e-a4b4-8279dbaeef3a",
+    "name": "Gigabox",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 46
+  },
+  {
+    "id": "8dba2f8d-8f22-4a8f-8ef5-6eb352c33432",
+    "name": "Topdrive",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 32.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "98db35a7-1c0d-4c08-8c1a-b2f84bcaa5ee",
+    "name": "Rooxo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 18.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "a46d9d2a-9caa-401f-9e2f-16b575da08e1",
+    "name": "Shuffledrive",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 22.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "b92182ee-43b1-4dfb-915f-64580b56cda9",
+    "name": "Kare",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "0f426472-fb3d-4d00-b304-d2085526ec8c",
+    "name": "Roombo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 10
+  },
+  {
+    "id": "6924612d-1254-4297-9ee0-3774be84f7e3",
+    "name": "Zoomdog",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 54.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "14ada0f6-6d0d-4e4c-bd70-866255bf0d34",
+    "name": "Zazio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 299.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "a6b78f2a-aa99-40af-8dfc-5429b57916cc",
+    "name": "Feedfish",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.49,
+    "duration_hours": 87
+  },
+  {
+    "id": "97ab0f61-571c-4aab-b294-dffcab6c9e6c",
+    "name": "Tagopia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 70
+  },
+  {
+    "id": "e1bc6a69-7dd1-494c-98d7-cdeec284607f",
+    "name": "Shufflebeat",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "41c9db91-0a88-482f-8c93-1cfede152b57",
+    "name": "Voonder",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.49,
+    "duration_hours": 35
+  },
+  {
+    "id": "b2b340d4-ad48-40c4-813a-5ac8e1c9c405",
+    "name": "Jaloo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.79,
+    "duration_hours": 36
+  },
+  {
+    "id": "bef5f9c8-9bae-48bf-b33c-9db880e60bec",
+    "name": "Bubblebox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "98e22224-a8c9-4121-8719-d2bc750e9ac3",
+    "name": "Realcube",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "18d12251-e04c-4a9b-9b5b-7769b0dfbde8",
+    "name": "Fadeo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "8ff60d86-4fbf-4712-9a5d-f10675c721b3",
+    "name": "Twimbo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.19,
+    "duration_hours": 58
+  },
+  {
+    "id": "fd223ca4-274f-4c14-9b15-06377e8cdde2",
+    "name": "Eadel",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 95
+  },
+  {
+    "id": "b6bd18b7-9b04-4b3a-b9db-5dff15640970",
+    "name": "Skipstorm",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 73
+  },
+  {
+    "id": "a49380a5-e355-461e-8101-487304f3a0f8",
+    "name": "Mynte",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "165b2021-3bde-4fee-89c6-aef59693efca",
+    "name": "Flashdog",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "4d5600ef-b9bd-4dad-8503-09787f09b74f",
+    "name": "Topicstorm",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 22
+  },
+  {
+    "id": "dab44bb8-0263-4372-88e8-bbe79f2b29f5",
+    "name": "Twinder",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "d2180ccc-51b1-4a9e-a1d4-24baf4b4619a",
+    "name": "Realmix",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 70
+  },
+  {
+    "id": "91968568-3cf1-4c0b-8b40-bb343a96f88d",
+    "name": "Jayo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "0a3791dd-94a8-4ed3-bc89-7bada0587ba7",
+    "name": "Mydeo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 899.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "c651e224-26e1-431c-a428-2114d1c63774",
+    "name": "Oloo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "144d3ee1-a342-44b8-9867-dfed2c8d66b0",
+    "name": "Agimba",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.59,
+    "duration_hours": 75
+  },
+  {
+    "id": "c50420fd-f93b-4ab9-9712-ad9ab38def03",
+    "name": "Twimm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 29
+  },
+  {
+    "id": "69323d04-2e55-4c72-af71-fc632ba7107b",
+    "name": "Vipe",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "f00e32d8-2b9b-45c2-b1ed-c54d25513088",
+    "name": "Thoughtbridge",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 43
+  },
+  {
+    "id": "d8a6b9b5-67a5-4717-ad7c-77d52b87acd2",
+    "name": "Kwimbee",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 7.99,
+    "duration_hours": 80
+  },
+  {
+    "id": "b0823aab-3e83-4c4c-ae9e-4cb5e9591b98",
+    "name": "Thoughtsphere",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "484062c4-34df-4aaa-8ce3-16b4476b4d26",
+    "name": "Fiveclub",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 56
+  },
+  {
+    "id": "0ab9f98e-b873-4eeb-aba4-afb4ae983df4",
+    "name": "Tanoodle",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 1.29,
+    "duration_hours": 71
+  },
+  {
+    "id": "24923551-2cb0-4a1b-ab2d-cfab03262dc6",
+    "name": "Ainyx",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "bede23ac-66da-42f7-a61f-d241a5e8539a",
+    "name": "DabZ",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "d5311bd8-159e-497b-8339-88280979e32b",
+    "name": "Meevee",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "d9c39909-d161-420f-9d04-ae8151381f2e",
+    "name": "Shuffletag",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 34
+  },
+  {
+    "id": "b0219156-f64c-4b37-a08f-9fc91323311e",
+    "name": "Riffwire",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.79,
+    "duration_hours": 44
+  },
+  {
+    "id": "e07dc68d-c180-488e-a66e-d0d6316ac33e",
+    "name": "Topicware",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 24
+  },
+  {
+    "id": "02a4850b-543f-47a8-af08-b928a58b72be",
+    "name": "Gabspot",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "3dab8817-ac8f-46e9-a5eb-bca95edcfb89",
+    "name": "Photobean",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 15
+  },
+  {
+    "id": "8359348a-4743-425e-ad44-3d7f17f5a530",
+    "name": "Zoombeat",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 35
+  },
+  {
+    "id": "f7a27c13-df9e-4745-9bff-cc6ee7beba41",
+    "name": "Yamia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "864111e7-d083-4901-9318-cc1a669a3ac2",
+    "name": "BlogXS",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 66
+  },
+  {
+    "id": "f783e18b-4e21-47aa-8cbc-8fe3c98f586a",
+    "name": "Youtags",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "8fef1130-36a3-4e41-86ef-1140cf888c58",
+    "name": "Gabtune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 17.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "0779c582-e195-43b3-b55b-75aa22e20863",
+    "name": "Tagfeed",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 98
+  },
+  {
+    "id": "037a6d00-b01b-47ab-9bab-2c8e4d39c694",
+    "name": "Skinte",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 61
+  },
+  {
+    "id": "96e45fde-194b-41f7-ac07-376d2d2cc106",
+    "name": "Voolith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 6.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "475f258c-151b-4d9a-a4f9-24f071ec9d51",
+    "name": "Feedbug",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 33
+  },
+  {
+    "id": "6d1d21ff-2778-48ff-9ed4-12ca521bc1dd",
+    "name": "Trilia",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "dcc7f5f2-2b79-4553-846e-b6f0d5b10638",
+    "name": "Edgeify",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "6ad43c07-bd4c-4429-8c06-32101ab08de4",
+    "name": "Kaymbo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 12
+  },
+  {
+    "id": "fd41ad5a-ba08-4dd6-93d9-359a9bc38ae5",
+    "name": "Skalith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 10
+  },
+  {
+    "id": "4a7e05f5-50c1-4c15-b3cb-ea2c9a6c1317",
+    "name": "Buzzshare",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "3a96d520-0b96-404f-9fd4-908d83079550",
+    "name": "Voolia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 22
+  },
+  {
+    "id": "645f0f50-0961-422a-967c-962fadd3ccbf",
+    "name": "Mymm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "8ebdf3d2-d3c1-4585-b266-c93ff43a3c9c",
+    "name": "Jabbersphere",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 6
+  },
+  {
+    "id": "c36eaeff-4b7b-4ca1-8aeb-6f7478dcce40",
+    "name": "Mynte",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "ffb53cba-d027-482e-a111-653306f95d36",
+    "name": "Fadeo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "c0d116d2-de31-44d8-8cd2-60984d584d49",
+    "name": "InnoZ",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "13a77b4f-f6f0-4e9d-bcb4-6a69efa7c0f7",
+    "name": "Quimba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.29,
+    "duration_hours": 13
+  },
+  {
+    "id": "5704013a-a427-48da-aa23-87e3fc2b0de7",
+    "name": "Aibox",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 139.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "e3ab0b7a-ada1-4bd9-9713-af6ed98a04ef",
+    "name": "Aivee",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 25.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "f2f0b682-ecfb-445c-a8cc-87ec719bf1bb",
+    "name": "Edgeclub",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "21eebc2f-9672-47c2-b204-b31239893c7f",
+    "name": "Skyvu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "ccb0a287-e85a-42e5-b09f-6139ec0a38c8",
+    "name": "Flashspan",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 7
+  },
+  {
+    "id": "b3bf6562-ade5-4909-8d12-57d3946acb5d",
+    "name": "Skiptube",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "440c2e55-b3f0-4993-ad0b-9dcc1a3aca0b",
+    "name": "LiveZ",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "b31da495-4589-4df3-bbe0-07eeddf3b06e",
+    "name": "Topicstorm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.39,
+    "duration_hours": 29
+  },
+  {
+    "id": "6686b61c-bb6f-4b51-8487-ecbd5799a259",
+    "name": "Skyble",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "b91c7a35-fd53-4f31-9456-b9e968908837",
+    "name": "Linkbuzz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 249.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "7f27f378-bd69-469f-8474-bc85add34f3b",
+    "name": "Oyoba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.59,
+    "duration_hours": 67
+  },
+  {
+    "id": "7784928f-dda7-4194-a731-f26a223c79c6",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 30
+  },
+  {
+    "id": "08aeb655-f365-4962-8829-7669796a65d7",
+    "name": "Tazz",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "b5332f09-2415-4eb1-a050-baa6acdd81e7",
+    "name": "Cogilith",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.39,
+    "duration_hours": 75
+  },
+  {
+    "id": "bb132dd6-eb99-4201-8737-95144648296d",
+    "name": "Lazzy",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "28052eac-4f7e-454d-a02b-955788cb1775",
+    "name": "Feedfish",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.89,
+    "duration_hours": 45
+  },
+  {
+    "id": "ca004ecb-b36f-4835-ac5f-b50b7dfd4386",
+    "name": "Zoomzone",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 69
+  },
+  {
+    "id": "b05b629b-7e6a-400b-ae2c-3be6f0188be9",
+    "name": "Brainsphere",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.29,
+    "duration_hours": 55
+  },
+  {
+    "id": "4ffaac50-6e96-4d60-9b30-8f36bede550d",
+    "name": "Yacero",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "04492bb4-365a-4681-b7b1-cac672720de1",
+    "name": "Tavu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.49,
+    "duration_hours": 84
+  },
+  {
+    "id": "f22efb0b-5b38-4876-a5b9-7b317c11879b",
+    "name": "Flashdog",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "7125d7d5-5a94-4144-b604-20400c88d426",
+    "name": "Skiba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 14.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "a17e07cb-4186-4106-aef8-6b099dc41c15",
+    "name": "Jaloo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 44
+  },
+  {
+    "id": "d8509517-d3a8-4999-9fd4-eedf469283d5",
+    "name": "Gabvine",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.19,
+    "duration_hours": 71
+  },
+  {
+    "id": "380394bd-0fca-4174-b89b-16b38d8ca864",
+    "name": "Aimbu",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 129.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "23df48ec-f3ab-4842-9f55-da027485d3f1",
+    "name": "Zoomzone",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 9
+  },
+  {
+    "id": "a7bc62e4-4a69-4ea3-a0e0-92bbc2e233fc",
+    "name": "Thoughtblab",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "858d9d1d-7cde-487e-a6dc-a88b756be759",
+    "name": "Voolia",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 109.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "08d3b91e-4505-4733-8f67-543cc714311a",
+    "name": "Yodoo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "7b113737-ac4c-447a-a573-8103f97970ba",
+    "name": "Voolia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 87
+  },
+  {
+    "id": "d3b098d2-2cbd-4707-ae7e-4e24267158e6",
+    "name": "Centizu",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "6f8301f9-1797-49ca-9051-33c596f03fda",
+    "name": "Eazzy",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 81
+  },
+  {
+    "id": "f75c4b57-f083-4518-9be5-7060af1bcfe0",
+    "name": "Trilith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 35
+  },
+  {
+    "id": "bc6ccd75-6e3c-495c-8082-80bb1541277a",
+    "name": "Browsebug",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 23
+  },
+  {
+    "id": "cb5c9342-748b-47df-966b-3cf594fdafa0",
+    "name": "Wikibox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 69.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "f832d0c0-6af2-4b60-adfb-3ea2bdf3723c",
+    "name": "Quaxo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "3596f06e-20ae-4db6-9b17-a04c863a1d45",
+    "name": "Jetpulse",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.69,
+    "duration_hours": 11
+  },
+  {
+    "id": "13e1a806-36df-4c33-8997-7338f43b42b1",
+    "name": "InnoZ",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 12.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "46cb06a1-2965-4ef7-b66c-32081c18b76f",
+    "name": "Kazu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 81
+  },
+  {
+    "id": "7da02b02-0dec-474e-bd2d-339bab5d46af",
+    "name": "Tazzy",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "9712b167-d908-412d-ab6a-7b324657143f",
+    "name": "Eimbee",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "2fe5e544-0c98-4bcd-9715-371b73317a15",
+    "name": "Linklinks",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "00d5a052-ab95-40e6-91b2-82ee077259ab",
+    "name": "Flashset",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "00bfe03a-46f7-4ff7-aa14-0857ad03975a",
+    "name": "Katz",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "7186dc89-f2d7-4403-bd67-455ec189000b",
+    "name": "Mita",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.29,
+    "duration_hours": 21
+  },
+  {
+    "id": "7e4c66fa-cac1-4e43-95b2-46d9504f1bf1",
+    "name": "Thoughtworks",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 14.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "b4daa52f-b05b-4bb0-bdb0-b0b49b551cef",
+    "name": "Devpoint",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 44.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "c305169d-90ec-425c-b6f1-d1fb512a35bf",
+    "name": "Kwimbee",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 6.29,
+    "duration_hours": 17
+  },
+  {
+    "id": "af599689-f4cc-4c6a-8877-c6ef2f07002c",
+    "name": "Thoughtmix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "ef30544f-71a5-4ff8-b5eb-e05089a32262",
+    "name": "Tagchat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "83a116e6-4b14-440c-91a9-4b26b281be2d",
+    "name": "Kimia",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "44f2d3b4-ce6e-4ce2-ae81-a71f2fe981e5",
+    "name": "Dynabox",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "e538c821-fc95-4cdb-b3ac-754f1f95702b",
+    "name": "Vinder",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 45
+  },
+  {
+    "id": "ad0888b5-eec9-495a-84a4-c37f9400c3fb",
+    "name": "Skipstorm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "434d575c-0a6f-43c6-b14b-ac959e75d917",
+    "name": "Skibox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.69,
+    "duration_hours": 84
+  },
+  {
+    "id": "fba9bc08-5276-48a9-803c-12c4c2762613",
+    "name": "Flashdog",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.79,
+    "duration_hours": 59
+  },
+  {
+    "id": "16ebbf42-9137-4e48-8fcf-a0fe55a8cdd1",
+    "name": "Photobean",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "14944455-5277-49ec-889f-1b2bbe0dc82d",
+    "name": "Muxo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.19,
+    "duration_hours": 68
+  },
+  {
+    "id": "6ea931c7-dc6b-4c81-b119-d1253c40e89e",
+    "name": "Wordtune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 299.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "6f47bd91-e120-485d-9749-f0e09845b439",
+    "name": "Oloo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "38468af2-4ffa-47f7-9bc5-3a9d93f5e1c3",
+    "name": "Latz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 18.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "0299ff86-7c67-41b4-ad93-39773e16bbc4",
+    "name": "Skaboo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "0949f693-f3e8-4671-97ad-034aeb4be3c3",
+    "name": "Lazz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "270475a5-804d-4a85-94dd-773d4fd78976",
+    "name": "Zoombeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "ef46d41c-2759-45eb-9a46-603495f0069c",
+    "name": "Skalith",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 5.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "d9829186-18ab-416d-b2fc-e888693dd573",
+    "name": "Edgeify",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 129.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "eccf61bc-5923-49be-b3d6-371e823a4ac6",
+    "name": "Photospace",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 5.49,
+    "duration_hours": 16
+  },
+  {
+    "id": "06363405-458f-43b0-9b2f-58c5ed165991",
+    "name": "Aimbo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "7b60160f-6111-4b38-863c-9a7d46c01926",
+    "name": "Babblestorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "4caaa2b1-3b37-4263-81ca-2938677920e0",
+    "name": "Topdrive",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 50
+  },
+  {
+    "id": "f95f2370-ee36-46b4-aa58-38a4c7424975",
+    "name": "Rhyzio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.19,
+    "duration_hours": 69
+  },
+  {
+    "id": "fb0f3091-ea70-4a50-a5db-fb852724496d",
+    "name": "Blogtag",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.79,
+    "duration_hours": 98
+  },
+  {
+    "id": "08d1773a-64d5-4f58-85b4-5b8303ca8b15",
+    "name": "Photofeed",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.29,
+    "duration_hours": 34
+  },
+  {
+    "id": "6f000229-0a76-4950-b672-c729cb96cdab",
+    "name": "Oodoo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "54fd7f20-1b87-4dc4-8a25-c984411211e3",
+    "name": "Shuffletag",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 99.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "70c0aaa2-9380-4211-b920-8ccb2d49b9c2",
+    "name": "Browsetype",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "1d6ef967-e8db-4794-9191-abf7ab5d9a9a",
+    "name": "Zoozzy",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 24
+  },
+  {
+    "id": "277f78f8-a79c-458b-a595-f41f9e490987",
+    "name": "Photobean",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "0ba6a419-af53-478d-b366-87e6dc93bc67",
+    "name": "Yodo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 78
+  },
+  {
+    "id": "ce49bfd1-433f-4ebf-92a4-e4d41a0de360",
+    "name": "Quatz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 11.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "1b98349b-4fec-4c42-aa30-e9146b11109a",
+    "name": "Fliptune",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "f573e16f-596c-41a8-823e-b94130757b9a",
+    "name": "Katz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "d8b89c2a-b77d-47d8-9684-c62094e3ee00",
+    "name": "Blogspan",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.49,
+    "duration_hours": 26
+  },
+  {
+    "id": "8bb9a161-df6e-46b6-b419-3d67599a1111",
+    "name": "Photojam",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "f506fbc5-1b83-45b0-ad95-de1edbd4d592",
+    "name": "Kazio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 7.49,
+    "duration_hours": 28
+  },
+  {
+    "id": "c5c1a876-54f1-41a9-8289-8fe1fa81b7dd",
+    "name": "Aivee",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.29,
+    "duration_hours": 69
+  },
+  {
+    "id": "99cfa609-6ec7-43c0-9e70-ad077aeb2dba",
+    "name": "Devpoint",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "6a907b85-b594-4c27-b13e-c7c0b51ddd06",
+    "name": "Realcube",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "903e1a58-04c6-4883-b104-b5dea3f24242",
+    "name": "Omba",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "7f0746b8-e07e-414e-8214-e464b6ff4289",
+    "name": "Skinte",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "bc473f3c-8d96-4ed7-b5a9-e7e734bd7c37",
+    "name": "Janyx",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 8.49,
+    "duration_hours": 64
+  },
+  {
+    "id": "462c968c-910b-4445-b5f4-9af9da7bdf56",
+    "name": "Midel",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 50
+  },
+  {
+    "id": "96cf8717-5a0b-4e74-8343-f8f80ca3f229",
+    "name": "Wikizz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 76
+  },
+  {
+    "id": "4e13912c-64fb-4917-b1e0-7ef1eef12b09",
+    "name": "Yodel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "a305e085-8b36-4cf4-a527-95bc3eeeaf56",
+    "name": "Divavu",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 15.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "061c7f84-03e1-4b10-ad91-a664d2932184",
+    "name": "Gevee",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "8b94ec8f-10e8-4d78-800f-6d144845e5ef",
+    "name": "Tagchat",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "f97f8d9d-e678-46ec-829c-166ef13a1fa6",
+    "name": "Avavee",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 1.89,
+    "duration_hours": 66
+  },
+  {
+    "id": "7da47151-1cc4-4d1c-9aa0-d0f1af02abd8",
+    "name": "Flashset",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 48
+  },
+  {
+    "id": "88b61e0b-c18a-4942-bfb2-2a1fba3d7f9e",
+    "name": "Voonte",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "8bfec3cf-7037-4d30-bb57-51abc7506059",
+    "name": "Avamm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "7e0bbb26-c8bc-4539-a10c-15c568d638f4",
+    "name": "Realcube",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "3a8edaf6-143b-4d24-b7b2-8163fa62e628",
+    "name": "Avamm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 5.49,
+    "duration_hours": 85
+  },
+  {
+    "id": "6b9a8fb6-11af-4f41-a68f-9e51a263b5f5",
+    "name": "Skiptube",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 43
+  },
+  {
+    "id": "06b5ce73-5b5d-466e-b247-ff9b87df1dda",
+    "name": "Zoonoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 10.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "26cf42ef-79b8-4b0c-b915-9a9dcba31690",
+    "name": "Bubblebox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 69
+  },
+  {
+    "id": "c6978a5f-6d77-44a5-a488-e58db0a2cbd5",
+    "name": "Tagfeed",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 17
+  },
+  {
+    "id": "b5350c78-aa2c-4cbe-b2c9-45c8e938d869",
+    "name": "Yakitri",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "68f609b0-ea2e-47a9-ae5c-7bbbb36eee8f",
+    "name": "Buzzster",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "56d14977-1c75-4cf3-971b-295a8da4a581",
+    "name": "Feedmix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 98
+  },
+  {
+    "id": "ef1af022-a0ba-4700-b057-4a1e79e11e46",
+    "name": "Plambee",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "40bff91c-df56-4bd3-b6fd-5a40f44b69c7",
+    "name": "Quimba",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 79
+  },
+  {
+    "id": "04c5098e-0768-407a-92f5-47f5246c3279",
+    "name": "Twitterwire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "2b942d61-e4d5-4e5a-884e-a26c1b90fd35",
+    "name": "Youfeed",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 20
+  },
+  {
+    "id": "f643098a-5990-42c3-80c1-25f646c857e0",
+    "name": "Realmix",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 18.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "8c81002d-79c4-4e8b-bb09-e264ccaae4d1",
+    "name": "Skinte",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 52
+  },
+  {
+    "id": "2e7fb4e6-3399-4dba-8c38-5630124b2c6b",
+    "name": "Quinu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 43
+  },
+  {
+    "id": "32e2d57d-0f5a-42bb-86cb-2b4eea7c44b2",
+    "name": "Trilith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "0aa11631-25e5-4eeb-8268-5eafbeed75e8",
+    "name": "Yakidoo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.49,
+    "duration_hours": 66
+  },
+  {
+    "id": "3d8d8fb2-0eae-4402-b2d8-bf9c81519eb1",
+    "name": "Jatri",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "0d41759c-225f-47c3-b430-a13733094171",
+    "name": "Meeveo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 15.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "5e19699c-f32b-4c3c-9455-341dd0de0afb",
+    "name": "Brainlounge",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "0195e738-2a97-43f5-8172-dfc6b1569d84",
+    "name": "Linktype",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 22
+  },
+  {
+    "id": "75623e3a-5026-4dfc-8763-b9e6377c6d86",
+    "name": "Gabvine",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 59.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "bc19ee8d-d475-4726-b4b0-82136910a39a",
+    "name": "Brainsphere",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "5eff419b-fe01-48e6-a6fa-3b5dee2a5e75",
+    "name": "Mynte",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "ce99eb8d-19df-4585-9961-4099515296ea",
+    "name": "Flipbug",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "1579c059-6a9a-4f04-b578-3438e3f859b0",
+    "name": "Youspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "335df452-a970-4b5b-9164-f45729e58050",
+    "name": "Leexo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "49f97110-4d38-4917-8b4f-1ee99d5901f2",
+    "name": "Skyble",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "9558237e-a65f-4e18-923d-6ef3d7804a37",
+    "name": "Buzzbean",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 7.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "191419db-5d8d-4bf5-996c-3e34015a0566",
+    "name": "Avamm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "f84f384e-2f8b-4fa9-aa76-880af2cd27f4",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 6.49,
+    "duration_hours": 11
+  },
+  {
+    "id": "8ab8c6a8-1bed-4c59-bcd4-c8c6e2a25614",
+    "name": "Wikivu",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "2029ebf5-cad6-411f-980e-24715275509b",
+    "name": "Jetwire",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "56f09bbd-e524-4d4b-89b9-96e832ea75fc",
+    "name": "Wikizz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "3c2899fa-716a-42d2-accb-313606ac40e2",
+    "name": "Kwilith",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.59,
+    "duration_hours": 82
+  },
+  {
+    "id": "88cc4426-deab-4fca-9bb6-5fef7280d057",
+    "name": "Yodel",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.79,
+    "duration_hours": 85
+  },
+  {
+    "id": "135a5f90-91ea-48d2-bd63-00df67bf8f33",
+    "name": "Viva",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 6.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "7350e798-221a-4b30-8dda-b8294786920a",
+    "name": "Teklist",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 6.49,
+    "duration_hours": 75
+  },
+  {
+    "id": "cc479044-d8f7-4389-a23a-091279e4dfe4",
+    "name": "Browsedrive",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 16
+  },
+  {
+    "id": "135afbf4-73ab-4b92-b4e3-9c5e29496285",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "fac0fb17-cd7f-47bd-9294-8f4ce09b3371",
+    "name": "Skajo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 5.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "4921bac3-0ca0-4075-ae81-a311686302ca",
+    "name": "Mynte",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "c75bcb16-05ce-4ee3-b471-d3771c80ba07",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "4b00894d-46ad-4bb5-aad4-bba8ad7cec04",
+    "name": "Dynabox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 2
+  },
+  {
+    "id": "895fc0bc-26f8-4dff-b818-3aa8c8ade69c",
+    "name": "Twinte",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "3d49763d-b613-4acd-8eea-e3fee4fec2de",
+    "name": "Zoonoodle",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 12.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "e287bf6c-8706-4f24-8f3b-041c5f3ad6a6",
+    "name": "Viva",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 5.99,
+    "duration_hours": 2
+  },
+  {
+    "id": "0d7b4f87-a4a3-42d4-9d66-c99883a28d51",
+    "name": "Skyble",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 18
+  },
+  {
+    "id": "a0117d81-67b4-4d82-b164-b4cee0204966",
+    "name": "Dabvine",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 18.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "efb6a33c-b148-4308-9f12-c89cd62e1716",
+    "name": "Centizu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 1.5,
+    "duration_hours": 39
+  },
+  {
+    "id": "5ebc2561-8233-4ebd-ab12-f5a77319a1d5",
+    "name": "Muxo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 59.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "260d704f-6c8d-4fca-b2a7-8ef71ec7ed30",
+    "name": "Skipfire",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 50
+  },
+  {
+    "id": "501975d9-fe9e-4a39-bea4-334cbc8e6f73",
+    "name": "Ozu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 59.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "4528b023-6d5c-4566-81c8-a44731d5e7ed",
+    "name": "Tazz",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "c5d45cc5-cf91-4feb-bca4-d3721b4f0f13",
+    "name": "Rhybox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "7e53a38f-aa29-4d0f-aef3-4f984e0739a8",
+    "name": "Topicshots",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "8ac08ab8-78ac-41f0-9bc2-4a5fbf3ffef6",
+    "name": "Thoughtsphere",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "cc929a99-cde6-4117-a9bf-9a623652a74b",
+    "name": "Avamba",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "1f23791a-7899-43c7-99fb-0cfd4bb561b5",
+    "name": "Browseblab",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "e7be0cb3-6454-4cec-a462-234d503d9549",
+    "name": "Kayveo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "ca9b9551-39ae-474e-ae57-9363a58d5245",
+    "name": "Wikizz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 71
+  },
+  {
+    "id": "31397f1f-49cf-43f1-8a7b-81085f5c05ed",
+    "name": "Trunyx",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "5eb0bd25-966c-414c-8356-7d723af8c0fc",
+    "name": "Trilith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "854121f5-2acb-4e4a-bed9-2a8a21a09c78",
+    "name": "Babbleset",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "9049193e-b8c0-4c40-92cd-9858c4767774",
+    "name": "Yoveo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 7.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "3c90c4e4-b633-4e74-9672-b8c55efd1ab0",
+    "name": "Trilia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "dd9a20cd-4c49-4175-94cb-3a82b57c3e73",
+    "name": "Kayveo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 55
+  },
+  {
+    "id": "40252478-7af1-4086-b8ec-34b825e1b922",
+    "name": "Wikizz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "7b0c5fed-5eea-40d1-b3e7-fbd2394c0ef0",
+    "name": "Tavu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "93d79167-15ce-41cf-af74-1f917625f586",
+    "name": "Kazu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 7.49,
+    "duration_hours": 69
+  },
+  {
+    "id": "13c1f3cf-4e48-44a9-8d5e-c7058d148b6c",
+    "name": "Brightbean",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.29,
+    "duration_hours": 15
+  },
+  {
+    "id": "04e4bd0b-75d4-4011-acdf-3fa4db4eba4f",
+    "name": "Mynte",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 18
+  },
+  {
+    "id": "149a3b06-5caf-4c8f-996d-a96188f55b8f",
+    "name": "Bubblemix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "a9575f31-f7e7-458e-b441-7a68bfacc5ef",
+    "name": "Brightdog",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 28
+  },
+  {
+    "id": "be52cb7c-9c71-401b-b7b9-a5770c55c309",
+    "name": "Aimbo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "4d0db4c4-d50a-4a30-b819-bc7ec9f1dfdb",
+    "name": "Dabshots",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "412a1e07-648d-419d-9af2-279e5b817ed5",
+    "name": "Dabfeed",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "a7767476-815d-48e9-9fcb-d8430c0edefa",
+    "name": "Yotz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 80
+  },
+  {
+    "id": "fec1a371-2a8e-40ef-a9ef-4aeee7aa7b29",
+    "name": "Edgeblab",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 67
+  },
+  {
+    "id": "9acb23b0-8bdf-4059-8a4e-228c4495d797",
+    "name": "Trilia",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "133d69de-4f66-4ca6-b409-e557b32caa49",
+    "name": "Twitterbeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.79,
+    "duration_hours": 73
+  },
+  {
+    "id": "efffad1a-d515-4a9b-ad08-a65cd9ba0abd",
+    "name": "Trupe",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "11cc45e3-78b9-488a-a50b-2e5552ec5ac1",
+    "name": "Vipe",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 74
+  },
+  {
+    "id": "75c35ab0-fb96-43d7-8693-e0fb3847202a",
+    "name": "Nlounge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 32.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "067db7ad-10a4-4a29-9463-0499411e0747",
+    "name": "Devpoint",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "40dd7ca7-b841-4519-8a68-d726a45447fb",
+    "name": "Realbuzz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "20f35464-2550-4f01-9169-cd6d07e231c2",
+    "name": "Meevee",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.49,
+    "duration_hours": 93
+  },
+  {
+    "id": "a185bc08-bcc4-424c-b40d-2c087132028b",
+    "name": "Twitterlist",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "eca53684-3470-4d79-8658-736158dadf26",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "2bbe735f-bf92-4282-841b-5552248ba619",
+    "name": "Kare",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "76ce6409-efec-4330-a7cd-8e78a92f4be1",
+    "name": "Dabtype",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.49,
+    "duration_hours": 46
+  },
+  {
+    "id": "b364236b-3340-45dc-98d4-c2f72074e2c6",
+    "name": "Kwilith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 199.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "45414aff-645e-4fd3-8c1b-ab010844081b",
+    "name": "Babbleopia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 5
+  },
+  {
+    "id": "034aa3ec-87da-4c44-8ecf-254242c4bace",
+    "name": "Kaymbo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "95ff3689-5623-4a67-8e2d-76057aae33d3",
+    "name": "Kimia",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "23653ffd-9219-4b4d-b9b5-3e16b243e79d",
+    "name": "Lajo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "444cd3d8-ced8-46f6-ba09-8e8cf1b72820",
+    "name": "Agivu",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "536b7ec7-0a5c-4b62-91c2-6237fd71867f",
+    "name": "Lajo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "8fceb298-470c-4eef-ae5e-36e57cea5016",
+    "name": "Flashset",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 79.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "130dcae1-d3d2-4cb5-887f-cf17432a6666",
+    "name": "Chatterpoint",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "5195a491-94f0-43a7-b14a-d3b0569842fb",
+    "name": "Trudoo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "6d231798-daf2-4809-957c-3996ff2a5486",
+    "name": "Jabberstorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.5,
+    "duration_hours": 89
+  },
+  {
+    "id": "a93e7371-6563-4b66-aaa3-ecb64dc05498",
+    "name": "Flashset",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 1.39,
+    "duration_hours": 24
+  },
+  {
+    "id": "f10aa090-f8f5-4c29-a2e2-caa6fc214341",
+    "name": "Meembee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.79,
+    "duration_hours": 79
+  },
+  {
+    "id": "3158d47b-e9bb-4078-a319-73d653472ce4",
+    "name": "Voonyx",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "086fbe38-8138-402c-af2e-6c6f8334da79",
+    "name": "Dynabox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 73
+  },
+  {
+    "id": "07ed6f74-e616-4ef7-8034-3481b57e3410",
+    "name": "Jaxnation",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "89397ba3-06b7-4f3e-bd03-6a066b641b82",
+    "name": "Photofeed",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "f49b52cf-80fc-46d2-a631-d06285d03355",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "cb916e09-6b48-4762-8afc-7f5df2d3dae2",
+    "name": "Nlounge",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "d5281171-da40-483d-a85d-7bbe9065afac",
+    "name": "Kwideo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "b747f9fa-e08b-451e-9583-e9f187253d85",
+    "name": "Yabox",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "3e1d8d16-480d-448c-a83b-a43c062564d9",
+    "name": "Jayo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 35
+  },
+  {
+    "id": "839b1516-cd32-4326-9761-b8e1c469b9fd",
+    "name": "Meevee",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 83
+  },
+  {
+    "id": "f433957e-15f9-4b45-88ff-60421943d3f0",
+    "name": "Jatri",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "64fbe844-e55d-45fb-bf96-4096faf18da2",
+    "name": "Wordtune",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 95
+  },
+  {
+    "id": "e57a5c2f-e64b-4844-ac70-46bfdb877263",
+    "name": "Quatz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 99.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "76b3872e-05f0-4008-a10a-680ae1c09a47",
+    "name": "Browsebug",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.19,
+    "duration_hours": 3
+  },
+  {
+    "id": "2ebe6bd2-9aeb-4938-a7b6-1d6c691c9114",
+    "name": "Skibox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 0.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "a2800c5a-3b9f-4282-a6bb-b6fdd137fde6",
+    "name": "Rhyzio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "381d74fb-97b5-491d-b6b7-eb1d9c3afb06",
+    "name": "Lajo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "6234a4b1-6f4b-4ff0-9a1d-23fac57d9558",
+    "name": "Jetwire",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "36957a97-c14a-4c45-8845-a0fcf948d8d9",
+    "name": "Babbleblab",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 299.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "9afd0bd8-27b6-455d-91dd-52d75026b35a",
+    "name": "Twitterbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "2bf0d374-049f-42dd-b4c6-df117aeaf5eb",
+    "name": "Muxo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "75702701-ef53-4fef-a701-e4ae1d5a29ce",
+    "name": "Flashset",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.39,
+    "duration_hours": 72
+  },
+  {
+    "id": "914cff0f-f92e-4c59-9182-a14aef0fc33f",
+    "name": "Zoomdog",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 79.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "669e60e5-10c3-45f0-85e0-eb09e2f78c85",
+    "name": "Jamia",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "70524e70-5bc2-4a01-a431-a90a7f2e8371",
+    "name": "Yodo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "2540a182-8cad-4df4-970d-dfc8fc83725c",
+    "name": "Voomm",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 299.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "e71ad19e-87ef-4650-8fe0-257f3274e594",
+    "name": "Kanoodle",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "7c2b52de-dd4b-4439-8fda-6bc881f4db8a",
+    "name": "Skaboo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 18
+  },
+  {
+    "id": "55cc7f8f-2eb2-4012-88a6-717d9ee3e151",
+    "name": "Gabvine",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "8b587df0-4224-40a3-8dbf-0c875cbe4938",
+    "name": "Dynabox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 94
+  },
+  {
+    "id": "97c10f34-a75e-47b7-90c4-a64909a2ec0e",
+    "name": "Topicstorm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 79.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "cef00976-4cba-4302-8116-da9ba0d43017",
+    "name": "Voomm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "05055a8f-b89d-4ff7-b6ce-41aa8a96e4a9",
+    "name": "Yodoo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 57
+  },
+  {
+    "id": "e0f7888c-53d9-4ffb-9226-e30cf901a820",
+    "name": "Edgeblab",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "a5d60c4b-43fd-4789-8979-8251289ed030",
+    "name": "Topicstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "f680d405-0463-471b-af84-295aa2755ce4",
+    "name": "Thoughtbeat",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 57
+  },
+  {
+    "id": "4d70fded-630a-4b30-b9d9-6d88da733e1b",
+    "name": "Oyondu",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.69,
+    "duration_hours": 67
+  },
+  {
+    "id": "70657a2f-5dbe-436b-8d99-010b489a1818",
+    "name": "Skynoodle",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 169.99,
+    "duration_hours": 79
+  },
+  {
+    "id": "f16c140c-2ba1-4ae2-b348-ee3f630cf87c",
+    "name": "Quimm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "8bec80a8-cec8-4d32-9bc3-b4a02cb2de21",
+    "name": "Flipstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.19,
+    "duration_hours": 58
+  },
+  {
+    "id": "104f0a0b-64b0-4b22-bd46-059171e7d61c",
+    "name": "Jaxworks",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "9474b884-1c9d-4f05-941f-cd207ac7de3e",
+    "name": "Zoomdog",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "d87edd34-1235-42e1-8ffc-e58a992e1074",
+    "name": "Rhybox",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 29
+  },
+  {
+    "id": "677d37f9-b5f7-47cc-af52-de290c35b057",
+    "name": "Mycat",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.19,
+    "duration_hours": 75
+  },
+  {
+    "id": "5307da9b-15e1-4543-a082-f217a2f5f2cb",
+    "name": "Dabtype",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "abdab46e-6520-44af-879f-9f45bdf30e17",
+    "name": "Edgeblab",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 80
+  },
+  {
+    "id": "a381b6b6-826c-4f10-8475-48459be837df",
+    "name": "Browsedrive",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 9.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "db1fac43-dad6-4270-97e2-f49b24193f61",
+    "name": "Pixoboo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 35
+  },
+  {
+    "id": "d8ee44be-eded-4c20-8dc3-2a4984d8677b",
+    "name": "Edgeblab",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "8fa2799c-cb16-47be-99cb-a399f76f7410",
+    "name": "Zoomzone",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 59.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "aeb5cba4-a359-4790-8ad9-731e851894a9",
+    "name": "Jabberbean",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "8c1cc38a-c7f8-4f2e-a8d7-8ac5764f5e9f",
+    "name": "Devpoint",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "94a90d3b-eb64-496d-afeb-5fccc4dc4f79",
+    "name": "Flashpoint",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 30,
+    "duration_hours": 47
+  },
+  {
+    "id": "60c62a1a-b055-41d8-b855-a7a2ee42e5d2",
+    "name": "Kazio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "091e7231-1900-40c2-899c-26b64de4ca1d",
+    "name": "Reallinks",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "3669f6ac-6192-483d-9cbb-6deeca528bcd",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 7.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "12b6d57e-ce7b-49e6-aaed-206c440cb90a",
+    "name": "Thoughtbridge",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "badd2995-9b64-4b4a-a72a-f91eee1c16d8",
+    "name": "Blogtags",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.59,
+    "duration_hours": 9
+  },
+  {
+    "id": "a25221f7-a44a-4eea-b635-617f0ddeb652",
+    "name": "Yata",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "b53989b3-fd01-42c5-b532-6ee5336af23f",
+    "name": "Yadel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "a4232cba-dafe-438d-b06f-ffac175b7c6f",
+    "name": "Skyndu",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 22.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "bd589b01-9f8e-4eb5-8e86-5d99d555b1d2",
+    "name": "Yodoo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "8dd59999-c24f-468a-85e1-95ff3fd9d4e0",
+    "name": "Realcube",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "e1449666-1c94-43c1-aedd-74027fc84476",
+    "name": "Youspan",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "f8b70b37-f2c2-421a-a9f7-17504680efa6",
+    "name": "Edgeblab",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 2
+  },
+  {
+    "id": "b215ceaf-a6a8-4810-a22d-ef5db1c2455d",
+    "name": "Zoomlounge",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 61
+  },
+  {
+    "id": "710e723d-1939-4950-b700-78e442e24b8d",
+    "name": "Twitterworks",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "6c801802-1a0b-4bde-b72d-26d34af46b31",
+    "name": "Mymm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "34a9377b-1ee2-479e-81ee-3663f406b074",
+    "name": "Youopia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.49,
+    "duration_hours": 26
+  },
+  {
+    "id": "6debe104-ed83-430b-ba14-006eb5737a1e",
+    "name": "Yodoo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "e33f93e7-772d-4f0d-9f34-04502c667290",
+    "name": "Trilia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.59,
+    "duration_hours": 61
+  },
+  {
+    "id": "b50e00e1-7c8a-4c91-beab-f10308ce0d9a",
+    "name": "Twitterlist",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "3b7113f1-4cf9-4ff0-ac4b-2e3c415fec64",
+    "name": "Topiclounge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 94
+  },
+  {
+    "id": "a3030b38-8fd3-436a-a812-9171daa6140b",
+    "name": "Twitterbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "3333cebd-80a0-450c-8aae-cf16963e6299",
+    "name": "Fanoodle",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 79.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "08cd5c6a-d88d-40cf-9ad6-37eed8cc28db",
+    "name": "Innojam",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "82350763-7ea1-438c-8357-ce40bb1d4ba8",
+    "name": "Feedspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "d2a13947-fa80-4633-91e9-4c9bd57f13b0",
+    "name": "Skiba",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "7abd120b-4707-414d-9116-303eb44f2f32",
+    "name": "Jabbercube",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 17
+  },
+  {
+    "id": "f8d3461d-a54e-48ef-9856-c5140b670594",
+    "name": "Tagopia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 63
+  },
+  {
+    "id": "f206813f-7716-4fb0-9523-dba9a31b99d6",
+    "name": "Thoughtsphere",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "2596f69a-165c-4648-894e-2ba66d3248aa",
+    "name": "Photobean",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 95
+  },
+  {
+    "id": "c1d01029-46e4-41c7-bdff-1c03de328832",
+    "name": "Brightbean",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "0f9fa12b-b1ba-423c-9547-6ce1dea6263f",
+    "name": "Dynazzy",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 54.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "e27871e9-2266-4ef7-9ca3-3721f7a35695",
+    "name": "Rhynoodle",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 299.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "7e860ee4-e8b1-4fb3-96ed-0b0fc9ecbefe",
+    "name": "InnoZ",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "925e0170-fda5-4511-bcc3-1dd0cf3d1f07",
+    "name": "Layo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.29,
+    "duration_hours": 54
+  },
+  {
+    "id": "0476588f-3c0c-4960-b44a-8b28668e97ac",
+    "name": "JumpXS",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "ef579709-529d-456c-bfd5-738db2e63ea1",
+    "name": "Rhynoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 53
+  },
+  {
+    "id": "1b312314-ca49-4d36-a480-5dfcf4b0b808",
+    "name": "Centidel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 15.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "9cb6d975-c4a4-4279-b405-2acd94c7feb5",
+    "name": "Cogidoo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 15.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "127ecc09-32cd-43a1-8d8b-d95e9e86689a",
+    "name": "Voonyx",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 13
+  },
+  {
+    "id": "afe82599-fb70-4212-97dd-e9ad7ef347d4",
+    "name": "Zooxo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "8651fe09-bb45-4f65-a9a0-3e07e2f62211",
+    "name": "Babblestorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "54dff377-9799-40b8-a692-61c9150e719b",
+    "name": "Bluejam",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "06be9223-f3ad-46ad-9821-755ccbe021a7",
+    "name": "Buzzdog",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 23
+  },
+  {
+    "id": "6dc333c7-5e97-4471-a3ba-d9d8b3fd7786",
+    "name": "Flashpoint",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "42ccbb1a-0675-4077-ab8d-0b1c85328299",
+    "name": "Reallinks",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 99.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "146ad6f8-42d8-453f-81b7-66c39a3d7770",
+    "name": "Devpoint",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "ce8fa7fe-034d-43a7-ac29-7554917ce319",
+    "name": "Thoughtblab",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "556e56ac-fbd8-4515-aeea-fa597e3bf158",
+    "name": "Npath",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.29,
+    "duration_hours": 20
+  },
+  {
+    "id": "d9b2757e-dac9-479b-bd56-842df0b33255",
+    "name": "Skipstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 7.49,
+    "duration_hours": 46
+  },
+  {
+    "id": "4af1045b-c3b0-49b4-8fdc-d8c5a6bcdea3",
+    "name": "Avamba",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 99.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "24cece39-36b4-474b-aa8f-6a413eecafc1",
+    "name": "Fliptune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "e56ad1e3-b728-46ea-8eb3-7b62c4a95618",
+    "name": "Quamba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 45,
+    "duration_hours": 57
+  },
+  {
+    "id": "41e84583-8a58-417a-b963-61f93a44ef0e",
+    "name": "Yata",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 20
+  },
+  {
+    "id": "f8d36792-d011-49b1-b8e7-40770d89547f",
+    "name": "Yodel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "02df9b16-f8eb-4bba-8191-1909314defca",
+    "name": "Realcube",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "a0ae63fd-af1d-48de-b3b6-760b333ea846",
+    "name": "Oyondu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "67054044-f50e-4bb2-b0b8-fd24a69fd155",
+    "name": "Skinte",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 15.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "c90a0a8d-7262-4fe4-987e-7cefed10ddbb",
+    "name": "Eadel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "10def32e-6fa2-4e72-a9ef-5d798884fb41",
+    "name": "Brainverse",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 64.99,
+    "duration_hours": 66
+  },
+  {
+    "id": "7822f163-ca7d-4b8c-a46d-85d6a9868002",
+    "name": "Feedspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "d5f074ba-7e81-4426-ab0f-c2cb63cc2d5c",
+    "name": "Gabvine",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 32.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "3d2b55db-c767-4db4-ab53-f488b321cc36",
+    "name": "Avamba",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "949ce501-5d39-4e34-be41-198b8318e2b1",
+    "name": "Realfire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 45.99,
+    "duration_hours": 73
+  },
+  {
+    "id": "360ff535-3b72-4e04-948c-6b2e66a24a12",
+    "name": "Linklinks",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 44.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "7cd3220b-f6e4-4105-88cf-d8b42a975643",
+    "name": "Dabjam",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 54
+  },
+  {
+    "id": "c705d489-f9f7-40e8-acbd-216d10c94057",
+    "name": "Roodel",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 66
+  },
+  {
+    "id": "89372ef4-5da8-4ab5-ae55-b6f9d5192a5c",
+    "name": "Camimbo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.79,
+    "duration_hours": 38
+  },
+  {
+    "id": "2ea7df09-3bf5-4868-b191-59ae0ac0dffb",
+    "name": "Mybuzz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "7cc5438e-0288-4b3e-892d-a1acfb6cf2a0",
+    "name": "Katz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 8.49,
+    "duration_hours": 16
+  },
+  {
+    "id": "9c04e102-9d34-4543-a40e-e38f71a7e181",
+    "name": "Eare",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "05b5b4f5-0809-4245-bbbc-47a6b7251643",
+    "name": "Youtags",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 7.99,
+    "duration_hours": 91
+  },
+  {
+    "id": "af26976c-fd39-4d36-8997-49827be1d0df",
+    "name": "Skajo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "cd5da7b0-3c4d-4b94-9852-f030fdb23e57",
+    "name": "Kamba",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "d5cdd069-10d0-4595-bc32-a6c78e60f7bc",
+    "name": "Skivee",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "58092770-1d67-44ec-9b6f-123a59ca70a4",
+    "name": "Tagopia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 17
+  },
+  {
+    "id": "21795683-9f7a-4dd2-a1f4-0762630068a9",
+    "name": "Eadel",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 79.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "3b05c015-7a46-48f6-bb44-2da6f3bcba64",
+    "name": "Twitterbridge",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "806468ec-3efa-4ad0-a5ee-66955eafd9e8",
+    "name": "Gabcube",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "9e8bb2e2-ded3-4f7b-b9b1-a0e417af66d9",
+    "name": "Vitz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 87
+  },
+  {
+    "id": "497cc823-53ed-4596-b63b-254ea5858a49",
+    "name": "Zoombeat",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.79,
+    "duration_hours": 91
+  },
+  {
+    "id": "c8b6b235-6e11-4ac7-a3bc-50aa2555c7f2",
+    "name": "Buzzdog",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 31
+  },
+  {
+    "id": "62026409-b5eb-4c4b-8b4f-3f4454d648c0",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 64.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "aa26773b-5762-47b7-89b1-a48198c1156c",
+    "name": "Talane",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "739d56d7-db65-449f-8ada-0a800d4224cb",
+    "name": "Demimbu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.49,
+    "duration_hours": 39
+  },
+  {
+    "id": "39e2f064-e964-4c98-8854-7586fbdbd458",
+    "name": "Photofeed",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.29,
+    "duration_hours": 51
+  },
+  {
+    "id": "de020ab2-8998-4960-8e02-ab681f787017",
+    "name": "Dynazzy",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "55e8356a-89d4-4870-bade-c262d35d98b3",
+    "name": "Kwimbee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "0a0d0e38-6265-40c4-b38a-65c681014344",
+    "name": "Wordtune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "513b144b-a940-47fd-8326-ef1ac058e9a1",
+    "name": "Zoonoodle",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "bfcfd32c-6cca-489d-a5b0-9f537876a30a",
+    "name": "Gigabox",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "55a78f35-9129-444d-97b1-260a6e2fd43b",
+    "name": "Zoovu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 61
+  },
+  {
+    "id": "af13848d-742d-4ae3-b39c-2b118c0dbb4a",
+    "name": "Skinte",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "4dd2dcda-a4cf-489d-92d4-a583cdeffb17",
+    "name": "Brainsphere",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 79.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "e2614a3d-8ab3-4084-8314-244f8aaaa308",
+    "name": "Feedmix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 38
+  },
+  {
+    "id": "3f8ff49e-1d43-4a80-a323-47165cb509c4",
+    "name": "Meemm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "bc527401-ca26-4518-9cdc-c13b1c63f8e8",
+    "name": "Babblestorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "ab2154c9-4711-475e-b90e-744f50f0fe42",
+    "name": "Wordtune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 199,
+    "duration_hours": 28
+  },
+  {
+    "id": "57240483-e548-49d0-b7c6-f88cf5fe16c1",
+    "name": "Quire",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "b754e640-84fa-4e06-a32f-30e43dab31a1",
+    "name": "Eayo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "2e1a3cfd-9a0a-444d-b19b-ad1f5b80b904",
+    "name": "Viva",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 33
+  },
+  {
+    "id": "05a58643-408f-403a-a405-8782a5193b22",
+    "name": "Kanoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "465617c1-d2cc-4798-8edf-be5b058b1a5b",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "5c405a26-d79c-4290-8f1e-811098a671d0",
+    "name": "Topicstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 99.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "690edb54-ac7c-4e28-8901-02a7503c4d22",
+    "name": "Feednation",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "73ff2aa4-b12e-4a0a-b9cb-861729e09f3b",
+    "name": "Livetube",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 15.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "272b6454-01de-4486-a518-a23cee497814",
+    "name": "Gabvine",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.5,
+    "duration_hours": 48
+  },
+  {
+    "id": "30ec09eb-79dd-4bd9-9aed-301bd228b41f",
+    "name": "Jabbersphere",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "5d060edb-eaa8-45dd-8bb8-d1acaf03a234",
+    "name": "Flipbug",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 79.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "92d4109b-df28-4602-b98c-56f7cbadcb18",
+    "name": "Geba",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 10.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "c47d9f64-69fb-4800-8b8f-576f80ae7215",
+    "name": "Quaxo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 1
+  },
+  {
+    "id": "5d70b50d-f3c9-42ee-aeac-f44d481d809e",
+    "name": "Kazio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 78
+  },
+  {
+    "id": "10a9090a-e42f-494d-970c-998365de8d7b",
+    "name": "Tagpad",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 6.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "1e3aad62-b063-4bef-8c26-f5295d753315",
+    "name": "Aimbo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 12.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "737af722-f3c8-4be2-a696-552a8655eb32",
+    "name": "Voolia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "0abeaf8c-4e2e-4d2d-9ceb-4782338c842d",
+    "name": "Fanoodle",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 9.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "31df8ddb-ed6e-4573-bc7b-bd723832e882",
+    "name": "Jaloo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 79
+  },
+  {
+    "id": "d34c0222-fbff-407e-b0ef-452604163f76",
+    "name": "Dabtype",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "7bc78954-2bd0-430c-9442-e9b29f2c1059",
+    "name": "Gigazoom",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "3eb7eacb-5814-4309-bc74-0a44247d9ff6",
+    "name": "Kare",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 73
+  },
+  {
+    "id": "052bb2f7-2259-46e2-a9f4-dd2920dd1c9d",
+    "name": "Quamba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 25,
+    "duration_hours": 70
+  },
+  {
+    "id": "d1714a9d-175b-4083-aed4-f24ca2e7952f",
+    "name": "Voomm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "6232fa21-3227-4bda-8c4c-9e8469357611",
+    "name": "Tagfeed",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.79,
+    "duration_hours": 39
+  },
+  {
+    "id": "10aa76a5-4a79-48a6-997c-8726e494ba0f",
+    "name": "Aivee",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "0f25ed97-af62-44fe-9aeb-ab95f43c784c",
+    "name": "Photospace",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "bb06e9a0-ff3f-493b-927d-90bd793f91ff",
+    "name": "Quamba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 64
+  },
+  {
+    "id": "9a59db77-a40a-42d8-84dd-bed43f7e33f4",
+    "name": "Zooxo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 22.99,
+    "duration_hours": 25
+  },
+  {
+    "id": "76c6b84d-4c0e-451c-8378-28799aee8ed7",
+    "name": "Browseblab",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "bd5d056c-fa13-49c6-85bf-5020b4d1cbc1",
+    "name": "Meevee",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "adb208d5-2da1-4772-9f5b-564d3aea8ae3",
+    "name": "Zoomdog",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "6b3bea7e-efaa-4cdb-a796-22cd978d6b3d",
+    "name": "Eire",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 5.49,
+    "duration_hours": 44
+  },
+  {
+    "id": "23ec86f5-9a31-485d-9db3-52288ec8d2a9",
+    "name": "Eayo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 10.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "5d235c31-a902-4657-95f8-5be4354d81ad",
+    "name": "Browseblab",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "66dbea7a-5764-476b-bb95-d2d56ddb48c0",
+    "name": "Voolith",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.5,
+    "duration_hours": 49
+  },
+  {
+    "id": "ebb47ef4-8d49-4fed-8900-33772e21dd4e",
+    "name": "Skilith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "40320717-8b9f-4097-9bda-b8344a2fd52c",
+    "name": "Jetpulse",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 249.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "fc19bedf-1566-416c-82a5-70ac0959b089",
+    "name": "Skaboo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "1c8ec147-ef5a-428d-b2e6-a39fc40a3147",
+    "name": "Kwinu",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "f3c1720d-c7f5-442c-a96d-2ac93f00d080",
+    "name": "Skilith",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "b26895ae-2190-481e-8436-b3d421a332d0",
+    "name": "Shufflester",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 9
+  },
+  {
+    "id": "03d07ddb-af72-4e38-84be-8cf11b60ec52",
+    "name": "Linkbuzz",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "3cb6eca0-5833-414c-bd7b-68801693380c",
+    "name": "Skinder",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 7.49,
+    "duration_hours": 85
+  },
+  {
+    "id": "fbd97d82-6d18-44c9-a4c4-b0adf944db34",
+    "name": "Tagpad",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 59.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "586e47fe-c11f-4e5a-8f1a-b3a26754f73a",
+    "name": "Riffwire",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "ac104aec-a5da-408c-9036-3c05425a565c",
+    "name": "Photospace",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "eb7fcb9f-3899-43fa-b158-75406a151684",
+    "name": "Wordware",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 8
+  },
+  {
+    "id": "f208111d-576b-4d9e-992f-7d0963e0dbcc",
+    "name": "Jetwire",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "0e7fc188-3e94-4be5-8ad8-fdc61ffb692f",
+    "name": "Trudeo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 25.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "80f4b9e5-5e7f-448c-8711-cd8fb5855f90",
+    "name": "Demivee",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 69.99,
+    "duration_hours": 70
+  },
+  {
+    "id": "968ee121-5e71-43a8-b130-63e01b3d8e96",
+    "name": "Avaveo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.79,
+    "duration_hours": 10
+  },
+  {
+    "id": "890e2ad0-2d5e-4dc4-9b84-ae6b53ed77dd",
+    "name": "Wikido",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.49,
+    "duration_hours": 10
+  },
+  {
+    "id": "a01a9533-bb98-48e2-b8d1-46c1b2e5c080",
+    "name": "Izio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 8.49,
+    "duration_hours": 26
+  },
+  {
+    "id": "a44ad7b1-60a1-4c0c-a974-f81c2ec66771",
+    "name": "Trunyx",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "005c1e0f-a637-4ce5-b069-48d263e0ae3c",
+    "name": "Browsetype",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "a54497cb-f0e6-49dc-829f-22bd67b8119c",
+    "name": "Photobean",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 119.99,
+    "duration_hours": 17
+  },
+  {
+    "id": "44adc554-9885-4d10-813b-14babcff34e3",
+    "name": "Eidel",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 34
+  },
+  {
+    "id": "ff6442dd-2b9c-4ad9-8c1e-0ddb19d43546",
+    "name": "Kwilith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "e8d68984-f03d-419f-8ff0-dbde19e7d141",
+    "name": "Skinder",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "779a7bd2-484f-4c41-bd60-d5d5d4a1542d",
+    "name": "Oloo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 15.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "f273a78e-5f09-4ac8-a329-30ebb35bafdc",
+    "name": "Kwideo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 64
+  },
+  {
+    "id": "c551d4ca-7922-4c26-8ba5-c3aec40de134",
+    "name": "Eabox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 14.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "1b7e3db3-7dbc-4d68-b84f-1a2ae05ac07e",
+    "name": "Flipopia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "95dc8546-2044-4a3e-aef6-d9733713679f",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "4f8fccb6-fa08-4212-9855-0c363481415a",
+    "name": "Mynte",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 25.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "dea281e2-c4d0-4a41-8e4e-27affeec4abe",
+    "name": "Topicshots",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "9dcf9316-cbf5-4eaa-8168-0c590e626586",
+    "name": "Podcat",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "bf972f5a-476f-4d81-b1ae-ae41e3f67719",
+    "name": "Lazzy",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "4510ede1-e325-46ed-ab5b-ee37b72a7aea",
+    "name": "Jetpulse",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "e0f63327-2fb2-4e2a-9970-9030ada8bde7",
+    "name": "Topicshots",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "f23e5f6d-6210-43ca-bd26-e2d958a3e6fc",
+    "name": "Dynava",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "0bd9552c-34d1-414d-a85f-859506c5a6bc",
+    "name": "Thoughtsphere",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "91f84c4f-cb08-4fe5-8820-8344c6c65337",
+    "name": "Edgewire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "003714e0-8f2c-4aa2-9276-99c8d657c092",
+    "name": "Realbridge",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 10.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "6cac553b-5668-4a46-9acb-d384163b4099",
+    "name": "Riffwire",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "d5ab66cc-8f87-40f3-9dc4-e943c40a7ad5",
+    "name": "Gigabox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "3060647c-146f-4f08-84b4-d041b14c81e5",
+    "name": "Twimbo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 34
+  },
+  {
+    "id": "bdb09d7a-01ab-4b17-8043-ee1261519ffa",
+    "name": "Topdrive",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "578cfde1-2d9d-42fc-b3b3-68a807997e43",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 15.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "2abfec63-6a7e-4691-b08c-2536a4dfb350",
+    "name": "Aimbo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "d4ca7a41-a2b1-44a3-a319-a958bd60c4ed",
+    "name": "Kare",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "b8c29329-42a0-44ca-a895-a3351ced7b04",
+    "name": "Linktype",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 2
+  },
+  {
+    "id": "62f019a7-8ca5-4726-93a6-e6622821d4e3",
+    "name": "Oodoo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "87456ac2-91b0-45ff-8e7b-1872baa810f1",
+    "name": "Innotype",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 46
+  },
+  {
+    "id": "6c38ed00-62f0-404e-b3bc-f062792cb021",
+    "name": "Quinu",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 78
+  },
+  {
+    "id": "350cfd7c-6b66-4c67-bddc-62324b4fd24b",
+    "name": "Innojam",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 73
+  },
+  {
+    "id": "58403954-c077-4ddf-bd87-d40e7e79a227",
+    "name": "Browsecat",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.29,
+    "duration_hours": 53
+  },
+  {
+    "id": "4154242f-3c02-46a8-bae9-dd41f18c6ce4",
+    "name": "InnoZ",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 63
+  },
+  {
+    "id": "bf975e30-5dda-44ef-b772-11358e69b12d",
+    "name": "Ainyx",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 69.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "0cecee0c-5e90-48c0-babe-6f9073abbd87",
+    "name": "Zoomzone",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 54
+  },
+  {
+    "id": "3a4f5d51-75fc-4d4b-bf69-00ee96442dda",
+    "name": "Bluejam",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "6b430e20-b539-421f-b6c7-404e8a411419",
+    "name": "Edgepulse",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 47
+  },
+  {
+    "id": "acf3ef4e-2582-48e2-bf1d-fb1997b502e6",
+    "name": "Gevee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 92
+  },
+  {
+    "id": "c610bb42-444f-49cb-a7d3-e1f3b66d3717",
+    "name": "Buzzshare",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "845dfa31-db0b-416e-a938-37061bcfa1a3",
+    "name": "Oyoloo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 51
+  },
+  {
+    "id": "e9548a13-3b47-4edd-a836-ee92c12aadc8",
+    "name": "Wikivu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "6854d8f7-aad3-4624-b505-f902a2ef29ac",
+    "name": "Fatz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "8d294a7d-efb6-409c-9a6c-04215744971a",
+    "name": "Yakidoo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "6c4e0e85-d539-4041-9638-d6625c49ea47",
+    "name": "Kare",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 66
+  },
+  {
+    "id": "11e5e69a-a874-4c24-9af6-094328487e65",
+    "name": "Avamba",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 57
+  },
+  {
+    "id": "12119a40-d46d-4803-918c-34cf34bbdea2",
+    "name": "Jabbersphere",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 2
+  },
+  {
+    "id": "d24b60da-63dd-47fd-bf91-16e5a526e1ad",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 3
+  },
+  {
+    "id": "f520b1e3-b3e7-4519-9f52-9be272f856bf",
+    "name": "Twimbo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 14
+  },
+  {
+    "id": "2234ec3e-b74c-44bf-b7f9-075b91f1887c",
+    "name": "Youtags",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "53c4cdba-3b61-45c8-a5c1-5ad33c0c0e3f",
+    "name": "JumpXS",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.29,
+    "duration_hours": 26
+  },
+  {
+    "id": "33b51866-6f93-4686-a7d1-35b6d0b2c1e0",
+    "name": "Jabbersphere",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.59,
+    "duration_hours": 66
+  },
+  {
+    "id": "50a15bbb-72c4-4019-9055-d984f949b6bd",
+    "name": "Jatri",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "af2fdede-a8bb-4d65-b093-2c8075116531",
+    "name": "Thoughtmix",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "8675c197-072e-466b-93a5-0b46e73593db",
+    "name": "Ooba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "f04af5ff-0b0b-4408-ac7d-be638549af45",
+    "name": "Tekfly",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "cd9eeed2-7e23-4ab5-95c9-89105f843cb0",
+    "name": "Topicblab",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 56
+  },
+  {
+    "id": "bdbe76d0-fd44-4daa-990e-948fab4c1edf",
+    "name": "Meezzy",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.79,
+    "duration_hours": 65
+  },
+  {
+    "id": "413f817e-c142-4bbe-a109-7f8a045bc186",
+    "name": "Buzzbean",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 28
+  },
+  {
+    "id": "ead0528e-8b8a-42b0-99c2-8b691c1250c4",
+    "name": "Skidoo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 7.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "e4e628b3-e0c8-4645-8408-20739a1a0dd9",
+    "name": "Riffwire",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 25
+  },
+  {
+    "id": "d0f235b3-4c54-4eab-b9c8-bb0af697d40d",
+    "name": "Bubblemix",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "384c72d4-f0bd-4bfe-ad3b-1fca8b263165",
+    "name": "Reallinks",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "0ac3e538-8145-4ed5-a767-fd3393c91479",
+    "name": "Izio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 9
+  },
+  {
+    "id": "d079df24-ce49-4103-ae7a-bd5925610a2b",
+    "name": "Pixope",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "689f7d15-0f9b-4cfc-a85a-cf9a9d0ffd6e",
+    "name": "Zooxo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 71
+  },
+  {
+    "id": "bb03152d-8726-4028-abdc-51fd01459acd",
+    "name": "Devify",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.49,
+    "duration_hours": 57
+  },
+  {
+    "id": "09d97a23-db67-4672-9674-a324bccd87e0",
+    "name": "Aibox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 50
+  },
+  {
+    "id": "cd62e22b-a4c0-4c72-9af4-de3507976b91",
+    "name": "Shufflebeat",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 12
+  },
+  {
+    "id": "57c811fa-590f-4964-8d9c-9d57cad5abf2",
+    "name": "Buzzster",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "fe545a5b-ee34-4556-aa23-972055a068cd",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "d8de1b3e-07a5-4afb-b469-c7cbec924f15",
+    "name": "Yoveo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "562c1096-25b8-4ede-b820-d0bece9c1b7e",
+    "name": "Mydo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 129.99,
+    "duration_hours": 62
+  },
+  {
+    "id": "0e0e61b8-71f6-4bc1-9f95-4d819f509b0d",
+    "name": "Myworks",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "dff5ce0f-f870-4061-b787-072a696357f6",
+    "name": "Layo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 15.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "563bda8f-b28c-4b24-a255-5623b030e659",
+    "name": "Skipfire",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "74cd9bb1-bb37-4ae8-83d6-311726e06e23",
+    "name": "Rhybox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "307cc09c-33bb-47b0-9bb1-e59af20d3fa3",
+    "name": "Skynoodle",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "e859b246-ff9f-4274-a482-d818edaf979c",
+    "name": "Buzzshare",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 98
+  },
+  {
+    "id": "9e911923-f1bb-42f8-9fa2-4582c93b70af",
+    "name": "Thoughtbeat",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 17
+  },
+  {
+    "id": "eef1f399-2cf4-45d1-93f7-2eb37caf6afe",
+    "name": "Twitterworks",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "ba0f2633-4e37-4194-8f92-f1b722f3be84",
+    "name": "Oyoloo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "9c89ccd3-f7e0-4123-9336-290df37ceb40",
+    "name": "Centizu",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "e86e6cb5-d4aa-41f6-a6d2-a483d83a4524",
+    "name": "Thoughtworks",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "38dd9154-5e77-4c52-b0cb-27a856b4b807",
+    "name": "Zoonoodle",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 44.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "b5981017-55c2-4676-bc1b-e5e50d57d454",
+    "name": "Izio",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 1
+  },
+  {
+    "id": "0d1d6c4a-47e7-439d-84e8-4a295ed7297c",
+    "name": "Edgewire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "a24e3fc4-88fc-458f-9cc7-d2c1b367d806",
+    "name": "Voolia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "938567ba-cc0d-4ca0-b59d-a4333714601f",
+    "name": "Tagtune",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 73
+  },
+  {
+    "id": "21a87653-9aad-46a2-82bf-d142c8bf1397",
+    "name": "Topdrive",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "eb968804-708b-4cc2-9f12-9e142c3cdbb3",
+    "name": "Eayo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "8d41028b-427f-4016-9418-745852f123ab",
+    "name": "Gabspot",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 199.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "7568c8b8-95c2-4ea1-bdfe-5aa9ad0cf5ed",
+    "name": "Aibox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 1.79,
+    "duration_hours": 90
+  },
+  {
+    "id": "23ec05de-a530-4d10-95fa-dbaba7019537",
+    "name": "Camido",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "d0a37831-d643-4108-8ba3-e12a634a57d0",
+    "name": "Realfire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "4d7283cc-f949-4ee5-a40b-9fb4a0f632d7",
+    "name": "Ailane",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 179.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "fe819ce3-aa1f-4ed4-a964-4b2cfa7968ea",
+    "name": "Tagfeed",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 15.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "a2357849-a717-46f0-8108-d66ce26cd260",
+    "name": "Skidoo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 64
+  },
+  {
+    "id": "0f996988-26ed-49cb-aa4e-0ccf5e8310e6",
+    "name": "Brainverse",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "d6c2a7ed-909b-40c7-8f08-4c456d634f86",
+    "name": "Skipstorm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "3b10cbdc-a368-48f8-8b59-9281ed7f4909",
+    "name": "Yotz",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 51
+  },
+  {
+    "id": "2dd903aa-f200-4683-ae86-bc667d9d6011",
+    "name": "Mynte",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 15.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "d06d54ee-4520-4fdd-afb5-040c7ad83b98",
+    "name": "Kare",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 59
+  },
+  {
+    "id": "ec47b6c0-9874-487f-84e0-22eb68068217",
+    "name": "Eabox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "c0f5301e-0cc2-416c-9dd8-1a17583fa3f7",
+    "name": "Voonix",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 99.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "0b7913c2-8d86-4de7-8f30-ffb469ca15e4",
+    "name": "Youbridge",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "ff4a6970-5677-4eb4-8c2b-acfc68627b4f",
+    "name": "Plambee",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 0.75,
+    "duration_hours": 86
+  },
+  {
+    "id": "25993a78-f14e-4fbc-8af6-3de8308e75a7",
+    "name": "Agivu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 18.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "4fd239c7-7878-4d16-83c0-5ff223436c23",
+    "name": "Yakidoo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 42
+  },
+  {
+    "id": "523992de-3266-4997-8f38-15b5fd0b00fe",
+    "name": "Skyble",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 93
+  },
+  {
+    "id": "42d9697f-70e6-4d71-a0ae-cb2de2d605e1",
+    "name": "Jabbercube",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "b5f1cfde-827a-4364-bd5c-d0b4d85a23f5",
+    "name": "Jetwire",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "9ca1c802-cefe-4074-a5ff-f564af37b47c",
+    "name": "Kazu",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.29,
+    "duration_hours": 70
+  },
+  {
+    "id": "6af7520e-334b-4ddc-80bf-de375210741a",
+    "name": "Trilith",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 50
+  },
+  {
+    "id": "2e9956f4-9848-4918-a498-b3d28471cf84",
+    "name": "Buzzster",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "82a33818-13a1-44ba-9065-7050955668e4",
+    "name": "Fanoodle",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 199.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "6f27031a-21b0-467d-947b-399e2dc32f64",
+    "name": "Dabshots",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 62
+  },
+  {
+    "id": "92d613fc-d7d6-4246-84b0-e6791084c2c4",
+    "name": "Innojam",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 44.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "a85d817b-ab23-4a63-ad97-a4c4793e46e9",
+    "name": "Yodoo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "512623cf-6cf0-4e96-9265-1051ff759e79",
+    "name": "Skynoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "70ac40b3-43fb-4985-90d1-a9e3a6b8afcb",
+    "name": "Gabtype",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 35,
+    "duration_hours": 29
+  },
+  {
+    "id": "7d9ce1f1-31d4-4f5e-a890-6550b1f29166",
+    "name": "Avamba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "39218659-cb29-4b45-8862-5e8282cebe4d",
+    "name": "Quamba",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "e95f8289-6e35-42a4-98dd-0f9813401a1f",
+    "name": "Snaptags",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "f3c02606-4d95-45ee-8529-4eda69ba4f85",
+    "name": "Centidel",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 7
+  },
+  {
+    "id": "e6dcf899-645b-4155-b032-6ac5efff821f",
+    "name": "Avaveo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "42a16491-fcda-4aab-a527-da66e726d71f",
+    "name": "Thoughtbeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "cfa6c488-4e1f-4d9b-9664-35bc0cbf8112",
+    "name": "Katz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "1f22a630-03ff-4989-8876-fa84413fed26",
+    "name": "Katz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 5.49,
+    "duration_hours": 80
+  },
+  {
+    "id": "34072ec5-2a66-4d4f-a6e3-c7edc9c812d4",
+    "name": "Fadeo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "50ee5224-308e-4ca0-952c-7b4ac3e9fefa",
+    "name": "Wikivu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "07d49c7f-001d-4eba-838c-9d43d4ef8c26",
+    "name": "Shufflebeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 12.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "46e3aec4-523b-494f-85bd-868ae58557e4",
+    "name": "Pixoboo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 95
+  },
+  {
+    "id": "c1598afe-7ac7-443c-8f28-601afea182d5",
+    "name": "Vidoo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "8fd5ffce-29cb-468f-80f4-97cde15ce48b",
+    "name": "Divavu",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "b04e622f-b886-41b4-bc49-5f8009b524d2",
+    "name": "Jaxspan",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 62
+  },
+  {
+    "id": "1f93844b-4f66-4e74-b6e0-4a04d8edbbc7",
+    "name": "Realbridge",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 17.99,
+    "duration_hours": 61
+  },
+  {
+    "id": "2bda57f7-b093-4c99-a8d7-b03cceb185fd",
+    "name": "Layo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "ecb9f18f-54e0-4776-b01f-a51229dd1abe",
+    "name": "Quaxo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "d460555a-b536-4d29-bae4-338dcb186d9c",
+    "name": "Rhynyx",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "50eea263-0115-4aa0-bdd1-bdbf797849f1",
+    "name": "Topiczoom",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "6b436a48-7157-4372-af46-31a8c50ab3ce",
+    "name": "Twitterwire",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "8af0ec28-5394-402e-a8be-3a01400255d8",
+    "name": "Wordpedia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 22.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "0e1d8d69-c49a-4da1-8cf9-1903a7f6ba09",
+    "name": "Quinu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "af3a0486-325c-4b3f-9d4c-e83188914e4e",
+    "name": "Edgetag",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "2d2ff931-373c-410a-9133-f7ef5c275d88",
+    "name": "Fanoodle",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "32ad1dc7-7dc4-4040-af15-186b8463b388",
+    "name": "Eadel",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "7696fcbc-4629-4940-a639-1fdca2997634",
+    "name": "Jaxspan",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "682bdbc6-00d0-4728-a995-07a792d513a3",
+    "name": "Ailane",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "6abe6793-b05b-4872-a93c-fee822df84d9",
+    "name": "Oozz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "c82e4ff7-6bbf-414a-a733-7ea725bc7da2",
+    "name": "Oyonder",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "9680e217-8473-403c-b3b3-3114f85d658e",
+    "name": "Devbug",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "db0b5e27-5e50-45e2-863e-73b13978ee05",
+    "name": "Mydeo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 7
+  },
+  {
+    "id": "d87d0f35-1c1e-4112-a13a-d453dff51353",
+    "name": "Browseblab",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "fee68dc5-398f-4c42-b4cf-913f29029179",
+    "name": "Riffpath",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "069e6c86-a946-4052-9749-2c4be4c475cc",
+    "name": "Zoonoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "c57e9304-ff3a-49db-b679-7a9cdf3a1c84",
+    "name": "Kaymbo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "fa83e855-0b1e-47d3-9c91-5872f541cce2",
+    "name": "Livefish",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "3f3625a5-440f-4c23-9399-5d74d28fcb1e",
+    "name": "Buzzster",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 100
+  },
+  {
+    "id": "360b4292-0cc1-4403-ba57-b2573421e3a0",
+    "name": "Oyonder",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.49,
+    "duration_hours": 57
+  },
+  {
+    "id": "34a72eee-e881-4ab2-94f1-349c65856751",
+    "name": "Topiczoom",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 3
+  },
+  {
+    "id": "4b71d8e6-6584-496f-b275-38b9ff1a6fe7",
+    "name": "Kwilith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 37
+  },
+  {
+    "id": "78fd4c84-0e6c-4698-b58f-aabe44acd4eb",
+    "name": "Podcat",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 69.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "27673a30-866b-48aa-9531-05f5e15d5043",
+    "name": "Voolith",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 64.99,
+    "duration_hours": 72
+  },
+  {
+    "id": "9f69ab2a-8453-49e3-921f-afa7aa72642f",
+    "name": "Voonyx",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "f7cf72d2-dbaf-4510-bc53-c80de975d7e8",
+    "name": "Katz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 7.49,
+    "duration_hours": 42
+  },
+  {
+    "id": "5da92cc3-60a3-4c2f-9036-0d55ce8eaaea",
+    "name": "Twitternation",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.79,
+    "duration_hours": 79
+  },
+  {
+    "id": "8d4d12e8-1d06-4711-8780-79f2ae40d5ff",
+    "name": "Yacero",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "f90c0752-dad8-47f1-bab4-87a08ce7d091",
+    "name": "Skiptube",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 35
+  },
+  {
+    "id": "2a730e60-a1d3-4305-98f2-8850c7f83ad0",
+    "name": "Quimm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "f2137772-eebd-4795-a110-532de2eb1596",
+    "name": "Dynazzy",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "d8a6aa6e-b4da-4916-8d7d-f525f83738ed",
+    "name": "Babbleblab",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 75
+  },
+  {
+    "id": "94be4e9e-e167-40f6-b35d-5f446dc19761",
+    "name": "Oyoba",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "fbb8b79e-5894-48ff-8cca-ffc21da3a5f9",
+    "name": "Jabbercube",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "f75416be-dbdf-4895-906c-4893e9417a54",
+    "name": "Shuffledrive",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.29,
+    "duration_hours": 80
+  },
+  {
+    "id": "2bc5f548-a6c5-45ce-9c5b-7647ae297bb6",
+    "name": "Babbleopia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 51
+  },
+  {
+    "id": "659c9a31-b147-4930-8fff-88faa276ed2c",
+    "name": "Rhyloo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "da19a763-4260-4bdf-bdb3-3e7d6577f62e",
+    "name": "Dabtype",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 299.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "70270597-5637-4159-9ba2-fbf53dd06da0",
+    "name": "Gabtype",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "ec79cd0a-b390-415a-821a-dbdf7250a6f8",
+    "name": "Jamia",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "50ef137c-0b4c-44a8-b20c-2136504403a9",
+    "name": "Jaxworks",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "6bed5c7e-2c84-4cb4-ab53-0dc6fcd27cc6",
+    "name": "Jabbercube",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "5ea62c45-1570-42c1-808a-595e9f61f61b",
+    "name": "Ainyx",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "9471ceae-f71b-4373-a537-5aaeab5f0a4a",
+    "name": "Yabox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 10.99,
+    "duration_hours": 91
+  },
+  {
+    "id": "f11362bb-cd69-4eab-94b6-2368eed10d25",
+    "name": "Zooveo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 5.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "95fff815-0437-4db1-b306-9f0dd6d415fd",
+    "name": "Oyope",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 86
+  },
+  {
+    "id": "bb19869e-f560-4538-b1d6-185acc31ca69",
+    "name": "Photobean",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "1348f511-1c26-4b71-8b77-9b5ef0a6a668",
+    "name": "Shuffledrive",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 70
+  },
+  {
+    "id": "89ce9eda-a0c6-43e8-80eb-d75096538d55",
+    "name": "Gigabox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "dcba3496-cafa-404a-843f-a658577e76e9",
+    "name": "Leenti",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 6.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "30cdd3c2-5fe5-48fc-b973-08b45ef203f3",
+    "name": "Linkbridge",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.59,
+    "duration_hours": 46
+  },
+  {
+    "id": "0210ab0a-7bfa-4f13-8452-aa3ceac940e2",
+    "name": "Tekfly",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 79
+  },
+  {
+    "id": "e13b3151-8431-4d96-b145-ec932bc54578",
+    "name": "Talane",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "98924d9f-d751-4340-a4fd-0b88eb44526c",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 91
+  },
+  {
+    "id": "7af66849-0b20-4e78-9847-3825e6f01427",
+    "name": "Cogilith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 99.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "3ed3a5bc-d7a5-413b-ac36-51fff7265a4c",
+    "name": "Dabvine",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 29
+  },
+  {
+    "id": "39903de6-a551-4a86-964e-31399b9debb5",
+    "name": "Ntag",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "807204e8-f62c-4bd0-b7c4-5594f4cd456b",
+    "name": "Tanoodle",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "6f3d442b-2abe-47d3-a776-c875c86217e6",
+    "name": "Myworks",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "2ddbd638-e812-4d9e-9c96-8db1a49a1602",
+    "name": "Kwimbee",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 199.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "bb7822a6-378f-485e-89fa-edf7ce88d2e6",
+    "name": "Vitz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 91
+  },
+  {
+    "id": "edb72df9-f93c-4721-8c65-6e8cfd87e061",
+    "name": "Shufflester",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "7914200d-d1d7-411e-a6fb-23c09ccb7913",
+    "name": "Gigazoom",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 78
+  },
+  {
+    "id": "6a95533f-ac9c-47c4-bc7a-604ca715d8ca",
+    "name": "Vimbo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "79c60149-2298-4c57-8e28-0043c4c9abb1",
+    "name": "Blogtag",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "0eb042a8-0ef1-47da-a101-173c14834ef9",
+    "name": "Oyope",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 129.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "a5aa492f-63df-4ca4-b6dc-3d14f26abb16",
+    "name": "Linklinks",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "44ef4801-e192-4882-a2f8-b758aa714778",
+    "name": "Skipfire",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 2
+  },
+  {
+    "id": "99508dba-c648-4e39-93a9-182105d4bcdd",
+    "name": "Voolia",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 44
+  },
+  {
+    "id": "3524b8cd-686e-4f6f-9670-e6c0795def9c",
+    "name": "Kimia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "8e953680-9907-483e-8f60-cdd6627b2caf",
+    "name": "Pixonyx",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "a2dbb7d5-52de-4a0c-a4ac-f9e73242fc21",
+    "name": "Rooxo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "a3e6b57b-793a-4367-82cf-38a007b90eb1",
+    "name": "Wikibox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "8347c38c-b750-4d37-868d-252799996367",
+    "name": "Zooxo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "1e50bb99-22e6-4206-ab55-2ecb09809235",
+    "name": "Jayo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 75
+  },
+  {
+    "id": "c4d7f3cf-8727-4c73-9f3b-2da1313970c3",
+    "name": "Janyx",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.49,
+    "duration_hours": 77
+  },
+  {
+    "id": "c2a0924f-9a70-451c-98ab-f888f8765ac0",
+    "name": "Yotz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "6b8effa0-f60a-4d89-a0c4-44b03233b9b1",
+    "name": "Babbleblab",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 36
+  },
+  {
+    "id": "5756ac88-1be0-454b-8417-a595126a1494",
+    "name": "Shufflebeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "dd22aa9e-3594-4ab6-9321-6f0edaed0d55",
+    "name": "Midel",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "df237b4c-9b0a-44c0-9c09-140e4831ec22",
+    "name": "Voolith",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "9508c603-cdc6-4862-87a1-aa87e00a8388",
+    "name": "Wordtune",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.29,
+    "duration_hours": 19
+  },
+  {
+    "id": "bf4ac679-930c-4eb9-b732-ff0919f2020c",
+    "name": "Bubbletube",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 44
+  },
+  {
+    "id": "d170d097-3f3f-408e-aaf5-fbcf29d4bfb2",
+    "name": "Tazz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "0ffdd106-39b9-435e-813b-3150ec00adac",
+    "name": "Gabcube",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "7c0162ff-f91e-4c01-83d3-0fc70b08224a",
+    "name": "Fadeo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 69
+  },
+  {
+    "id": "93a3b93c-9596-494c-a6e2-cef84c4949aa",
+    "name": "Gabvine",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 68
+  },
+  {
+    "id": "15eb9400-453e-453c-a43b-fe7af8be1adb",
+    "name": "Izio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "3dafd971-9ae3-4d98-ad0b-72bd8bf4b70b",
+    "name": "Yambee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "5919d850-7834-4eb9-8c47-c299455eea7b",
+    "name": "Dynabox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 37
+  },
+  {
+    "id": "b34ed0c4-a37f-4cb7-9a99-b792308d7333",
+    "name": "Jabbertype",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 61
+  },
+  {
+    "id": "b1edab37-b17b-43fd-8351-b8a32d8018ce",
+    "name": "Voolia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 69.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "d5f09a5f-f9c2-4f12-b83b-e9399ff0ad3d",
+    "name": "Wordtune",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "1b71bf63-ed6d-48f6-a497-bb169042d36d",
+    "name": "Tazz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 80
+  },
+  {
+    "id": "c634e5df-5573-4484-bce8-25a8e81afbc7",
+    "name": "Yombu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.89,
+    "duration_hours": 31
+  },
+  {
+    "id": "98fb10de-0c7a-4b44-82b0-510e543da00d",
+    "name": "Lajo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.49,
+    "duration_hours": 92
+  },
+  {
+    "id": "ee5ed612-0a26-4285-b7b6-cf19cba54c98",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 10
+  },
+  {
+    "id": "a31b3a20-5d3b-4fe2-97c6-21aa63df431a",
+    "name": "Thoughtstorm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "e5e20b0b-fcb3-4fe7-bd52-bf4a8f763d35",
+    "name": "Twiyo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "0adca2c8-42be-4c18-b13f-381a20708873",
+    "name": "Buzzdog",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.49,
+    "duration_hours": 33
+  },
+  {
+    "id": "9e72f9e1-765f-4b14-9fa6-532429304f4e",
+    "name": "Zoombeat",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 40
+  },
+  {
+    "id": "76883038-a4e9-4cd6-beed-e151602fac23",
+    "name": "Thoughtmix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 97
+  },
+  {
+    "id": "371d776d-7624-4cc4-8998-0bf722de352a",
+    "name": "Agivu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 2
+  },
+  {
+    "id": "a1e3c7fb-6492-4b57-a9d2-c6577cb06894",
+    "name": "Vinte",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "249ac8e9-3acd-4f1c-b04e-a326f558383a",
+    "name": "Bluezoom",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "a2320b85-400b-4300-bd72-c5334b6d4079",
+    "name": "Twitternation",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.79,
+    "duration_hours": 99
+  },
+  {
+    "id": "c215f16a-74b9-4c7e-8345-ec22414d796e",
+    "name": "Realmix",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 25
+  },
+  {
+    "id": "b9f298e0-0837-47d3-a445-7257b8bd1f4a",
+    "name": "Aibox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 91
+  },
+  {
+    "id": "a9e99104-3c61-4b18-95fc-2e8f12ec32dc",
+    "name": "JumpXS",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 91
+  },
+  {
+    "id": "02847935-05f7-404b-b234-9cb8794d7e8f",
+    "name": "Skyble",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "30920ee0-ad4a-498b-9cbe-551e200c0dfa",
+    "name": "Zoombox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "0720e2e2-7bd8-41d6-8b99-55e0729c2e9f",
+    "name": "Edgepulse",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 69.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "74378b66-a740-4f98-9728-ae5ae6d7d286",
+    "name": "Gabspot",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 69
+  },
+  {
+    "id": "98049457-dcff-4a00-bb0e-7275dc9053f8",
+    "name": "Twimbo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "cf6870f2-3959-46d0-a94e-2ea1e24b893e",
+    "name": "Flipstorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "bea15e2c-aacd-47a6-bc04-0891aaaef12b",
+    "name": "Jatri",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "789d2135-4326-41fb-b841-c2cd0b9cc47b",
+    "name": "Photojam",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 22.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "ca8b81b7-c72f-4e47-aaec-6acccc58cb7b",
+    "name": "Zava",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 12.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "12af09a4-9ae6-46f1-b05d-a9f212eefcda",
+    "name": "Meeveo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "fb33bf5c-1a6d-418b-b79e-fd4797d3add9",
+    "name": "Meevee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "0063618b-982a-445e-8d8b-995cb77cefc4",
+    "name": "Thoughtblab",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 5.99,
+    "duration_hours": 43
+  },
+  {
+    "id": "c6133aa8-1aa6-4c15-8604-27350ac4a972",
+    "name": "Jabbersphere",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 69.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "e253952d-4343-456e-bad5-94b1f8b14664",
+    "name": "Fivespan",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "7edf82af-7d93-43a0-be38-e4b55da97780",
+    "name": "Jaxnation",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 26
+  },
+  {
+    "id": "101bb12b-d9c1-4d66-af7d-92410af63ad6",
+    "name": "Eadel",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 43
+  },
+  {
+    "id": "4ae1fcfb-405b-4d20-8017-e485a81b4dfd",
+    "name": "Bubblebox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "22880697-692d-4451-8db3-a37b24667daa",
+    "name": "Zoomcast",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.29,
+    "duration_hours": 71
+  },
+  {
+    "id": "d3f21006-8e24-44cb-98fb-e99d5203842a",
+    "name": "Devcast",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 49.99,
+    "duration_hours": 54
+  },
+  {
+    "id": "b2252148-7a20-4ade-a437-eecd8e917195",
+    "name": "Zoombeat",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "60be441e-f4db-41f4-b207-72b4df1c91e8",
+    "name": "Twimbo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 69
+  },
+  {
+    "id": "c838af6a-d2c3-459c-a0a5-8c71f21454f0",
+    "name": "Yombu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 18.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "ab34cb59-42f2-4e1f-a2b2-c36f492401b9",
+    "name": "Quaxo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "adcddd9e-4ec9-4897-9946-27aba9508ea8",
+    "name": "Quinu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "66801c17-0411-4827-bc65-a0d28e1b16ac",
+    "name": "Photofeed",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "c7f30e3e-f831-4a27-b18b-e1fd6761cc27",
+    "name": "Fatz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "7862a3a0-e451-4de8-bb35-72cb3aefb6f3",
+    "name": "Wordtune",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "d6566e87-5c08-4c96-b725-cef3aa5004b5",
+    "name": "Livefish",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "b68606ea-0f86-4402-8281-a844fbf3c958",
+    "name": "Agimba",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "b317febc-8618-4fc0-a7a5-1f9b95427c9e",
+    "name": "Buzzbean",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 199.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "1ad79ab2-cb7a-4e4f-9dfe-9e49d7afb747",
+    "name": "Feedspan",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 9.99,
+    "duration_hours": 79
+  },
+  {
+    "id": "c9073523-6642-441d-9df0-e3d4f9e97c41",
+    "name": "Geba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "0bc31405-a7f8-456b-856c-faed26c6b13b",
+    "name": "Innojam",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 77
+  },
+  {
+    "id": "3b8b4f51-84d3-4a0b-b474-e8ba5d584936",
+    "name": "Quire",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "216ea35d-2d43-4481-bced-fb54eb81a46c",
+    "name": "Jabbertype",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 25,
+    "duration_hours": 32
+  },
+  {
+    "id": "060c39bf-0a85-414e-b67f-83bcd4bc7492",
+    "name": "Jaxworks",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 24.99,
+    "duration_hours": 10
+  },
+  {
+    "id": "ce8c1cfc-2ae9-41af-a4d8-0d43b0241afd",
+    "name": "Rhycero",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 75
+  },
+  {
+    "id": "7fe05a3d-9b01-4a12-b190-72cedb1104e9",
+    "name": "Twitternation",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 4.29,
+    "duration_hours": 13
+  },
+  {
+    "id": "a3da3f45-50a6-44a3-966d-b85903ecd830",
+    "name": "Jamia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 79.99,
+    "duration_hours": 35
+  },
+  {
+    "id": "e31c8e26-4a44-41eb-8cc2-7c438d673d1b",
+    "name": "Skalith",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 1.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "8b54ef58-ddea-44d1-91fe-9c94cef3a0ff",
+    "name": "Wikibox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 22.99,
+    "duration_hours": 24
+  },
+  {
+    "id": "5f97e7b5-f8ad-41e0-8528-b6990fed84f3",
+    "name": "Youfeed",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "f34ed034-b03c-4821-8413-64a0fcee2bd5",
+    "name": "Eayo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.99,
+    "duration_hours": 42
+  },
+  {
+    "id": "63c62744-a6e2-4ec4-9063-0789f97c0e8d",
+    "name": "Twitterwire",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "0e17ef67-67ba-4939-80f9-2f0e6a25d036",
+    "name": "Yozio",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "d493645c-1381-441f-b66b-b1afdead7b44",
+    "name": "Kwimbee",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "2127b363-0e7c-4ebf-a24e-b93bf398ed2f",
+    "name": "JumpXS",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "0cc46e1b-07d8-4cd7-8533-bc633b7e874b",
+    "name": "Gabtune",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 81
+  },
+  {
+    "id": "5d63ec5c-f7da-45df-a4ed-20cbce5f2a22",
+    "name": "Photojam",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "0550b42d-7848-4280-abb0-c224a186a8a6",
+    "name": "Rhycero",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 89
+  },
+  {
+    "id": "bd2572f5-8466-456e-b4ec-c2b5aea0d55e",
+    "name": "Katz",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 15.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "2ff2d45d-5712-419c-b7ba-248391faada6",
+    "name": "Skyndu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.59,
+    "duration_hours": 19
+  },
+  {
+    "id": "4d63b32c-a876-4b24-a183-a45e2f878fcf",
+    "name": "Feedfish",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 69.99,
+    "duration_hours": 69
+  },
+  {
+    "id": "20b6a415-57a9-418b-9955-316c7bd294f2",
+    "name": "Bluejam",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 62
+  },
+  {
+    "id": "e64dbb87-c1bc-45ef-95cf-a5f3a19579ca",
+    "name": "Riffwire",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 6.29,
+    "duration_hours": 68
+  },
+  {
+    "id": "3dcc5e23-5e6d-405b-99e9-dfa7acb36ca9",
+    "name": "Kazu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 90
+  },
+  {
+    "id": "25c87d0f-ca7b-44ce-963b-8f5a9b15eed7",
+    "name": "Livetube",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 35.99,
+    "duration_hours": 25
+  },
+  {
+    "id": "5556ed58-b8a1-4ac3-8252-e8331020ea09",
+    "name": "Zoozzy",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "30a4f5f1-6ca1-4697-aaa1-1152367babdf",
+    "name": "Jabbercube",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 1.99,
+    "duration_hours": 4
+  },
+  {
+    "id": "3004b7f6-0910-4753-96be-acd8ad853e8e",
+    "name": "Fliptune",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 73
+  },
+  {
+    "id": "3995a97d-95a5-45f7-b0b8-b5286daeb063",
+    "name": "Dynava",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 69.99,
+    "duration_hours": 53
+  },
+  {
+    "id": "5f7882ab-25dd-400e-8cc1-ecfdb93c0726",
+    "name": "Trupe",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.59,
+    "duration_hours": 13
+  },
+  {
+    "id": "16f5988f-b601-4275-84f2-3bc161adcb0d",
+    "name": "Edgeclub",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 6.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "3506974f-61d0-44d8-b3c8-aab8170a947c",
+    "name": "Camimbo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 22
+  },
+  {
+    "id": "cff2b0ab-ea6c-48ec-a5c3-96418e38573a",
+    "name": "Jaxbean",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "d5c6bbb1-aa56-4c61-bfe7-31831c7f92d7",
+    "name": "Geba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "f15b146e-1295-4fc7-8d99-0ed645bd0e85",
+    "name": "Trudoo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 18.99,
+    "duration_hours": 50
+  },
+  {
+    "id": "62a32d8c-1a0c-4441-8293-3547a05294b0",
+    "name": "Lazzy",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 74
+  },
+  {
+    "id": "a75ed75d-f333-47b2-9b52-4593d0555cac",
+    "name": "Pixonyx",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "0467eceb-1ce1-44e3-8d22-597a14e076fa",
+    "name": "Skyvu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 5.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "befedbbd-5201-429d-a272-564057dc6966",
+    "name": "Kimia",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 54.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "c0019df2-0637-446f-b153-8e6ad0e06bff",
+    "name": "Voomm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "d10f7efb-9386-497f-b414-fe6aa57ab5da",
+    "name": "Oloo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "55083df6-bee1-4421-b94a-80fafe770fc6",
+    "name": "Skinte",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 91
+  },
+  {
+    "id": "900f2c08-5a30-41fe-be69-2ee48e3b5d99",
+    "name": "Eire",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "bb5d2c59-9b19-485a-b313-10b167a3d1f2",
+    "name": "Snaptags",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.99,
+    "duration_hours": 39
+  },
+  {
+    "id": "c6a0042d-da3b-43c7-b898-6a08bbe6bfa8",
+    "name": "Leexo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 93
+  },
+  {
+    "id": "4c58da9c-9ad7-471d-8e75-22ced8d62e4b",
+    "name": "Quaxo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "adb2b440-27a8-467e-a06e-be1865ff6119",
+    "name": "Pixoboo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 7.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "8ff53bc6-fd41-4a47-95fe-3f474426a471",
+    "name": "Rhynoodle",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 16
+  },
+  {
+    "id": "f5fbfdab-df5c-4819-82bc-b298e9f5bd7f",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "1cc4e2d6-33ae-4e80-84e7-844fd2d7b6f8",
+    "name": "Centimia",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 149.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "1e656dab-218a-4dc7-a506-eb23353d66bf",
+    "name": "Rhyloo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 82
+  },
+  {
+    "id": "0ef5320b-c68c-451f-b946-e0bc04dd90d1",
+    "name": "Realblab",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 49
+  },
+  {
+    "id": "ba9f3d7b-4cba-4670-9e75-15c4bd53b9db",
+    "name": "Ntags",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 39.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "932e3701-ad58-4f22-bb4c-eb67fe42541b",
+    "name": "Thoughtstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 75
+  },
+  {
+    "id": "c644f677-22d5-4df5-adc3-a7749cdef6a0",
+    "name": "Skipstorm",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.29,
+    "duration_hours": 89
+  },
+  {
+    "id": "da1b311f-6980-4496-b169-cdb84a765660",
+    "name": "Fatz",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 95
+  },
+  {
+    "id": "716e04aa-94b3-441a-b42b-5cbf71c0f8a6",
+    "name": "Eire",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 34
+  },
+  {
+    "id": "206cc95b-e17c-4c95-867a-065f0a9c1499",
+    "name": "Skalith",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "7a7a586a-768b-474b-9fd5-0f41d03be45b",
+    "name": "Twiyo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 69.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "501fa427-efdf-4cd8-9ea8-987264c0d6fc",
+    "name": "Eayo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 10.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "d2966908-89d3-4d30-832e-1a74a48994fb",
+    "name": "Thoughtbeat",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "1c393faa-a730-4b18-90a8-0586ddcafd60",
+    "name": "Linktype",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "048641a5-4d46-4f83-ac5f-aeaaee0040bc",
+    "name": "Voomm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "9e74e322-3aa8-442b-b70e-d800cab8ddc3",
+    "name": "Gigaclub",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.49,
+    "duration_hours": 39
+  },
+  {
+    "id": "bc29c4fd-1818-4514-84cc-bda4ae3002bf",
+    "name": "Gabtune",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 68
+  },
+  {
+    "id": "7460e579-5e44-419a-a82b-76f56af6b0c4",
+    "name": "Tagtune",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "704dcecf-e1af-4524-a854-c69ab204d176",
+    "name": "Topicblab",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 37
+  },
+  {
+    "id": "7b607953-b5fb-450d-9252-0bedebde99f6",
+    "name": "Zooveo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 99.99,
+    "duration_hours": 59
+  },
+  {
+    "id": "5779334c-5712-44f3-ae53-889c9a94d892",
+    "name": "Miboo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 23
+  },
+  {
+    "id": "34a3f0ee-b45b-43c5-9600-3e591b4a080e",
+    "name": "Skippad",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "eb3cddc6-8f2e-409d-88bf-5c4cb8295207",
+    "name": "Yata",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 6.49,
+    "duration_hours": 69
+  },
+  {
+    "id": "8987a404-9e0d-4e0c-ab46-da30eac55090",
+    "name": "Latz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 3
+  },
+  {
+    "id": "c62bf2d7-ce55-4488-bb91-3641856417f8",
+    "name": "Tagchat",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 299.99,
+    "duration_hours": 91
+  },
+  {
+    "id": "10beea10-b919-4091-9e8e-c55c8d0a5979",
+    "name": "Gigaclub",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "cc1cc1e9-70c2-4127-95f9-8ac171826ac2",
+    "name": "Yombu",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "66b0ee09-bfd5-4827-a99b-0ce4dd11d151",
+    "name": "Oozz",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 99
+  },
+  {
+    "id": "b7d85ff9-f10c-4002-8ce5-f43792849621",
+    "name": "Devify",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "f8521aff-70b3-4b33-aefe-20701d9a3b96",
+    "name": "Flipbug",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "fef3dacc-96b3-4eb7-a58f-215b21c8ac74",
+    "name": "Rhynoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 94
+  },
+  {
+    "id": "867de4b2-c7cd-48bc-957b-0f7b9b45e327",
+    "name": "Edgeify",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 299.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "7b37d58b-9b63-4a66-9700-44dae973cc48",
+    "name": "Aimbu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 42
+  },
+  {
+    "id": "918c10e2-34d1-4863-a800-89dc61e7c7b1",
+    "name": "Kazio",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "d0c72fdf-9caf-4ef9-8015-bdab14c749ed",
+    "name": "Shufflebeat",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.79,
+    "duration_hours": 57
+  },
+  {
+    "id": "5da3b274-3d1b-4792-b51b-b2fda9d89232",
+    "name": "Brainsphere",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 59.99,
+    "duration_hours": 29
+  },
+  {
+    "id": "e1410e6f-7311-4e0e-864c-7e6ddc7f568b",
+    "name": "Innojam",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 13
+  },
+  {
+    "id": "b2814533-ce6f-4c7d-8cee-033a4ceb038f",
+    "name": "Jabberbean",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 69.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "5d3138f3-0bb3-4f4f-b0cc-a2784633370b",
+    "name": "Cogilith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 199.99,
+    "duration_hours": 55
+  },
+  {
+    "id": "bb503111-c0bc-4c89-901b-9e9c2f611e3e",
+    "name": "Oyonder",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.29,
+    "duration_hours": 15
+  },
+  {
+    "id": "ee3852a5-f9de-4aba-9ce1-a596d3315a6e",
+    "name": "Gigabox",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 8.99,
+    "duration_hours": 87
+  },
+  {
+    "id": "311c6cbc-f6e9-458f-b733-b57df49f6180",
+    "name": "Tanoodle",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 14.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "2e520272-9bac-493f-8c8d-9b2c20487fa3",
+    "name": "Vimbo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 199.99,
+    "duration_hours": 83
+  },
+  {
+    "id": "3b2fad55-a84e-4a1e-844a-805edbe89354",
+    "name": "Edgeify",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 32
+  },
+  {
+    "id": "4383bbc0-f6a8-4233-bf14-f30445d15c38",
+    "name": "Linktype",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "7c798591-551c-4b0e-bab1-ce464e1851cc",
+    "name": "Yabox",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 45
+  },
+  {
+    "id": "57b35c6b-661e-4ad4-acf1-761867ab9976",
+    "name": "Blogtag",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "cc385e70-13f1-4e4a-8672-9746c0bb7cc2",
+    "name": "Kazu",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 65
+  },
+  {
+    "id": "57dce210-e442-46bf-95eb-900f3e72fd83",
+    "name": "Meeveo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "1b3b2af0-5c09-42fb-8da2-476adea0cd1f",
+    "name": "Feedfish",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "8b6ab4a4-80e3-4a1e-9a5c-d2bc5cfd45c3",
+    "name": "Mudo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 17
+  },
+  {
+    "id": "d5fca3c6-1efd-4805-a0a9-cbeb25578413",
+    "name": "Tazz",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 95
+  },
+  {
+    "id": "021ff17d-ed06-446d-a34c-77f378dcda0b",
+    "name": "DabZ",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 18.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "7deac926-be06-4d73-954d-f49f6078d8a3",
+    "name": "LiveZ",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "ef58f42e-a231-495f-b353-6ab7f80b1fb4",
+    "name": "Mynte",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "9067b114-e156-40e3-9e42-5aff8853694e",
+    "name": "Dynabox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.19,
+    "duration_hours": 100
+  },
+  {
+    "id": "8c9e62d8-30b9-452a-9628-f73d8ab89973",
+    "name": "Oyondu",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 299.99,
+    "duration_hours": 90
+  },
+  {
+    "id": "b12147e5-c3a4-4c09-a18e-87213e3904cd",
+    "name": "Edgepulse",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 92
+  },
+  {
+    "id": "9d888a49-86b0-40fd-9795-22a47a399b30",
+    "name": "Photobean",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "f84f86f5-de99-4e25-a484-b9f9a51c4882",
+    "name": "Eire",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "a58ab519-9bee-48d8-8703-dfd81a266e38",
+    "name": "Yozio",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 3.29,
+    "duration_hours": 43
+  },
+  {
+    "id": "8443c223-5eb4-4435-bb84-89d2d56bb270",
+    "name": "Aibox",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 3
+  },
+  {
+    "id": "93df2203-4beb-4c01-b5c7-36148b878a3c",
+    "name": "Aibox",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 1.29,
+    "duration_hours": 83
+  },
+  {
+    "id": "7f5d4366-d071-43f5-88ac-4a9fce3cd59b",
+    "name": "Fivespan",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 7.49,
+    "duration_hours": 94
+  },
+  {
+    "id": "1505dcbc-9992-4eb8-ab8a-b118353fc48b",
+    "name": "Jabbertype",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 22.99,
+    "duration_hours": 24
+  },
+  {
+    "id": "96f11ffb-e85c-47f2-aed1-f85d677211b3",
+    "name": "Pixonyx",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "0074672e-8a75-483e-a0f0-4bd3c2db4569",
+    "name": "Skalith",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.99,
+    "duration_hours": 75
+  },
+  {
+    "id": "4ed31a8f-850d-4759-8e18-38afe1cc41f7",
+    "name": "Buzzster",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 14.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "11fc6d98-395a-4196-93ed-e5636c52b371",
+    "name": "Dynazzy",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 4
+  },
+  {
+    "id": "5b4bc30c-d759-437e-99c2-8cb4eefac919",
+    "name": "Bubblemix",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 32
+  },
+  {
+    "id": "446cbbd2-24b9-4225-a2c6-1e2e899a6d03",
+    "name": "Photospace",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "abcd5a32-850d-46cb-8bac-9b68cb979934",
+    "name": "Yodo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 62
+  },
+  {
+    "id": "c8a50d4c-c81c-4503-a9a3-4bcadac5e1be",
+    "name": "Chatterbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 15.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "ccf1a5ae-eb05-4d7d-a650-a14500f73e1d",
+    "name": "Skiba",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 14
+  },
+  {
+    "id": "79164e5a-ca78-4cb1-a8c8-0998d300b0d4",
+    "name": "Jayo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 31
+  },
+  {
+    "id": "2460e9fd-6901-46dc-8211-655eea0e6ed7",
+    "name": "Topiclounge",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "e75e30f5-c384-43ef-888a-5a808434ac14",
+    "name": "Buzzdog",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 19.99,
+    "duration_hours": 88
+  },
+  {
+    "id": "39782acd-d38d-49cb-8989-51ab40b9d37b",
+    "name": "Feedfire",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.89,
+    "duration_hours": 55
+  },
+  {
+    "id": "b9ff09ff-c919-49e3-87f5-e6eb618d8f8c",
+    "name": "Kimia",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "af5d4c59-ab47-43cc-a8ed-a4d54324bc6a",
+    "name": "Mybuzz",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "94e20b51-d710-4222-bb0b-e1f7965faef0",
+    "name": "Devpoint",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 28
+  },
+  {
+    "id": "1530c453-4a05-4146-9a4e-9829960abc72",
+    "name": "Realbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "d73e9735-d9ff-4454-9c59-400886140fe7",
+    "name": "Voomm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 34.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "7aba4c47-ec8b-4fa4-bc4d-67b5699d695f",
+    "name": "Meejo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "4c4e14de-7256-4c8a-84ce-c097512c3ada",
+    "name": "Skimia",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 44
+  },
+  {
+    "id": "504e3be2-b410-4f20-9668-a4198f63a499",
+    "name": "Shuffledrive",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.89,
+    "duration_hours": 34
+  },
+  {
+    "id": "a747afc3-746a-4832-99ab-2af246e6ee6f",
+    "name": "Meetz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 19.99,
+    "duration_hours": 32
+  },
+  {
+    "id": "d1208285-f81b-45a2-8e72-3635a0b5275d",
+    "name": "Kazu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 6
+  },
+  {
+    "id": "6bad5eb7-d97d-4a1b-b783-540af2fa7a99",
+    "name": "Cogilith",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 0.79,
+    "duration_hours": 23
+  },
+  {
+    "id": "a8135b65-3f9c-4852-8c94-018c518f3c1b",
+    "name": "Divape",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 9.99,
+    "duration_hours": 48
+  },
+  {
+    "id": "6a41f156-0eb9-4a04-8452-cf3b3b35844f",
+    "name": "Voomm",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 41
+  },
+  {
+    "id": "2d35ebf6-9877-456a-bfd8-432a5d2403d0",
+    "name": "Brainverse",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 12
+  },
+  {
+    "id": "37ebbe2e-9b12-4715-be30-45e0869ca740",
+    "name": "Bubblemix",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 7.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "69b2393b-7e30-4922-9d37-ffeaab894d3d",
+    "name": "Pixonyx",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "3859e163-e0c7-4e2c-a89a-fa16e90ac1e0",
+    "name": "Yodoo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "d3bb9329-327b-4e47-a73f-0195f368dedc",
+    "name": "Thoughtworks",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 29.99,
+    "duration_hours": 85
+  },
+  {
+    "id": "49a919d4-d295-496b-a57b-a2b45b7c57fd",
+    "name": "Snaptags",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 29
+  },
+  {
+    "id": "c999507e-1f28-4d0b-a524-c644f1e1933e",
+    "name": "Ailane",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 14.99,
+    "duration_hours": 100
+  },
+  {
+    "id": "3022a519-1eb6-4dd9-95ca-4eed7aa1364f",
+    "name": "Podcat",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 39
+  },
+  {
+    "id": "98b2bb39-dfa7-4202-94f1-93cbc3c15321",
+    "name": "Gabcube",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 9.99,
+    "duration_hours": 51
+  },
+  {
+    "id": "4b6abc20-786e-404c-b2c1-23bcb63539ef",
+    "name": "Npath",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 63
+  },
+  {
+    "id": "08881912-7ce9-4304-9684-f37dfcc982f2",
+    "name": "Cogilith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 79
+  },
+  {
+    "id": "a709227c-21d4-4c9a-8ac6-13949b214979",
+    "name": "Fliptune",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.29,
+    "duration_hours": 58
+  },
+  {
+    "id": "1ba72b45-e679-4cd5-aff1-44abf6ac8152",
+    "name": "Layo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 17.99,
+    "duration_hours": 98
+  },
+  {
+    "id": "18d271b0-d24a-4e71-94df-f90868f0a9e4",
+    "name": "Voolith",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 84
+  },
+  {
+    "id": "257e350c-f497-4dc0-baa7-f6950298fb1d",
+    "name": "Linktype",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "4a30b017-3ff1-4184-9e72-34027085f53d",
+    "name": "Oyoba",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 9.99,
+    "duration_hours": 64
+  },
+  {
+    "id": "4365a30d-10cf-40dc-9233-859b6bd95ce0",
+    "name": "Janyx",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.79,
+    "duration_hours": 53
+  },
+  {
+    "id": "a69a6143-e00d-4a30-bd6b-c8e46d9af3ed",
+    "name": "InnoZ",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "7de8b83a-d553-4faa-8daf-cbb4d392defa",
+    "name": "Jetpulse",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 65
+  },
+  {
+    "id": "0c7d47fa-4d43-4a8e-bf40-25028c69dd29",
+    "name": "Realpoint",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 34.99,
+    "duration_hours": 11
+  },
+  {
+    "id": "579a5a40-c6bf-4661-b7fa-3e2e7f45d969",
+    "name": "Eayo",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 71
+  },
+  {
+    "id": "b1e9f2d5-d571-4d0b-9c92-b6de382508d3",
+    "name": "Vinte",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.49,
+    "duration_hours": 55
+  },
+  {
+    "id": "d444178d-8f27-4655-97a3-666cb7809083",
+    "name": "Youspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 3.49,
+    "duration_hours": 9
+  },
+  {
+    "id": "566b4edc-4bd4-4b14-92e0-32e5f97fb854",
+    "name": "Ntags",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 2.69,
+    "duration_hours": 23
+  },
+  {
+    "id": "df6ed1be-4dd4-4f82-867b-a21f35e66918",
+    "name": "Photojam",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 88
+  },
+  {
+    "id": "0146f5d4-c999-42a7-af2e-f4c4edcc4995",
+    "name": "Twitterbridge",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 15.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "c033aa4c-6475-4e97-9153-3c1dfa2d608e",
+    "name": "Kaymbo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 67
+  },
+  {
+    "id": "f8bd9de4-9ea4-4621-9e39-7f3a23ad78e8",
+    "name": "Feedmix",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "01bd93b5-3908-4012-906f-b76d1cb63c54",
+    "name": "Kazu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 38
+  },
+  {
+    "id": "4aaebacd-ed1f-4613-a7fc-a1878246b5e4",
+    "name": "Avamba",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 3.19,
+    "duration_hours": 95
+  },
+  {
+    "id": "2418bcc4-e62d-4cf9-b0f7-5d2762f93fb7",
+    "name": "Skilith",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 76
+  },
+  {
+    "id": "0fd172fc-86e5-473d-b31d-d3ed280727c0",
+    "name": "Fivechat",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 14
+  },
+  {
+    "id": "91304ade-a289-4142-acf3-3ab55a126134",
+    "name": "Twimm",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 16
+  },
+  {
+    "id": "e3299e12-86a5-4437-b600-0119fe85b5af",
+    "name": "Gabtype",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 6.49,
+    "duration_hours": 50
+  },
+  {
+    "id": "7a0cc55e-0774-45c8-af0b-09fac5728844",
+    "name": "Snaptags",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 29
+  },
+  {
+    "id": "663b41a6-d983-41ea-b080-60d139e47296",
+    "name": "Thoughtblab",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 23
+  },
+  {
+    "id": "9d61fed7-bc4b-495c-b313-1998936f9a20",
+    "name": "Trunyx",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 129.99,
+    "duration_hours": 77
+  },
+  {
+    "id": "deaa91a1-6531-4ac5-84cf-2a5a57eda2e3",
+    "name": "Thoughtmix",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 5.49,
+    "duration_hours": 39
+  },
+  {
+    "id": "39d0eadf-3533-4e0b-ab50-7c3eb25e894e",
+    "name": "Eazzy",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.89,
+    "duration_hours": 62
+  },
+  {
+    "id": "7168e6de-a435-4116-a099-41f2f3e4f5d6",
+    "name": "Jayo",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 49.99,
+    "duration_hours": 43
+  },
+  {
+    "id": "8c923fb7-3a8f-4406-8bbf-4eaacfbc389d",
+    "name": "Trilia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 20
+  },
+  {
+    "id": "de13451c-82f0-4bbb-b28b-6282105ab63b",
+    "name": "Yombu",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 22.99,
+    "duration_hours": 47
+  },
+  {
+    "id": "e325e3ba-5588-4fd1-9a56-6e9b54d29756",
+    "name": "Quaxo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 54.99,
+    "duration_hours": 5
+  },
+  {
+    "id": "d437f274-cbe7-476e-8683-0c7fd8224ac4",
+    "name": "Yotz",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 66
+  },
+  {
+    "id": "029c5af5-f461-44e7-b341-a399c566faed",
+    "name": "Voomm",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 199.99,
+    "duration_hours": 86
+  },
+  {
+    "id": "3f085490-9f3f-4e99-83e7-4e059ec27160",
+    "name": "Kayveo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 39.99,
+    "duration_hours": 8
+  },
+  {
+    "id": "73dd30a1-ec35-4ee0-bc17-85e3a1100e0f",
+    "name": "Reallinks",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 4.99,
+    "duration_hours": 1
+  },
+  {
+    "id": "ca6105d8-d9c9-4068-948b-dbd83bf13409",
+    "name": "Trupe",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 89.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "00e9bb9f-7315-4e64-b638-ae4030c71df9",
+    "name": "Bluezoom",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 5.99,
+    "duration_hours": 27
+  },
+  {
+    "id": "025619d4-c662-47e3-a9c7-58ff15e013fa",
+    "name": "Skivee",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 37
+  },
+  {
+    "id": "4016f77f-e0e8-4691-9da1-6a8722e3cff7",
+    "name": "Feedfire",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.99,
+    "duration_hours": 45
+  },
+  {
+    "id": "f8aaad3e-0dc2-4d71-83e9-b417ef389892",
+    "name": "Flipstorm",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.49,
+    "duration_hours": 87
+  },
+  {
+    "id": "8206931d-d09c-4f28-9b04-c8d89f274f16",
+    "name": "Aimbu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 9.99,
+    "duration_hours": 60
+  },
+  {
+    "id": "03c8465f-4c90-4163-988f-aeac498d38b0",
+    "name": "Jazzy",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 35,
+    "duration_hours": 41
+  },
+  {
+    "id": "9bc13d08-73a6-460b-9a19-7d86d26d993e",
+    "name": "BlogXS",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "cc23d4b2-3587-4446-85be-c4a8bc131e95",
+    "name": "Ntags",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 15
+  },
+  {
+    "id": "8091035a-81ca-47e6-ac78-f3bdd1f6889a",
+    "name": "Zoonder",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "4111cd9e-70e2-429c-8a7a-20d8a13a2319",
+    "name": "Livetube",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 24.99,
+    "duration_hours": 21
+  },
+  {
+    "id": "9031f208-f858-486d-9bfc-fb8fd9e959b2",
+    "name": "Livefish",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 0.89,
+    "duration_hours": 66
+  },
+  {
+    "id": "f3800968-d9d1-4ff3-b42a-e84feaebd15e",
+    "name": "Quinu",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 57
+  },
+  {
+    "id": "dd3d16a7-c8a8-457d-96ed-7409397640d6",
+    "name": "Linkbridge",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "ee9b0d30-1cb3-4600-994f-03d2365d8137",
+    "name": "Lazzy",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 29.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "db003c44-0713-4442-bcd6-b4e29e073f0f",
+    "name": "Pixope",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 12.99,
+    "duration_hours": 9
+  },
+  {
+    "id": "00776726-1dd6-4ecb-a0df-37ee34fbafb5",
+    "name": "Npath",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 4.29,
+    "duration_hours": 56
+  },
+  {
+    "id": "23c675e8-7c64-4b2e-a1d7-55e52fe4a69d",
+    "name": "Jazzy",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 14.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "ee0bf761-1f27-463e-b53b-5e1316b8a163",
+    "name": "Edgepulse",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.99,
+    "duration_hours": 78
+  },
+  {
+    "id": "8bd98779-c949-47e1-af3d-0245d9d2f0c1",
+    "name": "Divape",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 29.99,
+    "duration_hours": 19
+  },
+  {
+    "id": "9b892d6a-31cd-4303-9772-c01bdbc64a99",
+    "name": "Centizu",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 4.29,
+    "duration_hours": 33
+  },
+  {
+    "id": "aff1fd3a-4486-4617-a1ab-715ecbbb38f3",
+    "name": "Youopia",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.79,
+    "duration_hours": 92
+  },
+  {
+    "id": "488c2396-70b6-482a-9614-7e40847b0069",
+    "name": "Fatz",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 59.99,
+    "duration_hours": 82
+  },
+  {
+    "id": "ed3d038b-f1f2-4cf4-a9f8-7f1b1eb9fc9f",
+    "name": "Twitterbridge",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 97
+  },
+  {
+    "id": "9c615057-0bda-4d92-8528-468034b75121",
+    "name": "Buzzdog",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 39.99,
+    "duration_hours": 46
+  },
+  {
+    "id": "d5a9cc4b-58b7-4c37-824e-f80edba9027f",
+    "name": "Jabberbean",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 2.79,
+    "duration_hours": 55
+  },
+  {
+    "id": "64562225-2010-4486-875b-8fb73c085e71",
+    "name": "Feedspan",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 24.99,
+    "duration_hours": 30
+  },
+  {
+    "id": "c26da035-3835-423f-941a-7f2cf26ae861",
+    "name": "Brainbox",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 2.49,
+    "duration_hours": 23
+  },
+  {
+    "id": "c7294057-d4da-430d-86d6-3a625400ce14",
+    "name": "Einti",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 19.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "903ad32b-9bc1-4821-ac25-627162860916",
+    "name": "Vimbo",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 3.49,
+    "duration_hours": 2
+  },
+  {
+    "id": "cbbb558c-cb73-4692-8362-045d511d3fe6",
+    "name": "Thoughtblab",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 2.49,
+    "duration_hours": 99
+  },
+  {
+    "id": "d474111b-8a17-4418-b1b0-d5a5b94f8157",
+    "name": "Quimba",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 89.99,
+    "duration_hours": 58
+  },
+  {
+    "id": "d82fda27-a243-4cd5-9591-72cc88e713dc",
+    "name": "Flashspan",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 34.99,
+    "duration_hours": 52
+  },
+  {
+    "id": "7989dfb4-5464-4bf3-8bc3-a56a36bc7f9b",
+    "name": "Meembee",
+    "service_type": "Hotel",
+    "pet_type": "Cat",
+    "price_per_hour": 12.99,
+    "duration_hours": 96
+  },
+  {
+    "id": "d7fdadd1-ee6f-44d0-a4ea-31ba5437e9b0",
+    "name": "Meeveo",
+    "service_type": "Spa",
+    "pet_type": "Dog",
+    "price_per_hour": 89.99,
+    "duration_hours": 49
+  },
+  {
+    "id": "f9f4323e-81c9-4a98-a745-7962467a823e",
+    "name": "Twitterlist",
+    "service_type": "Spa",
+    "pet_type": "Cat",
+    "price_per_hour": 8.99,
+    "duration_hours": 56
+  },
+  {
+    "id": "f339c957-ba88-4f13-b6f9-40889d082235",
+    "name": "Quatz",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 2.29,
+    "duration_hours": 66
+  },
+  {
+    "id": "1b7c6366-dba0-4f2a-acd6-6f2fa9046382",
+    "name": "Layo",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 3.29,
+    "duration_hours": 52
+  },
+  {
+    "id": "62cc43eb-7656-4102-8701-d9981308b7ba",
+    "name": "Zava",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 4.99,
+    "duration_hours": 34
+  },
+  {
+    "id": "aec6281b-5a31-45e0-971d-e19ad4962474",
+    "name": "Browsebug",
+    "service_type": "Hotel",
+    "pet_type": "Dog",
+    "price_per_hour": 6.99,
+    "duration_hours": 44
+  },
+  {
+    "id": "e00fca89-2c11-434d-b169-053e6c7fd739",
+    "name": "Voomm",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 10.99,
+    "duration_hours": 33
+  },
+  {
+    "id": "fcbe9614-6313-4ac8-8dba-6e6fa102e767",
+    "name": "Zooxo",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 49.99,
+    "duration_hours": 70
+  },
+  {
+    "id": "33c9d008-44a2-4669-a538-e4a935da670c",
+    "name": "Gigaclub",
+    "service_type": "Hotel",
+    "pet_type": "All",
+    "price_per_hour": 2.49,
+    "duration_hours": 94
+  },
+  {
+    "id": "baf9bba5-1a21-4d63-8101-6b4b33247c65",
+    "name": "Babbleopia",
+    "service_type": "Spa",
+    "pet_type": "All",
+    "price_per_hour": 8.99,
+    "duration_hours": 56
+  }
+]

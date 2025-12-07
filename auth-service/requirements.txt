@@ -1,0 +1,20 @@
+# Auth Service Dependencies
+# Core framework
+fastapi
+uvicorn[standard]
+
+# Database
+sqlmodel
+sqlalchemy
+asyncpg
+
+# Security & Authentication
+python-jose[cryptography]
+pwdlib
+
+# HTTP Client (for internal service communication)
+httpx
+
+# Configuration
+pydantic-settings
+python-dotenv

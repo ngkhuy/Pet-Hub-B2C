@@ -1,148 +1,411 @@
-**Project Overview**
+# 🐾 Pet-Hub-B2C
 
-- **Repository:** Pet-Hub-B2B — a small microservices example for a pet services platform (authentication, booking, user/profile management) with a Next.js front-end.
+> Nền tảng quản lý dịch vụ thú cưng toàn diện với kiến trúc microservices
 
-**Repository Structure**
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js)](https://nextjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
-- **`auth-service/`**: FastAPI service that handles authentication and token logic. Exposes `/api/auth` and `/api/internal` routers.
-- **`booking-service/`**: FastAPI service for booking-related endpoints (care, hotel). Exposes `/api/booking` routes.
-- **`user-management-service/`**: FastAPI service that manages user profiles and pets. Exposes `/api/ums`, `/api/ums/admin` and `/api/internal` routes. Provides a `/health` endpoint.
-- **`front-end/`**: Next.js application (React) for the web UI.
+## 📋 Mục lục
 
-**Services (high level)**
+- [Tổng quan](#-tổng-quan)
+- [Kiến trúc hệ thống](#-kiến-trúc-hệ-thống)
+- [Công nghệ sử dụng](#-công-nghệ-sử-dụng)
+- [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
+- [Cài đặt và chạy](#-cài-đặt-và-chạy)
+- [Cấu hình môi trường](#-cấu-hình-môi-trường)
+- [API Documentation](#-api-documentation)
+- [Đóng góp](#-đóng-góp)
 
-- **Auth Service** (`auth-service`): FastAPI app (see `auth-service/main.py`). CORS is configured for `http://localhost:3000` by default.
-- **Booking Service** (`booking-service`): FastAPI app (see `booking-service/main.py`).
-- **User Management Service** (`user-management-service`): FastAPI app (see `user-management-service/main.py`). CORS is also configured for `http://localhost:3000`.
+## 🎯 Tổng quan
 
-All Python services use `pydantic` / `pydantic-settings` style `Settings` models (look under `*/core/config.py`) and expect environment variables typically defined in a `.env` file in the service root.
+**Pet-Hub-B2C** là một nền tảng quản lý dịch vụ thú cưng được xây dựng theo kiến trúc microservices, cung cấp các tính năng:
 
-**Quick Start — Python services**
-Prerequisites: Python 3.10+ recommended, and `pip`.
+- 🔐 **Xác thực và phân quyền** - Đăng ký, đăng nhập, quản lý token JWT
+- 👤 **Quản lý người dùng** - Profile người dùng, quản lý thú cưng, xác thực email OTP
+- 📅 **Đặt lịch dịch vụ** - Spa, khách sạn thú cưng
+- 🏥 **Đặt hẹn bác sĩ thú y** - Quản lý lịch hẹn khám chữa bệnh
+- 💻 **Giao diện web hiện đại** - Next.js với React 19 và TailwindCSS
 
-- Create and activate a virtual environment (Windows `cmd`):
+## 🏗️ Kiến trúc hệ thống
 
 ```
+┌─────────────────┐
+│   Front-end     │
+│   (Next.js)     │
+│   Port: 3000    │
+└────────┬────────┘
+         │
+         ├─────────────────────────────────────────┐
+         │                                         │
+         ▼                                         ▼
+┌─────────────────┐                      ┌─────────────────┐
+│  Auth Service   │◄────────────────────►│  User Mgmt      │
+│  Port: 8001     │   Internal S2S       │  Service        │
+└────────┬────────┘                      │  Port: 8002     │
+         │                               └────────┬────────┘
+         │                                        │
+         ▼                                        ▼
+┌─────────────────┐                      ┌─────────────────┐
+│ Booking Service │                      │  VET Service    │
+│  Port: 8003     │                      │  Port: 8004     │
+└─────────────────┘                      └─────────────────┘
+```
+
+### Microservices
+
+| Service | Port | Mô tả | Database |
+|---------|------|-------|----------|
+| **Auth Service** | 8001 | Xác thực, JWT, quản lý token | PostgreSQL |
+| **User Management** | 8002 | Profile, pets, email OTP | PostgreSQL |
+| **Booking Service** | 8003 | Đặt lịch spa, hotel | PostgreSQL |
+| **VET Service** | 8004 | Đặt hẹn bác sĩ thú y | PostgreSQL |
+| **Front-end** | 3000 | Web UI (Next.js) | - |
+
+## 🛠️ Công nghệ sử dụng
+
+### Backend (Python Services)
+- **Framework**: FastAPI
+- **ORM**: SQLModel + SQLAlchemy
+- **Database**: PostgreSQL (asyncpg driver)
+- **Authentication**: JWT (python-jose)
+- **Password Hashing**: pwdlib
+- **Email**: fastapi-mail
+- **HTTP Client**: httpx (internal communication)
+- **Server**: Uvicorn
+
+### Frontend
+- **Framework**: Next.js 16 (React 19)
+- **Styling**: TailwindCSS 4
+- **UI Components**: Radix UI
+- **State Management**: Zustand
+- **Form**: TanStack Form + Zod
+- **Authentication**: NextAuth v5
+- **Animation**: Motion (Framer Motion)
+
+### DevOps
+- **Containerization**: Docker
+- **Database**: PostgreSQL
+- **Environment**: python-dotenv, pydantic-settings
+
+## 📁 Cấu trúc thư mục
+
+```
+Pet-Hub-B2C/
+├── auth-service/              # Service xác thực
+│   ├── core/                  # Security, config, internal client
+│   ├── crud/                  # Database operations
+│   ├── routers/               # API endpoints
+│   ├── dependency/            # Dependencies & middleware
+│   ├── models.py              # Database models
+│   ├── database.py            # Database connection
+│   ├── main.py                # FastAPI app
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
+│
+├── user-management-service/   # Service quản lý user & pets
+│   ├── core/                  # Security, config, email, S2S
+│   ├── crud/                  # Database operations
+│   ├── route/                 # API endpoints
+│   ├── dependency/            # Dependencies & middleware
+│   ├── models.py              # Database models
+│   ├── database.py            # Database connection
+│   ├── main.py                # FastAPI app
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
+│
+├── booking-service/           # Service đặt lịch spa, hotel
+│   ├── core/                  # Security, config
+│   ├── crud/                  # Database operations
+│   ├── routers/               # API endpoints
+│   ├── dependency/            # Dependencies & middleware
+│   ├── models.py              # Database models
+│   ├── database.py            # Database connection
+│   ├── main.py                # FastAPI app
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
+│
+├── vet-service/               # Service đặt hẹn bác sĩ
+│   ├── core/                  # Security, config
+│   ├── crud/                  # Database operations
+│   ├── routers/               # API endpoints
+│   ├── dependency/            # Dependencies & middleware
+│   ├── models.py              # Database models
+│   ├── database.py            # Database connection
+│   ├── main.py                # FastAPI app
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
+│
+├── front-end/                 # Next.js web application
+│   ├── src/
+│   │   ├── app/               # Next.js app router
+│   │   ├── components/        # React components
+│   │   ├── lib/               # Utilities & helpers
+│   │   └── stores/            # Zustand stores
+│   ├── package.json           # Node dependencies
+│   ├── .env                   # Environment variables
+│   └── .env.local             # Local overrides
+│
+└── README.md                  # Documentation
+```
+
+## 🚀 Cài đặt và chạy
+
+### Yêu cầu hệ thống
+
+- **Python**: 3.10+ 
+- **Node.js**: 18+
+- **PostgreSQL**: 14+
+- **Docker** (optional): 20+
+
+### Option 1: Chạy với Docker (Khuyến nghị)
+
+```bash
+# Clone repository
+git clone https://github.com/ngkhuy/Pet-Hub-B2C.git
+cd Pet-Hub-B2C
+
+# TODO: Tạo docker-compose.yml để chạy tất cả services
+# docker-compose up -d
+```
+
+### Option 2: Chạy thủ công
+
+#### Backend Services
+
+**1. Tạo virtual environment (khuyến nghị)**
+
+```bash
 python -m venv .venv
+
+# Windows
 .venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
 ```
 
-- Install dependencies (example). Some services include `requirements.txt` (e.g., `booking-service/requirements.txt`):
+**2. Cài đặt và chạy từng service**
 
-```
+```bash
+# Auth Service
+cd auth-service
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8001
+
+# User Management Service (terminal mới)
+cd user-management-service
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8002
+
+# Booking Service (terminal mới)
 cd booking-service
 pip install -r requirements.txt
-cd ..
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8003
 
-# For services without a requirements file (install common deps):
-pip install fastapi uvicorn python-dotenv pydantic-settings
+# VET Service (terminal mới)
+cd vet-service
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8004
 ```
 
-- Run a service (from that service folder):
+#### Frontend
 
-```
-cd auth-service
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8001
-
-cd ..
-cd user-management-service
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8002
-
-cd ..
-cd booking-service
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8003
-```
-
-Notes:
-
-- Run `python -m uvicorn main:app` from the service directory (so the module path resolves correctly). Adjust ports as needed.
-- If you use Docker, you can containerize each service and set env vars via environment or `--env-file`.
-
-**Front-end (Next.js)**
-
-- Prerequisites: Node.js 18+ recommended.
-- Install and run:
-
-```
+```bash
 cd front-end
 npm install
 npm run dev
 ```
 
-The front-end expects the API services to be available (usually at `http://localhost:<port>`). By default CORS settings in services allow `http://localhost:3000`.
+Truy cập: **http://127.0.0.1:3000**
 
-**Environment variables**
-Create a `.env` file inside each service directory and set the required variables. The `Settings` models (in `*/core/config.py`) define the expected keys — examples below.
+## ⚙️ Cấu hình môi trường
 
-- Auth service (`auth-service/.env`) — required keys (example):
+### Auth Service (`.env`)
 
-```
-DATABASE_URL=postgresql://user:pass@localhost:5432/authdb
-JWT_SECRET_KEY=your_secret_key_here
+```env
+# Database
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/auth_db
+
+# JWT Configuration
+JWT_SECRET_KEY=your-super-secret-key-change-this-in-production
 JWT_ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 REFRESH_TOKEN_EXPIRE_DAYS=7
+
+# Environment
 APP_ENV=development
-USER_SERVICE_INTERNAL_BASE_URL=http://localhost:8002
+
+# Internal Services
+USER_SERVICE_INTERNAL_BASE_URL=http://127.0.0.1:8002
 ```
 
-- Booking service (`booking-service/.env`) — required keys (example):
+### User Management Service (`.env`)
 
-```
-DATABASE_URL=postgresql://user:pass@localhost:5432/bookingdb
-JWT_SECRET_KEY=your_secret_key_here
+```env
+# Database
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/user_db
+
+# JWT Configuration
+JWT_SECRET_KEY=your-super-secret-key-change-this-in-production
 JWT_ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-REFRESH_TOKEN_EXPIRE_DAYS=7
-```
 
-- User Management service (`user-management-service/.env`) — required keys (example):
-
-```
-DATABASE_URL=postgresql://user:pass@localhost:5432/umsdb
-JWT_SECRET_KEY=your_secret_key_here
-JWT_ALGORITHM=HS256
-MAIL_USERNAME=postman@example.com
-MAIL_PASSWORD=supersecret
-MAIL_FROM=no-reply@example.com
+# Email Configuration
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_FROM=noreply@pethub.com
 MAIL_PORT=587
-MAIL_SERVER=smtp.example.com
+MAIL_SERVER=smtp.gmail.com
 MAIL_STARTTLS=True
 MAIL_SSL_TLS=False
-AUTH_SERVICE_INTERNAL_BASE_URL=http://localhost:8001
+
+# Internal Services
+AUTH_SERVICE_INTERNAL_BASE_URL=http://127.0.0.1:8001
+
+# Environment
 APP_ENV=development
 ```
 
-Adjust values to match your environment and the mail provider you use.
+### Booking Service (`.env`)
 
-**API routes (quick reference)**
+```env
+# Database
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/booking_db
 
-- Auth service: root `/` and routers under `/api/auth` and `/api/internal` (see `auth-service/main.py`).
-- Booking service: root `/` and routes under `/api/booking` (see `booking-service/main.py`).
-- User Management service: root `/health`, internal endpoints under `/api/internal`, user endpoints under `/api/ums` and admin endpoints under `/api/ums/admin` (see `user-management-service/main.py`).
-
-**Testing & Development tips**
-
-- Use `curl` or HTTP clients (Postman, HTTPie) to exercise endpoints. Example health check:
-
-```
-curl http://localhost:8002/health
+# JWT Configuration
+JWT_SECRET_KEY=your-super-secret-key-change-this-in-production
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
 ```
 
-- When developing, run each FastAPI service with `--reload` so changes are auto-reloaded.
+### VET Service (`.env`)
 
-**Contributing**
+```env
+# Database
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/vet_db
 
-- Keep changes scoped to a single service per PR.
-- Document any new environment variables and update this README or the service's README.
+# JWT Configuration
+JWT_SECRET_KEY=your-super-secret-key-change-this-in-production
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
+```
 
-**Notes & Next Steps**
+### Front-end (`.env.local`)
 
-- Service READMEs exist (e.g., `auth-service/README.md`, `user-management-service/README.md`) but are currently placeholders — consider adding service-specific setup, endpoints, and DB migration instructions there.
-- Consider adding a top-level `docker-compose.yml` for local orchestration (Postgres + services + front-end) if you want an easy local dev environment.
+```env
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8001
+NEXTAUTH_SECRET=your-nextauth-secret-key
+NEXTAUTH_URL=http://127.0.0.1:3000
+```
 
-**Contact / Maintainers**
+## 📚 API Documentation
 
-- Repository owner: `ngkhuy` (branch `user-management-service` currently checked out).
+Khi các service đang chạy, truy cập Swagger UI:
+
+- **Auth Service**: http://127.0.0.1:8001/docs
+- **User Management**: http://127.0.0.1:8002/docs
+- **Booking Service**: http://127.0.0.1:8003/docs
+- **VET Service**: http://127.0.0.1:8004/docs
+
+### API Endpoints Overview
+
+#### Auth Service (`/api/auth`)
+- `POST /api/auth/register` - Đăng ký tài khoản
+- `POST /api/auth/login` - Đăng nhập
+- `POST /api/auth/refresh` - Refresh token
+- `POST /api/auth/logout` - Đăng xuất
+
+#### User Management (`/api/ums`)
+- `GET /api/ums/me` - Lấy thông tin user
+- `PATCH /api/ums/me` - Cập nhật profile
+- `GET /api/ums/pets` - Danh sách thú cưng
+- `POST /api/ums/pets` - Thêm thú cưng
+- `POST /api/ums/request-otp` - Yêu cầu OTP
+- `POST /api/ums/verify-otp` - Xác thực OTP
+
+#### Booking Service (`/api/booking`)
+- `GET /api/booking/services` - Danh sách dịch vụ
+- `POST /api/booking/care` - Đặt lịch spa
+- `POST /api/booking/hotel` - Đặt phòng hotel
+- `GET /api/booking/my-bookings` - Lịch sử đặt
+
+#### VET Service (`/api/vet`)
+- `GET /api/vet/appointments` - Danh sách lịch hẹn
+- `POST /api/vet/appointments` - Đặt hẹn mới
+- `PATCH /api/vet/appointments/{id}` - Cập nhật lịch hẹn
+
+## 🧪 Testing
+
+```bash
+# Health check
+curl http://127.0.0.1:8002/health
+
+# Test auth service
+curl http://127.0.0.1:8001/
+
+# Test booking service
+curl http://127.0.0.1:8003/
+```
+
+## 🐳 Docker Support
+
+Mỗi service có thể chạy độc lập trong Docker container:
+
+```dockerfile
+# Example Dockerfile cho Python service
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+## 🤝 Đóng góp
+
+1. Fork repository
+2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Tạo Pull Request
+
+### Quy tắc đóng góp
+
+- Mỗi PR chỉ nên thay đổi một service
+- Cập nhật README khi thêm biến môi trường mới
+- Viết docstring cho các function quan trọng
+- Test kỹ trước khi tạo PR
+
+## 📝 License
+
+Dự án này thuộc về **ngkhuy**. Vui lòng liên hệ để biết thêm thông tin về license.
+
+## 👥 Maintainers
+
+- **Repository Owner**: [@ngkhuy](https://github.com/ngkhuy)
+
+## 🔮 Roadmap
+
+- [ ] Thêm Docker Compose cho toàn bộ hệ thống
+- [ ] Implement CI/CD pipeline
+- [ ] Thêm unit tests và integration tests
+- [ ] Thêm monitoring và logging (Prometheus, Grafana)
+- [ ] Implement caching với Redis
+- [ ] Thêm API Gateway (Kong/Nginx)
+- [ ] Implement message queue (RabbitMQ/Kafka)
+- [ ] Mobile app (React Native)
+
+## 📞 Liên hệ
+
+Nếu có câu hỏi hoặc góp ý, vui lòng tạo issue hoặc liên hệ qua email.
 
 ---
+
+**Made with ❤️ for pet lovers**
