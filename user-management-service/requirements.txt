@@ -1,4 +1,4 @@
-# Booking Service Dependencies
+# User Management Service Dependencies
 # Core framework
 fastapi
 uvicorn[standard]
@@ -11,8 +11,12 @@ asyncpg
 # Security & Authentication
 python-jose[cryptography]
 
-# Timezone handling
-pytz
+# HTTP Client (for internal service communication)
+httpx
+
+# Email
+fastapi-mail
+email-validator
 
 # Configuration
 pydantic-settings
