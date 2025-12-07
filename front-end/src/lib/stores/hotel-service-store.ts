@@ -1,6 +1,6 @@
 import {
   BookingConfirmDialogType,
-  FilterBookingServiceType,
+  FilterServiceType,
   PriceRangeValues,
 } from "@/app/(marketing)/service/(booking)/_common/types";
 import { ServiceType } from "@/lib/types/booking";
@@ -19,7 +19,7 @@ type HotelServiceStoreActions = {
   setBookingConfirmDialog: (dialog: BookingConfirmDialogType | null) => void;
   setBookingService: (param: string | ServiceType | null) => void;
 
-  filterServices: (filter: FilterBookingServiceType) => void;
+  filterServices: (filter: FilterServiceType) => void;
 };
 
 type HotelServiceStoreStates = {
@@ -76,7 +76,7 @@ const store = create<HotelServiceStoreStates>()(
           return { bookingService: param };
         }),
 
-      filterServices: (filter: FilterBookingServiceType) =>
+      filterServices: (filter: FilterServiceType) =>
         set((state) => ({
           filteredServices: state.services
             .filter((service) => {
