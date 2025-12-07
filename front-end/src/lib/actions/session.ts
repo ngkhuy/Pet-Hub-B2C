@@ -6,6 +6,8 @@ const jwtAlgorithm = process.env.JWT_ALGORITHM || "HS256";
 const encodedKey = new TextEncoder().encode(jwtSecretKey);
 
 export async function decrypt(jwtToken: string) {
+  if (!jwtVerify) return null
+
   try {
     const { payload } = await jwtVerify(jwtToken, encodedKey, {
       algorithms: [jwtAlgorithm],

@@ -10,7 +10,7 @@ app.include_router(vet_router.router, prefix="/api/vet", tags=["VET Booking"])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:3000"], 
+    allow_origins=["http://127.0.0.1:3000", "http://localhost:3000"],
     
     allow_credentials=True, 
     
