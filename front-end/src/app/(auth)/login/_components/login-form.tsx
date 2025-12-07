@@ -41,6 +41,7 @@ export default function LoginForm({ redirectPath }: Props) {
 
   async function onSubmit(data: LoginFormType) {
     try {
+      console.log(data);
       const response = await authApi.login(data);
       // Set access token into cookie from Next Server
       const nextServerResponse = await authApi.slideSession(

@@ -12,6 +12,7 @@ import {
   UserRoleSchema,
   UserSchema,
 } from "@/lib/schemas/user-management";
+import { BooleanType } from "@/lib/types/common";
 import z from "zod";
 
 // enum types*******************************
@@ -27,6 +28,7 @@ export type UserType = z.infer<typeof UserSchema>;
 export type PetType = z.infer<typeof PetSchema>;
 
 // labels************************************
+
 export const PetSpeciesLabels: Record<PetSpecies, string> = {
   dog: "Chó",
   cat: "Mèo",
@@ -53,14 +55,14 @@ export const UserRolesLabels: Record<UserRole, string> = {
   user: "Người dùng",
 };
 
-export type BooleanType = {
-  true: string;
-  false: string;
-};
-
 export const UserActiveStatusLabels: Record<keyof BooleanType, string> = {
   true: "Hoạt động",
   false: "Không hoạt động",
+};
+
+export const UserConfirmLabels: Record<keyof BooleanType, string> = {
+  true: "Đã xác minh",
+  false: "Chưa xác minh",
 };
 
 export const UserLabelsWithActions: Record<

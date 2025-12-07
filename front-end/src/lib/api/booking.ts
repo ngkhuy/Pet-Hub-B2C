@@ -9,7 +9,10 @@ import {
   SingleHotelBookingFormType,
   SingleSpaBookingFormType,
 } from "@/lib/types/booking";
-import { ServicePaginationQueryType } from "@/lib/schemas/common";
+import {
+  AdminFilterBookingQueryType,
+  ServicePaginationQueryType,
+} from "@/lib/schemas/common";
 import { get } from "http";
 import { ca } from "date-fns/locale";
 
@@ -146,9 +149,9 @@ export const bookingApi = {
     );
   },
 
-  adminGetSpaBookings() {
+  adminGetSpaBookings(query?: AdminFilterBookingQueryType) {
     return apiFetch(
-      bookingApiUrl.CARE_ADMIN_FILTER(),
+      bookingApiUrl.CARE_ADMIN_FILTER(query),
       {
         method: "GET",
       },
@@ -156,9 +159,9 @@ export const bookingApi = {
     );
   },
 
-  adminGetHotelBookings() {
+  adminGetHotelBookings(query?: AdminFilterBookingQueryType) {
     return apiFetch(
-      bookingApiUrl.HOTEL_ADMIN_FILTER(),
+      bookingApiUrl.HOTEL_ADMIN_FILTER(query),
       {
         method: "GET",
       },

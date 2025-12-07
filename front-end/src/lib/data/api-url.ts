@@ -7,6 +7,7 @@ import {
   UsmPaginationQueryType,
 } from "@/lib/schemas/common";
 import { UserRole } from "@/lib/types/user-management";
+import { VetBookingQueryType } from "@/lib/types/vet";
 import { buildQueryURL } from "@/lib/utils/query";
 
 // auth endpoints
@@ -107,5 +108,34 @@ export const userManagementApiUrl = {
         active_status: activeStatus,
       }
     );
+  },
+};
+
+// veterinary endpoints
+const vetBookingBasePath = `${envConfig.VET_API}/bookings`;
+const vetServiceBasePath = `${envConfig.VET_API}/services`;
+export const vetApiUrl = {
+  // booking endpoints for normal users
+  VET_BOOKINGS(searchQuery?: VetBookingQueryType) {
+    return buildQueryURL(`${vetBookingBasePath}`, searchQuery);
+  },
+  VET_BOOKING_BY_ID(bookingId: string) {
+    return `${vetBookingBasePath}/${bookingId}`;
+  },
+  VET_BOOKING_CANCEL(bookingId: string) {
+    return `${vetBookingBasePath}/${bookingId}/cancel`;
+  },
+  // booking endpoints for admin
+  VET_ADMIN_BOOKING_BY_ID(bookingId: string) {
+    return `${vetBookingBasePath}/admin/${bookingId}`;
+  },
+  // service endpoints for normal users
+  VET_SERVICES() {
+    return `${vetServiceBasePath}`;
+  },
+  // service endpoints for admin
+  VET_ADMIN_SERVICE: `${vetServiceBasePath}/admin`,
+  VET_ADMIN_SERVICE_BY_ID(serviceId: string) {
+    return `${vetServiceBasePath}/admin/${serviceId}`;
   },
 };

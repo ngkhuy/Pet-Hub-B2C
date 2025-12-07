@@ -13,6 +13,8 @@ import {
   MdStore,
 } from "react-icons/md";
 import { AiOutlineSchedule } from "react-icons/ai";
+import { PawPrint } from "lucide-react";
+import { LuCalendar1, LuStethoscope } from "react-icons/lu";
 
 export type WebUrlType = {
   path: string;
@@ -32,11 +34,13 @@ export type ClientUrlKeyType =
   | "account_pets"
   | "account_settings"
   | "account_booking_history"
+  | "account_vet_booking_history"
   | "account_reviews"
   | "forgot_password"
   | "reset_password"
   | "spa_service"
   | "hotel_service"
+  | "vet_service"
   | "contact"
   | "about"
   | "admin";
@@ -90,6 +94,12 @@ export const clientUrl: { [key in ClientUrlKeyType]: WebUrlType } = {
     IconName: MdCalendarMonth,
     title: "Lịch sử đặt chỗ",
   },
+  account_vet_booking_history: {
+    path: "/account/vet-booking-history",
+    description: "Trang quản lý đặt lịch khám cho thú cưng",
+    IconName: PawPrint,
+    title: "Lịch sử đặt lịch khám thú y",
+  },
   account_reviews: {
     path: "/account/reviews",
     description: "Trang quản lý thú cưng",
@@ -127,6 +137,12 @@ export const clientUrl: { [key in ClientUrlKeyType]: WebUrlType } = {
     description: "Nghỉ dưỡng an toàn, tiện nghi.",
     IconName: null,
   },
+  vet_service: {
+    path: "/service/vet",
+    title: "Phòng khám thú y",
+    description: "Dịch vụ chăm sóc sức khỏe cho thú cưng.",
+    IconName: null,
+  },
   contact: {
     path: "/contact",
     title: "Liên hệ",
@@ -152,7 +168,9 @@ export type AdminUrlKeyType =
   | "userManagement"
   | "serviceManagement"
   | "shopInfoManagement"
-  | "bookingManagement";
+  | "bookingManagement"
+  | "vetServiceManagement"
+  | "vetBookingManagement";
 
 export const adminUrl: { [key in AdminUrlKeyType]: WebUrlType } = {
   dashboard: {
@@ -178,6 +196,18 @@ export const adminUrl: { [key in AdminUrlKeyType]: WebUrlType } = {
     path: "/admin/booking-management",
     IconName: AiOutlineSchedule,
     description: "Quản lý các dịch vụ đã được đặt",
+  },
+  vetServiceManagement: {
+    title: "Dịch vụ",
+    path: "/admin/vet/service-management",
+    IconName: LuStethoscope,
+    description: "Quản lý các dịch vụ thú y",
+  },
+  vetBookingManagement: {
+    title: "Lịch hẹn ",
+    path: "/admin/vet/booking-management",
+    IconName: LuCalendar1,
+    description: "Quản lý các dịch vụ thú y",
   },
   shopInfoManagement: {
     title: "Thông tin shop",

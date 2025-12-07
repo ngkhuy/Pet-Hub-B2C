@@ -12,9 +12,9 @@ import {
 export const UserRoleSchema = z.enum(["admin", "user"]);
 
 export const OtpPurposeSchema = z.enum([
-  "reset_password",
-  "phone_verification",
-  "email_verification",
+  "reset-password",
+  "phone-verification",
+  "email-verification",
 ]);
 
 export const PetSpeciesSchema = z.enum(["dog", "cat"]);

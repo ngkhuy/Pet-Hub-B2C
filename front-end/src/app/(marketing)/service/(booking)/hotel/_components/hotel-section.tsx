@@ -25,7 +25,6 @@ export function HotelSection() {
       setIsFetching(true);
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 5000));
         const data = await bookingApi.getHotelServices();
 
         if (!isMounted) return;

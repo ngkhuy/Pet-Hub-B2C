@@ -69,7 +69,6 @@ export function ConfirmDialogSubmit<T extends FieldValues>({
     setOpen(false);
     setBusyBoth(true);
     try {
-      await new Promise((r) => setTimeout(r, 30000));
       const values = form.getValues();
       await onConfirm(values);
     } finally {

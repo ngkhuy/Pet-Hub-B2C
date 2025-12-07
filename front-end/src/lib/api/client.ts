@@ -140,7 +140,12 @@ async function handleHTTPError(res: Response): Promise<never> {
 
   const parsedErr = errorResponseSchema.safeParse(err);
   if (parsedErr.success) {
-    throw new HttpError(res.status, parsedErr.data.detail);
+    const errorData = parsedErr.data.detail;
+    if (typeof errorData === "string") {
+      throw new HttpError(res.status, errorData);
+    } else {
+      throw new HttpError(res.status, JSON.stringify(errorData));
+    }
   }
   const parsedMsg = MessageResponseSchema.safeParse(err);
   if (parsedMsg.success) {

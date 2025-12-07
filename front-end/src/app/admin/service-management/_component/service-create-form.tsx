@@ -69,7 +69,7 @@ export function ServiceCreateForm() {
 
   return (
     <>
-      <ScrollArea className="max-h-[45vh] sm:max-w-[500px] px-10 py-">
+      <ScrollArea className="max-h-[45vh] sm:max-w-[500px] px-10 ">
         <form
           noValidate
           id="form-create-service"

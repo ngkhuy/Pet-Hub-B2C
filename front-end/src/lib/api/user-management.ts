@@ -3,6 +3,7 @@ import { apiFetch } from "@/lib/api/client";
 import { userManagementApiUrl } from "@/lib/data/api-url";
 import { PetUsmPaginationQueryType } from "@/lib/schemas/common";
 import {
+  OtpPurposeSchema,
   PetSchema,
   UserResponseSchema,
   UserSchema,
@@ -11,6 +12,7 @@ import {
   EditAccountInfoFormType,
   PetAddFormType,
   PetEditFormType,
+  ResetPasswordBodyType,
   UserRole,
 } from "@/lib/types/user-management";
 
@@ -30,8 +32,8 @@ export const userManagementApi = {
       date_of_birth: result.day_of_birth,
     };
   },
-  async updateAccountInfo(data: EditAccountInfoFormType) {
-    return await apiFetch(
+  updateAccountInfo(data: EditAccountInfoFormType) {
+    return apiFetch(
       userManagementApiUrl.ME,
       {
         method: "PATCH",
@@ -42,6 +44,39 @@ export const userManagementApi = {
         }),
       },
       UserResponseSchema
+    );
+  },
+
+  sendOtpToResetPassword(email: string) {
+    return apiFetch(
+      userManagementApiUrl.SEND_OTP_RESET_PASSWORD,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          purpose: OtpPurposeSchema.enum["email-verification"],
+          email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+      z.undefined(),
+      false
+    );
+  },
+
+  resetPassword(data: ResetPasswordBodyType) {
+    return apiFetch(
+      userManagementApiUrl.VERIFY_OTP_RESET_PASSWORD,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+      z.undefined(),
+      false
     );
   },
 
@@ -72,8 +107,12 @@ export const userManagementApi = {
       {
         method: "PATCH",
         body: JSON.stringify({
-          ...petData,
+          name: petData.name || null,
+          species: petData.species,
+          breed: petData.breed || null,
+          // birth: new Date(petData.birth).toISOString(), // backend handle date parsing error
           birth: undefined,
+          note: petData.note || null,
         }),
       },
       PetSchema

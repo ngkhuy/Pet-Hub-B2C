@@ -3,7 +3,7 @@
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toastSuccess } from "@/lib/utils/toast";
+import { toastError, toastSuccess } from "@/lib/utils/toast";
 import { useRouter } from "next/navigation";
 import { LoadingOverlay } from "@/components/ui/custom/loading-overlay";
 import { FieldGroup } from "@/components/ui/field";
@@ -11,6 +11,9 @@ import { InputField } from "@/components/ui/custom/input-field";
 import { Button } from "@/components/ui/button";
 import { clientUrl } from "@/lib/data/web-url";
 import { emailField } from "@/lib/schemas/common";
+import { authApi } from "@/lib/api/auth";
+import { userManagementApi } from "@/lib/api/user-management";
+import { HttpError } from "@/lib/api/client";
 
 const ForgotPasswordFormSchema = z.object({
   email: emailField(),
@@ -26,9 +29,17 @@ export default function ForgotPasswordForm() {
   });
 
   async function onSubmit(data: ForgotPasswordFormType) {
-    await new Promise((r) => setTimeout(r, 2000));
-    toastSuccess("OTP đã được gửi tới email!");
-    router.push(`${clientUrl.reset_password.path}?email=${data.email}`);
+    try {
+      await userManagementApi.sendOtpToResetPassword(data.email);
+      toastSuccess("OTP đã được gửi tới email!");
+      router.push(`${clientUrl.reset_password.path}?email=${data.email}`);
+    } catch (error) {
+      const err = error as HttpError;
+      toastError("Gửi OTP thất bại.", {
+        description: err.detail,
+      });
+      console.error("Failed to send OTP to reset password:", err);
+    }
   }
 
   return (

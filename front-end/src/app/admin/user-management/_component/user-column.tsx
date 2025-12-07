@@ -5,8 +5,8 @@ import { DataTableColumnHeader } from "@/components/ui/table/data-table-column-h
 import { ColumnDef } from "@tanstack/react-table";
 
 import {
-  BooleanType,
   UserActiveStatusLabels,
+  UserConfirmLabels,
   UserLabels,
   UserRole,
   UserRolesLabels,
@@ -14,6 +14,7 @@ import {
 } from "@/lib/types/user-management";
 import { BooleanBadge } from "@/components/ui/custom/boolean-badge";
 import { UserActionsCell } from "@/app/admin/user-management/_component/user-action-cell";
+import { User } from "lucide-react";
 
 export const userColumns: ColumnDef<UserType>[] = [
   {
@@ -77,8 +78,8 @@ export const userColumns: ColumnDef<UserType>[] = [
     cell: ({ row }) => (
       <BooleanBadge
         value={row.getValue("is_email_verified") as boolean}
-        trueLabel="Đã xác minh"
-        falseLabel="Chưa xác minh"
+        trueLabel={UserConfirmLabels["true"]}
+        falseLabel={UserConfirmLabels["false"]}
         variant="success"
       />
     ),
@@ -96,8 +97,8 @@ export const userColumns: ColumnDef<UserType>[] = [
     cell: ({ row }) => (
       <BooleanBadge
         value={row.getValue("is_phone_verified") as boolean}
-        trueLabel="Đã xác minh"
-        falseLabel="Chưa xác minh"
+        trueLabel={UserConfirmLabels["true"]}
+        falseLabel={UserConfirmLabels["false"]}
         variant="success"
       />
     ),
@@ -105,7 +106,6 @@ export const userColumns: ColumnDef<UserType>[] = [
   {
     accessorKey: "active_status",
     cell: ({ row }) => {
-      const status = row.getValue("active_status") as BooleanType;
       return (
         <BooleanBadge
           value={row.getValue("active_status") as boolean}

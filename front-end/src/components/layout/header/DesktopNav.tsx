@@ -23,7 +23,7 @@ export function DesktopNav() {
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
-
+  const isEvenServiceItem = NAV.service.items.length % 2 === 0;
   return (
     <NavigationMenu>
       <NavigationMenuList className="gap-3">
@@ -42,7 +42,12 @@ export function DesktopNav() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>{NAV.service.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[520px] gap-3 p-4 sm:grid-cols-2">
+            <ul
+              className={cn(
+                "grid w-[520px] gap-3 p-4",
+                isEvenServiceItem ? "grid-cols-2" : "md:grid-cols-3"
+              )}
+            >
               {NAV.service.items.map(({ path, title, description }) => (
                 <li key={path}>
                   <NavigationMenuLink asChild>

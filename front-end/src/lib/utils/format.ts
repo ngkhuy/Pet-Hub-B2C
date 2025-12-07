@@ -1,3 +1,5 @@
+import { addHours, format } from "date-fns";
+
 export const formatVNPhone = (raw: string) => {
   const digits = raw.replace(/\D/g, "");
   if (digits.length <= 3) return digits;
@@ -5,22 +7,23 @@ export const formatVNPhone = (raw: string) => {
   return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
 };
 
+/**
+ * Format date for display (e.g. "10:00 20/10/2023")
+ * Input: UTC Date/String/Number
+ * Output: VN Local Time String
+ */
 export const formatDate = (params: {
-  date: Date | string | undefined;
+  date: Date | string | number | undefined | null;
   type?: "date" | "datetime" | "short-datetime";
+  isVietNamTime?: boolean;
 }): string => {
-  const { date, type = "datetime" } = params;
+  const { date, type = "datetime", isVietNamTime = true } = params;
+
   if (!date) return "Chưa cập nhật";
 
   let d: Date;
-  const fomatter =
-    type === "datetime"
-      ? dateTimeFormatter
-      : type === "short-datetime"
-      ? shortDateTimeFormatter
-      : dateFormatter;
 
-  if (typeof date === "string") {
+  if (typeof date === "string" || typeof date === "number") {
     d = new Date(date);
     if (Number.isNaN(d.getTime())) return "Chưa cập nhật";
   } else if (date instanceof Date) {
@@ -29,28 +32,53 @@ export const formatDate = (params: {
     return "Chưa cập nhật";
   }
 
-  return fomatter.format(d);
+  const vietnamDate = isVietNamTime ? addHours(d, 7) : d;
+
+  const formatString =
+    type === "datetime"
+      ? "HH:mm:ss dd/MM/yyyy"
+      : type === "short-datetime"
+      ? "HH:mm dd/MM/yyyy"
+      : "dd/MM/yyyy";
+
+  return format(vietnamDate, formatString);
 };
 
-const shortDateTimeFormatter = new Intl.DateTimeFormat("vi-VN", {
-  dateStyle: "short",
-  timeStyle: "short",
-});
+export function getNameAbbreviation(name: string | null | undefined) {
+  if (!name) return "U";
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(-2)
+    .map((p) => p[0]?.toUpperCase())
+    .join("");
+}
 
-const dateTimeFormatter = new Intl.DateTimeFormat("vi-VN", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-});
+/**
+ * Format date for input datetime-local (yyyy-MM-ddThh:mm)
+ * Input: UTC Date/String/Number
+ * Output: VN Local Time String for Input
+ * Example: UTC 03:00 -> VN 10:00 -> "2023-10-10T10:00"
+ */
+export const formatDateForInput = (
+  date: Date | string | number = new Date()
+) => {
+  const d = new Date(date);
+  const vietnamDate = addHours(d, 7);
+  // format from date-fns uses local system timezone by default
+  return format(vietnamDate, "yyyy-MM-dd'T'HH:mm");
+};
 
-const dateFormatter = new Intl.DateTimeFormat("vi-VN", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-});
+/**
+ * Format date for backend (UTC ISO string)
+ * Input: Local Time Date/String (from input)
+ * Output: UTC ISO String
+ * Example: Input "2023-10-10T10:00" (VN) -> UTC "2023-10-10T03:00:00.000Z"
+ */
+export const formatDateForBackend = (date: Date | string) => {
+  const d = new Date(date);
+  return d.toISOString();
+};
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",

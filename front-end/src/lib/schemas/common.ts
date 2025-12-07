@@ -4,6 +4,15 @@ import z from "zod";
 export const isoDatetime = z.coerce.date();
 
 // Common field schemas
+export const futureDateField = (label: string, message: string) =>
+  z.string().refine(
+    (date) => {
+      const parsedDate = new Date(date);
+      return !isNaN(parsedDate.getTime()) && parsedDate > new Date();
+    },
+    { message: `${label} phải là một ngày trong tương lai` }
+  );
+
 export const stringField = ({
   label,
   min = 8,
@@ -36,7 +45,7 @@ export const birthDateField = (options?: {
     ? options.message
     : `Ngày sinh không hợp lệ, phải từ ${minAge} tuổi trở lên`;
 
-  const schema = z.iso.date("Ngày sinh không hợp lệ").refine(
+  const schema = z.string({ message: "Ngày sinh không hợp lệ" }).refine(
     (date) => {
       if (optional && date === "") return true;
 
@@ -60,18 +69,8 @@ export const birthDateField = (options?: {
   return schema;
 };
 
-export function getNameAbbreviation(name: string | null | undefined) {
-  if (!name) return "U";
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(-2)
-    .map((p) => p[0]?.toUpperCase())
-    .join("");
-}
-
 export const utcDateField = () =>
-  z.coerce.date().transform((d) => d.toUTCString());
+  z.string().transform((date) => new Date(date).toISOString());
 //Commont search query schema
 
 // booking query schema
@@ -115,7 +114,11 @@ export type PetUsmPaginationQueryType = z.infer<typeof PetUsmPaginationQuery>;
 
 // Common response schemas
 export const errorResponseSchema = z.object({
-  detail: z.string(),
+  detail: z
+    .string()
+    .or(z.record(z.any(), z.any()))
+    .or(z.array(z.any()))
+    .optional(),
 });
 export type ErrorResponse = z.infer<typeof errorResponseSchema>;
 

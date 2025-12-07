@@ -17,9 +17,10 @@ import {
 } from "@/lib/schemas/user-management";
 import { useOwnPetStore } from "@/lib/stores/own-pet-store";
 import { PetEditFormType, PetSpeciesLabels } from "@/lib/types/user-management";
+import { formatDate, formatDateForInput } from "@/lib/utils/format";
 import { toastError, toastSuccess } from "@/lib/utils/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const formId = "form-edit-pet";
@@ -31,7 +32,7 @@ export default function OwnPetEditForm() {
   const form = useForm<PetEditFormType>({
     resolver: zodResolver(PetEditFormSchema),
     defaultValues: {
-      birth: petEdit ? petEdit.birth.toISOString().split("T")[0] : "",
+      birth: petEdit ? petEdit.birth.toISOString().split("T")[0] : undefined,
       breed: petEdit?.breed ?? "",
       name: petEdit?.name ?? "",
       note: petEdit?.note ?? "",
@@ -40,29 +41,23 @@ export default function OwnPetEditForm() {
   });
   const { handleSubmit, formState, control } = form;
 
-  const resetForm = useCallback(() => {
-    form.setValue("name", petEdit?.name ?? "");
-    form.setValue("species", petEdit?.species ?? "cat");
-    form.setValue("breed", petEdit?.breed ?? "");
-    form.setValue(
-      "birth",
-      petEdit ? petEdit.birth.toISOString().split("T")[0] : ""
-    );
-    form.setValue("note", petEdit?.note ?? "");
-  }, [form]);
-
-  // useEffect(() => {
-  //   resetForm();
-  // }, [resetForm]);
+  useEffect(() => {
+    if (petEdit) {
+      form.reset();
+    }
+  }, [petEdit]);
 
   async function onSubmit(data: PetEditFormType) {
     try {
       // check has changed
+      if (!petEdit) return;
+
       if (
-        petEdit?.name === data.name &&
-        petEdit?.species === data.species &&
+        petEdit.name === data.name &&
+        petEdit.species === data.species &&
         petEdit?.breed === data.breed &&
-        petEdit?.birth.toISOString().split("T")[0] === data.birth &&
+        formatDate({ date: petEdit.birth, type: "date" }) ===
+          formatDate({ date: new Date(data.birth), type: "date" }) &&
         petEdit?.note === data.note
       ) {
         toastError("Không có thay đổi nào được thực hiện.");
@@ -156,7 +151,7 @@ export default function OwnPetEditForm() {
       </ScrollArea>
       <div className="p-4 border-t flex justify-between px-12">
         <div>
-          <Button variant="link" onClick={resetForm}>
+          <Button variant="link" onClick={() => form.reset()}>
             Đặt lại
           </Button>
         </div>

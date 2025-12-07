@@ -78,13 +78,17 @@ export const authApi = {
 
   async logout() {
     "use client";
-    await apiFetch(
-      "/api/auth/logout",
-      { method: "POST" },
-      MessageResponseSchema,
-      false
-    );
-    await apiFetch(authApiUrl.LOGOUT, { method: "POST" }, z.undefined());
+    try {
+      await apiFetch(
+        "/api/auth/logout",
+        { method: "POST" },
+        MessageResponseSchema,
+        false
+      );
+    } catch (error) {
+    } finally {
+      await apiFetch(authApiUrl.LOGOUT, { method: "POST" }, z.undefined());
+    }
   },
 
   async refreshToken() {

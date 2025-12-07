@@ -23,7 +23,8 @@ const navSidebarLinks = {
       clientUrl.account_profile,
       clientUrl.account_pets,
       clientUrl.account_booking_history,
-      clientUrl.account_reviews,
+
+      clientUrl.account_vet_booking_history,
     ],
   },
   accountSetting: clientUrl.account_settings,
