@@ -1,0 +1,93 @@
+version: '3.9'
+
+x-common-env: &common-env
+  JWT_SECRET_KEY: secretkey_jwt123
+  JWT_ALGORITHM: HS256
+
+services:
+  frontend:
+    build: ./front-end
+    ports:
+      - "127.0.0.1:3000:3000"
+    command: npx next dev -p 3000 -H 0.0.0.0
+    environment:
+      <<: *common-env
+      # Application settings
+      NEXT_PUBLIC_URL: https://petcare.com
+      NEXT_PUBLIC_BRAND_NAME: PetHub
+      NEXT_PUBLIC_DESCRIPTION: PetCare helps you book vet appointments, pet spa, hotel, and adoption services with ease.
+      # Public API endpoints
+      NEXT_PUBLIC_AUTH_API: http://auth-service:8000/api/auth
+      NEXT_PUBLIC_USER_MANAGEMENT_API: http://user-management-service:8000/api/ums
+      NEXT_PUBLIC_BOOKING_API: http://booking-service:8000/api/booking
+      NEXT_PUBLIC_VET_API: http://vet-serivce:8000/api/vet
+      # Social media links
+      NEXT_PUBLIC_FACEBOOK_URL: https://www.facebook.com/petcare
+      NEXT_PUBLIC_INSTAGRAM_URL: https://www.instagram.com/petcare
+      NEXT_PUBLIC_GITHUB_URL: https://github.com/petcare 
+      # Contact information
+      NEXT_PUBLIC_SUPPORT_EMAIL: support@petcare.vn
+      NEXT_PUBLIC_PHONE_NUMBER: +84123456789
+      NODE_ENV: development
+    depends_on:
+      - auth-service
+    networks:
+      - app-network
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql+asyncpg://postgres:GyNiA90mn1TBObig@db.yccuyuaqigkxosbpdcul.supabase.co:5432/postgres
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      REFRESH_TOKEN_EXPIRE_DAYS: 7
+      APP_ENV: development
+      USER_SERVICE_INTERNAL_BASE_URL: http://user-management-service:8000
+    depends_on:
+      - user-management-service
+    networks:
+      - app-network
+
+  user-management-service:
+    build: ./user-management-service
+    ports:
+      - "127.0.0.1:8001:8000"
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql+asyncpg://postgres:WFQrRR17F5P49yoa@db.anwgeinbyeadpgnhszpr.supabase.co:5432/postgres
+      MAIL_USERNAME: ngkhuy.159@gmail.com
+      MAIL_PASSWORD: ykly uuhs urir etzl
+      MAIL_FROM: ngkhuy.159@gmail.com
+      MAIL_PORT: 587
+      MAIL_SERVER: smtp.gmail.com
+      MAIL_STARTTLS: True
+      MAIL_SSL_TLS: False
+      AUTH_SERVICE_INTERNAL_BASE_URL: http://auth-service:8000
+    networks:
+      - app-network
+
+  booking-service:
+    build: ./booking-service
+    ports:
+      - "127.0.0.1:8002:8000"
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql+asyncpg://postgres:4M48EmdrfNYcXjiO@db.jxiugzjubbucxudvvbvo.supabase.co:5432/postgres
+    networks:
+      - app-network
+
+  vet-service:
+    build: ./vet-service
+    ports:
+      - "127.0.0.1:8003:8000"
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql+asyncpg://postgres:0OVhARsIjlFteIli@db.gwyspssvgudotjvdojpl.supabase.co:5432/postgres
+    networks:
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge
