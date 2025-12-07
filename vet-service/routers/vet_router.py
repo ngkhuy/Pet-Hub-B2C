@@ -94,7 +94,7 @@ async def update_booking(
         raise HTTPException(status_code=404, detail="Booking not found")
     return updated
 
-@router.patch("/booking/{booking_id}/cancel", response_model=BookingResponse)
+@router.patch("/bookings/{booking_id}/cancel", response_model=BookingResponse)
 async def cancel_booking(
     booking_id: UUID,
     db: AsyncSession = Depends(get_session),
