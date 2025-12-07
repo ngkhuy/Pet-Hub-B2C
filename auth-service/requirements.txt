@@ -10,7 +10,7 @@ asyncpg
 
 # Security & Authentication
 python-jose[cryptography]
-pwdlib
+pwdlib[argon2]
 
 # HTTP Client (for internal service communication)
 httpx

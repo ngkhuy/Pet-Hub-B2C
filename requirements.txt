@@ -18,4 +18,4 @@ pydantic
 fastapi-mail
 pytz
 email-validator
-pwdlib
+pwdlib[argon2]
