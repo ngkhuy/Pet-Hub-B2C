@@ -18,3 +18,5 @@ httpx
 # Configuration
 pydantic-settings
 python-dotenv
+
+python-multipart

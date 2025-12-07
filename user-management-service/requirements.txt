@@ -21,3 +21,5 @@ email-validator
 # Configuration
 pydantic-settings
 python-dotenv
+
+pwdlib[argon2]
