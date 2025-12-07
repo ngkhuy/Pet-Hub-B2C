@@ -31,7 +31,21 @@ export const vetApi = {
       vetApiUrl.VET_ADMIN_SERVICE,
       {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: data.name,
+          description: data.description,
+          base_price: parseFloat(data.base_price),
+          duration_minutes: parseInt(data.duration_minutes),
+          follow_up_interval_days: data.follow_up_interval_days
+            ? parseInt(data.follow_up_interval_days)
+            : null,
+          doses_required: data.doses_required
+            ? parseInt(data.doses_required)
+            : null,
+          dose_interval_days: data.dose_interval_days
+            ? parseInt(data.dose_interval_days)
+            : null,
+        }),
       },
       VetServiceResponseSchema
     );
@@ -42,13 +56,21 @@ export const vetApi = {
       {
         method: "PATCH",
         body: JSON.stringify({
-          name: data.name ?? null,
-          description: data.description ?? null,
-          base_price: data.base_price ?? null,
-          duration_minutes: data.duration_minutes ?? null,
-          follow_up_interval_days: data.follow_up_interval_days ?? null,
-          doses_required: data.doses_required ?? null,
-          dose_interval_days: data.doses_interval_days ?? null,
+          name: data.name || null,
+          description: data.description,
+          base_price: data.base_price ? parseFloat(data.base_price) : null,
+          duration_minutes: data.duration_minutes
+            ? parseInt(data.duration_minutes)
+            : null,
+          follow_up_interval_days: data.follow_up_interval_days
+            ? parseInt(data.follow_up_interval_days)
+            : null,
+          doses_required: data.doses_required
+            ? parseInt(data.doses_required)
+            : null,
+          dose_interval_days: data.dose_interval_days
+            ? parseInt(data.dose_interval_days)
+            : null,
         }),
       },
       VetServiceResponseSchema

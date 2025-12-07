@@ -1,26 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-import { VetBookingCard } from "@/app/account/vet-booking-history/_components/vet-booking-card";
-import { BookingSkeleton } from "@/app/account/vet-booking-history/_components/vet-booking-skeleton";
+import { DataTable } from "@/app/admin/vet/_components/data-table";
+import { bookingColumns } from "@/app/admin/vet/booking-management/_components/booking-data-table";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  BookingCreateDialog,
+  BookingDeleteAlertDialog,
+  BookingEditDialog,
+} from "@/app/admin/vet/booking-management/_components/booking-dialog";
 import { Input } from "@/components/ui/input";
-import { HttpError } from "@/lib/api/client";
-import { vetApi } from "@/lib/api/vet";
-import { useVetBookingHistoryStore } from "@/lib/stores/vet-booking-history-store";
-import { useVetServiceStore } from "@/lib/stores/vet-service-store";
-import { toastError } from "@/lib/utils/toast";
-import { Filter, PawPrint } from "lucide-react";
-import { BookingStatusType } from "@/lib/types/booking";
-import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -30,10 +17,25 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { vetApi } from "@/lib/api/vet";
+import { BookingStatusSchema } from "@/lib/schemas/booking";
+import { VetBookingLabels } from "@/lib/schemas/vet";
+import { useVetBookingManagementStore } from "@/lib/stores/vet-booking-management-store";
+import { BookingStatusLabels, BookingStatusType } from "@/lib/types/booking";
+import { Filter } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const PAGE_SIZE = 10;
 
-export function VetBookingHistorySection() {
+export default function VetBookingManagementPage() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -45,17 +47,10 @@ export function VetBookingHistorySection() {
     | BookingStatusType
     | "All";
 
-  // ====== store ======
-  const filteredBookingsStore =
-    useVetBookingHistoryStore.use.filteredBookings();
-  const { setBookings, setFilteredBookings } =
-    useVetBookingHistoryStore.use.actions();
+  const bookings = useVetBookingManagementStore.use.bookings();
+  const { setBookings } = useVetBookingManagementStore.use.actions();
 
-  const { setServices, setFilteredServices } = useVetServiceStore.use.actions();
-
-  const [isFetching, setIsFetching] = useState(true);
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [searchText, setSearchText] = useState(""); // filter id + pet_id
+  const [searchUserId, setSearchUserId] = useState("");
 
   // ====== helper update URL ======
   const updateSearchParams = (next: Record<string, string | null>) => {
@@ -69,73 +64,9 @@ export function VetBookingHistorySection() {
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  // ====== fetch BE mỗi khi query URL đổi ======
-  useEffect(() => {
-    async function fetchData() {
-      setIsFetching(true);
-      try {
-        const bookingsRes = await vetApi.getBookings({
-          skip: page > 0 ? (page - 1) * PAGE_SIZE : 0,
-          limit: PAGE_SIZE,
-          start_date: startDate || undefined,
-          end_date: endDate || undefined,
-          status: statusParam === "All" ? undefined : statusParam,
-        });
-
-        setBookings(bookingsRes);
-        setFilteredBookings(bookingsRes);
-
-        const servicesRes = await vetApi.getServices();
-        setServices(servicesRes);
-        setFilteredServices(servicesRes);
-      } catch (error) {
-        const err = error as HttpError;
-        toastError("Đã có lỗi xảy ra khi tải dữ liệu", {
-          description: err.detail,
-        });
-        console.error(error);
-      } finally {
-        setIsFetching(false);
-      }
-    }
-
-    fetchData();
-  }, [
-    page,
-    startDate,
-    endDate,
-    statusParam,
-    setBookings,
-    setFilteredBookings,
-    setServices,
-    setFilteredServices,
-  ]);
-
-  // ====== filter FE: id + pet_id + status, sort created_at/updated_at ======
-  const clientFilteredAndSorted = useMemo(() => {
-    const term = searchText.trim().toLowerCase();
-
-    const base =
-      term === ""
-        ? filteredBookingsStore
-        : filteredBookingsStore.filter((b) => {
-            return (
-              b.id.toLowerCase().includes(term) ||
-              b.pet_id.toLowerCase().includes(term)
-            );
-          });
-
-    return [...base].sort((a, b) => {
-      // sort theo created_at, có thể đổi thành updated_at tùy UI
-      const diff =
-        new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
-      return sortOrder === "asc" ? diff : -diff;
-    });
-  }, [filteredBookingsStore, searchText, sortOrder]);
-
   // ====== pagination logic ======
   const isFirstPage = page <= 1;
-  const isLastPage = clientFilteredAndSorted.length < PAGE_SIZE;
+  const isLastPage = bookings.length < PAGE_SIZE;
 
   const prevPages: number[] = [];
   for (let i = 3; i >= 1; i--) {
@@ -155,8 +86,24 @@ export function VetBookingHistorySection() {
     updateSearchParams({ page: String(newPage) });
   }
 
+  useEffect(() => {
+    async function fetchbookingss() {
+      const bookingsRes = await vetApi.getBookings({
+        skip: page > 0 ? (page - 1) * PAGE_SIZE : 0,
+        limit: PAGE_SIZE,
+        start_date: startDate || undefined,
+        end_date: endDate || undefined,
+        status: statusParam === "All" ? undefined : statusParam,
+        user_id: searchUserId || undefined,
+      });
+
+      setBookings(bookingsRes);
+    }
+    fetchbookingss();
+  }, [page, startDate, endDate, statusParam, searchUserId, setBookings]);
+
   return (
-    <div className="space-y-4">
+    <div className="container mx-auto py-10">
       {/* Bộ lọc / sắp xếp */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
@@ -164,9 +111,9 @@ export function VetBookingHistorySection() {
           <span className="text-sm font-medium text-muted-foreground">
             Sắp xếp & lọc booking
           </span>
-          <span className="text-sm font-medium text-muted-foreground">
+          {/* <span className="text-sm font-medium text-muted-foreground">
             ({clientFilteredAndSorted.length} kết quả)
-          </span>
+          </span> */}
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -200,9 +147,9 @@ export function VetBookingHistorySection() {
           {/* search id / pet_id */}
           <Input
             className="h-9 w-[220px]"
-            placeholder="Tìm theo mã booking / pet_id"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Tìm theo mã người dùng"
+            value={searchUserId}
+            onChange={(e) => setSearchUserId(e.target.value)}
           />
 
           {/* filter status -> đổi URL -> refetch BE */}
@@ -220,51 +167,28 @@ export function VetBookingHistorySection() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Tất cả</SelectItem>
-              <SelectItem value="Pending">Pending</SelectItem>
-              <SelectItem value="Confirmed">Confirmed</SelectItem>
-              <SelectItem value="Cancelled">Cancelled</SelectItem>
-              <SelectItem value="Completed">Completed</SelectItem>
-              <SelectItem value="No_show">No show</SelectItem>
-            </SelectContent>
-          </Select>
-
-          {/* sort created_at / updated_at */}
-          <Select
-            value={sortOrder}
-            onValueChange={(value) => setSortOrder(value as "asc" | "desc")}
-          >
-            <SelectTrigger className="h-9 w-[120px]">
-              <SelectValue placeholder="Sắp xếp" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="asc">Ngày tạo ↑</SelectItem>
-              <SelectItem value="desc">Ngày tạo ↓</SelectItem>
+              {BookingStatusSchema.options.map((status) => (
+                <SelectItem key={status} value={status}>
+                  {BookingStatusLabels[status]}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
       </div>
 
-      {/* TODO: thêm 2 date input start_date / end_date, onChange gọi updateSearchParams */}
-
-      {/* Grid card booking */}
-      <div className="grid grid-cols-1 gap-4  xl:grid-cols-3 ">
-        {isFetching &&
-          Array.from({ length: PAGE_SIZE }).map((_, index) => (
-            <BookingSkeleton key={index} />
-          ))}
-
-        {!isFetching && clientFilteredAndSorted.length === 0 && (
-          <div className="col-span-full flex flex-col items-center justify-center gap-1 rounded-2xl border border-dashed py-10 text-center text-sm text-muted-foreground">
-            <PawPrint className="mb-1 h-6 w-6" />
-            Hiện chưa có lịch khám thú y nào.
-          </div>
-        )}
-
-        {clientFilteredAndSorted.map((item, index) => (
-          <VetBookingCard key={item.id} index={index} booking={item} />
-        ))}
+      <div className="mt-4">
+        <BookingCreateDialog />
       </div>
+      <DataTable
+        headerLabels={VetBookingLabels}
+        columns={bookingColumns}
+        data={bookings}
+      />
+      <BookingEditDialog />
+      <BookingDeleteAlertDialog />
 
+      {/* Pagination */}
       <Pagination>
         <PaginationContent>
           {/* Previous */}

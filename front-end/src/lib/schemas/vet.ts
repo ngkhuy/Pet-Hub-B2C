@@ -2,6 +2,10 @@ import { BookingStatusSchema } from "@/lib/schemas/booking";
 import { utcDateField } from "@/lib/schemas/common";
 import { PetSchema } from "@/lib/schemas/user-management";
 import {
+  VetBookingResponseType,
+  VetServiceResponseType,
+} from "@/lib/types/vet";
+import {
   createEndTimeSchema,
   createStartTimeSchema,
 } from "@/lib/utils/time-schema-utils";
@@ -12,7 +16,30 @@ import { z } from "zod";
 // enum schemas****************************************
 
 // object schemas****************************************
+export const VetServiceLabels: Record<keyof VetServiceResponseType, string> = {
+  id: "ID",
+  name: "Tên dịch vụ",
+  description: "Mô tả",
+  base_price: "Giá cơ bản",
+  duration_minutes: "Thời lượng (phút)",
+  follow_up_interval_days: "Khoảng thời gian tái khám (ngày)",
+  doses_required: "Số liều cần thiết",
+  dose_interval_days: "Khoảng cách giữa các liều (ngày)",
+};
 
+export const VetBookingLabels: Record<keyof VetBookingResponseType, string> = {
+  id: "ID",
+  user_id: "Khách hàng",
+  pet_id: "Thú cưng",
+  start_time: "Thời gian bắt đầu",
+  end_time: "Thời gian kết thúc",
+  symptoms: "Triệu chứng",
+  notes: "Ghi chú",
+  status: "Trạng thái",
+  created_at: "Ngày tạo",
+  updated_at: "Ngày cập nhật",
+  services: "Dịch vụ",
+};
 // form schemas****************************************
 
 // body schemas****************************************
@@ -80,29 +107,38 @@ export const VetServiceCreateBodySchema = z.object({
     .max(1000, { message: "Mô tả tối đa 1000 ký tự" })
     .optional(),
   base_price: z
-    .number({ error: "Giá cơ bản phải là một số" })
-    .nonnegative({ message: "Giá cơ bản phải lớn hơn hoặc bằng 0" }),
-  duration_minutes: z
-    .number({ error: "Thời lượng phải là một số" })
-    .positive({ message: "Thời lượng phải lớn hơn 0" }),
-  follow_up_interval_days: z
-    .number({ error: "Khoảng thời gian tái khám phải là một số" })
-    .nonnegative({
-      message: "Khoảng thời gian tái khám phải lớn hơn hoặc bằng 0",
+    .string()
+    .refine((v) => isNaN(Number(v)) === false, {
+      message: "Giá cơ bản phải là một số",
     })
-    .nullable()
+    .refine((v) => Number(v) >= 0, {
+      message: "Giá cơ bản phải lớn hơn hoặc bằng 0",
+    }),
+  duration_minutes: z
+    .string()
+    .refine((v) => isNaN(Number(v)) === false, {
+      message: "Giá cơ bản phải là một số",
+    })
+    .refine((v) => Number(v) >= 0, {
+      message: "Giá cơ bản phải lớn hơn hoặc bằng 0",
+    }),
+  follow_up_interval_days: z
+    .string()
+    .refine((v) => isNaN(Number(v)) === false, {
+      message: "Giá cơ bản phải là một số",
+    })
     .optional(),
   doses_required: z
-    .number({ error: "Số liều cần thiết phải là một số" })
-    .nonnegative({ message: "Số liều cần thiết phải lớn hơn hoặc bằng 0" })
-    .nullable()
-    .optional(),
-  doses_interval_days: z
-    .number({ error: "Khoảng cách giữa các liều phải là một số" })
-    .nonnegative({
-      message: "Khoảng cách giữa các liều phải lớn hơn hoặc bằng 0",
+    .string()
+    .refine((v) => isNaN(Number(v)) === false, {
+      message: "Giá cơ bản phải là một số",
     })
-    .nullable()
+    .optional(),
+  dose_interval_days: z
+    .string()
+    .refine((v) => isNaN(Number(v)) === false, {
+      message: "Giá cơ bản phải là một số",
+    })
     .optional(),
 });
 

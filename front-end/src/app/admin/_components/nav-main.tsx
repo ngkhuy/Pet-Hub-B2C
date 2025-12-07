@@ -1,6 +1,7 @@
 import SidebarNav from "@/app/admin/_components/sidebar-node";
 import { SidebarGroup } from "@/components/ui/sidebar";
 import { adminUrl, WebUrlType } from "@/lib/data/web-url";
+import { LuPawPrint } from "react-icons/lu";
 
 const navMain: WebUrlType[] = [
   adminUrl.dashboard,
@@ -8,7 +9,7 @@ const navMain: WebUrlType[] = [
   adminUrl.serviceManagement,
   adminUrl.bookingManagement,
   {
-    IconName: null,
+    IconName: LuPawPrint,
     title: "Thú y",
     description: "Quản lý dịch vụ thú y",
     path: "/admin/vet",

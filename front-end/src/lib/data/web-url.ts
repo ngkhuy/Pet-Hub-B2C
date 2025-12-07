@@ -198,13 +198,13 @@ export const adminUrl: { [key in AdminUrlKeyType]: WebUrlType } = {
     description: "Quản lý các dịch vụ đã được đặt",
   },
   vetServiceManagement: {
-    title: "dịch vụ thú y",
+    title: "Dịch vụ",
     path: "/admin/vet/service-management",
     IconName: LuStethoscope,
     description: "Quản lý các dịch vụ thú y",
   },
   vetBookingManagement: {
-    title: "Lịch hẹn thú y",
+    title: "Lịch hẹn ",
     path: "/admin/vet/booking-management",
     IconName: LuCalendar1,
     description: "Quản lý các dịch vụ thú y",
