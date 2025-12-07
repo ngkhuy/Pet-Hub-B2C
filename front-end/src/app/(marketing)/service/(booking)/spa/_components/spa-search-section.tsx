@@ -5,7 +5,7 @@ import {
   PriceRangeSchema,
 } from "@/app/(marketing)/service/(booking)/_common/schemas";
 import {
-  FilterBookingServiceType,
+  FilterServiceType,
   PetTypeWithNoneLabels,
   PriceRangeLabels,
 } from "@/app/(marketing)/service/(booking)/_common/types";
@@ -30,7 +30,7 @@ import { useEffect, useState } from "react";
 export function SpaSearchSection() {
   const filteredServices = useSpaServiceStore.use.filteredServices();
   const { filterServices } = useSpaServiceStore.use.actions();
-  const [search, setSearch] = useState<FilterBookingServiceType>({
+  const [search, setSearch] = useState<FilterServiceType>({
     keyword: "",
     petType: "None",
     priceRange: "all",
@@ -79,7 +79,7 @@ export function SpaSearchSection() {
               onValueChange={(v) =>
                 setSearch((state) => ({
                   ...state,
-                  petType: v as FilterBookingServiceType["petType"],
+                  petType: v as FilterServiceType["petType"],
                 }))
               }
             >
@@ -104,7 +104,7 @@ export function SpaSearchSection() {
               onValueChange={(v) =>
                 setSearch((state) => ({
                   ...state,
-                  priceRange: v as FilterBookingServiceType["priceRange"],
+                  priceRange: v as FilterServiceType["priceRange"],
                 }))
               }
             >
