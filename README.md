@@ -1,6 +1,6 @@
 # 🐾 PetHub - Comprehensive Pet Care Platform
 
-**[🌐 Visit our Website](https://pethub-mu.vercel.app/)**
+**[🌐 Visit our Website](https://pethub-mu.vercel.app)**
 
 PetHub is a modern, microservices-based application designed to streamline pet care services including veterinary appointments, spa bookings, pet hotels, and adoption services. Built with scalability and performance in mind, it leverages **Next.js** for a dynamic frontend and **FastAPI** for robust backend services.
 
