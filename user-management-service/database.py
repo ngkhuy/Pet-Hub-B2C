@@ -7,8 +7,13 @@ from core.config import settings
 SUPABASE_URL = settings.DATABASE_URL
 
 # create async engine
-async_engine = create_async_engine(url=SUPABASE_URL, echo=True, pool_recycle=300,
-    pool_pre_ping=True)
+async_engine = create_async_engine(url=SUPABASE_URL, echo=False,
+    # pool_recycle=300,
+    # pool_pre_ping=True,
+    # pool_size=20,          # số connection tối đa
+    # max_overflow=50
+    connect_args={"statement_cache_size": 0}
+    )
         
 # get session 
 async def get_session():
