@@ -63,9 +63,9 @@ export function UserActionsCell({ row }: UserActionsCellProps) {
 
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem asChild>
+          {/* <DropdownMenuItem asChild>
             <Link href={`/admin/users/${user.id}`}>Xem thông tin chi tiết</Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
 
           <DropdownMenuItem onClick={handleClickTrigger}>
             Cập nhật user

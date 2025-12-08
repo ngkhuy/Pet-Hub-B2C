@@ -26,9 +26,7 @@ export function UserCreateDialog() {
       <DialogContent className="max-h-[90vh]  p-0 rounded-xl ">
         <DialogHeader className="px-6 py-4 border-b">
           <DialogTitle>Tạo người dùng mới</DialogTitle>
-          <DialogDescription>
-            Điền thông tin người dùng. Kéo xuống nếu màn hình nhỏ.
-          </DialogDescription>
+          <DialogDescription>Điền thông tin người dùng.</DialogDescription>
         </DialogHeader>
         {/* form */}
         <UserCreateForm />
