@@ -18,16 +18,9 @@ from core.config import settings
 SUPABASE_URL = settings.DATABASE_URL
 
 # create async engine
-async_engine = create_async_engine(url=SUPABASE_URL, echo=True)
-# async_engine = create_async_engine(
-#     url=SUPABASE_URL,
-#     echo=True,
-#     connect_args={
-#         "statement_cache_size": 0,  # BẮT BUỘC với pooler
-#         "ssl": False,
-#         "server_settings": {"sslmode": "require"}
-#     }
-# )
+async_engine = create_async_engine(url=SUPABASE_URL, echo=False,
+    connect_args={"statement_cache_size": 0}
+    )
         
 # get session 
 async def get_session():
