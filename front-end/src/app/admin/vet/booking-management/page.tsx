@@ -145,12 +145,12 @@ export default function VetBookingManagementPage() {
           </div>
 
           {/* search id / pet_id */}
-          <Input
+          {/* <Input
             className="h-9 w-[220px]"
             placeholder="Tìm theo mã người dùng"
             value={searchUserId}
             onChange={(e) => setSearchUserId(e.target.value)}
-          />
+          /> */}
 
           {/* filter status -> đổi URL -> refetch BE */}
           <Select
@@ -177,9 +177,9 @@ export default function VetBookingManagementPage() {
         </div>
       </div>
 
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <BookingCreateDialog />
-      </div>
+      </div> */}
       <DataTable
         headerLabels={VetBookingLabels}
         columns={bookingColumns}

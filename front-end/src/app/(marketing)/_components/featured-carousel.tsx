@@ -10,36 +10,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import petvetImage from "@/assets/images/pet-vet.jpg";
-import cutFur from "@/assets/images/cut-fur.jpg";
-
-const items = [
-  {
-    title: "Tắm & Cắt tỉa",
-    rating: "5.0 (212)",
-    img: cutFur.src,
-  },
-  {
-    title: "Khám tổng quát",
-    rating: "4.9 (189)",
-    img: petvetImage.src,
-  },
-  {
-    title: "Trông giữ cuối tuần",
-    rating: "4.8 (155)",
-    img: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1200",
-  },
-  {
-    title: "Tiêm phòng định kỳ",
-    rating: "5.0 (301)",
-    img: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?q=80&w=1200",
-  },
-  {
-    title: "Tiêm phòng định kỳ",
-    rating: "5.0 (301)",
-    img: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?q=80&w=1200",
-  },
-];
+import { mockItems } from "@/app/(marketing)/_common/mock";
+import Link from "next/link";
 
 export function FeaturedCarousel() {
   return (
@@ -50,7 +22,7 @@ export function FeaturedCarousel() {
 
       <Carousel opts={{ align: "start", loop: true }} className="w-full">
         <CarouselContent>
-          {items.map((it, i) => (
+          {mockItems.map((it, i) => (
             <CarouselItem
               key={i}
               className="basis-[80%] sm:basis-[50%] md:basis-[33%] lg:basis-[25%]"
@@ -73,7 +45,9 @@ export function FeaturedCarousel() {
                     variant="outline"
                     className="mt-2 border-primary text-primary hover:bg-primary/10"
                   >
-                    Xem chi tiết
+                    <Link href={it.path} className=" w-full">
+                      Xem chi tiết
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>

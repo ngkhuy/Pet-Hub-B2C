@@ -3,11 +3,20 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { LuStethoscope, LuShowerHead, LuHotel } from "react-icons/lu";
+import { clientUrl } from "@/lib/data/web-url";
 
 const cats = [
-  { title: "Khám bệnh", icon: LuStethoscope, href: "/services/vet" },
-  { title: "Spa & Grooming", icon: LuShowerHead, href: "/services/spa" },
-  { title: "Khách sạn thú cưng", icon: LuHotel, href: "/services/hotel" },
+  { title: "Khám bệnh", icon: LuStethoscope, href: clientUrl.vet_service.path },
+  {
+    title: "Spa & Grooming",
+    icon: LuShowerHead,
+    href: clientUrl.spa_service.path,
+  },
+  {
+    title: "Khách sạn thú cưng",
+    icon: LuHotel,
+    href: clientUrl.hotel_service.path,
+  },
 ];
 
 export function CategoryGrid() {

@@ -21,9 +21,7 @@ export function UserEditDialog() {
       <DialogContent className="max-h-[80vh] sm p-0 rounded-xl">
         <DialogHeader className="px-6 py-4 border-b">
           <DialogTitle>Cập nhật người dùng</DialogTitle>
-          <DialogDescription>
-            Chỉnh sửa thông tin cá nhân. Kéo xuống nếu màn hình nhỏ.
-          </DialogDescription>
+          <DialogDescription>Chỉnh sửa thông tin cá nhân.</DialogDescription>
         </DialogHeader>
         {/* form */}
         <UserEditForm />

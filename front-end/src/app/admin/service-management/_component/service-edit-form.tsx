@@ -64,10 +64,10 @@ export function ServiceEditForm() {
       }
       const result = await bookingApi.editService(serviceEdit?.id ?? "", data);
       editService(result);
-      toastSuccess("Thêm dịch vụ thành công!");
+      toastSuccess("Cập nhật dịch vụ thành công!");
       setIsOpenEdit(false);
     } catch (err) {
-      toastError("Cập nhat dịch vụ thất bại. Vui lòng thử lại.");
+      toastError("Cập nhật dịch vụ thất bại. Vui lòng thử lại.");
       console.error(err);
     }
   }
