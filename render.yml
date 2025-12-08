@@ -3,10 +3,10 @@ services:
   - type: web
     name: petcare-frontend
     env: node
-    repo: https://github.com/ngkhuy/Pet-Hub-B2C  # Thay bằng repo thật
     rootDir: ./front-end
     dockerfilePath: ./Dockerfile  # Giả sử mỗi thư mục có Dockerfile
     plan: free  # Hoặc starter nếu cần
+    region: singapore
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
@@ -45,10 +45,10 @@ services:
   - type: web
     name: petcare-auth
     env: python  # Giả sử backend dùng Python/FastAPI
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
     rootDir: ./auth-service
     dockerfilePath: ./Dockerfile
     plan: free
+    region: singapore
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
@@ -71,10 +71,10 @@ services:
   - type: web
     name: petcare-user-management
     env: python
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
     rootDir: ./user-management-service
     dockerfilePath: ./Dockerfile
     plan: free
+    region: singapore
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
@@ -105,10 +105,10 @@ services:
   - type: web
     name: petcare-booking
     env: python
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
     rootDir: ./booking-service
     dockerfilePath: ./Dockerfile
     plan: free
+    region: singapore
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
@@ -123,10 +123,10 @@ services:
   - type: web
     name: petcare-vet
     env: python
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
     rootDir: ./vet-service
     dockerfilePath: ./Dockerfile
     plan: free
+    region: singapore
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
