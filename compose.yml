@@ -9,7 +9,8 @@ services:
     build: ./front-end
     ports:
       - "127.0.0.1:3000:3000"
-    command: npx next dev -H 0.0.0.0
+    # command: npx next dev -H 0.0.0.0
+    command: /bin/sh -c "npm run build && npx next start -H 0.0.0.0"
     environment:
       <<: *common-env
       # Application settings
@@ -28,7 +29,7 @@ services:
       # Contact information
       NEXT_PUBLIC_SUPPORT_EMAIL: support@petcare.vn
       NEXT_PUBLIC_PHONE_NUMBER: +84123456789
-      NODE_ENV: development
+      NODE_ENV: production
     depends_on:
       - auth-service
     networks:
