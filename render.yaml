@@ -1,25 +1,27 @@
 services:
-  # Frontend (Web Service)
+  # Frontend (Docker Web Service)
   - type: web
     name: petcare-frontend
-    env: node
+    env: docker  # Chuyển sang Docker runtime
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C  # Repo GitHub của bạn
     rootDir: ./front-end
-    dockerfilePath: ./Dockerfile  # Giả sử mỗi thư mục có Dockerfile
-    plan: free  # Hoặc starter nếu cần
-    region: singapore
+    dockerfilePath: ./Dockerfile  # Giữ nguyên, Render sẽ build từ đây
+    dockerContext: ./  # Context cho build (thư mục front-end)
+    plan: free
+    region: singapore  # Cùng region cho private network
     envVars:
       - key: JWT_SECRET_KEY
         value: secretkey_jwt123
       - key: JWT_ALGORITHM
         value: HS256
       - key: NEXT_PUBLIC_URL
-        value: https://petcare-frontend.onrender.com  # Thay bằng domain thật sau khi deploy
+        value: https://petcare-frontend.onrender.com  # Update sau deploy nếu domain khác
       - key: NEXT_PUBLIC_BRAND_NAME
         value: PetHub
       - key: NEXT_PUBLIC_DESCRIPTION
         value: PetCare helps you book vet appointments, pet spa, hotel, and adoption services with ease.
       - key: NEXT_PUBLIC_AUTH_API
-        value: https://petcare-auth.onrender.com/api/auth  # Thay bằng URL backend thật
+        value: https://petcare-auth.onrender.com/api/auth  # Internal/public URL
       - key: NEXT_PUBLIC_USER_MANAGEMENT_API
         value: https://petcare-user-management.onrender.com/api/ums
       - key: NEXT_PUBLIC_BOOKING_API
@@ -38,15 +40,16 @@ services:
         value: +84123456789
       - key: NODE_ENV
         value: production
-    buildCommand: npm install && npm run build
-    startCommand: npx next start -H 0.0.0.0
+    # Không cần buildCommand/startCommand nữa, dùng CMD từ Dockerfile
 
-  # Auth Service (Web Service)
+  # Auth Service (Docker Web Service)
   - type: web
     name: petcare-auth
-    env: python  # Giả sử backend dùng Python/FastAPI
+    env: docker
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C
     rootDir: ./auth-service
     dockerfilePath: ./Dockerfile
+    dockerContext: ./ 
     plan: free
     region: singapore
     envVars:
@@ -55,7 +58,7 @@ services:
       - key: JWT_ALGORITHM
         value: HS256
       - key: DATABASE_URL
-        value: postgresql+asyncpg://postgres.anwgeinbyeadpgnhszpr:WFQrRR17F5P49yoa@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres  # Giữ nguyên, hoặc dùng Render Postgres nếu muốn
+        value: postgresql+asyncpg://postgres.yccuyuaqigkxosbpdcul:GyNiA90mn1TBObig@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres  # Từ compose.yml
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: 30
       - key: REFRESH_TOKEN_EXPIRE_DAYS
@@ -63,16 +66,16 @@ services:
       - key: APP_ENV
         value: production  # Đổi từ development
       - key: USER_SERVICE_INTERNAL_BASE_URL
-        value: https://petcare-user-management.onrender.com  # Internal URL qua private network
-    buildCommand: pip install -r requirements.txt  # Giả sử có requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT  # Thay bằng command thật của FastAPI
+        value: https://petcare-user-management.onrender.com  # Internal call
 
-  # User Management Service (Web Service)
+  # User Management Service
   - type: web
     name: petcare-user-management
-    env: python
+    env: docker
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C
     rootDir: ./user-management-service
     dockerfilePath: ./Dockerfile
+    dockerContext: ./ 
     plan: free
     region: singapore
     envVars:
@@ -98,15 +101,15 @@ services:
         value: False
       - key: AUTH_SERVICE_INTERNAL_BASE_URL
         value: https://petcare-auth.onrender.com
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
 
-  # Booking Service (Web Service)
+  # Booking Service
   - type: web
     name: petcare-booking
-    env: python
+    env: docker
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C
     rootDir: ./booking-service
     dockerfilePath: ./Dockerfile
+    dockerContext: ./ 
     plan: free
     region: singapore
     envVars:
@@ -116,15 +119,15 @@ services:
         value: HS256
       - key: DATABASE_URL
         value: postgresql+asyncpg://postgres.jxiugzjubbucxudvvbvo:SHVCxbOXIsmzLyLS@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
 
-  # Vet Service (Web Service)
+  # Vet Service
   - type: web
     name: petcare-vet
-    env: python
+    env: docker
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C
     rootDir: ./vet-service
     dockerfilePath: ./Dockerfile
+    dockerContext: ./ 
     plan: free
     region: singapore
     envVars:
@@ -134,5 +137,3 @@ services:
         value: HS256
       - key: DATABASE_URL
         value: postgresql+asyncpg://postgres.gwyspssvgudotjvdojpl:w18imz72gitJSK6W@aws-1-ap-south-1.pooler.supabase.com:6543/postgres
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
