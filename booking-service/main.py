@@ -12,7 +12,7 @@ app.include_router(hotel_router.router, prefix="/api/booking")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:3000", "http://localhost:3000"],
+    allow_origins=["http://127.0.0.1:3000", "http://localhost:3000", "https://pethub-mu.vercel.app"],
     
     allow_credentials=True, 
     
