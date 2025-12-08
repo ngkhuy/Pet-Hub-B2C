@@ -3,7 +3,7 @@ services:
   - type: web
     name: petcare-frontend
     env: node
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO  # Thay bằng repo thật
+    repo: https://github.com/ngkhuy/Pet-Hub-B2C  # Thay bằng repo thật
     rootDir: ./front-end
     dockerfilePath: ./Dockerfile  # Giả sử mỗi thư mục có Dockerfile
     plan: free  # Hoặc starter nếu cần
