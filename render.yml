@@ -1,0 +1,138 @@
+services:
+  # Frontend (Web Service)
+  - type: web
+    name: petcare-frontend
+    env: node
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO  # Thay bằng repo thật
+    rootDir: ./front-end
+    dockerfilePath: ./Dockerfile  # Giả sử mỗi thư mục có Dockerfile
+    plan: free  # Hoặc starter nếu cần
+    envVars:
+      - key: JWT_SECRET_KEY
+        value: secretkey_jwt123
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: NEXT_PUBLIC_URL
+        value: https://petcare-frontend.onrender.com  # Thay bằng domain thật sau khi deploy
+      - key: NEXT_PUBLIC_BRAND_NAME
+        value: PetHub
+      - key: NEXT_PUBLIC_DESCRIPTION
+        value: PetCare helps you book vet appointments, pet spa, hotel, and adoption services with ease.
+      - key: NEXT_PUBLIC_AUTH_API
+        value: https://petcare-auth.onrender.com/api/auth  # Thay bằng URL backend thật
+      - key: NEXT_PUBLIC_USER_MANAGEMENT_API
+        value: https://petcare-user-management.onrender.com/api/ums
+      - key: NEXT_PUBLIC_BOOKING_API
+        value: https://petcare-booking.onrender.com/api/booking
+      - key: NEXT_PUBLIC_VET_API
+        value: https://petcare-vet.onrender.com/api/vet
+      - key: NEXT_PUBLIC_FACEBOOK_URL
+        value: https://www.facebook.com/petcare
+      - key: NEXT_PUBLIC_INSTAGRAM_URL
+        value: https://www.instagram.com/petcare
+      - key: NEXT_PUBLIC_GITHUB_URL
+        value: https://github.com/petcare
+      - key: NEXT_PUBLIC_SUPPORT_EMAIL
+        value: support@petcare.vn
+      - key: NEXT_PUBLIC_PHONE_NUMBER
+        value: +84123456789
+      - key: NODE_ENV
+        value: production
+    buildCommand: npm install && npm run build
+    startCommand: npx next start -H 0.0.0.0
+
+  # Auth Service (Web Service)
+  - type: web
+    name: petcare-auth
+    env: python  # Giả sử backend dùng Python/FastAPI
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    rootDir: ./auth-service
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: JWT_SECRET_KEY
+        value: secretkey_jwt123
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: DATABASE_URL
+        value: postgresql+asyncpg://postgres.anwgeinbyeadpgnhszpr:WFQrRR17F5P49yoa@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres  # Giữ nguyên, hoặc dùng Render Postgres nếu muốn
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: 7
+      - key: APP_ENV
+        value: production  # Đổi từ development
+      - key: USER_SERVICE_INTERNAL_BASE_URL
+        value: https://petcare-user-management.onrender.com  # Internal URL qua private network
+    buildCommand: pip install -r requirements.txt  # Giả sử có requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT  # Thay bằng command thật của FastAPI
+
+  # User Management Service (Web Service)
+  - type: web
+    name: petcare-user-management
+    env: python
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    rootDir: ./user-management-service
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: JWT_SECRET_KEY
+        value: secretkey_jwt123
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: DATABASE_URL
+        value: postgresql+asyncpg://postgres.anwgeinbyeadpgnhszpr:WFQrRR17F5P49yoa@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres
+      - key: MAIL_USERNAME
+        value: ngkhuy.159@gmail.com
+      - key: MAIL_PASSWORD
+        value: ykly uuhs urir etzl
+      - key: MAIL_FROM
+        value: ngkhuy.159@gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_STARTTLS
+        value: True
+      - key: MAIL_SSL_TLS
+        value: False
+      - key: AUTH_SERVICE_INTERNAL_BASE_URL
+        value: https://petcare-auth.onrender.com
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+  # Booking Service (Web Service)
+  - type: web
+    name: petcare-booking
+    env: python
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    rootDir: ./booking-service
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: JWT_SECRET_KEY
+        value: secretkey_jwt123
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: DATABASE_URL
+        value: postgresql+asyncpg://postgres.jxiugzjubbucxudvvbvo:SHVCxbOXIsmzLyLS@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+  # Vet Service (Web Service)
+  - type: web
+    name: petcare-vet
+    env: python
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    rootDir: ./vet-service
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: JWT_SECRET_KEY
+        value: secretkey_jwt123
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: DATABASE_URL
+        value: postgresql+asyncpg://postgres.gwyspssvgudotjvdojpl:w18imz72gitJSK6W@aws-1-ap-south-1.pooler.supabase.com:6543/postgres
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
