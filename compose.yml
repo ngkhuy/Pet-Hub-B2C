@@ -1,4 +1,4 @@
-version: '3.9'
+version: '4.0'
 
 x-common-env: &common-env
   JWT_SECRET_KEY: secretkey_jwt123
